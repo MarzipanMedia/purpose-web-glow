@@ -74,12 +74,27 @@ export default {
 				'fade-in': {
 					'0%': { opacity: '0', transform: 'translateY(10px)' },
 					'100%': { opacity: '1', transform: 'translateY(0)' }
+				},
+				'slide-up': {
+					'0%': { opacity: '0', transform: 'translateY(15px)' },
+					'100%': { opacity: '1', transform: 'translateY(0)' }
+				},
+				'scale-up': {
+					'0%': { transform: 'scale(0.98)', opacity: '0' },
+					'100%': { transform: 'scale(1)', opacity: '1' }
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-5px)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'fade-in': 'fade-in 0.5s ease-out forwards'
+				'fade-in': 'fade-in 0.5s ease-out forwards',
+				'slide-up': 'slide-up 0.7s ease-out forwards',
+				'scale-up': 'scale-up 0.5s ease-out forwards',
+				'float': 'float 3s ease-in-out infinite'
 			},
 			fontFamily: {
 				'body': ['Public Sans', 'system-ui', 'sans-serif'],
@@ -89,6 +104,10 @@ export default {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
 				'gradient-subtle': 'linear-gradient(to right, #e6e9f0 0%, #eef1f5 100%)'
 			},
+			transitionProperty: {
+				'height': 'height',
+				'spacing': 'margin, padding'
+			}
 		}
 	},
 	plugins: [require("tailwindcss-animate")],

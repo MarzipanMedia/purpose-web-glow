@@ -42,6 +42,7 @@
 @layer base {
   * {
     @apply border-border;
+    scroll-behavior: smooth;
   }
   
   body {
@@ -59,14 +60,80 @@
   }
   
   .btn-primary {
-    @apply bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-all;
+    @apply bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-all hover:shadow-md hover:scale-[1.02] hover:translate-y-[-2px] duration-300;
   }
   
   .btn-secondary {
-    @apply bg-secondary text-foreground px-6 py-3 rounded-lg hover:bg-secondary/90 transition-all;
+    @apply bg-secondary text-foreground px-6 py-3 rounded-lg hover:bg-secondary/90 transition-all hover:shadow-md hover:scale-[1.02] hover:translate-y-[-2px] duration-300;
   }
   
   .gradient-text {
     @apply bg-gradient-to-r from-brandBlue to-brandRed bg-clip-text text-transparent;
   }
 }
+
+@layer utilities {
+  .page-transition {
+    @apply animate-fade-in;
+  }
+  
+  .hover-link {
+    @apply transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full;
+  }
+  
+  .slide-up {
+    @apply opacity-0 translate-y-6 animate-slide-up;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.7s ease forwards;
+}
+
+.animate-appear {
+  animation: appear 0.4s ease-out forwards;
+}
+
+.stagger-item:nth-child(1) { animation-delay: 0.1s; }
+.stagger-item:nth-child(2) { animation-delay: 0.2s; }
+.stagger-item:nth-child(3) { animation-delay: 0.3s; }
+.stagger-item:nth-child(4) { animation-delay: 0.4s; }
+.stagger-item:nth-child(5) { animation-delay: 0.5s; }
+.stagger-item:nth-child(6) { animation-delay: 0.6s; }

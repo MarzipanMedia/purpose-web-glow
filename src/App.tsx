@@ -3,14 +3,36 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import Index from "./pages/Index";
 import Services from "./pages/Services";
 import Projects from "./pages/Projects";
 import Blog from "./pages/Blog";
 import NotFound from "./pages/NotFound";
+import Contact from "./pages/Contact";
 
 const queryClient = new QueryClient();
+
+// Page transition wrapper component
+const PageTransition = ({ children }: { children: React.ReactNode }) => {
+  const location = useLocation();
+
+  useEffect(() => {
+    // Scroll to top on page change
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
+  return <div className="page-transition">{children}</div>;
+};
+
+// Contact page placeholder
+const Contact = () => (
+  <div className="container-custom py-24">
+    <h1 className="text-4xl font-bold mb-8">Get in Touch</h1>
+    <p className="mb-6">Contact page coming soon...</p>
+  </div>
+);
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -19,12 +41,12 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/blog" element={<Blog />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
+          <Route path="/" element={<PageTransition><Index /></PageTransition>} />
+          <Route path="/services" element={<PageTransition><Services /></PageTransition>} />
+          <Route path="/projects" element={<PageTransition><Projects /></PageTransition>} />
+          <Route path="/blog" element={<PageTransition><Blog /></PageTransition>} />
+          <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
+          <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
