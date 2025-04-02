@@ -26,14 +26,6 @@ const PageTransition = ({ children }: { children: React.ReactNode }) => {
   return <div className="page-transition">{children}</div>;
 };
 
-// Contact page placeholder
-const Contact = () => (
-  <div className="container-custom py-24">
-    <h1 className="text-4xl font-bold mb-8">Get in Touch</h1>
-    <p className="mb-6">Contact page coming soon...</p>
-  </div>
-);
-
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
