@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import Hero from '../components/Hero';
 import Services from '../components/Services';
 import Sustainability from '../components/Sustainability';
+import RecentProjects from '../components/RecentProjects';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
@@ -59,6 +60,9 @@ const Index = () => {
         </section>
         
         <Sustainability />
+        
+        {/* Recent Projects Section - Added above testimonials */}
+        <RecentProjects />
         
         {/* Testimonials Section */}
         <section className="py-20 bg-white">
