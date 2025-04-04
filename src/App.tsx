@@ -11,6 +11,10 @@ import Projects from "./pages/Projects";
 import Blog from "./pages/Blog";
 import NotFound from "./pages/NotFound";
 import Contact from "./pages/Contact";
+import SustainableWebDesign from "./pages/services/SustainableWebDesign";
+import AiSeo from "./pages/services/AiSeo";
+import ContentCreation from "./pages/services/ContentCreation";
+import DigitalMarketing from "./pages/services/DigitalMarketing";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +39,10 @@ const App = () => (
         <Routes>
           <Route path="/" element={<PageTransition><Index /></PageTransition>} />
           <Route path="/services" element={<PageTransition><Services /></PageTransition>} />
+          <Route path="/services/sustainable-web-design" element={<PageTransition><SustainableWebDesign /></PageTransition>} />
+          <Route path="/services/ai-seo" element={<PageTransition><AiSeo /></PageTransition>} />
+          <Route path="/services/content-creation" element={<PageTransition><ContentCreation /></PageTransition>} />
+          <Route path="/services/digital-marketing" element={<PageTransition><DigitalMarketing /></PageTransition>} />
           <Route path="/projects" element={<PageTransition><Projects /></PageTransition>} />
           <Route path="/blog" element={<PageTransition><Blog /></PageTransition>} />
           <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />

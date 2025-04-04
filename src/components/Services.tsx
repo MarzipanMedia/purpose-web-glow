@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Lightbulb, Search, Globe, MessageSquare } from 'lucide-react';
+import { Lightbulb, Search, Globe, MessageSquare, Megaphone } from 'lucide-react';
 
 const Services = () => {
   const services = [
@@ -9,25 +9,25 @@ const Services = () => {
       title: "Sustainable Web Design",
       description: "Eco-friendly websites that minimize carbon footprint while maximizing user experience.",
       icon: <Globe className="h-6 w-6" />,
-      link: "/services#sustainable-web"
+      link: "/services/sustainable-web-design"
     },
     {
       title: "AI-Driven SEO",
       description: "Ethical optimization strategies that help your purpose-driven brand reach the right audience.",
       icon: <Search className="h-6 w-6" />,
-      link: "/services#ai-seo"
-    },
-    {
-      title: "Brand Strategy",
-      description: "Align your digital presence with your mission and values for authentic communication.",
-      icon: <Lightbulb className="h-6 w-6" />,
-      link: "/services#brand-strategy"
+      link: "/services/ai-seo"
     },
     {
       title: "Content Creation",
       description: "Compelling storytelling that resonates with your audience and drives meaningful engagement.",
       icon: <MessageSquare className="h-6 w-6" />,
-      link: "/services#content"
+      link: "/services/content-creation"
+    },
+    {
+      title: "Digital Marketing",
+      description: "Social media and Google Ads strategies that amplify your message to the right audience.",
+      icon: <Megaphone className="h-6 w-6" />,
+      link: "/services/digital-marketing"
     }
   ];
 
