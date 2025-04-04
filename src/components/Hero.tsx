@@ -29,8 +29,8 @@ const Hero = () => {
           
           <div className="md:col-span-5 animate-fade-in" style={{ animationDelay: "0.3s" }}>
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-radial from-brandBlue/20 to-transparent opacity-70 rounded-full"></div>
-              <div className="bg-marzipan/80 rounded-full aspect-square flex items-center justify-center p-12">
+              <div className="absolute inset-0 bg-gradient-radial from-brandBlue/20 to-transparent opacity-70 rounded-full animate-pulse-slow"></div>
+              <div className="bg-marzipan/80 rounded-full aspect-square flex items-center justify-center p-12 transition-all duration-700 animate-pulse-slow">
                 <div className="text-center">
                   <p className="text-xl font-display">Eco-friendly</p>
                   <h3 className="text-3xl font-display font-semibold">Web Design</h3>

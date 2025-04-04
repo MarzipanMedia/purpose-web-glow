@@ -86,6 +86,10 @@ export default {
 				'float': {
 					'0%, 100%': { transform: 'translateY(0)' },
 					'50%': { transform: 'translateY(-5px)' }
+				},
+				'pulse-slow': {
+					'0%, 100%': { transform: 'scale(1)', opacity: '1' },
+					'50%': { transform: 'scale(1.05)', opacity: '0.9' }
 				}
 			},
 			animation: {
@@ -94,7 +98,8 @@ export default {
 				'fade-in': 'fade-in 0.5s ease-out forwards',
 				'slide-up': 'slide-up 0.7s ease-out forwards',
 				'scale-up': 'scale-up 0.5s ease-out forwards',
-				'float': 'float 3s ease-in-out infinite'
+				'float': 'float 3s ease-in-out infinite',
+				'pulse-slow': 'pulse-slow 4s ease-in-out infinite'
 			},
 			fontFamily: {
 				'body': ['Public Sans', 'system-ui', 'sans-serif'],
