@@ -57,6 +57,21 @@ const Services = () => {
             </Link>
           ))}
         </div>
+
+        <div className="mt-12 pt-12 border-t border-marzipan/20">
+          <div className="text-center animate-fade-in">
+            <h3 className="text-2xl font-display font-medium mb-3">Free Sustainability Tools</h3>
+            <p className="text-lg text-foreground/80 max-w-2xl mx-auto mb-6">
+              Check how sustainable your website is with our free website carbon checker tool
+            </p>
+            <Link 
+              to="/website-carbon" 
+              className="inline-flex items-center gap-2 bg-brandBlue text-white px-6 py-3 rounded-lg font-medium hover:bg-brandBlue/90 transition-all"
+            >
+              Check Website Carbon Footprint
+            </Link>
+          </div>
+        </div>
       </div>
     </section>
   );

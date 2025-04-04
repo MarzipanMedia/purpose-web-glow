@@ -15,6 +15,7 @@ import SustainableWebDesign from "./pages/services/SustainableWebDesign";
 import AiSeo from "./pages/services/AiSeo";
 import ContentCreation from "./pages/services/ContentCreation";
 import DigitalMarketing from "./pages/services/DigitalMarketing";
+import WebsiteCarbon from "./pages/WebsiteCarbon";
 
 const queryClient = new QueryClient();
 
@@ -46,6 +47,7 @@ const App = () => (
           <Route path="/projects" element={<PageTransition><Projects /></PageTransition>} />
           <Route path="/blog" element={<PageTransition><Blog /></PageTransition>} />
           <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
+          <Route path="/website-carbon" element={<PageTransition><WebsiteCarbon /></PageTransition>} />
           <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
         </Routes>
       </BrowserRouter>
