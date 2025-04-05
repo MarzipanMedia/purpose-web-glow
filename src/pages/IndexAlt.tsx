@@ -7,25 +7,7 @@ import Sustainability from '../components/Sustainability';
 import RecentProjects from '../components/RecentProjects';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Users, Award, BarChart3 } from 'lucide-react';
-
-// Wave Component to be used between sections
-const WaveBorder = ({ position = "top", color = "white", bgColor = "bg-brandRed/10", flipY = false }) => (
-  <div className={`relative w-full overflow-hidden ${position === "top" ? "-mt-1" : "-mb-1"}`}>
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 1200 120"
-      preserveAspectRatio="none"
-      className={`w-full h-12 md:h-16 ${flipY ? "rotate-180" : ""}`}
-      style={{ fill: color }}
-    >
-      <path
-        d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
-      ></path>
-    </svg>
-    <div className={`${bgColor} w-full h-1`}></div>
-  </div>
-);
+import { ArrowRight, Users, Award, BarChart3, Laptop } from 'lucide-react';
 
 const IndexAlt = () => {
   const testimonials = [
@@ -57,7 +39,7 @@ const IndexAlt = () => {
         <HeroAlt />
         
         {/* Earthy Stats Section */}
-        <section className="py-16 bg-white relative">
+        <section className="py-16 bg-white">
           <div className="container-custom">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
               <div className="p-6 bg-white rounded-lg shadow-md border-t-4 border-brandRed animate-fade-in" style={{ animationDelay: "0.1s" }}>
@@ -83,37 +65,92 @@ const IndexAlt = () => {
               </div>
             </div>
           </div>
-          
-          {/* Wave border between sections */}
-          <WaveBorder position="bottom" color="#f9fafb" bgColor="bg-brandRed/5" />
         </section>
         
         {/* Services Section with red accents */}
         <section className="relative bg-gradient-to-b from-gray-50 to-white">
           <Services />
-          
-          {/* Wave border */}
-          <WaveBorder position="bottom" color="white" bgColor="bg-brandRed/5" flipY={true} />
         </section>
         
         {/* Sustainability Section with earthy tone */}
         <section className="relative">
           <Sustainability />
-          
-          {/* Wave border */}
-          <WaveBorder position="bottom" color="#f9fafb" bgColor="bg-brandRed/5" />
+        </section>
+        
+        {/* Website Carbon CTA */}
+        <section className="py-16 bg-marzipan/20">
+          <div className="container-custom">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+              <div className="space-y-6 animate-fade-in">
+                <div className="inline-block bg-brandRed/10 text-brandRed px-4 py-1 rounded-full">
+                  Free Tool
+                </div>
+                <h2 className="text-3xl md:text-4xl font-display font-semibold">
+                  Is Your Website <span className="text-brandRed">Eco-Friendly</span>?
+                </h2>
+                <p className="text-lg text-foreground/80">
+                  Discover your website's carbon footprint and how it impacts the environment. 
+                  Our free tool helps you assess your site's sustainability and provides actionable recommendations.
+                </p>
+                <Link 
+                  to="/website-carbon" 
+                  className="bg-brandRed text-white px-6 py-3 rounded-lg inline-flex items-center gap-2 hover:bg-brandRed/90 transition-all hover:shadow-md hover:scale-[1.02] hover:translate-y-[-2px] duration-300"
+                >
+                  Check Your Website <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+              
+              <div className="relative animate-fade-in" style={{ animationDelay: "0.2s" }}>
+                <div className="bg-white rounded-lg shadow-lg p-8 border border-marzipan/30">
+                  <div className="flex justify-center mb-6">
+                    <div className="bg-brandRed/10 rounded-full p-4 text-brandRed">
+                      <Laptop size={40} />
+                    </div>
+                  </div>
+                  <div className="text-center mb-6">
+                    <h3 className="text-xl font-display font-semibold mb-2">Website Carbon Calculator</h3>
+                    <p className="text-foreground/70">Enter your URL and get instant insights</p>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <div className="bg-gray-50 rounded-lg p-4 flex items-center justify-between">
+                      <span className="font-medium">Carbon per page view</span>
+                      <span className="text-brandRed font-display">1.45g vs. 0.5g</span>
+                    </div>
+                    <div className="bg-gray-50 rounded-lg p-4 flex items-center justify-between">
+                      <span className="font-medium">Page size reduction</span>
+                      <span className="text-brandRed font-display">Up to 70%</span>
+                    </div>
+                    <div className="bg-gray-50 rounded-lg p-4 flex items-center justify-between">
+                      <span className="font-medium">Performance boost</span>
+                      <span className="text-brandRed font-display">2x faster</span>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-6 text-center">
+                    <Link 
+                      to="/website-carbon" 
+                      className="text-brandRed font-medium hover-link inline-flex items-center gap-1"
+                    >
+                      Check Your Website Now <ArrowRight className="h-3 w-3" />
+                    </Link>
+                  </div>
+                </div>
+                
+                {/* Decorative element */}
+                <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-brandRed/20 rounded-full z-[-1]"></div>
+              </div>
+            </div>
+          </div>
         </section>
         
         {/* Recent Projects Section */}
         <section className="relative bg-gradient-to-b from-gray-50 to-white">
           <RecentProjects />
-          
-          {/* Wave border */}
-          <WaveBorder position="bottom" color="white" bgColor="bg-brandRed/5" flipY={true} />
         </section>
         
         {/* Testimonials Section */}
-        <section className="py-20 bg-white relative">
+        <section className="py-20 bg-white">
           <div className="container-custom">
             <div className="text-center max-w-3xl mx-auto mb-12 animate-fade-in">
               <div className="inline-block bg-brandRed/10 text-brandRed px-4 py-1 rounded-full mb-4">
@@ -152,13 +189,10 @@ const IndexAlt = () => {
               ))}
             </div>
           </div>
-          
-          {/* Wave border before CTA */}
-          <WaveBorder position="bottom" color="#ae2012" bgColor="bg-white" />
         </section>
         
         {/* CTA Section */}
-        <section className="py-16 bg-brandRed text-white relative">
+        <section className="py-16 bg-brandRed text-white">
           <div className="container-custom text-center">
             <h2 className="text-3xl md:text-4xl font-display font-semibold mb-4 animate-fade-in">
               Ready to make an impact with your online presence?
@@ -174,9 +208,6 @@ const IndexAlt = () => {
               Get Started <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-          
-          {/* Final wave border */}
-          <WaveBorder position="bottom" color="white" bgColor="bg-brandRed" flipY={true} />
         </section>
       </main>
       
