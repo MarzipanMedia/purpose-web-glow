@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import Index from "./pages/Index";
+import IndexAlt from "./pages/IndexAlt";
 import Services from "./pages/Services";
 import Projects from "./pages/Projects";
 import Blog from "./pages/Blog";
@@ -39,6 +40,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<PageTransition><Index /></PageTransition>} />
+          <Route path="/alt" element={<PageTransition><IndexAlt /></PageTransition>} />
           <Route path="/services" element={<PageTransition><Services /></PageTransition>} />
           <Route path="/services/sustainable-web-design" element={<PageTransition><SustainableWebDesign /></PageTransition>} />
           <Route path="/services/ai-seo" element={<PageTransition><AiSeo /></PageTransition>} />
