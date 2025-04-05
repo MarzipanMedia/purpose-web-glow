@@ -9,6 +9,24 @@ import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Users, Award, BarChart3 } from 'lucide-react';
 
+// Wave Component to be used between sections
+const WaveBorder = ({ position = "top", color = "white", bgColor = "bg-brandRed/10", flipY = false }) => (
+  <div className={`relative w-full overflow-hidden ${position === "top" ? "-mt-1" : "-mb-1"}`}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1200 120"
+      preserveAspectRatio="none"
+      className={`w-full h-12 md:h-16 ${flipY ? "rotate-180" : ""}`}
+      style={{ fill: color }}
+    >
+      <path
+        d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
+      ></path>
+    </svg>
+    <div className={`${bgColor} w-full h-1`}></div>
+  </div>
+);
+
 const IndexAlt = () => {
   const testimonials = [
     {
@@ -39,7 +57,7 @@ const IndexAlt = () => {
         <HeroAlt />
         
         {/* Earthy Stats Section */}
-        <section className="py-16 bg-gradient-to-b from-white to-brandRed/10">
+        <section className="py-16 bg-white relative">
           <div className="container-custom">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
               <div className="p-6 bg-white rounded-lg shadow-md border-t-4 border-brandRed animate-fade-in" style={{ animationDelay: "0.1s" }}>
@@ -65,19 +83,37 @@ const IndexAlt = () => {
               </div>
             </div>
           </div>
+          
+          {/* Wave border between sections */}
+          <WaveBorder position="bottom" color="#f9fafb" bgColor="bg-brandRed/5" />
         </section>
         
         {/* Services Section with red accents */}
-        <Services />
+        <section className="relative bg-gradient-to-b from-gray-50 to-white">
+          <Services />
+          
+          {/* Wave border */}
+          <WaveBorder position="bottom" color="white" bgColor="bg-brandRed/5" flipY={true} />
+        </section>
         
         {/* Sustainability Section with earthy tone */}
-        <Sustainability />
+        <section className="relative">
+          <Sustainability />
+          
+          {/* Wave border */}
+          <WaveBorder position="bottom" color="#f9fafb" bgColor="bg-brandRed/5" />
+        </section>
         
         {/* Recent Projects Section */}
-        <RecentProjects />
+        <section className="relative bg-gradient-to-b from-gray-50 to-white">
+          <RecentProjects />
+          
+          {/* Wave border */}
+          <WaveBorder position="bottom" color="white" bgColor="bg-brandRed/5" flipY={true} />
+        </section>
         
         {/* Testimonials Section */}
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-white relative">
           <div className="container-custom">
             <div className="text-center max-w-3xl mx-auto mb-12 animate-fade-in">
               <div className="inline-block bg-brandRed/10 text-brandRed px-4 py-1 rounded-full mb-4">
@@ -116,10 +152,13 @@ const IndexAlt = () => {
               ))}
             </div>
           </div>
+          
+          {/* Wave border before CTA */}
+          <WaveBorder position="bottom" color="#ae2012" bgColor="bg-white" />
         </section>
         
         {/* CTA Section */}
-        <section className="py-16 bg-brandRed text-white">
+        <section className="py-16 bg-brandRed text-white relative">
           <div className="container-custom text-center">
             <h2 className="text-3xl md:text-4xl font-display font-semibold mb-4 animate-fade-in">
               Ready to make an impact with your online presence?
@@ -135,6 +174,9 @@ const IndexAlt = () => {
               Get Started <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
+          
+          {/* Final wave border */}
+          <WaveBorder position="bottom" color="white" bgColor="bg-brandRed" flipY={true} />
         </section>
       </main>
       
