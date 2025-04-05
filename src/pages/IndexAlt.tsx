@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Header from '../components/Header';
 import HeroAlt from '../components/HeroAlt';
@@ -192,7 +191,7 @@ const IndexAlt = () => {
         </section>
         
         {/* CTA Section */}
-        <section className="py-16 bg-brandRed text-white">
+        <section className="py-16 bg-gradient-to-br from-brandRed/90 via-brandRed/70 to-brandBlue/80 text-white">
           <div className="container-custom text-center">
             <h2 className="text-3xl md:text-4xl font-display font-semibold mb-4 animate-fade-in">
               Ready to make an impact with your online presence?
@@ -202,7 +201,7 @@ const IndexAlt = () => {
             </p>
             <Link 
               to="/contact" 
-              className="inline-flex items-center gap-2 bg-white text-brandRed px-8 py-4 rounded-lg font-medium hover:bg-marzipan transition-all animate-fade-in shadow-md"
+              className="inline-flex items-center gap-2 bg-white text-brandBlue px-8 py-4 rounded-lg font-medium hover:bg-marzipan transition-all animate-fade-in shadow-md"
               style={{ animationDelay: "0.2s" }}
             >
               Get Started <ArrowRight className="h-4 w-4" />
