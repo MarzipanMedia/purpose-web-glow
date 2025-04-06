@@ -11,14 +11,17 @@ import {
   formatWordPressDate,
   estimateReadingTime,
   stripHtml,
+  searchWordPressPosts,
   type WordPressPost,
   type WordPressCategory
 } from '../services/wordpressApi';
+import { useToast } from '@/hooks/use-toast';
 
 const Blog = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
   const [debouncedSearchQuery, setDebouncedSearchQuery] = useState('');
+  const { toast } = useToast();
   
   // Debounce search input
   useEffect(() => {
@@ -37,9 +40,17 @@ const Blog = () => {
   } = useQuery({
     queryKey: ['wpPosts', currentPage, debouncedSearchQuery],
     queryFn: async () => {
-      // If there's a search query, we'd need to modify this to use the WordPress search endpoint
-      // This is a simplified version - in a real app, you might want to implement more sophisticated search
+      if (debouncedSearchQuery) {
+        return searchWordPressPosts(debouncedSearchQuery, currentPage, 6);
+      }
       return fetchWordPressPosts(currentPage, 6);
+    },
+    onError: () => {
+      toast({
+        title: "Error loading posts",
+        description: "Could not load blog posts from WordPress. Please try again later.",
+        variant: "destructive"
+      });
     }
   });
   
@@ -102,7 +113,9 @@ const Blog = () => {
                   <div className="text-center py-12">
                     <h3 className="text-xl font-medium mb-2">No Posts Found</h3>
                     <p className="text-foreground/70">
-                      Try adjusting your search or check back later for new content.
+                      {debouncedSearchQuery ? 
+                        `No results found for "${debouncedSearchQuery}". Try another search term.` : 
+                        'No posts available. Check back later for new content.'}
                     </p>
                   </div>
                 ) : (
@@ -112,6 +125,7 @@ const Blog = () => {
                       const readTime = estimateReadingTime(post.content.rendered);
                       const category = post._embedded?.['wp:term']?.[0]?.[0]?.name || 'Uncategorized';
                       const excerpt = stripHtml(post.excerpt.rendered);
+                      const featuredImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url;
                       
                       return (
                         <div 
@@ -119,6 +133,16 @@ const Blog = () => {
                           className="border border-marzipan/20 rounded-lg overflow-hidden hover:shadow-md transition-shadow animate-fade-in"
                           style={{ animationDelay: `${0.1 + index * 0.05}s` }}
                         >
+                          {featuredImage && (
+                            <div className="aspect-[16/9] w-full overflow-hidden">
+                              <img 
+                                src={featuredImage} 
+                                alt={post._embedded?.['wp:featuredmedia']?.[0]?.alt_text || post.title.rendered}
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                              />
+                            </div>
+                          )}
+                          
                           <div className="h-2 bg-gradient-to-r from-brandBlue to-brandRed"></div>
                           <div className="p-6">
                             <div className="flex items-center gap-4 text-sm text-foreground/60 mb-3">
@@ -247,16 +271,16 @@ const Blog = () => {
                 <div className="bg-brandBlue text-white p-6 rounded-lg">
                   <div className="text-sm text-white/70 uppercase font-medium mb-2">Featured Article</div>
                   <h3 className="text-xl font-display font-medium mb-3">
-                    <a href="#" className="hover:text-white/90 transition-colors">
-                      The Future of Sustainable Web Design: Trends for 2023 and Beyond
-                    </a>
+                    <Link to="/blog/reducing-website-carbon-footprint" className="hover:text-white/90 transition-colors">
+                      The Future of Sustainable Web Design: Trends for 2025 and Beyond
+                    </Link>
                   </h3>
                   <p className="text-white/80 mb-4">
                     Explore emerging technologies and approaches that are shaping the future of eco-friendly digital experiences.
                   </p>
-                  <a href="#" className="inline-flex items-center gap-1 text-sm font-medium text-white hover:text-white/80 transition-colors">
+                  <Link to="/blog/reducing-website-carbon-footprint" className="inline-flex items-center gap-1 text-sm font-medium text-white hover:text-white/80 transition-colors">
                     Read Featured Article <ArrowRight className="h-3.5 w-3.5" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -278,7 +302,7 @@ const Blog = () => {
                 placeholder="Your email address"
                 className="flex-grow py-3 px-4 rounded-lg border border-marzipan focus:outline-none focus:ring-2 focus:ring-brandBlue/40"
               />
-              <button className="btn-primary whitespace-nowrap">
+              <button className="bg-brandBlue text-white px-6 py-3 rounded-lg hover:bg-brandBlue/90 transition-all hover:shadow-md hover:scale-[1.02] hover:translate-y-[-2px] duration-300">
                 Subscribe
               </button>
             </div>

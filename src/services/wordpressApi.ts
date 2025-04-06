@@ -26,6 +26,9 @@ export interface WordPressPost {
       name: string;
       slug: string;
     }>>;
+    'author'?: Array<{
+      name: string;
+    }>;
   };
   author_info?: {
     name: string;
@@ -39,8 +42,8 @@ export interface WordPressCategory {
   count: number;
 }
 
-// Replace with your WordPress site URL
-const WP_API_URL = 'https://your-wordpress-site.com/wp-json/wp/v2';
+// Real WordPress site URL - update with your actual WordPress site
+const WP_API_URL = 'https://demo.wp-api.org/wp-json/wp/v2';
 
 /**
  * Fetch posts from WordPress API
@@ -155,4 +158,41 @@ export const estimateReadingTime = (content: string): string => {
 export const stripHtml = (html: string): string => {
   const doc = new DOMParser().parseFromString(html, 'text/html');
   return doc.body.textContent || '';
+};
+
+// Function to search posts
+export const searchWordPressPosts = async (searchQuery: string, page = 1, perPage = 6): Promise<{
+  posts: WordPressPost[];
+  totalPages: number;
+}> => {
+  try {
+    const response = await fetch(
+      `${WP_API_URL}/posts?_embed&search=${encodeURIComponent(searchQuery)}&page=${page}&per_page=${perPage}`
+    );
+    
+    if (!response.ok) {
+      throw new Error('Failed to search posts');
+    }
+    
+    const posts = await response.json();
+    const totalPages = parseInt(response.headers.get('X-WP-TotalPages') || '1', 10);
+    
+    // Process posts to extract author names
+    const processedPosts = posts.map((post: WordPressPost) => {
+      const authorInfo = post._embedded?.['author']?.[0]?.name || 'Unknown Author';
+      
+      return {
+        ...post,
+        author_info: { name: authorInfo }
+      };
+    });
+    
+    return { 
+      posts: processedPosts,
+      totalPages
+    };
+  } catch (error) {
+    console.error('Error searching WordPress posts:', error);
+    return { posts: [], totalPages: 0 };
+  }
 };
