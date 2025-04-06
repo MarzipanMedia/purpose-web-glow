@@ -1,9 +1,9 @@
-
 import React, { useEffect } from 'react';
 import Header from '../components/Header';
 import HeroAlt from '../components/HeroAlt';
 import Services from '../components/Services';
 import Sustainability from '../components/Sustainability';
+import ClientLogos from '../components/ClientLogos';
 import RecentProjects from '../components/RecentProjects';
 import BlogPreview from '../components/BlogPreview';
 import Footer from '../components/Footer';
@@ -164,12 +164,15 @@ const IndexAlt = () => {
           </div>
         </section>
         
+        {/* Client Logos Section - New addition */}
+        <ClientLogos />
+        
         {/* Recent Projects Section */}
         <section className="relative bg-gradient-to-b from-gray-50 to-white">
           <RecentProjects />
         </section>
         
-        {/* Blog Preview Section - New addition */}
+        {/* Blog Preview Section */}
         <BlogPreview />
         
         {/* Testimonials Section */}
