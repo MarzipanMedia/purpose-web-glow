@@ -1,9 +1,11 @@
-import React from 'react';
+
+import React, { useEffect } from 'react';
 import Header from '../components/Header';
 import HeroAlt from '../components/HeroAlt';
 import Services from '../components/Services';
 import Sustainability from '../components/Sustainability';
 import RecentProjects from '../components/RecentProjects';
+import BlogPreview from '../components/BlogPreview';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Users, Award, BarChart3, Laptop } from 'lucide-react';
@@ -30,6 +32,25 @@ const IndexAlt = () => {
     }
   ];
 
+  // Add scroll animation observer
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    animatedElements.forEach(el => observer.observe(el));
+
+    return () => {
+      animatedElements.forEach(el => observer.unobserve(el));
+    };
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -41,21 +62,21 @@ const IndexAlt = () => {
         <section className="py-16 bg-white">
           <div className="container-custom">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-              <div className="p-6 bg-white rounded-lg shadow-md border-t-4 border-brandRed animate-fade-in" style={{ animationDelay: "0.1s" }}>
+              <div className="p-6 bg-white rounded-lg shadow-md border-t-4 border-brandRed animate-on-scroll opacity-0" style={{ transitionDelay: "0.1s" }}>
                 <div className="text-brandRed mb-4 flex justify-center">
                   <BarChart3 size={32} />
                 </div>
                 <div className="text-4xl font-display font-bold text-brandRed mb-2">90%</div>
                 <p className="text-foreground/80">Lower Carbon Emissions Than Traditional Websites</p>
               </div>
-              <div className="p-6 bg-white rounded-lg shadow-md border-t-4 border-brandRed animate-fade-in" style={{ animationDelay: "0.2s" }}>
+              <div className="p-6 bg-white rounded-lg shadow-md border-t-4 border-brandRed animate-on-scroll opacity-0" style={{ transitionDelay: "0.2s" }}>
                 <div className="text-brandRed mb-4 flex justify-center">
                   <Award size={32} />
                 </div>
                 <div className="text-4xl font-display font-bold text-brandRed mb-2">2x</div>
                 <p className="text-foreground/80">Faster Page Load Times Than Industry Average</p>
               </div>
-              <div className="p-6 bg-white rounded-lg shadow-md border-t-4 border-brandRed animate-fade-in" style={{ animationDelay: "0.3s" }}>
+              <div className="p-6 bg-white rounded-lg shadow-md border-t-4 border-brandRed animate-on-scroll opacity-0" style={{ transitionDelay: "0.3s" }}>
                 <div className="text-brandRed mb-4 flex justify-center">
                   <Users size={32} />
                 </div>
@@ -80,7 +101,7 @@ const IndexAlt = () => {
         <section className="py-16 bg-marzipan/20">
           <div className="container-custom">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-              <div className="space-y-6 animate-fade-in">
+              <div className="space-y-6 animate-on-scroll opacity-0">
                 <div className="inline-block bg-brandRed/10 text-brandRed px-4 py-1 rounded-full">
                   Free Tool
                 </div>
@@ -99,7 +120,7 @@ const IndexAlt = () => {
                 </Link>
               </div>
               
-              <div className="relative animate-fade-in" style={{ animationDelay: "0.2s" }}>
+              <div className="relative animate-on-scroll opacity-0" style={{ transitionDelay: "0.2s" }}>
                 <div className="bg-white rounded-lg shadow-lg p-8 border border-marzipan/30">
                   <div className="flex justify-center mb-6">
                     <div className="bg-brandRed/10 rounded-full p-4 text-brandRed">
@@ -148,10 +169,13 @@ const IndexAlt = () => {
           <RecentProjects />
         </section>
         
+        {/* Blog Preview Section - New addition */}
+        <BlogPreview />
+        
         {/* Testimonials Section */}
         <section className="py-20 bg-white">
           <div className="container-custom">
-            <div className="text-center max-w-3xl mx-auto mb-12 animate-fade-in">
+            <div className="text-center max-w-3xl mx-auto mb-12 animate-on-scroll opacity-0">
               <div className="inline-block bg-brandRed/10 text-brandRed px-4 py-1 rounded-full mb-4">
                 Client Success Stories
               </div>
@@ -164,8 +188,8 @@ const IndexAlt = () => {
               {testimonials.map((testimonial, index) => (
                 <div 
                   key={index} 
-                  className="bg-gradient-to-br from-white to-brandRed/5 p-6 rounded-lg border border-brandRed/20 animate-fade-in"
-                  style={{ animationDelay: `${0.1 + index * 0.1}s` }}
+                  className="bg-gradient-to-br from-white to-brandRed/5 p-6 rounded-lg border border-brandRed/20 animate-on-scroll opacity-0"
+                  style={{ transitionDelay: `${0.1 + index * 0.1}s` }}
                 >
                   <div className="mb-4 text-brandRed">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" stroke="none">
@@ -193,16 +217,16 @@ const IndexAlt = () => {
         {/* CTA Section */}
         <section className="py-16 bg-gradient-to-br from-brandRed/90 via-brandRed/70 to-brandBlue/80 text-white">
           <div className="container-custom text-center">
-            <h2 className="text-3xl md:text-4xl font-display font-semibold mb-4 animate-fade-in">
+            <h2 className="text-3xl md:text-4xl font-display font-semibold mb-4 animate-on-scroll opacity-0">
               Ready to make an impact with your online presence?
             </h2>
-            <p className="text-lg text-white/90 max-w-2xl mx-auto mb-8 animate-fade-in" style={{ animationDelay: "0.1s" }}>
+            <p className="text-lg text-white/90 max-w-2xl mx-auto mb-8 animate-on-scroll opacity-0" style={{ transitionDelay: "0.1s" }}>
               Let's create a sustainable website that aligns with your values and helps you reach your goals.
             </p>
             <Link 
               to="/contact" 
-              className="inline-flex items-center gap-2 bg-white text-brandBlue px-8 py-4 rounded-lg font-medium hover:bg-marzipan transition-all animate-fade-in shadow-md"
-              style={{ animationDelay: "0.2s" }}
+              className="inline-flex items-center gap-2 bg-white text-brandBlue px-8 py-4 rounded-lg font-medium hover:bg-marzipan transition-all animate-on-scroll opacity-0 shadow-md"
+              style={{ transitionDelay: "0.2s" }}
             >
               Get Started <ArrowRight className="h-4 w-4" />
             </Link>
