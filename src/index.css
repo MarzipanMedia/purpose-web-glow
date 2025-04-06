@@ -1,151 +1,139 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&family=Jost:wght@400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 50 33% 98%;
-    --foreground: 222.2 84% 4.9%;
-
+    --background: 0 0% 100%;
+    --foreground: 224 71.4% 4.1%;
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
+    --card-foreground: 224 71.4% 4.1%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 196 67% 27%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 49 54% 88%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 5 83% 37%;
-    --accent-foreground: 210 40% 98%;
-
+    --popover-foreground: 224 71.4% 4.1%;
+    --primary: 262.1 83.3% 57.8%;
+    --primary-foreground: 210 20% 98%;
+    --secondary: 220 14.3% 95.9%;
+    --secondary-foreground: 220.9 39.3% 11%;
+    --muted: 220 14.3% 95.9%;
+    --muted-foreground: 220 8.9% 46.1%;
+    --accent: 220 14.3% 95.9%;
+    --accent-foreground: 220.9 39.3% 11%;
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 196 67% 27%;
-
+    --destructive-foreground: 210 20% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 262.1 83.3% 57.8%;
     --radius: 0.5rem;
   }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-    scroll-behavior: smooth;
-  }
-  
-  body {
-    @apply bg-background text-foreground font-body;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-display font-medium;
-  }
-}
-
-@layer components {
-  .container-custom {
-    @apply container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl;
-  }
-  
-  .btn-primary {
-    @apply bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-all hover:shadow-md hover:scale-[1.02] hover:translate-y-[-2px] duration-300;
-  }
-  
-  .btn-secondary {
-    @apply bg-secondary text-foreground px-6 py-3 rounded-lg hover:bg-secondary/90 transition-all hover:shadow-md hover:scale-[1.02] hover:translate-y-[-2px] duration-300;
-  }
-  
-  .gradient-text {
-    @apply bg-gradient-to-r from-brandBlue to-brandRed bg-clip-text text-transparent;
+ 
+  .dark {
+    --background: 224 71.4% 4.1%;
+    --foreground: 210 20% 98%;
+    --card: 224 71.4% 4.1%;
+    --card-foreground: 210 20% 98%;
+    --popover: 224 71.4% 4.1%;
+    --popover-foreground: 210 20% 98%;
+    --primary: 263.4 70% 50.4%;
+    --primary-foreground: 210 20% 98%;
+    --secondary: 215 27.9% 16.9%;
+    --secondary-foreground: 210 20% 98%;
+    --muted: 215 27.9% 16.9%;
+    --muted-foreground: 217.9 10.6% 64.9%;
+    --accent: 215 27.9% 16.9%;
+    --accent-foreground: 210 20% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 215 27.9% 16.9%;
+    --input: 215 27.9% 16.9%;
+    --ring: 263.4 70% 50.4%;
   }
 }
 
-@layer utilities {
-  .page-transition {
-    @apply animate-fade-in;
-  }
-  
-  .hover-link {
-    @apply transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full;
-  }
-  
-  .slide-up {
-    @apply opacity-0 translate-y-6 animate-slide-up;
-  }
-  
-  /* Scroll Animation Classes */
-  .animate-on-scroll {
-    transition: opacity 0.6s, transform 0.6s;
-    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-    transform: translateY(20px);
-  }
-  
-  .animate-visible {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
-  }
+/* ... keep existing code */
+
+/* WordPress Content Styles */
+.prose {
+  @apply text-foreground/90;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  @apply font-display font-semibold text-foreground;
 }
 
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.prose h1 {
+  @apply text-3xl my-6;
 }
 
-@keyframes appear {
-  from {
-    opacity: 0;
-    transform: scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+.prose h2 {
+  @apply text-2xl mt-10 mb-4;
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.5s ease forwards;
+.prose h3 {
+  @apply text-xl mt-8 mb-3;
 }
 
-.animate-slide-up {
-  animation: slideUp 0.7s ease forwards;
+.prose p {
+  @apply mb-6;
 }
 
-.animate-appear {
-  animation: appear 0.4s ease-out forwards;
+.prose img {
+  @apply rounded-lg my-8;
 }
 
-.stagger-item:nth-child(1) { animation-delay: 0.1s; }
-.stagger-item:nth-child(2) { animation-delay: 0.2s; }
-.stagger-item:nth-child(3) { animation-delay: 0.3s; }
-.stagger-item:nth-child(4) { animation-delay: 0.4s; }
-.stagger-item:nth-child(5) { animation-delay: 0.5s; }
-.stagger-item:nth-child(6) { animation-delay: 0.6s; }
+.prose a {
+  @apply text-brandBlue hover:text-brandBlue/80 transition-colors;
+}
+
+.prose ul, .prose ol {
+  @apply my-6 pl-6;
+}
+
+.prose li {
+  @apply mb-2;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-marzipan pl-4 italic text-foreground/70 my-6;
+}
+
+.prose pre {
+  @apply bg-brandBlue/5 p-4 rounded-lg overflow-x-auto my-6;
+}
+
+.prose code {
+  @apply bg-brandBlue/5 px-1.5 py-0.5 rounded text-sm;
+}
+
+.prose table {
+  @apply w-full border-collapse my-6;
+}
+
+.prose th, .prose td {
+  @apply border border-marzipan/30 p-2;
+}
+
+.prose th {
+  @apply bg-marzipan/10;
+}
+
+/* WordPress alignment classes */
+.aligncenter {
+  @apply mx-auto;
+}
+
+.alignleft {
+  @apply float-left mr-6 mb-2;
+}
+
+.alignright {
+  @apply float-right ml-6 mb-2;
+}
+
+.wp-caption {
+  @apply max-w-full;
+}
+
+.wp-caption-text {
+  @apply text-sm text-foreground/60 mt-2 italic;
+}
