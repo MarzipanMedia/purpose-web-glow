@@ -6,7 +6,7 @@ import { ArrowRight, Leaf } from 'lucide-react';
 const HeroAlt = () => {
   return (
     <section className="relative overflow-hidden py-20 md:py-28 bg-gradient-to-br from-white via-brandRed/5 to-brandRed/10">
-      <div className="container mx-auto px-6 max-w-6xl">
+      <div className="container-custom">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
           <div className="md:col-span-7 space-y-6 animate-fade-in" style={{ animationDelay: "0.1s" }}>
             <div className="inline-flex items-center gap-2 bg-brandRed/10 text-brandRed px-4 py-2 rounded-full">
@@ -32,6 +32,15 @@ const HeroAlt = () => {
           
           <div className="md:col-span-5 animate-fade-in" style={{ animationDelay: "0.3s" }}>
             <div className="relative">
+              {/* Palm tree silhouettes */}
+              <div className="absolute -bottom-6 right-0 w-32 h-32 z-10">
+                <img 
+                  src="/lovable-uploads/aa1cebd3-8e80-41b9-b58f-e680362ad222.png" 
+                  alt="Palm trees silhouette" 
+                  className="w-full h-auto opacity-90"
+                />
+              </div>
+              
               {/* Sun-like rays around the circle */}
               <div className="absolute inset-0 w-full h-full">
                 {[...Array(12)].map((_, i) => (
