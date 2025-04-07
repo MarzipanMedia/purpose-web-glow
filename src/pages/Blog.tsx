@@ -45,12 +45,14 @@ const Blog = () => {
       }
       return fetchWordPressPosts(currentPage, 6);
     },
-    onError: () => {
-      toast({
-        title: "Error loading posts",
-        description: "Could not load blog posts from WordPress. Please try again later.",
-        variant: "destructive"
-      });
+    meta: {
+      onError: () => {
+        toast({
+          title: "Error loading posts",
+          description: "Could not load blog posts from WordPress. Please try again later.",
+          variant: "destructive"
+        });
+      }
     }
   });
   
