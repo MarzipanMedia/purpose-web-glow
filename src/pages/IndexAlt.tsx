@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import Header from '../components/Header';
 import HeroAlt from '../components/HeroAlt';
@@ -157,23 +158,14 @@ const IndexAlt = () => {
                   </div>
                 </div>
                 
-                {/* Palm trees decorative element */}
-                <div className="absolute -bottom-12 -right-8 w-32 h-32 z-10">
-                  <img 
-                    src="/lovable-uploads/aa1cebd3-8e80-41b9-b58f-e680362ad222.png" 
-                    alt="Palm trees silhouette" 
-                    className="w-full h-auto opacity-75"
-                  />
-                </div>
-                
-                {/* Original decorative element */}
+                {/* Decorative circle element */}
                 <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-brandRed/20 rounded-full z-[-1]"></div>
               </div>
             </div>
           </div>
         </section>
         
-        {/* Client Logos Section - New addition */}
+        {/* Client Logos Section */}
         <ClientLogos />
         
         {/* Recent Projects Section */}
@@ -184,17 +176,8 @@ const IndexAlt = () => {
         {/* Blog Preview Section */}
         <BlogPreview />
         
-        {/* Testimonials Section - Adding palm tree decoration */}
+        {/* Testimonials Section */}
         <section className="py-20 bg-white relative">
-          {/* Palm tree decoration */}
-          <div className="absolute top-12 left-0 w-24 h-24 opacity-10">
-            <img 
-              src="/lovable-uploads/aa1cebd3-8e80-41b9-b58f-e680362ad222.png" 
-              alt="Palm trees silhouette" 
-              className="w-full h-auto"
-            />
-          </div>
-          
           <div className="container-custom">
             <div className="text-center max-w-3xl mx-auto mb-12 animate-on-scroll opacity-0">
               <div className="inline-block bg-brandRed/10 text-brandRed px-4 py-1 rounded-full mb-4">
@@ -233,28 +216,10 @@ const IndexAlt = () => {
               ))}
             </div>
           </div>
-          
-          {/* Palm tree decoration on the right */}
-          <div className="absolute bottom-0 right-0 w-32 h-32 opacity-10">
-            <img 
-              src="/lovable-uploads/aa1cebd3-8e80-41b9-b58f-e680362ad222.png" 
-              alt="Palm trees silhouette" 
-              className="w-full h-auto"
-            />
-          </div>
         </section>
         
-        {/* CTA Section with subtle palm tree */}
+        {/* CTA Section */}
         <section className="py-16 bg-gradient-to-br from-brandRed/90 via-brandRed/70 to-brandBlue/80 text-white relative">
-          {/* Palm tree silhouette */}
-          <div className="absolute bottom-0 right-0 w-40 h-40 opacity-15">
-            <img 
-              src="/lovable-uploads/aa1cebd3-8e80-41b9-b58f-e680362ad222.png" 
-              alt="Palm trees silhouette" 
-              className="w-full h-auto"
-            />
-          </div>
-          
           <div className="container-custom text-center">
             <h2 className="text-3xl md:text-4xl font-display font-semibold mb-4 animate-on-scroll opacity-0">
               Ready to make an impact with your online presence?

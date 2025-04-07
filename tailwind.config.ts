@@ -99,7 +99,7 @@ export default {
 				'slide-up': 'slide-up 0.7s ease-out forwards',
 				'scale-up': 'scale-up 0.5s ease-out forwards',
 				'float': 'float 3s ease-in-out infinite',
-				'pulse-slow': 'pulse-slow 7s ease-in-out infinite' // Slowed down from 4s to 7s
+				'pulse-slow': 'pulse-slow 7s ease-in-out infinite' // Slowed down pulse animation
 			},
 			fontFamily: {
 				'body': ['Mulish', 'system-ui', 'sans-serif'],

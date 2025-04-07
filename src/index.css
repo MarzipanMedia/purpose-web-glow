@@ -68,6 +68,11 @@
   }
 }
 
+.animate-on-scroll {
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
 /* ... keep existing code */
 
 /* WordPress Content Styles */
