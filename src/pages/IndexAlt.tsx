@@ -59,7 +59,7 @@ const IndexAlt = () => {
       <main className="flex-grow">
         <HeroAlt />
         
-        {/* Earthy Stats Section */}
+        {/* Stats Section */}
         <section className="py-16 bg-white">
           <div className="container-custom">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
@@ -88,12 +88,12 @@ const IndexAlt = () => {
           </div>
         </section>
         
-        {/* Services Section with red accents */}
+        {/* Services Section */}
         <section className="relative bg-gradient-to-b from-gray-50 to-white">
           <Services />
         </section>
         
-        {/* Sustainability Section with earthy tone */}
+        {/* Sustainability Section */}
         <section className="relative">
           <Sustainability />
         </section>
@@ -165,7 +165,7 @@ const IndexAlt = () => {
           </div>
         </section>
         
-        {/* Client Logos Section */}
+        {/* Client Logos Section - Restored */}
         <ClientLogos />
         
         {/* Recent Projects Section */}
@@ -176,7 +176,7 @@ const IndexAlt = () => {
         {/* Blog Preview Section */}
         <BlogPreview />
         
-        {/* Testimonials Section */}
+        {/* Testimonials Section - Restored */}
         <section className="py-20 bg-white relative">
           <div className="container-custom">
             <div className="text-center max-w-3xl mx-auto mb-12 animate-on-scroll opacity-0">
@@ -218,8 +218,8 @@ const IndexAlt = () => {
           </div>
         </section>
         
-        {/* CTA Section */}
-        <section className="py-16 bg-gradient-to-br from-brandRed/90 via-brandRed/70 to-brandBlue/80 text-white relative">
+        {/* CTA Section - Restored */}
+        <section className="py-16 bg-gradient-to-br from-brandRed/90 via-brandRed/80 to-brandBlue/80 text-white relative">
           <div className="container-custom text-center">
             <h2 className="text-3xl md:text-4xl font-display font-semibold mb-4 animate-on-scroll opacity-0">
               Ready to make an impact with your online presence?
