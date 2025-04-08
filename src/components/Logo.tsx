@@ -16,7 +16,7 @@ const Logo = ({ variant = 'default', className = '' }: LogoProps) => {
     <Link to="/" className={`flex items-center ${className}`}>
       <img 
         src={logoSrc} 
-        alt="Marzipan Digital" 
+        alt="Marzipan Sydney" 
         className="h-auto max-h-10 md:max-h-12 w-auto transition-transform hover:scale-[1.02]"
       />
     </Link>
