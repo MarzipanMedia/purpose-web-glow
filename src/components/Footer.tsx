@@ -16,7 +16,7 @@ const Footer = () => {
             </p>
             <div className="flex space-x-4">
               <a 
-                href="https://instagram.com" 
+                href="https://instagram.com/marzipanmedia" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="text-white/70 hover:text-white transition-all duration-300 hover:scale-110"
@@ -24,7 +24,7 @@ const Footer = () => {
                 <Instagram className="h-5 w-5" />
               </a>
               <a 
-                href="https://twitter.com" 
+                href="https://twitter.com/marzipanmedia" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="text-white/70 hover:text-white transition-all duration-300 hover:scale-110"
@@ -32,7 +32,7 @@ const Footer = () => {
                 <Twitter className="h-5 w-5" />
               </a>
               <a 
-                href="https://linkedin.com" 
+                href="https://linkedin.com/company/18211194/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="text-white/70 hover:text-white transition-all duration-300 hover:scale-110"
@@ -40,7 +40,7 @@ const Footer = () => {
                 <Linkedin className="h-5 w-5" />
               </a>
               <a 
-                href="mailto:hello@marzipan.com.au" 
+                href="mailto:ben@marzipan.com.au" 
                 className="text-white/70 hover:text-white transition-all duration-300 hover:scale-110"
               >
                 <Mail className="h-5 w-5" />
@@ -49,7 +49,7 @@ const Footer = () => {
           </div>
           
           <div>
-            <h3 className="text-lg font-display font-medium mb-4">Navigation</h3>
+            <h3 className="text-lg font-display font-medium mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li><Link to="/" className="text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300">Home</Link></li>
               <li><Link to="/services" className="text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300">Services</Link></li>
@@ -60,7 +60,7 @@ const Footer = () => {
           </div>
           
           <div>
-            <h3 className="text-lg font-display font-medium mb-4">Services</h3>
+            <h3 className="text-lg font-display font-medium mb-4">Digital Services</h3>
             <ul className="space-y-2">
               <li><Link to="/services#sustainable-web" className="text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300">Sustainable Web Design</Link></li>
               <li><Link to="/services#ai-seo" className="text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300">AI-Driven SEO</Link></li>
@@ -72,7 +72,7 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-display font-medium mb-4">Contact</h3>
             <address className="not-italic text-white/70 space-y-2">
-              <p>Byron Bay, NSW</p>
+              <p>Bronte, NSW</p>
               <p>Australia</p>
               <a 
                 href="mailto:hello@marzipan.com.au" 
@@ -85,7 +85,8 @@ const Footer = () => {
         </div>
         
         <div className="mt-12 pt-6 border-t border-white/20 text-white/60 text-sm flex flex-col md:flex-row justify-between items-center gap-4">
-          <div>© {new Date().getFullYear()} Marzipan Digital. All rights reserved.</div>
+          <div>© {new Date().getFullYear()} Marzipan | Sustainable Web Design | SEO | Digital Marketing
+ABN: 61 181 193 114.</div>
           <div className="flex gap-6">
             <Link to="/privacy" className="hover:text-white transition-all duration-300 hover-link">Privacy Policy</Link>
             <Link to="/terms" className="hover:text-white transition-all duration-300 hover-link">Terms of Service</Link>
