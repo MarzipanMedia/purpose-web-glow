@@ -9,8 +9,8 @@ interface LogoProps {
 
 const Logo = ({ variant = 'default', className = '' }: LogoProps) => {
   const logoSrc = variant === 'default' 
-    ? '/marzipan-logo-red.png' 
-    : '/marzipan-logo-reversed.png';
+    ? '/marzipan-logo.png' 
+    : '/marzipan-logo-rev.png';
   
   return (
     <Link to="/" className={`flex items-center ${className}`}>
