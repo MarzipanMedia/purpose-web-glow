@@ -75,10 +75,10 @@ const Footer = () => {
               <p>Bronte, NSW</p>
               <p>Australia</p>
               <a 
-                href="mailto:hello@marzipan.com.au" 
+                href="mailto:ben@marzipan.com.au" 
                 className="block hover:text-white transition-all duration-300 hover-link inline-block"
               >
-                hello@marzipan.com.au
+                ben@marzipan.com.au
               </a>
             </address>
           </div>
