@@ -85,8 +85,7 @@ const Footer = () => {
         </div>
         
         <div className="mt-12 pt-6 border-t border-white/20 text-white/60 text-sm flex flex-col md:flex-row justify-between items-center gap-4">
-          <div>© {new Date().getFullYear()} Marzipan | Sustainable Web Design | SEO | Digital Marketing
-ABN: 61 181 193 114.</div>
+          <div>© {new Date().getFullYear()} Marzipan | Sustainable Web Design Sdyney | ABN: 61 181 193 114.</div>
           <div className="flex gap-6">
             <Link to="/privacy" className="hover:text-white transition-all duration-300 hover-link">Privacy Policy</Link>
             <Link to="/terms" className="hover:text-white transition-all duration-300 hover-link">Terms of Service</Link>
