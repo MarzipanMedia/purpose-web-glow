@@ -54,6 +54,7 @@ export const useFetchPosts = (page = 1, perPage = 6) => {
     networkMode: 'always',
     refetchOnWindowFocus: false,
     staleTime: 5 * 60 * 1000, // 5 minutes
+    gcTime: 10 * 60 * 1000, // 10 minutes
   });
 };
 
@@ -72,6 +73,7 @@ export const useFetchCategories = () => {
     retry: 1,
     refetchOnWindowFocus: false,
     staleTime: 10 * 60 * 1000, // 10 minutes
+    gcTime: 30 * 60 * 1000, // 30 minutes
   });
 };
 
@@ -98,5 +100,7 @@ export const useFetchPostsByCategory = (categoryId: number, page = 1, perPage = 
     enabled: !!categoryId,
     networkMode: 'always',
     refetchOnWindowFocus: false,
+    staleTime: 5 * 60 * 1000, // 5 minutes
+    gcTime: 10 * 60 * 1000, // 10 minutes
   });
 };

@@ -7,13 +7,13 @@ const Services = () => {
   const services = [
     {
       title: "Sustainable Web Design",
-      description: "Eco-friendly websites that minimize carbon footprint while maximizing user experience.",
+      description: "Eco-friendly websites that minimise carbon footprint while maximising user experience.",
       icon: <Globe className="h-6 w-6" />,
       link: "/services/sustainable-web-design"
     },
     {
       title: "AI-Driven SEO",
-      description: "Ethical optimization strategies that help your purpose-driven brand reach the right audience.",
+      description: "Ethical optimisation strategies that help your purpose-driven brand reach the right audience.",
       icon: <Search className="h-6 w-6" />,
       link: "/services/ai-seo"
     },

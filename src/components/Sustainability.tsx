@@ -10,8 +10,8 @@ const Sustainability = () => {
       icon: <Leaf className="h-6 w-6" />
     },
     {
-      title: "Optimized Performance",
-      description: "Fast-loading pages that improve user experience while requiring less server resources.",
+      title: "Optimised Performance",
+      description: "Fast-loading pages that improve user experience while requiring fewer server resources.",
       icon: <Zap className="h-6 w-6" />
     },
     {
@@ -34,7 +34,7 @@ const Sustainability = () => {
             </h2>
             <p className="text-lg text-foreground/80">
               At Marzipan, we believe the digital world shouldn't come at the cost of our physical one. 
-              Our sustainable design principles create beautiful websites that minimize environmental impact.
+              Our sustainable design principles create beautiful websites that minimise environmental impact.
             </p>
             
             <div className="grid grid-cols-1 gap-6 mt-8">
