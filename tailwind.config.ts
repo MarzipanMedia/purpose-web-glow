@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -28,16 +29,16 @@ export default {
 				brandRed: '#ae2012',
 				brandBlue: '#186074',
 				primary: {
-					DEFAULT: '#186074', // Using brandBlue as primary
-					foreground: '#FFFFFF'
+					DEFAULT: 'hsl(var(--primary))', 
+					foreground: 'hsl(var(--primary-foreground))'
 				},
 				secondary: {
-					DEFAULT: '#F1E9D0', // Using marzipan as secondary
-					foreground: '#333333'
+					DEFAULT: 'hsl(var(--secondary))', 
+					foreground: 'hsl(var(--secondary-foreground))'
 				},
 				accent: {
-					DEFAULT: '#ae2012', // Using brandRed as accent
-					foreground: '#FFFFFF'
+					DEFAULT: 'hsl(var(--accent))', 
+					foreground: 'hsl(var(--accent-foreground))'
 				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',

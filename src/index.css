@@ -37,6 +37,36 @@
 
     --radius: 0.5rem;
   }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 240 10% 3.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 196 67% 27%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 49 54% 88%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 5 83% 37%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 196 67% 27%;
+  }
 }
 
 @layer base {
@@ -60,11 +90,11 @@
   }
   
   .btn-primary {
-    @apply bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-all hover:shadow-md hover:scale-[1.02] hover:translate-y-[-2px] duration-300;
+    @apply bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-all hover:shadow-md hover:scale-[1.02] hover:translate-y-[-2px] duration-300 dark:bg-brandBlue dark:hover:bg-brandBlue/90;
   }
   
   .btn-secondary {
-    @apply bg-secondary text-foreground px-6 py-3 rounded-lg hover:bg-secondary/90 transition-all hover:shadow-md hover:scale-[1.02] hover:translate-y-[-2px] duration-300;
+    @apply bg-secondary text-foreground px-6 py-3 rounded-lg hover:bg-secondary/90 transition-all hover:shadow-md hover:scale-[1.02] hover:translate-y-[-2px] duration-300 dark:bg-marzipan/80 dark:text-gray-900;
   }
   
   .gradient-text {

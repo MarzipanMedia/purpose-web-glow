@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { useEffect } from "react";
+import { ThemeProvider } from "./components/ThemeProvider";
 import Index from "./pages/Index";
 import IndexAlt from "./pages/IndexAlt";
 import Services from "./pages/Services";
@@ -37,27 +38,29 @@ const PageTransition = ({ children }: { children: React.ReactNode }) => {
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <HelmetProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<PageTransition><Index /></PageTransition>} />
-            <Route path="/alt" element={<PageTransition><IndexAlt /></PageTransition>} />
-            <Route path="/services" element={<PageTransition><Services /></PageTransition>} />
-            <Route path="/services/sustainable-web-design" element={<PageTransition><SustainableWebDesign /></PageTransition>} />
-            <Route path="/services/ai-seo" element={<PageTransition><AiSeo /></PageTransition>} />
-            <Route path="/services/content-creation" element={<PageTransition><ContentCreation /></PageTransition>} />
-            <Route path="/services/digital-marketing" element={<PageTransition><DigitalMarketing /></PageTransition>} />
-            <Route path="/projects" element={<PageTransition><Projects /></PageTransition>} />
-            <Route path="/blog" element={<PageTransition><Blog /></PageTransition>} />
-            <Route path="/wordpress-blog" element={<PageTransition><BlogWithWordPress /></PageTransition>} />
-            <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
-            <Route path="/website-carbon" element={<PageTransition><WebsiteCarbon /></PageTransition>} />
-            <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
+      <ThemeProvider defaultTheme="system">
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<PageTransition><Index /></PageTransition>} />
+              <Route path="/alt" element={<PageTransition><IndexAlt /></PageTransition>} />
+              <Route path="/services" element={<PageTransition><Services /></PageTransition>} />
+              <Route path="/services/sustainable-web-design" element={<PageTransition><SustainableWebDesign /></PageTransition>} />
+              <Route path="/services/ai-seo" element={<PageTransition><AiSeo /></PageTransition>} />
+              <Route path="/services/content-creation" element={<PageTransition><ContentCreation /></PageTransition>} />
+              <Route path="/services/digital-marketing" element={<PageTransition><DigitalMarketing /></PageTransition>} />
+              <Route path="/projects" element={<PageTransition><Projects /></PageTransition>} />
+              <Route path="/blog" element={<PageTransition><Blog /></PageTransition>} />
+              <Route path="/wordpress-blog" element={<PageTransition><BlogWithWordPress /></PageTransition>} />
+              <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
+              <Route path="/website-carbon" element={<PageTransition><WebsiteCarbon /></PageTransition>} />
+              <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
+      </ThemeProvider>
     </HelmetProvider>
   </QueryClientProvider>
 );
