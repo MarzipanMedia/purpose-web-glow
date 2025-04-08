@@ -1,77 +1,72 @@
 
-import React, { useState, useEffect } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { ArrowRight, Calendar, Clock, Tag, Search, LoaderCircle } from 'lucide-react';
+import { ArrowRight, Calendar, Clock, Tag } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { 
-  fetchWordPressPosts, 
-  fetchWordPressCategories,
-  formatWordPressDate,
-  estimateReadingTime,
-  stripHtml,
-  searchWordPressPosts,
-  type WordPressPost,
-  type WordPressCategory
-} from '../services/wordpressApi';
-import { useToast } from '@/hooks/use-toast';
 
 const Blog = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState('');
-  const { toast } = useToast();
-  
-  // Debounce search input
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setDebouncedSearchQuery(searchQuery);
-    }, 500);
-    
-    return () => clearTimeout(timer);
-  }, [searchQuery]);
-  
-  // Fetch posts from WordPress
-  const { 
-    data: postsData, 
-    isLoading: postsLoading, 
-    isError: postsError 
-  } = useQuery({
-    queryKey: ['wpPosts', currentPage, debouncedSearchQuery],
-    queryFn: async () => {
-      if (debouncedSearchQuery) {
-        return searchWordPressPosts(debouncedSearchQuery, currentPage, 6);
-      }
-      return fetchWordPressPosts(currentPage, 6);
+  const blogPosts = [
+    {
+      title: "How Sustainable Web Design Reduces Your Carbon Footprint",
+      excerpt: "Learn how implementing sustainable web design practices can significantly reduce your website's environmental impact.",
+      date: "May 15, 2023",
+      readTime: "5 min read",
+      category: "Sustainable Design",
+      author: "Sarah Johnson"
     },
-    meta: {
-      onError: () => {
-        toast({
-          title: "Error loading posts",
-          description: "Could not load blog posts from WordPress. Please try again later.",
-          variant: "destructive"
-        });
-      }
+    {
+      title: "The Business Case for Green Websites: How Sustainability Drives Conversion",
+      excerpt: "Discover how environmentally-friendly websites not only help the planet but also improve user experience and conversion rates.",
+      date: "April 22, 2023",
+      readTime: "7 min read",
+      category: "Business Impact",
+      author: "Michael Chen"
+    },
+    {
+      title: "AI-Driven SEO: Ethical Approaches for Purpose-Driven Brands",
+      excerpt: "How to leverage artificial intelligence for SEO while staying true to your brand values and ethical standards.",
+      date: "March 10, 2023",
+      readTime: "6 min read",
+      category: "SEO",
+      author: "Emma Roberts"
+    },
+    {
+      title: "Measuring Digital Sustainability: Tools and Metrics That Matter",
+      excerpt: "A comprehensive guide to the tools and metrics you can use to assess and improve your website's environmental impact.",
+      date: "February 28, 2023",
+      readTime: "8 min read",
+      category: "Analytics",
+      author: "David Nguyen"
+    },
+    {
+      title: "The Psychology of Sustainable UX: Designing for Purpose and Planet",
+      excerpt: "Explore how sustainable design principles can create more meaningful connections with environmentally-conscious consumers.",
+      date: "January 17, 2023",
+      readTime: "5 min read",
+      category: "UX Design",
+      author: "Rachel Torres"
+    },
+    {
+      title: "Green Hosting: A Comprehensive Guide for Businesses",
+      excerpt: "Everything you need to know about choosing environmentally-friendly hosting solutions for your website.",
+      date: "December 5, 2022",
+      readTime: "6 min read",
+      category: "Infrastructure",
+      author: "Alex Morgan"
     }
-  });
-  
-  // Fetch categories from WordPress
-  const { 
-    data: categoriesData, 
-    isLoading: categoriesLoading 
-  } = useQuery({
-    queryKey: ['wpCategories'],
-    queryFn: fetchWordPressCategories,
-    staleTime: 1000 * 60 * 60, // Cache for an hour
-  });
-  
-  // Handle page change
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-  
+  ];
+
+  const categories = [
+    "Sustainable Design",
+    "Business Impact",
+    "SEO",
+    "Analytics",
+    "UX Design",
+    "Infrastructure",
+    "Case Studies"
+  ];
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -100,128 +95,65 @@ const Blog = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Blog Posts */}
               <div className="lg:col-span-2">
-                {postsLoading ? (
-                  <div className="flex justify-center items-center py-20">
-                    <LoaderCircle className="h-12 w-12 animate-spin text-brandBlue" />
-                  </div>
-                ) : postsError ? (
-                  <div className="text-center py-12">
-                    <h3 className="text-xl font-medium mb-2">Error Loading Posts</h3>
-                    <p className="text-foreground/70">
-                      Please check your WordPress site configuration or try again later.
-                    </p>
-                  </div>
-                ) : postsData?.posts.length === 0 ? (
-                  <div className="text-center py-12">
-                    <h3 className="text-xl font-medium mb-2">No Posts Found</h3>
-                    <p className="text-foreground/70">
-                      {debouncedSearchQuery ? 
-                        `No results found for "${debouncedSearchQuery}". Try another search term.` : 
-                        'No posts available. Check back later for new content.'}
-                    </p>
-                  </div>
-                ) : (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {postsData?.posts.map((post: WordPressPost, index: number) => {
-                      const formattedDate = formatWordPressDate(post.date);
-                      const readTime = estimateReadingTime(post.content.rendered);
-                      const category = post._embedded?.['wp:term']?.[0]?.[0]?.name || 'Uncategorized';
-                      const excerpt = stripHtml(post.excerpt.rendered);
-                      const featuredImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url;
-                      
-                      return (
-                        <div 
-                          key={post.id}
-                          className="border border-marzipan/20 rounded-lg overflow-hidden hover:shadow-md transition-shadow animate-fade-in"
-                          style={{ animationDelay: `${0.1 + index * 0.05}s` }}
-                        >
-                          {featuredImage && (
-                            <div className="aspect-[16/9] w-full overflow-hidden">
-                              <img 
-                                src={featuredImage} 
-                                alt={post._embedded?.['wp:featuredmedia']?.[0]?.alt_text || post.title.rendered}
-                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                              />
-                            </div>
-                          )}
-                          
-                          <div className="h-2 bg-gradient-to-r from-brandBlue to-brandRed"></div>
-                          <div className="p-6">
-                            <div className="flex items-center gap-4 text-sm text-foreground/60 mb-3">
-                              <div className="flex items-center gap-1">
-                                <Calendar className="h-3.5 w-3.5" />
-                                <span>{formattedDate}</span>
-                              </div>
-                              <div className="flex items-center gap-1">
-                                <Clock className="h-3.5 w-3.5" />
-                                <span>{readTime}</span>
-                              </div>
-                            </div>
-                            
-                            <h3 className="text-xl font-display font-medium mb-3 line-clamp-2">
-                              <Link 
-                                to={`/blog/${post.slug}`} 
-                                className="hover:text-brandBlue transition-colors"
-                                dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-                              />
-                            </h3>
-                            
-                            <p className="text-foreground/70 mb-4 line-clamp-3">
-                              {excerpt}
-                            </p>
-                            
-                            <div className="flex justify-between items-center">
-                              <div className="flex items-center gap-1 text-sm">
-                                <Tag className="h-3.5 w-3.5 text-brandBlue" />
-                                <span className="text-brandBlue">{category}</span>
-                              </div>
-                              
-                              <Link 
-                                to={`/blog/${post.slug}`}
-                                className="inline-flex items-center gap-1 text-sm font-medium text-brandBlue hover:text-brandBlue/80 transition-colors"
-                              >
-                                Read More <ArrowRight className="h-3.5 w-3.5" />
-                              </Link>
-                            </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {blogPosts.map((post, index) => (
+                    <div 
+                      key={index}
+                      className="border border-marzipan/20 rounded-lg overflow-hidden hover:shadow-md transition-shadow animate-fade-in"
+                      style={{ animationDelay: `${0.1 + index * 0.05}s` }}
+                    >
+                      <div className="h-2 bg-gradient-to-r from-brandBlue to-brandRed"></div>
+                      <div className="p-6">
+                        <div className="flex items-center gap-4 text-sm text-foreground/60 mb-3">
+                          <div className="flex items-center gap-1">
+                            <Calendar className="h-3.5 w-3.5" />
+                            <span>{post.date}</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <Clock className="h-3.5 w-3.5" />
+                            <span>{post.readTime}</span>
                           </div>
                         </div>
-                      );
-                    })}
-                  </div>
-                )}
+                        
+                        <h3 className="text-xl font-display font-medium mb-3 line-clamp-2">
+                          <a href="#" className="hover:text-brandBlue transition-colors">{post.title}</a>
+                        </h3>
+                        
+                        <p className="text-foreground/70 mb-4 line-clamp-3">{post.excerpt}</p>
+                        
+                        <div className="flex justify-between items-center">
+                          <div className="flex items-center gap-1 text-sm">
+                            <Tag className="h-3.5 w-3.5 text-brandBlue" />
+                            <span className="text-brandBlue">{post.category}</span>
+                          </div>
+                          
+                          <a href="#" className="inline-flex items-center gap-1 text-sm font-medium text-brandBlue hover:text-brandBlue/80 transition-colors">
+                            Read More <ArrowRight className="h-3.5 w-3.5" />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
                 
                 {/* Pagination */}
-                {postsData && postsData.totalPages > 0 && (
-                  <div className="flex justify-center mt-12 animate-fade-in" style={{ animationDelay: "0.5s" }}>
-                    <div className="flex items-center gap-2">
-                      {Array.from({ length: Math.min(postsData.totalPages, 5) }, (_, i) => (
-                        <button
-                          key={i}
-                          onClick={() => handlePageChange(i + 1)}
-                          className={`w-10 h-10 flex items-center justify-center rounded-lg ${
-                            currentPage === i + 1
-                              ? 'border border-marzipan/20 bg-marzipan/20'
-                              : 'border border-transparent hover:bg-marzipan/20'
-                          } transition-colors`}
-                        >
-                          {i + 1}
-                        </button>
-                      ))}
-                      
-                      {postsData.totalPages > 5 && (
-                        <>
-                          <span className="px-2">...</span>
-                          <button
-                            onClick={() => handlePageChange(postsData.totalPages)}
-                            className="w-10 h-10 flex items-center justify-center rounded-lg border border-transparent hover:bg-marzipan/20 transition-colors"
-                          >
-                            {postsData.totalPages}
-                          </button>
-                        </>
-                      )}
-                    </div>
+                <div className="flex justify-center mt-12 animate-fade-in" style={{ animationDelay: "0.5s" }}>
+                  <div className="flex items-center gap-2">
+                    <a href="#" className="w-10 h-10 flex items-center justify-center rounded-lg border border-marzipan/20 hover:bg-marzipan/20 transition-colors">
+                      1
+                    </a>
+                    <a href="#" className="w-10 h-10 flex items-center justify-center rounded-lg border border-transparent hover:bg-marzipan/20 transition-colors">
+                      2
+                    </a>
+                    <a href="#" className="w-10 h-10 flex items-center justify-center rounded-lg border border-transparent hover:bg-marzipan/20 transition-colors">
+                      3
+                    </a>
+                    <span className="px-2">...</span>
+                    <a href="#" className="w-10 h-10 flex items-center justify-center rounded-lg border border-transparent hover:bg-marzipan/20 transition-colors">
+                      8
+                    </a>
                   </div>
-                )}
+                </div>
               </div>
               
               {/* Sidebar */}
@@ -234,11 +166,12 @@ const Blog = () => {
                       type="text" 
                       placeholder="Search articles..."
                       className="w-full py-2 px-4 border border-marzipan/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-brandBlue/40"
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
                     />
                     <button className="absolute right-3 top-1/2 -translate-y-1/2 text-brandBlue">
-                      <Search className="h-4 w-4" />
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                      </svg>
                     </button>
                   </div>
                 </div>
@@ -246,43 +179,34 @@ const Blog = () => {
                 {/* Categories */}
                 <div className="bg-marzipan/20 p-6 rounded-lg mb-6">
                   <h3 className="text-lg font-display font-medium mb-4">Categories</h3>
-                  {categoriesLoading ? (
-                    <div className="flex justify-center py-4">
-                      <LoaderCircle className="h-6 w-6 animate-spin text-brandBlue" />
-                    </div>
-                  ) : (
-                    <ul className="space-y-2">
-                      {categoriesData?.map((category: WordPressCategory) => (
-                        <li key={category.id}>
-                          <Link 
-                            to={`/blog/category/${category.slug}`}
-                            className="flex items-center justify-between text-foreground hover:text-brandBlue transition-colors"
-                          >
-                            <span>{category.name}</span>
-                            <span className="bg-white w-6 h-6 rounded-full flex items-center justify-center text-xs">
-                              {category.count}
-                            </span>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
+                  <ul className="space-y-2">
+                    {categories.map((category, index) => (
+                      <li key={index}>
+                        <a href="#" className="flex items-center justify-between text-foreground hover:text-brandBlue transition-colors">
+                          <span>{category}</span>
+                          <span className="bg-white w-6 h-6 rounded-full flex items-center justify-center text-xs">
+                            {Math.floor(Math.random() * 10) + 1}
+                          </span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
                 
                 {/* Featured Post */}
                 <div className="bg-brandBlue text-white p-6 rounded-lg">
                   <div className="text-sm text-white/70 uppercase font-medium mb-2">Featured Article</div>
                   <h3 className="text-xl font-display font-medium mb-3">
-                    <Link to="/blog/reducing-website-carbon-footprint" className="hover:text-white/90 transition-colors">
-                      The Future of Sustainable Web Design: Trends for 2025 and Beyond
-                    </Link>
+                    <a href="#" className="hover:text-white/90 transition-colors">
+                      The Future of Sustainable Web Design: Trends for 2023 and Beyond
+                    </a>
                   </h3>
                   <p className="text-white/80 mb-4">
                     Explore emerging technologies and approaches that are shaping the future of eco-friendly digital experiences.
                   </p>
-                  <Link to="/blog/reducing-website-carbon-footprint" className="inline-flex items-center gap-1 text-sm font-medium text-white hover:text-white/80 transition-colors">
+                  <a href="#" className="inline-flex items-center gap-1 text-sm font-medium text-white hover:text-white/80 transition-colors">
                     Read Featured Article <ArrowRight className="h-3.5 w-3.5" />
-                  </Link>
+                  </a>
                 </div>
               </div>
             </div>
@@ -304,7 +228,7 @@ const Blog = () => {
                 placeholder="Your email address"
                 className="flex-grow py-3 px-4 rounded-lg border border-marzipan focus:outline-none focus:ring-2 focus:ring-brandBlue/40"
               />
-              <button className="bg-brandBlue text-white px-6 py-3 rounded-lg hover:bg-brandBlue/90 transition-all hover:shadow-md hover:scale-[1.02] hover:translate-y-[-2px] duration-300">
+              <button className="btn-primary whitespace-nowrap">
                 Subscribe
               </button>
             </div>

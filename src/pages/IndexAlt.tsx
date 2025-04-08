@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import Header from '../components/Header';
 import HeroAlt from '../components/HeroAlt';
@@ -59,7 +58,7 @@ const IndexAlt = () => {
       <main className="flex-grow">
         <HeroAlt />
         
-        {/* Stats Section */}
+        {/* Earthy Stats Section */}
         <section className="py-16 bg-white">
           <div className="container-custom">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
@@ -88,12 +87,12 @@ const IndexAlt = () => {
           </div>
         </section>
         
-        {/* Services Section */}
+        {/* Services Section with red accents */}
         <section className="relative bg-gradient-to-b from-gray-50 to-white">
           <Services />
         </section>
         
-        {/* Sustainability Section */}
+        {/* Sustainability Section with earthy tone */}
         <section className="relative">
           <Sustainability />
         </section>
@@ -158,14 +157,14 @@ const IndexAlt = () => {
                   </div>
                 </div>
                 
-                {/* Decorative circle element */}
+                {/* Decorative element */}
                 <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-brandRed/20 rounded-full z-[-1]"></div>
               </div>
             </div>
           </div>
         </section>
         
-        {/* Client Logos Section - Restored */}
+        {/* Client Logos Section - New addition */}
         <ClientLogos />
         
         {/* Recent Projects Section */}
@@ -176,8 +175,8 @@ const IndexAlt = () => {
         {/* Blog Preview Section */}
         <BlogPreview />
         
-        {/* Testimonials Section - Restored */}
-        <section className="py-20 bg-white relative">
+        {/* Testimonials Section */}
+        <section className="py-20 bg-white">
           <div className="container-custom">
             <div className="text-center max-w-3xl mx-auto mb-12 animate-on-scroll opacity-0">
               <div className="inline-block bg-brandRed/10 text-brandRed px-4 py-1 rounded-full mb-4">
@@ -218,8 +217,8 @@ const IndexAlt = () => {
           </div>
         </section>
         
-        {/* CTA Section - Restored */}
-        <section className="py-16 bg-gradient-to-br from-brandRed/90 via-brandRed/80 to-brandBlue/80 text-white relative">
+        {/* CTA Section */}
+        <section className="py-16 bg-gradient-to-br from-brandRed/90 via-brandRed/70 to-brandBlue/80 text-white">
           <div className="container-custom text-center">
             <h2 className="text-3xl md:text-4xl font-display font-semibold mb-4 animate-on-scroll opacity-0">
               Ready to make an impact with your online presence?
