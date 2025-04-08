@@ -10,6 +10,7 @@ import IndexAlt from "./pages/IndexAlt";
 import Services from "./pages/Services";
 import Projects from "./pages/Projects";
 import Blog from "./pages/Blog";
+import BlogWithWordPress from "./pages/BlogWithWordPress";
 import NotFound from "./pages/NotFound";
 import Contact from "./pages/Contact";
 import SustainableWebDesign from "./pages/services/SustainableWebDesign";
@@ -48,6 +49,7 @@ const App = () => (
           <Route path="/services/digital-marketing" element={<PageTransition><DigitalMarketing /></PageTransition>} />
           <Route path="/projects" element={<PageTransition><Projects /></PageTransition>} />
           <Route path="/blog" element={<PageTransition><Blog /></PageTransition>} />
+          <Route path="/wordpress-blog" element={<PageTransition><BlogWithWordPress /></PageTransition>} />
           <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
           <Route path="/website-carbon" element={<PageTransition><WebsiteCarbon /></PageTransition>} />
           <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
