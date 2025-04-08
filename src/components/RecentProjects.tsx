@@ -18,24 +18,24 @@ const RecentProjects = () => {
     {
       id: 1,
       title: "EcoLiving Collective",
-      description: "A carbon-neutral online store with optimized images and minimal server requests, reducing digital footprint while maintaining beautiful aesthetics.",
-      imageUrl: "/ecoliving-project.jpg", // Placeholder - replace with actual image
+      description: "A carbon-neutral online store with optimised images and minimal server requests, reducing digital footprint while maintaining beautiful aesthetics.",
+      imageUrl: "/ecoliving-project.jpg", 
       category: "Sustainable E-commerce",
       slug: "ecoliving-collective"
     },
     {
       id: 2,
       title: "Ocean Conservation Alliance",
-      description: "Accessible, lightweight website showcasing the organization's impact with text-based storytelling instead of heavy media.",
-      imageUrl: "/ocean-project.jpg", // Placeholder - replace with actual image
-      category: "Non-profit Organization",
+      description: "Accessible, lightweight website showcasing the organisation's impact with text-based storytelling instead of heavy media.",
+      imageUrl: "/ocean-project.jpg", 
+      category: "Non-profit Organisation",
       slug: "ocean-conservation"
     },
     {
       id: 3,
       title: "Mindful Markets",
       description: "A progressive web app connecting conscious consumers with sustainable local businesses using low-bandwidth strategies.",
-      imageUrl: "/mindful-project.jpg", // Placeholder - replace with actual image
+      imageUrl: "/mindful-project.jpg", 
       category: "Ethical Marketplace",
       slug: "mindful-markets"
     }
