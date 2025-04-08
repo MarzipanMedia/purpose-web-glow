@@ -2,6 +2,7 @@
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import MetaHead from '@/components/MetaHead';
 import { ArrowRight, Calendar, Clock, Tag } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -69,6 +70,11 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <MetaHead 
+        title="Blog - Sustainable Digital Insights" 
+        description="Explore our insights on eco-friendly web design, ethical SEO, and building purpose-driven digital experiences for sustainable brands."
+        type="blog"
+      />
       <Header />
       
       <main className="flex-grow">

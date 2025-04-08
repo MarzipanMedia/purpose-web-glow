@@ -2,6 +2,7 @@
 import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import MetaHead from '@/components/MetaHead';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -10,6 +11,10 @@ import { Send, MapPin, Phone, Mail } from 'lucide-react';
 const Contact = () => {
   return (
     <div>
+      <MetaHead 
+        title="Contact Us" 
+        description="Get in touch with Marzipan Digital. Contact our sustainable web design and AI-driven SEO agency in Byron Bay, Australia." 
+      />
       <Header />
       <main className="min-h-[70vh]">
         <div className="container-custom py-16">

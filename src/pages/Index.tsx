@@ -8,6 +8,7 @@ import ClientLogos from '../components/ClientLogos';
 import RecentProjects from '../components/RecentProjects';
 import BlogPreview from '../components/BlogPreview';
 import Footer from '../components/Footer';
+import MetaHead from '@/components/MetaHead';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Users, Award, BarChart3, Laptop } from 'lucide-react';
 
@@ -54,6 +55,10 @@ const Index = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <MetaHead 
+        title="Sustainable Web Design & AI-Driven SEO" 
+        description="Sustainable Web Design & AI-Driven SEO for Purpose-Driven Brands. Ensuring your online presence is as powerful as your purpose."
+      />
       <Header />
       
       <main className="flex-grow">
