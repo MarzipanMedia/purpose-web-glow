@@ -1,5 +1,5 @@
 
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation } from '@tanstack/react-query';
 
 export interface WordPressPost {
   id: number;
@@ -29,8 +29,34 @@ export interface WordPressCategory {
   count: number;
 }
 
+export interface CarbonResult {
+  url: string;
+  green: boolean;
+  bytes: number;
+  cleanerThan: number;
+  statistics: {
+    adjustedBytes: number;
+    energy: number;
+    co2: {
+      grid: {
+        grams: number;
+        litres: number;
+      },
+      renewable: {
+        grams: number;
+        litres: number;
+      }
+    }
+  };
+  timestamp: number;
+}
+
 // Replace with your actual WordPress site URL
 const API_URL = 'https://demo.wp-api.org/wp-json/wp/v2';
+
+// If you have WordPress REST API custom endpoints set up for emails
+// Replace with your actual endpoint
+const EMAIL_ENDPOINT = 'https://demo.wp-api.org/wp-json/marzipan/v1/send-email';
 
 export const useFetchPosts = (page = 1, perPage = 6) => {
   return useQuery({
@@ -102,5 +128,67 @@ export const useFetchPostsByCategory = (categoryId: number, page = 1, perPage = 
     refetchOnWindowFocus: false,
     staleTime: 5 * 60 * 1000, // 5 minutes
     gcTime: 10 * 60 * 1000, // 10 minutes
+  });
+};
+
+// New function to send carbon results via WordPress API
+export const useSendCarbonResultEmail = () => {
+  return useMutation({
+    mutationFn: async (data: {
+      email: string;
+      carbonData: CarbonResult;
+      url: string;
+      adminEmail?: string;
+    }) => {
+      console.log('Sending carbon result email via WordPress:', data);
+      
+      const response = await fetch(EMAIL_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          recipient_email: data.email,
+          admin_email: data.adminEmail || '',
+          subject: 'Your Website Carbon Footprint Results',
+          carbon_data: data.carbonData,
+          website_url: data.url
+        }),
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Failed to send email');
+      }
+      
+      return await response.json();
+    },
+  });
+};
+
+// Newsletter subscription via WordPress API
+export const useSubscribeToNewsletter = () => {
+  return useMutation({
+    mutationFn: async (email: string) => {
+      console.log('Subscribing to newsletter via WordPress:', email);
+      
+      const response = await fetch(`${API_URL}/newsletter-subscribe`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          interests: ['sustainable-web-tips']
+        }),
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Failed to subscribe to newsletter');
+      }
+      
+      return await response.json();
+    },
   });
 };
