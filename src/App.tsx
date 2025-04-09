@@ -11,6 +11,7 @@ import Index from "./pages/Index";
 import IndexAlt from "./pages/IndexAlt";
 import Services from "./pages/Services";
 import Projects from "./pages/Projects";
+import About from "./pages/About";
 import Blog from "./pages/Blog";
 import BlogWithWordPress from "./pages/BlogWithWordPress";
 import NotFound from "./pages/NotFound";
@@ -54,6 +55,7 @@ const App = () => (
               <Route path="/services/digital-marketing" element={<PageTransition><DigitalMarketing /></PageTransition>} />
               <Route path="/projects" element={<PageTransition><Projects /></PageTransition>} />
               <Route path="/projects/:slug" element={<PageTransition><ProjectDetail /></PageTransition>} />
+              <Route path="/about" element={<PageTransition><About /></PageTransition>} />
               <Route path="/blog" element={<PageTransition><Blog /></PageTransition>} />
               <Route path="/wordpress-blog" element={<PageTransition><BlogWithWordPress /></PageTransition>} />
               <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />

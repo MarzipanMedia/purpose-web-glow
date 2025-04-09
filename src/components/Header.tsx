@@ -69,6 +69,9 @@ const NavLinks = () => {
       <Link to="/" className="text-foreground hover:text-brandBlue dark:hover:text-marzipan hover-link transition-all">
         Home
       </Link>
+      <Link to="/about" className="text-foreground hover:text-brandBlue dark:hover:text-marzipan hover-link transition-all">
+        About
+      </Link>
       <Link to="/services" className="text-foreground hover:text-brandBlue dark:hover:text-marzipan hover-link transition-all">
         Services
       </Link>
