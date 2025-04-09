@@ -1,4 +1,3 @@
-
 export interface ProjectData {
   title: string;
   category: string;
@@ -6,6 +5,12 @@ export interface ProjectData {
   features: string[];
   color: string;
   textColor: string;
+  slug: string;
+  imageUrl?: string;
+  client?: string;
+  services?: string[];
+  websiteUrl?: string;
+  longDescription?: string;
 }
 
 export const projects: ProjectData[] = [
@@ -15,7 +20,10 @@ export const projects: ProjectData[] = [
     description: "A carbon-neutral online store for eco-friendly home products with optimized images and minimal server requests.",
     features: ["90% lighter than average e-commerce sites", "Green hosting", "Optimized checkout flow"],
     color: "bg-[#C8D6AF]",
-    textColor: "text-foreground"
+    textColor: "text-foreground",
+    slug: "ecoliving-collective",
+    imageUrl: "/ecoliving-project.jpg",
+    services: ["Sustainable Web Design", "E-commerce Development", "SEO Optimization"]
   },
   {
     title: "Ocean Conservation Alliance",
@@ -23,7 +31,10 @@ export const projects: ProjectData[] = [
     description: "Accessible, lightweight website showcasing the organization's impact with text-based storytelling instead of heavy media.",
     features: ["Static site generation", "Text-focused content strategy", "Offline capability"],
     color: "bg-brandBlue",
-    textColor: "text-white"
+    textColor: "text-white",
+    slug: "ocean-conservation-alliance",
+    imageUrl: "/ocean-project.jpg",
+    services: ["Sustainable Web Design", "Content Strategy", "Accessibility Optimization"]
   },
   {
     title: "Mindful Markets",
@@ -31,7 +42,10 @@ export const projects: ProjectData[] = [
     description: "A progressive web app connecting conscious consumers with sustainable local businesses.",
     features: ["Geo-location services", "Low-bandwidth image strategy", "Progressive loading"],
     color: "bg-marzipan",
-    textColor: "text-foreground"
+    textColor: "text-foreground",
+    slug: "mindful-markets",
+    imageUrl: "/mindful-project.jpg",
+    services: ["Progressive Web App", "Marketplace Development", "Performance Optimization"]
   },
   {
     title: "GreenTech Solutions",
@@ -39,7 +53,8 @@ export const projects: ProjectData[] = [
     description: "Corporate website with sustainability reporting dashboard and minimal animation energy usage.",
     features: ["Performance-optimized animations", "Dark mode by default", "Low-energy design patterns"],
     color: "bg-[#73A580]",
-    textColor: "text-white"
+    textColor: "text-white",
+    slug: "greentech-solutions"
   },
   {
     title: "Urban Farming Initiative",
@@ -47,7 +62,8 @@ export const projects: ProjectData[] = [
     description: "Community-focused platform with offline-first approach for low-income area accessibility.",
     features: ["Works without JavaScript", "Minimal dependency architecture", "Print-friendly resources"],
     color: "bg-brandRed",
-    textColor: "text-white"
+    textColor: "text-white",
+    slug: "urban-farming-initiative"
   },
   {
     title: "Sustainable Fashion Collective",
@@ -55,7 +71,8 @@ export const projects: ProjectData[] = [
     description: "Image-focused site with optimal compression and lazy loading to minimize environmental impact.",
     features: ["Next-gen image formats", "Selective loading strategy", "Green hosting"],
     color: "bg-[#E6CCAE]",
-    textColor: "text-foreground"
+    textColor: "text-foreground",
+    slug: "sustainable-fashion-collective"
   }
 ];
 

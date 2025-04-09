@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { ArrowRight, ExternalLink } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export interface ProjectCardProps {
   title: string;
@@ -10,9 +11,10 @@ export interface ProjectCardProps {
   color: string;
   textColor: string;
   index: number;
+  slug: string;
 }
 
-const ProjectCard = ({ title, category, description, features, color, textColor, index }: ProjectCardProps) => {
+const ProjectCard = ({ title, category, description, features, color, textColor, index, slug }: ProjectCardProps) => {
   return (
     <div 
       className={`rounded-lg overflow-hidden animate-fade-in ${color}`}
@@ -38,11 +40,12 @@ const ProjectCard = ({ title, category, description, features, color, textColor,
         </div>
         
         <div className="flex items-center gap-4">
-          <button 
+          <Link 
+            to={`/projects/${slug}`}
             className={`inline-flex items-center gap-1 text-sm font-medium ${textColor === 'text-white' ? 'hover:text-white/80' : 'hover:text-foreground/80'}`}
           >
             View Case Study <ArrowRight className="h-4 w-4" />
-          </button>
+          </Link>
           <button 
             className={`inline-flex items-center gap-1 text-sm font-medium ${textColor === 'text-white' ? 'hover:text-white/80' : 'hover:text-foreground/80'}`}
           >

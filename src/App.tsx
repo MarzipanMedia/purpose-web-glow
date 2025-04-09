@@ -20,6 +20,7 @@ import AiSeo from "./pages/services/AiSeo";
 import ContentCreation from "./pages/services/ContentCreation";
 import DigitalMarketing from "./pages/services/DigitalMarketing";
 import WebsiteCarbon from "./pages/WebsiteCarbon";
+import ProjectDetail from "./components/projects/ProjectDetail";
 
 const queryClient = new QueryClient();
 
@@ -52,6 +53,7 @@ const App = () => (
               <Route path="/services/content-creation" element={<PageTransition><ContentCreation /></PageTransition>} />
               <Route path="/services/digital-marketing" element={<PageTransition><DigitalMarketing /></PageTransition>} />
               <Route path="/projects" element={<PageTransition><Projects /></PageTransition>} />
+              <Route path="/projects/:slug" element={<PageTransition><ProjectDetail /></PageTransition>} />
               <Route path="/blog" element={<PageTransition><Blog /></PageTransition>} />
               <Route path="/wordpress-blog" element={<PageTransition><BlogWithWordPress /></PageTransition>} />
               <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
