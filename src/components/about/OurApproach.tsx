@@ -1,12 +1,15 @@
 
 import React from 'react';
 import { Check } from 'lucide-react';
+import { useIsMobile } from '../../hooks/use-mobile';
 
 const OurApproach = () => {
+  const isMobile = useIsMobile();
+
   return (
     <section className="py-20 bg-gradient-to-br from-marzipan/20 to-brandBlue/10">
       <div className="container-custom">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative">
           <div className="order-2 lg:order-1 relative">
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 animate-fade-in">
               <h3 className="text-2xl font-semibold mb-6">What Makes Us Different</h3>
@@ -33,7 +36,22 @@ const OurApproach = () => {
               </div>
             </div>
             
-            <div className="absolute -bottom-6 -right-6 bg-brandRed text-white p-6 rounded-lg shadow-lg max-w-xs animate-fade-in" style={{ animationDelay: '0.4s' }}>
+            {/* Adjust positioning and responsiveness for the call-out box */}
+            <div className={`
+              absolute 
+              bg-brandRed 
+              text-white 
+              p-6 
+              rounded-lg 
+              shadow-lg 
+              max-w-xs 
+              animate-fade-in 
+              ${isMobile 
+                ? 'relative mt-6 w-full' 
+                : '-bottom-6 -right-6'
+              }`} 
+              style={{ animationDelay: '0.4s' }}
+            >
               <h3 className="text-lg font-semibold mb-2">Grow Impact, Not Just Traffic</h3>
               <p className="text-white/90 text-sm">
                 Our approach focuses on creating websites that don't just grow traffic—they grow impact.
