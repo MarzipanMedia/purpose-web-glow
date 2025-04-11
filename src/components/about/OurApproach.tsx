@@ -7,12 +7,12 @@ const OurApproach = () => {
   const isMobile = useIsMobile();
 
   return (
-    <section className="py-20 bg-gradient-to-br from-marzipan/20 to-brandBlue/10">
+    <section className="py-20 bg-gradient-to-br from-marzipan/20 to-brandBlue/10 dark:from-gray-800 dark:to-gray-900">
       <div className="container-custom">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative">
           <div className="order-2 lg:order-1 relative">
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 animate-fade-in">
-              <h3 className="text-2xl font-semibold mb-6">What Makes Us Different</h3>
+              <h3 className="text-2xl font-semibold mb-6 dark:text-white">What Makes Us Different</h3>
               
               <div className="space-y-4">
                 {[
@@ -30,7 +30,7 @@ const OurApproach = () => {
                     <div className="flex-shrink-0 bg-brandBlue rounded-full p-1">
                       <Check className="h-4 w-4 text-white" />
                     </div>
-                    <p className="text-foreground/80">{item}</p>
+                    <p className="text-foreground/80 dark:text-gray-200">{item}</p>
                   </div>
                 ))}
               </div>
@@ -60,18 +60,18 @@ const OurApproach = () => {
           </div>
           
           <div className="order-1 lg:order-2 space-y-6">
-            <h2 className="text-3xl md:text-4xl font-display font-semibold leading-tight">
+            <h2 className="text-3xl md:text-4xl font-display font-semibold leading-tight dark:text-white">
               Our <span className="gradient-text">Approach</span>
             </h2>
-            <p className="text-lg text-foreground/80">
+            <p className="text-lg text-foreground/80 dark:text-gray-200">
               We help purpose-driven brands rank higher on Google with AI-driven SEO while ensuring 
               their digital presence is lightweight, high-speed, and environmentally responsible.
             </p>
-            <p className="text-foreground/70">
+            <p className="text-foreground/70 dark:text-gray-300">
               By combining ethical AI, sustainable web design, and performance-driven SEO strategies, 
               we create websites that align with your values while delivering exceptional results.
             </p>
-            <p className="text-foreground/70">
+            <p className="text-foreground/70 dark:text-gray-300">
               Our collaborative approach ensures that your digital presence isn't just beautiful and 
               functional—it's a true extension of your brand's mission and purpose.
             </p>

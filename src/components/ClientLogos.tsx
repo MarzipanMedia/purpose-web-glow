@@ -26,16 +26,16 @@ const ClientLogos: React.FC = () => {
   ];
 
   return (
-    <section className="py-16 bg-brandBlue/10">
+    <section className="py-16 bg-brandBlue/10 dark:bg-gray-800/30">
       <div className="container-custom">
         <div className="text-center max-w-3xl mx-auto mb-10 animate-on-scroll opacity-0">
-          <div className="inline-block bg-brandBlue/10 text-brandBlue px-4 py-1 rounded-full mb-4">
+          <div className="inline-block bg-brandBlue/10 text-brandBlue px-4 py-1 rounded-full mb-4 dark:bg-brandBlue/30 dark:text-white">
             Trusted Partners
           </div>
           <h2 className="text-3xl md:text-4xl font-display font-semibold">
             Brands We've Worked With
           </h2>
-          <p className="mt-4 text-foreground/80">
+          <p className="mt-4 text-foreground/80 dark:text-gray-200">
             Proud to partner with these forward-thinking companies
           </p>
         </div>
@@ -44,7 +44,7 @@ const ClientLogos: React.FC = () => {
           {logos.slice(0, 6).map((logo) => (
             <div 
               key={logo.id}
-              className="flex items-center justify-center p-4 bg-white rounded-lg shadow-sm border border-marzipan/30 h-24 animate-on-scroll opacity-0 hover:shadow-md transition-all duration-300"
+              className="flex items-center justify-center p-4 bg-white rounded-lg shadow-sm border border-marzipan/30 h-24 animate-on-scroll opacity-0 hover:shadow-md transition-all duration-300 dark:bg-gray-800 dark:border-gray-700"
               style={{ transitionDelay: `${0.1 + (logo.id - 1) * 0.05}s` }}
             >
               <img 
@@ -55,7 +55,7 @@ const ClientLogos: React.FC = () => {
                   // Fallback if the image fails to load
                   const target = e.target as HTMLImageElement;
                   target.style.display = 'none';
-                  target.parentElement!.innerHTML = `<div class="text-foreground/40 font-medium">${logo.name}</div>`;
+                  target.parentElement!.innerHTML = `<div class="text-foreground/40 font-medium dark:text-gray-300">${logo.name}</div>`;
                 }}
               />
             </div>
@@ -66,7 +66,7 @@ const ClientLogos: React.FC = () => {
           {logos.slice(6, 12).map((logo) => (
             <div 
               key={logo.id}
-              className="flex items-center justify-center p-4 bg-white rounded-lg shadow-sm border border-marzipan/30 h-24 animate-on-scroll opacity-0 hover:shadow-md transition-all duration-300"
+              className="flex items-center justify-center p-4 bg-white rounded-lg shadow-sm border border-marzipan/30 h-24 animate-on-scroll opacity-0 hover:shadow-md transition-all duration-300 dark:bg-gray-800 dark:border-gray-700"
               style={{ transitionDelay: `${0.1 + (logo.id - 7) * 0.05}s` }}
             >
               <img 
@@ -77,7 +77,7 @@ const ClientLogos: React.FC = () => {
                   // Fallback if the image fails to load
                   const target = e.target as HTMLImageElement;
                   target.style.display = 'none';
-                  target.parentElement!.innerHTML = `<div class="text-foreground/40 font-medium">${logo.name}</div>`;
+                  target.parentElement!.innerHTML = `<div class="text-foreground/40 font-medium dark:text-gray-300">${logo.name}</div>`;
                 }}
               />
             </div>

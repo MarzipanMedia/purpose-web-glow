@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&family=Jost:wght@400;500;600;700&display=swap');
 
 @tailwind base;
@@ -40,28 +39,28 @@
 
   .dark {
     --background: 240 10% 3.9%;
-    --foreground: 210 40% 98%;
+    --foreground: 0 0% 98%;
 
     --card: 240 10% 3.9%;
-    --card-foreground: 210 40% 98%;
+    --card-foreground: 0 0% 98%;
 
     --popover: 240 10% 3.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover-foreground: 0 0% 98%;
 
     --primary: 196 67% 27%;
-    --primary-foreground: 210 40% 98%;
+    --primary-foreground: 0 0% 98%;
 
     --secondary: 49 54% 88%;
     --secondary-foreground: 222.2 47.4% 11.2%;
 
     --muted: 240 3.7% 15.9%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted-foreground: 210 20.2% 80.1%;
 
     --accent: 5 83% 37%;
-    --accent-foreground: 210 40% 98%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
@@ -98,7 +97,7 @@
   }
   
   .gradient-text {
-    @apply bg-gradient-to-r from-brandBlue to-brandRed bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-brandBlue to-brandRed bg-clip-text text-transparent dark:from-brandBlue/90 dark:to-brandRed/90;
   }
 }
 
