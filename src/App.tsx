@@ -22,6 +22,7 @@ import ContentCreation from "./pages/services/ContentCreation";
 import DigitalMarketing from "./pages/services/DigitalMarketing";
 import WebsiteCarbon from "./pages/WebsiteCarbon";
 import ProjectDetail from "./components/projects/ProjectDetail";
+import Resources from "./pages/Resources";
 
 const queryClient = new QueryClient();
 
@@ -60,6 +61,7 @@ const App = () => (
               <Route path="/wordpress-blog" element={<PageTransition><BlogWithWordPress /></PageTransition>} />
               <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
               <Route path="/website-carbon" element={<PageTransition><WebsiteCarbon /></PageTransition>} />
+              <Route path="/resources" element={<PageTransition><Resources /></PageTransition>} />
               <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
             </Routes>
           </BrowserRouter>
