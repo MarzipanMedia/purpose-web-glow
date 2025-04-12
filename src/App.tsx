@@ -20,9 +20,12 @@ import SustainableWebDesign from "./pages/services/SustainableWebDesign";
 import AiSeo from "./pages/services/AiSeo";
 import ContentCreation from "./pages/services/ContentCreation";
 import DigitalMarketing from "./pages/services/DigitalMarketing";
+import DigitalContentCreation from "./pages/services/DigitalContentCreation";
 import WebsiteCarbon from "./pages/WebsiteCarbon";
 import ProjectDetail from "./components/projects/ProjectDetail";
 import Resources from "./pages/Resources";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
 
 const queryClient = new QueryClient();
 
@@ -54,6 +57,7 @@ const App = () => (
               <Route path="/services/ai-seo" element={<PageTransition><AiSeo /></PageTransition>} />
               <Route path="/services/content-creation" element={<PageTransition><ContentCreation /></PageTransition>} />
               <Route path="/services/digital-marketing" element={<PageTransition><DigitalMarketing /></PageTransition>} />
+              <Route path="/services/digital-content-creation" element={<PageTransition><DigitalContentCreation /></PageTransition>} />
               <Route path="/projects" element={<PageTransition><Projects /></PageTransition>} />
               <Route path="/projects/:slug" element={<PageTransition><ProjectDetail /></PageTransition>} />
               <Route path="/about" element={<PageTransition><About /></PageTransition>} />
@@ -62,6 +66,8 @@ const App = () => (
               <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
               <Route path="/website-carbon" element={<PageTransition><WebsiteCarbon /></PageTransition>} />
               <Route path="/resources" element={<PageTransition><Resources /></PageTransition>} />
+              <Route path="/privacy" element={<PageTransition><Privacy /></PageTransition>} />
+              <Route path="/terms" element={<PageTransition><Terms /></PageTransition>} />
               <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
             </Routes>
           </BrowserRouter>
