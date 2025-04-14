@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Globe, Search, Megaphone } from 'lucide-react';
+import { Globe, Search, Megaphone, MessageSquare } from 'lucide-react';
 
 const Services = () => {
   const services = [
@@ -22,6 +22,12 @@ const Services = () => {
       description: "Social media and Google Ads strategies that amplify your message to the right audience.",
       icon: <Megaphone className="h-6 w-6" />,
       link: "/services/digital-marketing"
+    },
+    {
+      title: "Content Creation",
+      description: "Compelling storytelling that resonates with your audience and drives meaningful engagement.",
+      icon: <MessageSquare className="h-6 w-6" />,
+      link: "/services/content-creation"
     }
   ];
 
@@ -35,7 +41,7 @@ const Services = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {services.map((service, index) => (
             <Link 
               to={service.link}
