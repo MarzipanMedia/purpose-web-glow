@@ -56,7 +56,7 @@ const API_URL = 'https://marzipan.com.au/wp-json/wp/v2/posts?per_page=3';
 
 // If you have WordPress REST API custom endpoints set up for emails
 // Replace with your actual endpoint
-const EMAIL_ENDPOINT = 'https://demo.wp-api.org/wp-json/marzipan/v1/send-email';
+const EMAIL_ENDPOINT = 'https://marzipan.com.au/wp-json/marzipan/v1/send-email';
 
 export const useFetchPosts = (page = 1, perPage = 6) => {
   return useQuery({
