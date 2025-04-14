@@ -1,4 +1,3 @@
-
 export interface ProjectData {
   title: string;
   category: string;
@@ -13,6 +12,8 @@ export interface ProjectData {
   websiteUrl?: string;
   longDescription?: string;
   videos?: string[];
+  date?: string;
+  tags?: string[];
 }
 
 export const projects: ProjectData[] = [
@@ -35,7 +36,7 @@ export const projects: ProjectData[] = [
     ]
   },
   {
-    title: "Jarli – Reach for the Stars",
+    title: "Jarli – Reach for the stars",
     category: "Indigenous Animation",
     description: "Social media strategy and content creation for an award-winning animated film inspiring Indigenous children to explore STEM and space science.",
     features: ["Social Media Assets", "Digital Content Creation", "Interactive AR Backgrounds", "Campaign Strategy", "Animated GIFs"],
@@ -108,6 +109,20 @@ export const projects: ProjectData[] = [
     color: "bg-[#E6CCAE]",
     textColor: "text-foreground",
     slug: "sustainable-fashion-collective"
+  },
+  {
+    title: "Toasty",
+    category: "Outdoor Apparel",
+    description: "SEO optimisation and performance improvements for a small business specialising in weatherproof jackets, boosting their visibility and online presence.",
+    features: ["Mobile Site Speed Improvement", "Domain Authority Growth", "Keyword Ranking Boost", "SEO Score Enhancement", "Checkout Process Optimisation"],
+    color: "bg-[#E67E22]",
+    textColor: "text-white",
+    slug: "toasty",
+    client: "Toasty",
+    services: ["SEO Optimisation", "Performance Enhancement", "Digital Marketing"],
+    date: "Nov 2024",
+    tags: ["SEO", "Digital Marketing", "Small Business"],
+    longDescription: "Small businesses are the backbone of innovation, but standing out in today's competitive digital space can be a challenge. SEO for small businesses is crucial. At Marzipan Media, we specialise in helping purpose-driven brands like Toasty, creators of the Ultimate Weatherproof Jacket, achieve their digital goals through strategic SEO.\n\nHere's how we elevated Toasty's online presence and why maintaining SEO is essential for small businesses.\n\n## The Challenge\n\nThis was quite a personal story with Toasty, they had a fantastic product – a jacket designed to withstand the harshest outdoor conditions – but when our Marzipan founder, Ben tried to purchase one online he noticed the website may be holding them back from a speedy check out process. Not only that but their digital visibility was limiting their reach. Like many new businesses with freshly launched websites, Toasty was starting from ground zero with their SEO, and their mobile site performance needed significant improvement to compete in today's mobile-first world.\n\nKey areas of focus included:\n\n- Improving mobile site speed to enhance user experience.\n- Building domain authority to establish trust and visibility.\n- Increasing rankings for high-value keywords and phrases.\n- Ironing out checkout process and email deliverability.\n- Boosting their overall SEO score to improve discoverability.\n\n## Our SEO Results\n\nOver the course of the SEO sprint, we delivered tangible results that positioned Toasty for long-term success:\n\n### Mobile Site Speed\nWe improved their mobile site speed by 30%, ensuring users could navigate their site quickly and efficiently – a crucial factor for both user satisfaction and Google rankings.\n\n### Domain Authority\nWe increased Toasty's domain authority from 1 to 8, laying the foundation for better rankings and greater trust from search engines.\n\n### Keyword Rankings\nBy optimizing content and targeting strategic keywords, we lifted a large number of key phrases an average of 12 places in search engine rankings. Now, adventurers searching for durable weatherproof jackets are more likely to find Toasty.\n\n### Overall SEO Score\nUsing tools like SEOability, we took their SEO score from 59 to 82, a significant leap that reflects their improved optimisation and readiness to compete in the market. Many of these tools are free and can be a great help to your SEO for small businesses.\n\n## Why SEO Is Essential for Small Businesses\n\nOur work with Toasty underscores the importance of ongoing SEO for small businesses. Here's why it matters:\n\n### Visibility and Discoverability\nRanking higher on search engines means being seen by the right people at the right time. For Toasty, this means outdoor enthusiasts searching for durable, weatherproof jackets now find them more easily.\n\n### Building Credibility\nSEO isn't just about rankings – it's about building trust. A strong domain authority signals to customers that Toasty is a reliable, established brand in the outdoor gear market.\n\n### Long-Term Benefits\nUnlike short-term advertising campaigns, SEO for small businesses offers sustainable growth. The work we've done with Toasty will continue to pay dividends as they expand their reach.\n\n### Improved User Experience\nEnhancing mobile site speed and optimising the site layout not only improves rankings but also keeps users engaged, leading to higher conversion rates.\n\n## A Jacket Worth Discovering\n\nWith their new and improved SEO, more adventurers can now discover Toasty's Ultimate Weatherproof Jacket – a game-changer for anyone seeking reliable, stylish gear for the great outdoors. Whether you're hiking in unpredictable weather or braving the elements, Toasty's jackets ensure you stay dry, warm, and ready for your next adventure.\n\nWe took out Toasty jackets camping on the south coast through a chilly autumnal weekend and loved them. Living up to their name keeping us warm in the cold evenings and tasty dry after our early morning swims. It truly was a pleasure getting to know the website and the product so well. We hope this small SEO sprint helps lift their reach.\n\n## The Takeaway\n\nOur partnership with Toasty demonstrates the power of a well-executed SEO strategy. From technical improvements to keyword optimisation, every step we took was designed to position them as leaders in their industry. And while the results speak for themselves, this is only the beginning of Toasty's journey to becoming a household name in outdoor gear."
   }
 ];
 
