@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -9,6 +8,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { Form, FormField, FormItem, FormLabel, FormControl } from '@/components/ui/form';
 import { useForm } from 'react-hook-form';
+import FAQSection from '../../components/services/FAQSection';
+import MetaHead from '@/components/MetaHead';
 
 const SustainableWebDesign = () => {
   const form = useForm();
@@ -25,8 +26,94 @@ const SustainableWebDesign = () => {
     { name: 'Terra Friendly', initial: 'T' },
   ];
 
+  const faqItems = [
+    {
+      question: "Why should I choose a sustainable website?",
+      answer: (
+        <div className="space-y-3">
+          <p>
+            A sustainable website significantly reduces your digital carbon footprint while enhancing user experience through faster loading times. By choosing a sustainable website, you're not only expressing your brand's commitment to environmental responsibility but also improving key performance metrics like bounce rates, SEO rankings, and conversion rates.
+          </p>
+          <p>
+            Sustainable websites consume up to 90% less energy than conventionally designed sites, which means less CO2 emissions from servers and user devices. This reduction becomes significant at scale and helps contribute to a greener internet.
+          </p>
+        </div>
+      )
+    },
+    {
+      question: "Will you charge me more for going green with my web design?",
+      answer: (
+        <div className="space-y-3">
+          <p>
+            No, we don't charge a premium for sustainable web design practices. Our sustainable approach is integrated into our standard design process because we believe it's the right way to build websites today.
+          </p>
+          <p>
+            In fact, sustainable web design often leads to cost savings in the long term through reduced hosting resources, improved performance, and better user retention. It's a win-win for both your business and the environment.
+          </p>
+        </div>
+      )
+    },
+    {
+      question: "What makes Marzipan different from other web design agencies?",
+      answer: (
+        <div className="space-y-3">
+          <p>
+            Marzipan specialises in creating websites that align with your ethical values while delivering exceptional performance. Unlike traditional agencies, sustainability is at the core of everything we do—not just an add-on service or afterthought.
+          </p>
+          <p>
+            We combine deep expertise in low-carbon web practices with strategic design thinking specifically for purpose-driven brands. Our proven methodology includes measuring and reporting on your website's environmental impact, providing concrete metrics for your sustainability efforts.
+          </p>
+        </div>
+      )
+    },
+    {
+      question: "Can Marzipan help improve our website's performance and SEO?",
+      answer: (
+        <div className="space-y-3">
+          <p>
+            Absolutely. Our sustainable websites are inherently optimised for performance, which is a key factor in both user experience and search engine rankings. By focusing on efficient code, optimised assets, and streamlined design, we create websites that load faster and consume less resources.
+          </p>
+          <p>
+            Our approach to SEO is both ethical and effective, prioritising valuable content and technical excellence over short-term tactics. The speed improvements from our sustainable approach directly contribute to better search rankings, as page speed is a confirmed Google ranking factor.
+          </p>
+        </div>
+      )
+    },
+    {
+      question: "What ongoing support does Marzipan offer after our website goes live?",
+      answer: (
+        <div className="space-y-3">
+          <p>
+            We offer comprehensive maintenance packages that include regular sustainability audits, performance monitoring, security updates, and content management support. Our team remains available to ensure your website stays fast, secure, and environmentally friendly.
+          </p>
+          <p>
+            We also provide ongoing carbon footprint tracking, so you can continue to measure and report on your website's environmental impact as part of your broader sustainability initiatives.
+          </p>
+        </div>
+      )
+    },
+    {
+      question: "Is Your Website Truly Reflecting Your Business?",
+      answer: (
+        <div className="space-y-3">
+          <p>
+            Your website should be more than just an online brochure—it should authentically represent your brand's values, mission, and commitment to sustainability. If your current website doesn't align with your ethical stance, it could be creating a disconnect with your audience.
+          </p>
+          <p>
+            We help purpose-driven brands ensure their digital presence authentically reflects their commitment to sustainability, creating coherence between your values and online presence. This alignment builds trust and resonates with conscious consumers who care about supporting environmentally responsible businesses.
+          </p>
+        </div>
+      )
+    },
+  ];
+
   return (
     <div className="min-h-screen flex flex-col">
+      <MetaHead 
+        title="Sustainable Web Design for Purpose-Driven Brands"
+        description="Beautiful, eco-friendly websites that minimise environmental impact while maximising user experience and conversion rates."
+      />
+      
       <Header />
       
       <main className="flex-grow">
@@ -259,6 +346,13 @@ const SustainableWebDesign = () => {
             </div>
           </div>
         </section>
+        
+        {/* FAQ Section */}
+        <FAQSection 
+          title="Frequently Asked Questions" 
+          description="Common questions about sustainable web design and our services"
+          faqs={faqItems}
+        />
         
         {/* CTA and Contact Form Section */}
         <section id="contact" className="py-20 bg-gradient-to-br from-brandBlue to-brandBlue/80 text-white">
