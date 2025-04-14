@@ -8,11 +8,11 @@ const MainServices = () => {
     {
       id: "sustainable-web",
       title: "Sustainable Web Design",
-      description: "Beautiful, eco-friendly websites that minimize environmental impact while maximizing user experience and conversion rates.",
+      description: "Beautiful, eco-friendly websites that minimise environmental impact while maximising user experience and conversion rates.",
       icon: <Globe className="h-10 w-10" />,
       features: [
         "Low-carbon design practices",
-        "Optimized page load speeds",
+        "Optimised page load speeds",
         "Energy-efficient hosting options",
         "Streamlined code and assets",
         "Responsive and accessible interfaces",

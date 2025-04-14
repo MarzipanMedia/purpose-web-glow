@@ -42,7 +42,7 @@ const SustainableWebDesign = () => {
                   Sustainable Web Design for Purpose-Driven Brands
                 </h1>
                 <p className="text-lg text-foreground/80 mb-8">
-                  Beautiful, eco-friendly websites that minimize environmental impact while maximizing user experience and conversion rates.
+                  Beautiful, eco-friendly websites that minimise environmental impact while maximising user experience and conversion rates.
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Link to="#contact" className="btn-primary flex items-center gap-2">
@@ -112,7 +112,7 @@ const SustainableWebDesign = () => {
                   </div>
                   <h3 className="text-xl font-display font-medium mb-3">Energy-Efficient Code</h3>
                   <p className="text-foreground/70">
-                    Streamlined, efficient code that reduces server loads and minimizes power consumption while ensuring optimal performance.
+                    Streamlined, efficient code that reduces server loads and minimises power consumption while ensuring optimal performance.
                   </p>
                 </CardContent>
               </Card>
@@ -136,7 +136,7 @@ const SustainableWebDesign = () => {
                   </div>
                   <h3 className="text-xl font-display font-medium mb-3">Carbon Footprint Tracking</h3>
                   <p className="text-foreground/70">
-                    Monitor and optimize your website's environmental impact with our specialized tracking tools.
+                    Monitor and optimise your website's environmental impact with our specialised tracking tools.
                   </p>
                 </CardContent>
               </Card>
@@ -169,7 +169,7 @@ const SustainableWebDesign = () => {
                     <span className="inline-flex items-center justify-center h-8 w-8 rounded-full bg-brandBlue text-white font-medium">2</span>
                     <div>
                       <h4 className="text-xl font-medium mb-1">Sustainable Design</h4>
-                      <p className="text-foreground/70">Creating eco-friendly wireframes and designs that minimize resource usage while maximizing impact.</p>
+                      <p className="text-foreground/70">Creating eco-friendly wireframes and designs that minimise resource usage while maximising impact.</p>
                     </div>
                   </div>
                   
@@ -177,14 +177,14 @@ const SustainableWebDesign = () => {
                     <span className="inline-flex items-center justify-center h-8 w-8 rounded-full bg-brandBlue text-white font-medium">3</span>
                     <div>
                       <h4 className="text-xl font-medium mb-1">Efficient Development</h4>
-                      <p className="text-foreground/70">Building your site with clean code and optimized assets to reduce energy consumption.</p>
+                      <p className="text-foreground/70">Building your site with clean code and optimised assets to reduce energy consumption.</p>
                     </div>
                   </div>
                   
                   <div className="flex gap-4 items-start">
                     <span className="inline-flex items-center justify-center h-8 w-8 rounded-full bg-brandBlue text-white font-medium">4</span>
                     <div>
-                      <h4 className="text-xl font-medium mb-1">Testing & Optimization</h4>
+                      <h4 className="text-xl font-medium mb-1">Testing & Optimisation</h4>
                       <p className="text-foreground/70">Rigorous performance and emissions testing to ensure optimal efficiency and user experience.</p>
                     </div>
                   </div>

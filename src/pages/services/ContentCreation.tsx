@@ -71,7 +71,7 @@ const ContentCreation = () => {
                       <div className="mt-1 mr-3 bg-brandBlue/20 p-1 rounded-full">
                         <Check className="h-4 w-4 text-brandBlue" />
                       </div>
-                      <span className="text-foreground/80">SEO-optimized content that ranks and converts</span>
+                      <span className="text-foreground/80">SEO-optimised content that ranks and converts</span>
                     </li>
                     <li className="flex items-start">
                       <div className="mt-1 mr-3 bg-brandBlue/20 p-1 rounded-full">
@@ -112,7 +112,7 @@ const ContentCreation = () => {
                   </div>
                   <h3 className="text-xl font-display font-medium mb-3">Blog & Article Writing</h3>
                   <p className="text-foreground/70">
-                    Engaging, SEO-optimized blog posts and articles that establish your authority and drive organic traffic.
+                    Engaging, SEO-optimised blog posts and articles that establish your authority and drive organic traffic.
                   </p>
                 </CardContent>
               </Card>
@@ -176,8 +176,8 @@ const ContentCreation = () => {
                   <div className="flex gap-4 items-start">
                     <span className="inline-flex items-center justify-center h-8 w-8 rounded-full bg-brandBlue text-white font-medium">3</span>
                     <div>
-                      <h4 className="text-xl font-medium mb-1">Creation & Optimization</h4>
-                      <p className="text-foreground/70">Crafting engaging, purpose-driven content optimized for both humans and search engines.</p>
+                      <h4 className="text-xl font-medium mb-1">Creation & Optimisation</h4>
+                      <p className="text-foreground/70">Crafting engaging, purpose-driven content optimised for both humans and search engines.</p>
                     </div>
                   </div>
                   
@@ -185,7 +185,7 @@ const ContentCreation = () => {
                     <span className="inline-flex items-center justify-center h-8 w-8 rounded-full bg-brandBlue text-white font-medium">4</span>
                     <div>
                       <h4 className="text-xl font-medium mb-1">Distribution & Analysis</h4>
-                      <p className="text-foreground/70">Strategic distribution and continuous performance tracking to maximize impact.</p>
+                      <p className="text-foreground/70">Strategic distribution and continuous performance tracking to maximise impact.</p>
                     </div>
                   </div>
                 </div>

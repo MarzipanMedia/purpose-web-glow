@@ -15,7 +15,7 @@ const AdditionalServices = () => {
       icon: <Zap className="h-6 w-6" />
     },
     {
-      title: "Conversion Rate Optimization",
+      title: "Conversion Rate Optimisation",
       description: "Ethical CRO strategies that improve results without manipulative tactics.",
       icon: <Users className="h-6 w-6" />
     },
@@ -32,7 +32,7 @@ const AdditionalServices = () => {
         <div className="text-center max-w-3xl mx-auto mb-12 animate-fade-in">
           <h2 className="text-3xl font-display font-semibold mb-4">Additional Services</h2>
           <p className="text-foreground/80">
-            Supporting services to enhance your digital ecosystem and maximize sustainability.
+            Supporting services to enhance your digital ecosystem and maximise sustainability.
           </p>
         </div>
         
