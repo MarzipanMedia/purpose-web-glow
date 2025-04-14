@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, ChevronDown, ChevronRight } from 'lucide-react';
@@ -90,9 +89,6 @@ const NavLinks = ({
 
   return (
     <>
-      <Link to="/" className="text-foreground hover:text-brandBlue dark:hover:text-marzipan hover-link transition-all">
-        Home
-      </Link>
       <Link to="/about" className="text-foreground hover:text-brandBlue dark:hover:text-marzipan hover-link transition-all">
         About
       </Link>
