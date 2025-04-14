@@ -42,7 +42,7 @@ const AiSeo = () => {
                   AI-Driven SEO for Purpose-Led Brands
                 </h1>
                 <p className="text-lg text-foreground/80 mb-8">
-                  Ethical optimization strategies powered by the latest AI tools to help your purpose-driven brand reach the right audience.
+                  Ethical optimisation strategies powered by the latest AI tools to help your purpose-driven brand reach the right audience.
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Link to="#contact" className="btn-primary flex items-center gap-2">
