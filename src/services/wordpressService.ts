@@ -52,7 +52,7 @@ export interface CarbonResult {
 }
 
 // Replace with your actual WordPress site URL
-const API_URL = 'https://marzipan.com.au/wp-json/wp/v2';
+const API_URL = 'https://marzipan.com.au/wp-json/wp/v2/posts';
 
 // If you have WordPress REST API custom endpoints set up for emails
 // Replace with your actual endpoint
