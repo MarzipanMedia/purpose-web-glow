@@ -44,8 +44,8 @@ const VideoSection: React.FC<VideoSectionProps> = ({
             
             return (
               <div key={index} className="rounded-lg overflow-hidden shadow-md bg-white">
-                <div className="aspect-w-9 aspect-h-16 w-full">
-                  <AspectRatio ratio={9/16}>
+                <div className="aspect-w-16 aspect-h-9 w-full">
+                  <AspectRatio ratio={16/9}>
                     <iframe
                       src={embedUrl}
                       allow="autoplay; fullscreen; picture-in-picture"
