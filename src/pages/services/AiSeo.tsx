@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -437,7 +436,10 @@ const AiSeo = () => {
                       )}
                     />
                     
-                    <Button type="submit" className="w-full bg-brandRed hover:bg-brandRed/90">
+                    <Button 
+                      type="submit" 
+                      className="w-full bg-brandRed hover:bg-brandRed/90 flex items-center justify-center"
+                    >
                       Send Message
                     </Button>
                     
