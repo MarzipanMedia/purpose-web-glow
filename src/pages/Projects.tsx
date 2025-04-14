@@ -23,7 +23,10 @@ const Projects = () => {
         <HeroSection />
         <ProjectsGrid projects={projects} />
         <ProcessSection />
-        <CTASection />
+        <CTASection 
+          title="Ready to maximise your digital impact?" 
+          subtitle="Let's create something sustainable together."
+        />
       </main>
       
       <Footer />

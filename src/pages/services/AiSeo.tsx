@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -35,7 +36,7 @@ const AiSeo = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div className="animate-fade-in">
                 <div className="inline-block bg-brandRed/10 text-brandRed px-4 py-1 rounded-full mb-4">
-                  Smart Optimization
+                  Smart Optimisation
                 </div>
                 <h1 className="text-4xl md:text-5xl font-display font-bold mb-6">
                   AI-Driven SEO for Purpose-Led Brands
@@ -70,7 +71,7 @@ const AiSeo = () => {
                       <div className="mt-1 mr-3 bg-white/20 p-1 rounded-full">
                         <Check className="h-4 w-4" />
                       </div>
-                      <span>Advanced content optimization for higher rankings</span>
+                      <span>Advanced content optimisation for higher rankings</span>
                     </li>
                     <li className="flex items-start">
                       <div className="mt-1 mr-3 bg-white/20 p-1 rounded-full">
@@ -109,7 +110,7 @@ const AiSeo = () => {
                   <div className="bg-brandRed/10 text-brandRed rounded-full w-12 h-12 flex items-center justify-center mb-4">
                     <Brain className="h-6 w-6" />
                   </div>
-                  <h3 className="text-xl font-display font-medium mb-3">AI Content Optimization</h3>
+                  <h3 className="text-xl font-display font-medium mb-3">AI Content Optimisation</h3>
                   <p className="text-foreground/70">
                     Advanced AI analysis ensures your content satisfies both search engines and human readers with perfect keyword balance.
                   </p>
@@ -175,7 +176,7 @@ const AiSeo = () => {
                   <div className="flex gap-4 items-start">
                     <span className="inline-flex items-center justify-center h-8 w-8 rounded-full bg-brandRed text-white font-medium">3</span>
                     <div>
-                      <h4 className="text-xl font-medium mb-1">Optimized Implementation</h4>
+                      <h4 className="text-xl font-medium mb-1">Optimised Implementation</h4>
                       <p className="text-foreground/70">Executing strategies with continuous AI monitoring for maximum effectiveness.</p>
                     </div>
                   </div>
@@ -184,7 +185,7 @@ const AiSeo = () => {
                     <span className="inline-flex items-center justify-center h-8 w-8 rounded-full bg-brandRed text-white font-medium">4</span>
                     <div>
                       <h4 className="text-xl font-medium mb-1">Adaptive Refinement</h4>
-                      <p className="text-foreground/70">Ongoing optimization using machine learning to adapt to changing algorithms and market conditions.</p>
+                      <p className="text-foreground/70">Ongoing optimisation using machine learning to adapt to changing algorithms and market conditions.</p>
                     </div>
                   </div>
                 </div>
@@ -318,7 +319,7 @@ const AiSeo = () => {
                       <div className="mt-1 mr-3 bg-white/20 p-1 rounded-full">
                         <Check className="h-4 w-4" />
                       </div>
-                      <span>Specialized in ethical SEO for purpose-driven brands</span>
+                      <span>Specialised in ethical SEO for purpose-driven brands</span>
                     </li>
                     <li className="flex items-start">
                       <div className="mt-1 mr-3 bg-white/20 p-1 rounded-full">
@@ -336,7 +337,7 @@ const AiSeo = () => {
                       <div className="mt-1 mr-3 bg-white/20 p-1 rounded-full">
                         <Check className="h-4 w-4" />
                       </div>
-                      <span>Transparent reporting and continuous optimization</span>
+                      <span>Transparent reporting and continuous optimisation</span>
                     </li>
                   </ul>
                 </div>
