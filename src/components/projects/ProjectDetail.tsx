@@ -7,6 +7,7 @@ import Footer from '../Footer';
 import { projects } from './projectsData';
 import MetaHead from '../MetaHead';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
+import VideoSection from './VideoSection';
 
 const ProjectDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -97,18 +98,15 @@ const ProjectDetail = () => {
                 
                 <div>
                   <h2 className="text-2xl font-display font-semibold mb-4">Project Overview</h2>
-                  <p className="mb-4">
+                  <p className="mb-4 whitespace-pre-line">
                     {project.longDescription || `This is a template for the ${project.title} case study. This section would include a detailed description of the project, including the client's needs, the challenges faced, and the solutions implemented.`}
-                  </p>
-                  <p>
-                    Edit this template to add more content specific to each project. You can include details about the technologies used, the design process, and the results achieved.
                   </p>
                 </div>
                 
                 <div>
-                  <h2 className="text-2xl font-display font-semibold mb-4">Sustainability Approach</h2>
+                  <h2 className="text-2xl font-display font-semibold mb-4">Our Approach</h2>
                   <p className="mb-4">
-                    For this project, we focused on implementing sustainable web design practices to minimize the environmental impact while delivering an exceptional user experience.
+                    For this project, we focused on implementing sustainable digital marketing practices to maximise visibility while delivering exceptional user experiences.
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
                     {project.features.map((feature, i) => (
@@ -190,7 +188,7 @@ const ProjectDetail = () => {
                 <div className="bg-white border border-marzipan/30 rounded-lg p-6 shadow-sm">
                   <h3 className="text-lg font-display font-semibold mb-4">Need a Similar Project?</h3>
                   <p className="mb-4 text-foreground/80">
-                    Interested in creating a sustainable digital experience like this one? Let's discuss how we can help your business.
+                    Interested in amplifying your digital presence like we did for {project.client || project.title}? Let's discuss how we can help your organisation.
                   </p>
                   <Link 
                     to="/contact" 
@@ -199,12 +197,35 @@ const ProjectDetail = () => {
                     Get in Touch
                   </Link>
                 </div>
+                
+                {project.slug === "sydney-jewish-museum" && (
+                  <div className="bg-white border border-marzipan/30 rounded-lg p-6 shadow-sm">
+                    <h3 className="text-lg font-display font-semibold mb-4">Digital Content Creation</h3>
+                    <p className="mb-4 text-foreground/80">
+                      Do you need compelling video content that tells your story? Our digital content creation services can help you connect with your audience.
+                    </p>
+                    <Link 
+                      to="/services/digital-content-creation" 
+                      className="w-full inline-block text-center bg-brandRed text-white py-3 px-4 rounded-lg hover:bg-brandRed/90 transition-colors"
+                    >
+                      Explore Content Creation
+                    </Link>
+                  </div>
+                )}
               </div>
             </div>
           </div>
         </section>
         
-        {/* Related Projects Section (Optional) */}
+        {/* Video Section - only rendered if project has videos */}
+        {project.videos && project.videos.length > 0 && (
+          <VideoSection 
+            videos={project.videos} 
+            title="Digital Stories" 
+          />
+        )}
+        
+        {/* Related Projects Section */}
         <section className="py-16 bg-marzipan/10">
           <div className="container-custom">
             <h2 className="text-2xl font-display font-semibold mb-8 text-center">Related Projects</h2>
