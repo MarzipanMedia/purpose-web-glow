@@ -24,14 +24,14 @@ const Services = () => {
     {
       id: "ai-seo",
       title: "AI-Driven SEO",
-      description: "Ethical optimization strategies powered by the latest AI tools to help your purpose-driven brand reach the right audience.",
+      description: "Ethical optimisation strategies powered by the latest AI tools to help your purpose-driven brand reach the right audience.",
       icon: <Search className="h-10 w-10" />,
       features: [
         "Keyword research and analysis",
-        "AI content optimization",
+        "AI content optimisation",
         "Technical SEO audits",
         "Local SEO strategies",
-        "Voice search optimization",
+        "Voice search optimisation",
         "Sustainable SEO practices"
       ]
     },
@@ -60,7 +60,7 @@ const Services = () => {
         "Social media content",
         "Case studies and whitepapers",
         "Video script writing",
-        "Sustainability reporting"
+        "Analytics reporting"
       ]
     }
   ];
@@ -68,11 +68,11 @@ const Services = () => {
   const supplementaryServices = [
     {
       title: "Analytics & Reporting",
-      description: "Comprehensive data analysis to track performance and optimize your digital strategy.",
+      description: "Comprehensive data analysis to track performance and optimise your digital strategy.",
       icon: <BarChart className="h-6 w-6" />
     },
     {
-      title: "Performance Optimization",
+      title: "Performance Optimisation",
       description: "Enhance site speed and user experience while reducing environmental impact.",
       icon: <Zap className="h-6 w-6" />
     },
@@ -83,7 +83,7 @@ const Services = () => {
     },
     {
       title: "Website Carbon Reduction",
-      description: "Audit and implementation of strategies to minimize your site's carbon footprint.",
+      description: "Audit and implementation of strategies to minimise your site's carbon footprint.",
       icon: <LineChart className="h-6 w-6" />
     }
   ];
