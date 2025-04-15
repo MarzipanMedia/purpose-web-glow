@@ -33,7 +33,7 @@ const Hero = () => {
               <div className="bg-marzipan/80 rounded-full aspect-square flex items-center justify-center p-12 transition-all duration-700 animate-pulse-slow">
                 <div className="text-center">
                   <p className="text-xl font-display">Eco-friendly</p>
-                  <h3 className="text-3xl font-display font-semibold">Web Design</h3>
+                  <h2 className="text-3xl font-display font-semibold">Web Design</h2>
                   <p className="mt-2 text-foreground/80">For purpose-driven brands</p>
                 </div>
               </div>
