@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Check } from 'lucide-react';
 import { useIsMobile } from '../../hooks/use-mobile';
@@ -36,7 +35,6 @@ const OurApproach = () => {
               </div>
             </div>
             
-            {/* Adjust positioning and responsiveness for the call-out box */}
             <div className={`
               absolute 
               bg-brandRed 
@@ -52,7 +50,7 @@ const OurApproach = () => {
               }`} 
               style={{ animationDelay: '0.4s' }}
             >
-              <h3 className="text-lg font-semibold mb-2">Grow Impact, Not Just Traffic</h3>
+              <h4 className="text-lg font-semibold mb-2">Grow Impact, Not Just Traffic</h4>
               <p className="text-white/90 text-sm">
                 Our approach focuses on creating websites that don't just grow traffic—they grow impact.
               </p>
