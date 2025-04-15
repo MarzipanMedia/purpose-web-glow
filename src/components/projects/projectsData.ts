@@ -91,7 +91,7 @@ export const projects: ProjectData[] = [
   "videos": [
     "https://youtu.be/BvQK0CHwD5s"  // replace with actual video link if available
   ]
-}
+},
   {
     title: "Mindful Markets",
     category: "Ethical Marketplace",
