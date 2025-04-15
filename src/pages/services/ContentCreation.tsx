@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -58,7 +57,7 @@ const ContentCreation = () => {
                 <div className="bg-gradient-to-br from-marzipan to-marzipan/70 rounded-lg p-8">
                   <div className="flex items-center mb-6">
                     <MessageSquare className="h-10 w-10 mr-4 text-brandBlue" />
-                    <h2 className="text-2xl font-display text-foreground">Why Choose Our Content?</h2>
+                    <h2 className="text-2xl font-display">Why Choose Our Content?</h2>
                   </div>
                   <ul className="space-y-4">
                     <li className="flex items-start">
