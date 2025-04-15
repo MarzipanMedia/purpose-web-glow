@@ -106,32 +106,29 @@ export const projects: ProjectData[] = [
   "videos": []
 },
   {
-    title: "GreenTech Solutions",
-    category: "Technology Company",
-    description: "Corporate website with sustainability reporting dashboard and minimal animation energy usage.",
-    features: ["Performance-optimized animations", "Dark mode by default", "Low-energy design patterns"],
-    color: "bg-[#73A580]",
-    textColor: "text-white",
-    slug: "greentech-solutions"
-  },
-  {
-    title: "Urban Farming Initiative",
-    category: "Community Project",
-    description: "Community-focused platform with offline-first approach for low-income area accessibility.",
-    features: ["Works without JavaScript", "Minimal dependency architecture", "Print-friendly resources"],
-    color: "bg-brandRed",
-    textColor: "text-white",
-    slug: "urban-farming-initiative"
-  },
-  {
-    title: "Sustainable Fashion Collective",
-    category: "Fashion Brand",
-    description: "Image-focused site with optimal compression and lazy loading to minimize environmental impact.",
-    features: ["Next-gen image formats", "Selective loading strategy", "Green hosting"],
-    color: "bg-[#E6CCAE]",
-    textColor: "text-foreground",
-    slug: "sustainable-fashion-collective"
-  },
+  "title": "Popology – A Bold Website That Balances Beauty, Speed, and Sustainability",
+  "category": "Creative Agency",
+  "description": "High-performance website build for experiential agency Popology, blending stunning design with low carbon impact.",
+  "features": [
+    "Ultra-Fast Load Speeds",
+    "Low Carbon Footprint",
+    "Dynamic Project Showcases",
+    "Sustainable Development",
+    "Interactive Page Transitions"
+  ],
+  "color": "bg-[#AE2012]",
+  "textColor": "text-white",
+  "slug": "popology",
+  "client": "Popology",
+  "services": [
+    "Web Development",
+    "Performance Optimisation",
+    "Sustainable Web Design",
+    "Technical Consulting"
+  ],
+  "longDescription": "When experiential agency Popology needed a high-impact website to match their creative edge, they turned to longtime collaborators Marzipan Media to bring the vision to life — merging stunning design with world-class performance.\\n\\nTogether, we created popology.com.au — a website that loads fast, looks phenomenal, and reflects both agencies’ shared values of innovation and sustainability.\\n\\nPopology led the creative direction — crafting a playful, immersive design that captures the energy of their brand experiences. Marzipan took that concept and brought it to life through a modern, ultra-lightweight build designed for speed and user engagement.\\n\\nFrom page transitions to dynamic project showcases, the result is an interactive site that invites exploration — with lightning-fast load times and near-invisible code.\\n\\nThis project wasn’t just about performance — it was about impact. The site was built using sustainable web development practices that reduce carbon emissions with every visit. It proves you don’t have to sacrifice creativity to be climate-conscious.\\n\\nBuilt on cutting-edge tech, optimised for mobile, and incredibly lightweight, it’s a model for how sustainable sites should be built — beautiful, efficient, and future-ready.",
+  "videos": []
+},
   {
     title: "Toasty",
     category: "Outdoor Apparel",
