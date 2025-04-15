@@ -51,17 +51,35 @@ export const projects: ProjectData[] = [
     ]
   },
   {
-    title: "Royal Botanic Garden",
-    category: "Branding, Sustainable Web Design",
-    description: "Revitalising the Royal Botanic Garden’s digital presence through content, web, and video storytelling.",
-    features: ["90% lighter than average e-commerce sites", "Green hosting", "Video Storytelling"],
-    color: "bg-[#C8D6AF]",
-    textColor: "text-foreground",
-    slug: "royal-botanic-garden",
-    imageUrl: "/ecoliving-project.jpg",
-    services: ["Sustainable Web Design", "Video Production", "Digital Marketing"],
-    longDescription: "It was an honour to produce a range of content creations for The Royal Botanic Garden in Sydney, including a new website, a collection of video photography and a wayfinding app. As Australia's oldest scientific institution and a much-loved public garden in the heart of the thriving city, the space layered with history and stories. Like many cultural institutions, it faced an increasingly deteriorating website with an ageing CMS and an online offering falling below government best practices in terms of accessibility usability. Marzipan Media are prequalified for digital and communications services in NSW, under the SCM2701 scheme, and as such we're proud to support the Garden in the creation of keystone digital content. We've worked side by side for over 6 years providing social media marketing, search campaigns, video production, and the new website with project management & information architecture design services to ensure the new website was built on time, on budget and with accessibility in mind. Our content creations focused on bringing the Garden to life through a human element to tell the stories of this tourism destination. Working in-house as the lead project manager to create the brand new website built for this beloved green space and its four sister sites. From the creation of the brief, tendering the project and managing suppliers and developers, our founder Ben Adams, saw the creation of the website through to completion. These activities were supported with a new suite of brand images, video content and a mobile app created for the website that launched in Spring 2017. The brand imagery is still on display throughout the Garden today. The website design and development project saw a great deal of internal stakeholder management and education to highlight the benefits of the content-first strategy placing imagery and video at the cornerstone of the new, fully responsive site.  This design will provide the Garden with an image-led tool for sharing its stories for the first time in its 200 year history. The final stage of the project saw a multi-layered content creation strategy, produced by Marzipan Media to allow fresh photography, video and drone footage to showcase this exceptional place. Local brand photographer, James Horan & his team were brought in to shoot fresh brand content for the Garden, presenting the new website in the best possible light. Elsewhere, we are proud to have produced new video content for the Garden to showcase the brand new Calyx building, the magnificent Vivid Event and some of the staff at the heart of the iconic green space. In our time with the Garden, we've trained their teams to take a digital-first approach and continue to work closely with the Gardens for major digital content projects. In 2020 we will be connecting Salesforce as their primary CRM, conducting training and stakeholder management along the way to ensure the project is a success. See more of our video services here."
-  },
+  "title": "Royal Botanic Garden – A Living Digital Archive",
+  "category": "Cultural Institution",
+  "description": "Website, video, and app creation for Australia’s oldest scientific institution and public garden.",
+  "features": [
+    "Website Redesign",
+    "Video Content Creation",
+    "Photography",
+    "Wayfinding App",
+    "Digital Strategy",
+    "Stakeholder Management"
+  ],
+  "color": "bg-[#186074]",
+  "textColor": "text-white",
+  "slug": "royal-botanic-garden",
+  "client": "Royal Botanic Garden Sydney",
+  "services": [
+    "Web Design",
+    "Project Management",
+    "Digital Content Creation",
+    "Video Production",
+    "App Development",
+    "SEO",
+    "Stakeholder Engagement"
+  ],
+  "longDescription": "It was an honour to lead the digital transformation of the Royal Botanic Garden in Sydney – Australia’s oldest scientific institution and a beloved public garden in the heart of the city.\\n\\nWith an outdated CMS, deteriorating UX, and poor accessibility, the Garden's online presence no longer reflected its importance. Marzipan Media, prequalified under the NSW SCM2701 scheme, stepped in to deliver a complete overhaul.\\n\\nFor over six years, we’ve supported the Garden across social media, SEO, video production, and digital strategy. In 2017, we worked in-house to lead a full website redevelopment across the Garden and its four sister sites, managing everything from initial brief creation and tendering, to supplier coordination and go-live.\\n\\nThe result was a content-first, image-led website rich with accessibility, mobile responsiveness, and storytelling tools – the first time in the Garden’s 200-year history that its digital presence truly matched the magic of its physical space.\\n\\nOur content creation strategy included photography, drone footage, and video production, with work still seen throughout the Garden today. Highlights include video showcases of the Vivid Event, the Calyx building, and the passionate staff behind the scenes.\\n\\nOur journey continues with CRM integrations (Salesforce), team training, and ongoing digital strategy – helping the Garden bloom online just as beautifully as it does in real life.",
+  "videos": [
+    "https://youtu.be/BvQK0CHwD5s"  // Replace with actual link if needed
+  ]
+},
  {
   "title": "Royal Botanic Garden – A Living Digital Archive",
   "category": "Cultural Institution",
