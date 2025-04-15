@@ -80,17 +80,31 @@ export const projects: ProjectData[] = [
     "https://youtu.be/BvQK0CHwD5s"  // Replace with actual link if needed
   ]
 },
-  {
-    title: "Mindful Markets",
-    category: "Ethical Marketplace",
-    description: "A progressive web app connecting conscious consumers with sustainable local businesses.",
-    features: ["Geo-location services", "Low-bandwidth image strategy", "Progressive loading"],
-    color: "bg-marzipan",
-    textColor: "text-foreground",
-    slug: "mindful-markets",
-    imageUrl: "/mindful-project.jpg",
-    services: ["Progressive Web App", "Marketplace Development", "Performance Optimization"]
-  },
+{
+  "title": "Willow – A Safe, Fast, and Sustainable Website for Women in Crisis",
+  "category": "Social Impact",
+  "description": "Mobile-first website providing legal info for women facing crisis — fast, safe, and discreet.",
+  "features": [
+    "0.46g CO₂ per View",
+    "Safe Exit & History Clearing",
+    "Mobile-First Design",
+    "Low Literacy UX",
+    "Trauma-Aware UI"
+  ],
+  "color": "bg-[#375E4C]",
+  "textColor": "text-white",
+  "slug": "willow",
+  "client": "Women’s Legal Service NSW",
+  "services": [
+    "Web Design",
+    "UX/UI Strategy",
+    "Sustainable Development",
+    "Accessibility Design",
+    "Digital Strategy"
+  ],
+  "longDescription": "Willow.org.au is one of Marzipan Media’s most meaningful digital projects — a mobile-first microsite designed to provide legal information for women escaping violence or facing crisis.\\n\\nCommissioned by Women’s Legal Service NSW and funded through state grants and community partnerships, Willow is a discreet and accessible WordPress site that offers vital resources for women with low literacy, limited digital access, or restricted internet freedom.\\n\\nFrom the beginning, Willow was engineered for real-world conditions: slow networks, shared devices, and urgent moments. The site loads quickly — even on low-bandwidth 3G connections in rural NSW — and includes:\\n\\nSafe Exit buttons for covert browsing\\nAutomatic browser clearing to protect user history\\nUltra-lightweight design to prioritise speed and safety\\n\\nCollaboratively designed by women, the site’s visual language — inspired by the resilience and flexibility of the willow tree — brings softness and strength to difficult content. The interface is calming, while remaining clear and direct.\\n\\nWillow is not only a lifeline — it’s a model of Sustainable Web Design. Emitting just 0.46g of CO₂ per page view, it’s cleaner than over half of all websites globally. Lightweight design, reduced scripts, and optimised assets make it an ethical choice in both form and function.",
+  "videos": []
+},
   {
     title: "GreenTech Solutions",
     category: "Technology Company",
