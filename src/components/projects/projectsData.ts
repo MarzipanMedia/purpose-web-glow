@@ -91,7 +91,7 @@ export const projects: ProjectData[] = [
     "Low Literacy UX",
     "Trauma-Aware UI"
   ],
-  "color": "bg-[#375E4C]",
+  "color": "bg-[#564872]",
   "textColor": "text-white",
   "slug": "willow",
   "client": "Women’s Legal Service NSW",
