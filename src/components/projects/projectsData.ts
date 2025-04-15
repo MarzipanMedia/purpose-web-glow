@@ -80,36 +80,6 @@ export const projects: ProjectData[] = [
     "https://youtu.be/BvQK0CHwD5s"  // Replace with actual link if needed
   ]
 },
- {
-  "title": "Royal Botanic Garden – A Living Digital Archive",
-  "category": "Cultural Institution",
-  "description": "Website, video, and app creation for Australia’s oldest scientific institution and public garden.",
-  "features": [
-    "Website Redesign",
-    "Video Content Creation",
-    "Photography",
-    "Wayfinding App",
-    "Digital Strategy",
-    "Stakeholder Management"
-  ],
-  "color": "bg-[#186074]",
-  "textColor": "text-white",
-  "slug": "royal-botanic-garden",
-  "client": "Royal Botanic Garden Sydney",
-  "services": [
-    "Web Design",
-    "Project Management",
-    "Digital Content Creation",
-    "Video Production",
-    "App Development",
-    "SEO",
-    "Stakeholder Engagement"
-  ],
-  "longDescription": "It was an honour to lead the digital transformation of the Royal Botanic Garden in Sydney – Australia's oldest scientific institution and a beloved public garden in the heart of the city.\\n\\nWith an outdated CMS, deteriorating UX, and poor accessibility, the Garden's online presence no longer reflected its importance. Marzipan Media, prequalified under the NSW SCM2701 scheme, stepped in to deliver a complete overhaul.\\n\\nFor over six years, we've supported the Garden across social media, SEO, video production, and digital strategy.",
-  "videos": [
-    "https://youtu.be/BvQK0CHwD5s"  // replace with actual video link if available
-  ]
-},
   {
     title: "Mindful Markets",
     category: "Ethical Marketplace",
