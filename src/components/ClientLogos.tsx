@@ -29,7 +29,7 @@ const ClientLogos: React.FC = () => {
           <div className="inline-block bg-brandBlue/10 text-brandBlue px-4 py-1 rounded-full mb-4 dark:bg-brandBlue/30 dark:text-white">
             Trusted Partners
           </div>
-          <h2 className="text-3xl md:text-4xl font-display font-semibold">
+          <h2 className="text-3xl md:text-4xl font-display font-semibold dark:text-white">
             Brands We've Worked With
           </h2>
           <p className="mt-4 text-foreground/80 dark:text-gray-200">
