@@ -17,12 +17,9 @@ const ClientLogos: React.FC = () => {
     { id: 4, name: "National Art School", imageUrl: "/client-logos/nas-adwords-logo.png", alt: "National Art School Adwords" },
     { id: 5, name: "Museums of History NSW", imageUrl: "/client-logos/mhnsw-content-logo.png", alt: "Museums of History NSW" },
     { id: 6, name: "Prime", imageUrl: "/client-logos/prime-seo-logo.png", alt: "Prime SEO" },
-    { id: 7, name: "Ethical Co", imageUrl: "/client-logos/ethical-co-logo.png", alt: "Ethical Co logo" },
-    { id: 8, name: "Mindful Business", imageUrl: "/client-logos/mindful-business-logo.png", alt: "Mindful Business logo" },
-    { id: 9, name: "Pure Living", imageUrl: "/client-logos/pure-living-logo.png", alt: "Pure Living logo" },
-    { id: 10, name: "Natural Brand", imageUrl: "/client-logos/natural-brand-logo.png", alt: "Natural Brand logo" },
-    { id: 11, name: "Green Tech", imageUrl: "/client-logos/green-tech-logo.png", alt: "Green Tech logo" },
-    { id: 12, name: "Eco Solutions", imageUrl: "/client-logos/eco-solutions-logo.png", alt: "Eco Solutions logo" },
+    { id: 7, name: "Toasty", imageUrl: "/client-logos/toasty-seo-logo.png", alt: "Toasty SEO + FB ads" },
+    { id: 8, name: "LA Gum", imageUrl: "/client-logos/lagum-seo-logo.png", alt: "LA Gum SEO SEM Socials" },
+    { id: 9, name: "Pop", imageUrl: "/client-logos/popology-webdesign-logo.png", alt: "popology web build" },
   ];
 
   return (
