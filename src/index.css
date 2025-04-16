@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&family=Jost:wght@400;500;600;700&display=swap');
 
 @tailwind base;
@@ -100,6 +99,16 @@
   .gradient-text {
     @apply bg-gradient-to-r from-brandBlue to-brandRed bg-clip-text text-transparent dark:from-brandBlue/90 dark:to-brandRed/90;
   }
+  
+  /* New class for callout boxes to prevent overlapping */
+  .callout-box {
+    @apply relative z-10 my-4;
+  }
+  
+  /* Prevent floating elements from overlapping in responsive views */
+  .floating-element {
+    @apply relative sm:absolute z-10;
+  }
 }
 
 @layer utilities {
@@ -199,4 +208,14 @@
 
 .dark .text-foreground\/40 {
   color: rgba(255, 255, 255, 0.4);
+}
+
+/* Fix for overlapping elements in responsive layouts */
+@media (max-width: 768px) {
+  .floating-element {
+    position: relative !important;
+    margin-top: 1.5rem !important;
+    width: 100% !important;
+    transform: none !important;
+  }
 }

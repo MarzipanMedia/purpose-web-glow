@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Check } from 'lucide-react';
 import { useIsMobile } from '../../hooks/use-mobile';
@@ -35,19 +36,13 @@ const OurApproach = () => {
               </div>
             </div>
             
+            {/* Modified the positioning of the floating box */}
             <div className={`
-              absolute 
-              bg-brandRed 
-              text-white 
-              p-6 
-              rounded-lg 
-              shadow-lg 
-              max-w-xs 
-              animate-fade-in 
               ${isMobile 
                 ? 'relative mt-6 w-full' 
-                : '-bottom-6 -right-6'
-              }`} 
+                : 'absolute rounded-lg shadow-lg max-w-xs bg-brandRed text-white p-6 mt-8 lg:mt-0 lg:-bottom-6 lg:right-0 lg:translate-x-1/4'}
+              animate-fade-in
+            `} 
               style={{ animationDelay: '0.4s' }}
             >
               <h4 className="text-lg font-semibold mb-2">Grow Impact, Not Just Traffic</h4>

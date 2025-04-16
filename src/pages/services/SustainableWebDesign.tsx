@@ -10,9 +10,11 @@ import { Form, FormField, FormItem, FormLabel, FormControl } from '@/components/
 import { useForm } from 'react-hook-form';
 import FAQSection from '../../components/services/FAQSection';
 import MetaHead from '@/components/MetaHead';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const SustainableWebDesign = () => {
   const form = useForm();
+  const isMobile = useIsMobile();
 
   const onSubmit = (data: any) => {
     console.log(data);
@@ -231,7 +233,7 @@ const SustainableWebDesign = () => {
           </div>
         </section>
         
-        {/* Process Section */}
+        {/* Process Section - Modified to fix overlapping */}
         <section className="py-16 bg-marzipan/20">
           <div className="container-custom">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -278,7 +280,7 @@ const SustainableWebDesign = () => {
                 </div>
               </div>
               
-              <div className="bg-gradient-to-br from-secondary to-secondary/40 p-8 rounded-lg animate-fade-in" style={{ animationDelay: "0.2s" }}>
+              <div className="bg-gradient-to-br from-secondary to-secondary/40 p-8 rounded-lg animate-fade-in relative" style={{ animationDelay: "0.2s" }}>
                 <div className="bg-white/80 backdrop-blur-sm p-6 rounded-lg">
                   <h3 className="text-2xl font-display font-semibold mb-4 text-center">
                     Sustainable Website Health Check
@@ -305,12 +307,15 @@ const SustainableWebDesign = () => {
                         <span>Sustainability recommendations</span>
                       </div>
                     </div>
-                    <Link 
-                      to="#contact" 
-                      className="btn-primary w-full justify-center"
-                    >
-                      Get Your Free Audit
-                    </Link>
+                    {/* Fix positioning of the button so it doesn't overlap */}
+                    <div className={`${isMobile ? 'relative mt-6' : 'relative mt-6'}`}>
+                      <Link 
+                        to="#contact" 
+                        className="btn-primary w-full justify-center inline-block"
+                      >
+                        Get Your Free Audit
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>

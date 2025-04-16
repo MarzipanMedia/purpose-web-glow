@@ -1,8 +1,11 @@
 
 import React from 'react';
 import { Leaf, Zap, Recycle } from 'lucide-react';
+import { useIsMobile } from '../hooks/use-mobile';
 
 const Sustainability = () => {
+  const isMobile = useIsMobile();
+  
   const principles = [
     {
       title: "Low Carbon Footprint",
@@ -53,7 +56,8 @@ const Sustainability = () => {
           </div>
           
           <div className="relative animate-fade-in" style={{ animationDelay: "0.4s" }}>
-            <div className="bg-gradient-to-br from-brandBlue to-brandBlue/70 rounded-lg p-8 text-white">
+            {/* Updated positioning to avoid overlapping */}
+            <div className="bg-gradient-to-br from-brandBlue to-brandBlue/70 rounded-lg p-8 text-white relative z-10">
               <h3 className="text-2xl font-display mb-4">The Digital Footprint</h3>
               <p className="mb-6">If the internet were a country, it would be the 7th largest polluter.</p>
               
@@ -72,7 +76,8 @@ const Sustainability = () => {
                 Source: Website Carbon Calculator
               </div>
             </div>
-            <div className="absolute -top-4 -right-4 w-24 h-24 bg-marzipan rounded-full z-[-1]"></div>
+            {/* Updated decorative element to avoid overlapping */}
+            <div className={`${isMobile ? 'hidden' : 'absolute -top-4 -right-4 w-24 h-24 bg-marzipan rounded-full z-[-1]'}`}></div>
           </div>
         </div>
       </div>
