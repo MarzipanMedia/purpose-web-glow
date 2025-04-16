@@ -19,7 +19,10 @@ const ClientLogos: React.FC = () => {
     { id: 6, name: "Prime", imageUrl: "/client-logos/prime-seo-logo.png", alt: "Prime SEO" },
     { id: 7, name: "Toasty", imageUrl: "/client-logos/toasty-seo-logo.png", alt: "Toasty SEO + FB ads" },
     { id: 8, name: "LA Gum", imageUrl: "/client-logos/lagum-seo-logo.png", alt: "LA Gum SEO SEM Socials" },
-    { id: 9, name: "Pop", imageUrl: "/client-logos/popology-webdesign-logo.png", alt: "popology web build" },
+    { id: 9, name: "NSW GOv", imageUrl: "/client-logos/nsw-scm2701-logo.png", alt: "NSW SCM2701 qualified" },
+    { id: 10, name: "NipCo SEO", imageUrl: "/client-logos/nipco-seo-logo.png", alt: "NipCo SEO" },
+{ id: 11, name: "Birchal", imageUrl: "/client-logos/birchal-sem-logo.png", alt: "Birchal Approved" },
+{ id: 12, name: "Focus", imageUrl: "/client-logos/focus", alt: "Focus SEO" },
   ];
 
   return (
