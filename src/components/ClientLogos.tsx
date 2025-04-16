@@ -22,7 +22,7 @@ const ClientLogos: React.FC = () => {
     { id: 9, name: "NSW GOv", imageUrl: "/client-logos/nsw-scm2701-logo.png", alt: "NSW SCM2701 qualified" },
     { id: 10, name: "NipCo SEO", imageUrl: "/client-logos/nipco-seo-logo.png", alt: "NipCo SEO" },
 { id: 11, name: "Birchal", imageUrl: "/client-logos/birchal-sem-logo.png", alt: "Birchal Approved" },
-{ id: 12, name: "Focus", imageUrl: "/client-logos/focus", alt: "Focus SEO" },
+{ id: 12, name: "Focus", imageUrl: "/client-logos/focus.png", alt: "Focus SEO" },
   ];
 
   return (
