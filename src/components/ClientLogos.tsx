@@ -11,7 +11,7 @@ interface ClientLogo {
 const ClientLogos: React.FC = () => {
   // Array of client logos
   const logos: ClientLogo[] = [
-    { id: 1, name: "Eco Brand", imageUrl: "/client-logos/eco-brand-logo.png", alt: "Eco Brand logo" },
+    { id: 1, name: "FINSIA", imageUrl: "/client-logos/Finsia-SEO-logo.png", alt: "FINSIA  AU & NZ" },
     { id: 2, name: "Green Company", imageUrl: "/client-logos/green-company-logo.png", alt: "Green Company logo" },
     { id: 3, name: "Sustainable Corp", imageUrl: "/client-logos/sustainable-corp-logo.png", alt: "Sustainable Corp logo" },
     { id: 4, name: "Earth First", imageUrl: "/client-logos/earth-first-logo.png", alt: "Earth First logo" },
