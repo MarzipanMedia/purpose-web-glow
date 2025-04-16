@@ -36,7 +36,7 @@ const ClientLogos: React.FC = () => {
             Brands We've Worked With
           </h2>
           <p className="mt-4 text-foreground/80 dark:text-gray-200">
-            Proud to partner with these forward-thinking companies
+            Proud to partner with these forward-thinking companies in Australia
           </p>
         </div>
 
