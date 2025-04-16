@@ -11,12 +11,12 @@ interface ClientLogo {
 const ClientLogos: React.FC = () => {
   // Array of client logos
   const logos: ClientLogo[] = [
-    { id: 1, name: "FINSIA", imageUrl: "/client-logos/Finsia-SEO-logo.png", alt: "FINSIA  AU & NZ" },
-    { id: 2, name: "Australian Georgraphic", imageUrl: "/client-logos/ag-webdesign-logo.png", alt: "AusGeo" },
-    { id: 3, name: "Sustainable Corp", imageUrl: "/client-logos/sustainable-corp-logo.png", alt: "Sustainable Corp logo" },
-    { id: 4, name: "Earth First", imageUrl: "/client-logos/earth-first-logo.png", alt: "Earth First logo" },
-    { id: 5, name: "Conscious Brand", imageUrl: "/client-logos/conscious-brand-logo.png", alt: "Conscious Brand logo" },
-    { id: 6, name: "Planet Friendly", imageUrl: "/client-logos/planet-friendly-logo.png", alt: "Planet Friendly logo" },
+    { id: 1, name: "FINSIA", imageUrl: "/client-logos/Finsia-SEO-logo.png", alt: "FINSIA  content creation" },
+    { id: 2, name: "Australian Georgraphic", imageUrl: "/client-logos/ag-webdesign-logo.png", alt: "AusGeo Web Design" },
+    { id: 3, name: "Willow", imageUrl: "/client-logos/willow-webdesign-logo.png", alt: "Sustainable Web Design" },
+    { id: 4, name: "National Art School", imageUrl: "/client-logos/nas-adwords-logo.png", alt: "National Art School Adwords" },
+    { id: 5, name: "Museums of History NSW", imageUrl: "/client-logos/mhnsw-content-logo.png", alt: "Museums of History NSW" },
+    { id: 6, name: "Prime", imageUrl: "/client-logos/prime-seo-logo.png", alt: "Prime SEO" },
     { id: 7, name: "Ethical Co", imageUrl: "/client-logos/ethical-co-logo.png", alt: "Ethical Co logo" },
     { id: 8, name: "Mindful Business", imageUrl: "/client-logos/mindful-business-logo.png", alt: "Mindful Business logo" },
     { id: 9, name: "Pure Living", imageUrl: "/client-logos/pure-living-logo.png", alt: "Pure Living logo" },
