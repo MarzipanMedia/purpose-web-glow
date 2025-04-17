@@ -21,7 +21,7 @@ const MainService: React.FC<MainServiceProps> = ({ service, index }) => {
   
   return (
     <div id={service.id} className="scroll-mt-20">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
         <div className={`space-y-6 animate-fade-in ${isEven ? '' : 'lg:order-2'}`}>
           <div className="bg-marzipan/30 inline-block p-3 rounded-full text-brandBlue">
             {service.icon}
@@ -43,7 +43,7 @@ const MainService: React.FC<MainServiceProps> = ({ service, index }) => {
           </div>
         </div>
         
-        <div className={`${isEven ? 'lg:order-2' : ''} w-full`}>
+        <div className={`${isEven ? 'lg:order-2' : ''} w-full mt-8 lg:mt-0`}>
           <div className="w-full animate-fade-in" style={{ animationDelay: "0.2s" }}>
             <ServiceWorkProcess isEven={isEven} />
           </div>

@@ -10,6 +10,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Form, FormField, FormItem, FormLabel, FormControl } from '@/components/ui/form';
 import { useForm } from 'react-hook-form';
 import { useIsMobile } from '../../hooks/use-mobile';
+import SeoChecker from '../../components/seo/SeoChecker';
 
 const AiSeo = () => {
   const form = useForm();
@@ -47,8 +48,8 @@ const AiSeo = () => {
                   Ethical optimisation strategies powered by the latest AI tools to help your purpose-driven brand reach the right audience.
                 </p>
                 <div className="flex flex-wrap gap-4">
-                  <Link to="#contact" className="btn-primary flex items-center gap-2">
-                    Get Started <ArrowRight className="h-4 w-4" />
+                  <Link to="#seo-checker" className="btn-primary flex items-center gap-2">
+                    Try Free SEO Checker <ArrowRight className="h-4 w-4" />
                   </Link>
                   <Link to="/projects" className="btn-secondary flex items-center gap-2">
                     View Our Work <ArrowRight className="h-4 w-4" />
@@ -94,8 +95,24 @@ const AiSeo = () => {
           </div>
         </section>
         
+        {/* SEO Checker Section */}
+        <section id="seo-checker" className="py-16 bg-white scroll-mt-16">
+          <div className="container-custom">
+            <div className="text-center max-w-3xl mx-auto mb-10 animate-fade-in">
+              <h2 className="text-3xl font-display font-semibold mb-4">
+                Check Your Website's SEO Performance
+              </h2>
+              <p className="text-foreground/80">
+                Our free tool analyzes your website and provides actionable insights to improve your search rankings
+              </p>
+            </div>
+            
+            <SeoChecker />
+          </div>
+        </section>
+        
         {/* Features Section */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-marzipan/10">
           <div className="container-custom">
             <div className="text-center max-w-3xl mx-auto mb-12 animate-fade-in">
               <h2 className="text-3xl font-display font-semibold mb-4">
@@ -147,9 +164,9 @@ const AiSeo = () => {
         </section>
         
         {/* Process Section */}
-        <section className="py-16 bg-marzipan/20">
+        <section className="py-16 bg-white">
           <div className="container-custom">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
               <div className="space-y-6 animate-fade-in">
                 <h2 className="text-3xl md:text-4xl font-display font-semibold">
                   Our AI-Driven SEO Process
@@ -193,8 +210,8 @@ const AiSeo = () => {
                 </div>
               </div>
               
-              <div className="callout-box">
-                <div className={`${isMobile ? 'relative w-full' : 'floating-element lg:right-0'} bg-gradient-to-br from-secondary to-secondary/40 p-8 rounded-lg animate-fade-in`} style={{ animationDelay: "0.2s" }}>
+              <div className="mt-8 lg:mt-0">
+                <div className="bg-gradient-to-br from-secondary to-secondary/40 p-6 lg:p-8 rounded-lg animate-fade-in" style={{ animationDelay: "0.2s" }}>
                   <div className="bg-white/80 backdrop-blur-sm p-6 rounded-lg">
                     <h3 className="text-2xl font-display font-semibold mb-4 text-center">
                       Free SEO Performance Analysis
@@ -222,7 +239,7 @@ const AiSeo = () => {
                         </div>
                       </div>
                       <Link 
-                        to="#contact" 
+                        to="#seo-checker" 
                         className="btn-primary w-full justify-center"
                       >
                         Get Your Free Analysis
@@ -236,7 +253,7 @@ const AiSeo = () => {
         </section>
         
         {/* Results Section */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-marzipan/10">
           <div className="container-custom">
             <div className="text-center max-w-3xl mx-auto mb-12 animate-fade-in">
               <h2 className="text-3xl font-display font-semibold mb-4">
@@ -276,7 +293,7 @@ const AiSeo = () => {
         </section>
         
         {/* Client Logos Section */}
-        <section className="py-14 bg-marzipan/20">
+        <section className="py-14 bg-white">
           <div className="container-custom">
             <div className="text-center mb-10 animate-fade-in">
               <h2 className="text-2xl md:text-3xl font-display font-semibold mb-2">
