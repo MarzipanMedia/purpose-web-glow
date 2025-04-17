@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&family=Jost:wght@400;500;600;700&display=swap');
 
 @tailwind base;
@@ -101,28 +100,24 @@
     @apply bg-gradient-to-r from-brandBlue to-brandRed bg-clip-text text-transparent dark:from-brandBlue/90 dark:to-brandRed/90;
   }
   
-  /* New class for callout boxes to prevent overlapping */
+  /* Improved callout box styling */
   .callout-box {
-    @apply relative z-10 my-4;
+    @apply relative w-full my-4;
   }
   
-  /* Prevent floating elements from overlapping in responsive views */
+  /* Prevent floating elements from overlapping */
   .floating-element {
-    @apply relative sm:absolute z-10;
+    @apply relative w-full;
   }
   
-  /* Process section callout box - this ensures proper spacing in all service pages */
+  /* Process section callout box */
   .process-callout {
-    @apply bg-white/80 backdrop-blur-sm p-6 rounded-lg;
+    @apply bg-white/80 backdrop-blur-sm p-6 rounded-lg w-full;
   }
   
-  /* Added for service pages where callout boxes appear in the process section */
+  /* Service process section styling */
   .service-process-section .callout-box {
-    @apply mt-8;
-  }
-  
-  .service-process-section .floating-element {
-    @apply lg:-bottom-6 lg:right-0 lg:translate-x-0;
+    @apply mt-8 w-full;
   }
 }
 
@@ -185,6 +180,7 @@
   }
 }
 
+/* Update animation classes */
 .animate-fade-in {
   animation: fadeIn 0.5s ease forwards;
 }
@@ -225,7 +221,7 @@
   color: rgba(255, 255, 255, 0.4);
 }
 
-/* Fix for overlapping elements in responsive layouts */
+/* Enhanced responsive layouts for all screen sizes */
 @media (max-width: 768px) {
   .floating-element {
     position: relative !important;
@@ -233,16 +229,28 @@
     width: 100% !important;
     transform: none !important;
   }
+  
+  /* Improve spacing in mobile view */
+  .grid.gap-12 {
+    gap: 2rem;
+  }
+  
+  /* Better padding for mobile callout boxes */
+  .callout-box > div {
+    padding: 1.25rem !important;
+  }
 }
 
-/* Enhanced spacing for service page process sections to match the example in the screenshot */
+/* Improved spacing for process sections */
 .process-section-container {
   position: relative;
+  width: 100%;
 }
 
 .process-section-content {
   position: relative;
   z-index: 10;
+  width: 100%;
 }
 
 .process-section-callout {
@@ -250,11 +258,18 @@
   border-radius: 0.5rem;
   overflow: hidden;
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  width: 100%;
 }
 
 @media (min-width: 1024px) {
   .process-section-callout {
     position: relative;
-    margin-left: 2rem;
+    margin-left: 0;
+    width: 100%;
+  }
+  
+  /* Create proper grid spacing */
+  .grid.grid-cols-1.lg\:grid-cols-2 {
+    align-items: flex-start;
   }
 }

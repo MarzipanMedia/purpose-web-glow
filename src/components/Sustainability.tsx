@@ -27,7 +27,7 @@ const Sustainability = () => {
   return (
     <section className="py-20 bg-gradient-to-b from-white to-marzipan/30 dark:from-gray-900 dark:to-gray-800">
       <div className="container-custom">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div className="space-y-6 animate-fade-in">
             <div className="inline-block bg-brandBlue/10 text-brandBlue px-4 py-1 rounded-full dark:bg-brandBlue/30">
               Our Approach
@@ -43,7 +43,7 @@ const Sustainability = () => {
             <div className="grid grid-cols-1 gap-6 mt-8">
               {principles.map((principle, index) => (
                 <div key={index} className="flex gap-4 items-start animate-fade-in" style={{ animationDelay: `${0.2 + index * 0.1}s` }}>
-                  <div className="bg-marzipan rounded-full p-2 mt-1 text-brandBlue dark:bg-marzipan/80">
+                  <div className="bg-marzipan rounded-full p-2 mt-1 text-brandBlue dark:bg-marzipan/80 flex-shrink-0">
                     {principle.icon}
                   </div>
                   <div>
@@ -55,9 +55,8 @@ const Sustainability = () => {
             </div>
           </div>
           
-          <div className="callout-box animate-fade-in" style={{ animationDelay: "0.4s" }}>
-            {/* Updated positioning to avoid overlapping */}
-            <div className={`${isMobile ? 'relative w-full' : 'floating-element'} bg-gradient-to-br from-brandBlue to-brandBlue/70 rounded-lg p-8 text-white relative z-10`}>
+          <div className="w-full animate-fade-in" style={{ animationDelay: "0.4s" }}>
+            <div className="bg-gradient-to-br from-brandBlue to-brandBlue/70 rounded-lg p-8 text-white">
               <h3 className="text-2xl font-display mb-4">The Digital Footprint</h3>
               <p className="mb-6">If the internet were a country, it would be the 7th largest polluter.</p>
               
@@ -76,8 +75,6 @@ const Sustainability = () => {
                 Source: Website Carbon Calculator
               </div>
             </div>
-            {/* Updated decorative element to avoid overlapping */}
-            <div className={`${isMobile ? 'hidden' : 'absolute -top-4 -right-4 w-24 h-24 bg-marzipan rounded-full z-[-1]'}`}></div>
           </div>
         </div>
       </div>
