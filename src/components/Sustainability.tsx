@@ -27,7 +27,7 @@ const Sustainability = () => {
   return (
     <section className="py-20 bg-gradient-to-b from-white to-marzipan/30 dark:from-gray-900 dark:to-gray-800">
       <div className="container-custom">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           <div className="space-y-6 animate-fade-in">
             <div className="inline-block bg-brandBlue/10 text-brandBlue px-4 py-1 rounded-full dark:bg-brandBlue/30">
               Our Approach
@@ -55,7 +55,7 @@ const Sustainability = () => {
             </div>
           </div>
           
-          <div className="w-full animate-fade-in" style={{ animationDelay: "0.4s" }}>
+          <div className="w-full animate-fade-in mt-8 lg:mt-0" style={{ animationDelay: "0.4s" }}>
             <div className="bg-gradient-to-br from-brandBlue to-brandBlue/70 rounded-lg p-8 text-white">
               <h3 className="text-2xl font-display mb-4">The Digital Footprint</h3>
               <p className="mb-6">If the internet were a country, it would be the 7th largest polluter.</p>

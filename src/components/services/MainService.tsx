@@ -20,7 +20,7 @@ const MainService: React.FC<MainServiceProps> = ({ service, index }) => {
   const isMobile = useIsMobile();
   
   return (
-    <div id={service.id} className="scroll-mt-20">
+    <div id={service.id} className="scroll-mt-20 py-8 md:py-16">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
         <div className={`space-y-6 animate-fade-in ${isEven ? '' : 'lg:order-2'}`}>
           <div className="bg-marzipan/30 inline-block p-3 rounded-full text-brandBlue">
