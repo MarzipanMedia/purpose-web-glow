@@ -7,7 +7,7 @@ const ServicesHero = () => {
       <div className="container-custom text-center">
         <div className="max-w-3xl mx-auto animate-fade-in">
           <div className="inline-block bg-brandBlue/10 text-brandBlue px-4 py-1 rounded-full mb-4">
-            Our Services
+            <span className="text-sm font-medium">Our Services</span>
           </div>
           <h1 className="text-4xl md:text-5xl font-display font-bold mb-6">
             Sustainable Digital Solutions for Purpose-Driven Brands
