@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&family=Jost:wght@400;500;600;700&display=swap');
 
 @tailwind base;
@@ -109,6 +110,20 @@
   .floating-element {
     @apply relative sm:absolute z-10;
   }
+  
+  /* Process section callout box - this ensures proper spacing in all service pages */
+  .process-callout {
+    @apply bg-white/80 backdrop-blur-sm p-6 rounded-lg;
+  }
+  
+  /* Added for service pages where callout boxes appear in the process section */
+  .service-process-section .callout-box {
+    @apply mt-8;
+  }
+  
+  .service-process-section .floating-element {
+    @apply lg:-bottom-6 lg:right-0 lg:translate-x-0;
+  }
 }
 
 @layer utilities {
@@ -217,5 +232,29 @@
     margin-top: 1.5rem !important;
     width: 100% !important;
     transform: none !important;
+  }
+}
+
+/* Enhanced spacing for service page process sections to match the example in the screenshot */
+.process-section-container {
+  position: relative;
+}
+
+.process-section-content {
+  position: relative;
+  z-index: 10;
+}
+
+.process-section-callout {
+  margin-top: 2rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 1024px) {
+  .process-section-callout {
+    position: relative;
+    margin-left: 2rem;
   }
 }

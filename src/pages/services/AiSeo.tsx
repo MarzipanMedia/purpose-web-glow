@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -8,9 +9,11 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { Form, FormField, FormItem, FormLabel, FormControl } from '@/components/ui/form';
 import { useForm } from 'react-hook-form';
+import { useIsMobile } from '../../hooks/use-mobile';
 
 const AiSeo = () => {
   const form = useForm();
+  const isMobile = useIsMobile();
 
   const onSubmit = (data: any) => {
     console.log(data);
@@ -190,39 +193,41 @@ const AiSeo = () => {
                 </div>
               </div>
               
-              <div className="bg-gradient-to-br from-secondary to-secondary/40 p-8 rounded-lg animate-fade-in" style={{ animationDelay: "0.2s" }}>
-                <div className="bg-white/80 backdrop-blur-sm p-6 rounded-lg">
-                  <h3 className="text-2xl font-display font-semibold mb-4 text-center">
-                    Free SEO Performance Analysis
-                  </h3>
-                  <div className="space-y-6">
-                    <p className="text-foreground/80">
-                      Discover how AI-driven strategies can transform your organic visibility with our complimentary analysis.
-                    </p>
-                    <div className="space-y-3">
-                      <div className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-green-500" />
-                        <span>Keyword opportunity assessment</span>
+              <div className="callout-box">
+                <div className={`${isMobile ? 'relative w-full' : 'floating-element lg:right-0'} bg-gradient-to-br from-secondary to-secondary/40 p-8 rounded-lg animate-fade-in`} style={{ animationDelay: "0.2s" }}>
+                  <div className="bg-white/80 backdrop-blur-sm p-6 rounded-lg">
+                    <h3 className="text-2xl font-display font-semibold mb-4 text-center">
+                      Free SEO Performance Analysis
+                    </h3>
+                    <div className="space-y-6">
+                      <p className="text-foreground/80">
+                        Discover how AI-driven strategies can transform your organic visibility with our complimentary analysis.
+                      </p>
+                      <div className="space-y-3">
+                        <div className="flex items-center gap-2">
+                          <Check className="h-5 w-5 text-green-500" />
+                          <span>Keyword opportunity assessment</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Check className="h-5 w-5 text-green-500" />
+                          <span>Content gap analysis</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Check className="h-5 w-5 text-green-500" />
+                          <span>Technical SEO evaluation</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Check className="h-5 w-5 text-green-500" />
+                          <span>Competitor positioning insights</span>
+                        </div>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-green-500" />
-                        <span>Content gap analysis</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-green-500" />
-                        <span>Technical SEO evaluation</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-green-500" />
-                        <span>Competitor positioning insights</span>
-                      </div>
+                      <Link 
+                        to="#contact" 
+                        className="btn-primary w-full justify-center"
+                      >
+                        Get Your Free Analysis
+                      </Link>
                     </div>
-                    <Link 
-                      to="#contact" 
-                      className="btn-primary w-full justify-center"
-                    >
-                      Get Your Free Analysis
-                    </Link>
                   </div>
                 </div>
               </div>

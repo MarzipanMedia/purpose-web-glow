@@ -2,6 +2,7 @@
 import React from 'react';
 import { LucideIcon } from 'lucide-react';
 import ServiceWorkProcess from './ServiceWorkProcess';
+import { useIsMobile } from '../../hooks/use-mobile';
 
 interface MainServiceProps {
   service: {
@@ -16,6 +17,7 @@ interface MainServiceProps {
 
 const MainService: React.FC<MainServiceProps> = ({ service, index }) => {
   const isEven = index % 2 === 0;
+  const isMobile = useIsMobile();
   
   return (
     <div id={service.id} className="scroll-mt-20">
@@ -41,8 +43,10 @@ const MainService: React.FC<MainServiceProps> = ({ service, index }) => {
           </div>
         </div>
         
-        <div className={`animate-fade-in ${isEven ? 'lg:order-last' : ''}`} style={{ animationDelay: "0.2s" }}>
-          <ServiceWorkProcess isEven={isEven} />
+        <div className={`callout-box ${isEven ? 'lg:order-last' : ''}`}>
+          <div className={`${isMobile ? 'relative w-full' : 'floating-element'} animate-fade-in`} style={{ animationDelay: "0.2s" }}>
+            <ServiceWorkProcess isEven={isEven} />
+          </div>
         </div>
       </div>
     </div>

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -8,9 +9,11 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { Form, FormField, FormItem, FormLabel, FormControl } from '@/components/ui/form';
 import { useForm } from 'react-hook-form';
+import { useIsMobile } from '../../hooks/use-mobile';
 
 const ContentCreation = () => {
   const form = useForm();
+  const isMobile = useIsMobile();
 
   const onSubmit = (data: any) => {
     console.log(data);
@@ -190,39 +193,41 @@ const ContentCreation = () => {
                 </div>
               </div>
               
-              <div className="bg-gradient-to-br from-secondary to-secondary/40 p-8 rounded-lg animate-fade-in" style={{ animationDelay: "0.2s" }}>
-                <div className="bg-white/80 backdrop-blur-sm p-6 rounded-lg">
-                  <h3 className="text-2xl font-display font-semibold mb-4 text-center">
-                    Free Content Strategy Consultation
-                  </h3>
-                  <div className="space-y-6">
-                    <p className="text-foreground/80">
-                      Schedule a complimentary 30-minute consultation to discuss your content needs and goals.
-                    </p>
-                    <div className="space-y-3">
-                      <div className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-green-500" />
-                        <span>Content gap analysis</span>
+              <div className="callout-box">
+                <div className={`${isMobile ? 'relative w-full' : 'floating-element lg:right-0'} bg-gradient-to-br from-secondary to-secondary/40 p-8 rounded-lg animate-fade-in`} style={{ animationDelay: "0.2s" }}>
+                  <div className="bg-white/80 backdrop-blur-sm p-6 rounded-lg">
+                    <h3 className="text-2xl font-display font-semibold mb-4 text-center">
+                      Free Content Strategy Consultation
+                    </h3>
+                    <div className="space-y-6">
+                      <p className="text-foreground/80">
+                        Schedule a complimentary 30-minute consultation to discuss your content needs and goals.
+                      </p>
+                      <div className="space-y-3">
+                        <div className="flex items-center gap-2">
+                          <Check className="h-5 w-5 text-green-500" />
+                          <span>Content gap analysis</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Check className="h-5 w-5 text-green-500" />
+                          <span>Audience targeting recommendations</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Check className="h-5 w-5 text-green-500" />
+                          <span>Channel strategy assessment</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Check className="h-5 w-5 text-green-500" />
+                          <span>One actionable content idea</span>
+                        </div>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-green-500" />
-                        <span>Audience targeting recommendations</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-green-500" />
-                        <span>Channel strategy assessment</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-green-500" />
-                        <span>One actionable content idea</span>
-                      </div>
+                      <Link 
+                        to="#contact" 
+                        className="btn-primary w-full justify-center"
+                      >
+                        Schedule Your Consultation
+                      </Link>
                     </div>
-                    <Link 
-                      to="#contact" 
-                      className="btn-primary w-full justify-center"
-                    >
-                      Schedule Your Consultation
-                    </Link>
                   </div>
                 </div>
               </div>
