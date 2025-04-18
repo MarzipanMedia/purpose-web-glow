@@ -13,7 +13,7 @@ interface MetaHeadProps {
 const MetaHead = ({
   title,
   description,
-  image = '/Marzipan-Logo-Strip.png',
+  image = '/Marzipan-Logo.png',
   type = 'website',
   url,
 }: MetaHeadProps) => {
@@ -22,6 +22,28 @@ const MetaHead = ({
   
   // Get current URL if not provided
   const currentUrl = url || window.location.href;
+
+  // Organization Schema
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Marzipan Media",
+    "url": "https://marzipan.com.au",
+    "logo": "/Marzipan-Logo.png",
+    "sameAs": [
+      "https://www.instagram.com/marzipanmedia",
+      "https://linkedin.com/company/18211194"
+    ]
+  };
+
+  // WebPage Schema
+  const webPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": fullTitle,
+    "url": currentUrl,
+    "description": description
+  };
   
   return (
     <Helmet>
@@ -41,8 +63,17 @@ const MetaHead = ({
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
       {image && <meta name="twitter:image" content={image} />}
+
+      {/* Schema.org JSON-LD */}
+      <script type="application/ld+json">
+        {JSON.stringify(organizationSchema)}
+      </script>
+      <script type="application/ld+json">
+        {JSON.stringify(webPageSchema)}
+      </script>
     </Helmet>
   );
 };
 
 export default MetaHead;
+
