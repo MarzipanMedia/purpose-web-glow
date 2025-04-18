@@ -52,13 +52,26 @@ const Index = () => {
     };
   }, []);
 
-  return (
-    <div className="min-h-screen flex flex-col">
-      <MetaHead 
-        title="Sustainable Web Design & AI-Driven SEO" 
-        description="Sustainable Web Design & AI-Driven SEO for Purpose-Driven Brands. Ensuring your online presence is as powerful as your purpose."
-      />
-      <Header />
+return (
+  <div className="min-h-screen flex flex-col">
+    <MetaHead 
+      title="Sustainable Web Design & AI SEO Agency | Marzipan Media" 
+      description="Marzipan Media creates lightning-fast, low-carbon websites and AI-powered SEO strategies for purpose-driven brands. Make your online presence as powerful as your purpose."
+    />
+    <Header />
+    
+    <main className="flex-grow">
+      {/* Main Hero Heading for SEO */}
+      <section className="py-12 bg-white text-center">
+        <div className="container-custom">
+          <h1 className="text-4xl md:text-5xl font-display font-bold text-brandBlue mb-6">
+            Sustainable Web Design & AI-Driven SEO for Purpose-Driven Brands
+          </h1>
+        </div>
+      </section>
+
+      <Hero />
+
       
       <main className="flex-grow">
         <Hero />
