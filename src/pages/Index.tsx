@@ -56,7 +56,7 @@ return (
   <div className="min-h-screen flex flex-col">
     <MetaHead 
       title="Sustainable Web Design & AI SEO Agency | Marzipan Media" 
-      description="Marzipan Media creates lightning-fast, low-carbon websites and AI-powered SEO strategies for purpose-driven brands. Make your online presence as powerful as your purpose."
+      description="Marzipan Media creates lightning-fast, sustainable websites and AI-powered SEO strategies for purpose-driven brands. Make your online presence as powerful as your purpose."
     />
     <Header />
     
