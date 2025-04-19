@@ -62,8 +62,8 @@ export const useFetchPosts = (page = 1, perPage = 6) => {
   return useQuery({
     queryKey: ['wordpressPosts', page, perPage],
     queryFn: async () => {
-      console.log(`Fetching WordPress posts: ${API_URL}/posts?_embed&page=${page}&per_page=${perPage}`);
-      const response = await fetch(`${API_URL}/posts?_embed&page=${page}&per_page=${perPage}`);
+      console.log(`Fetching WordPress posts: ${API_URL}?_embed&page=${page}&per_page=${perPage}`);
+      const response = await fetch(`${API_URL}?_embed&page=${page}&per_page=${perPage}`);
       
       if (!response.ok) {
         throw new Error(`WordPress API error: ${response.status}`);
