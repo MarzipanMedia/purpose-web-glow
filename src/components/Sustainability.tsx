@@ -57,7 +57,7 @@ const Sustainability = () => {
           
           <div className="w-full animate-fade-in mt-8 lg:mt-0" style={{ animationDelay: "0.4s" }}>
             <div className="bg-gradient-to-br from-brandBlue to-brandBlue/70 rounded-lg p-8 text-white">
-              <h3 className="text-2xl font-display mb-4">The Digital Footprint</h3>
+              <h3 className="text-2xl font-display mb-4">The Internet's Dirty Lil' Secret</h3>
               <p className="mb-6">If the internet were a country, it would be the 7th largest polluter.</p>
               
               <div className="space-y-4">
