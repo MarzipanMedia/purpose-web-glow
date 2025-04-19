@@ -12,17 +12,17 @@ const Services = () => {
     },
     {
       title: "AI-Driven SEO",
-      description: "Ethical optimization strategies for purpose-driven brands.",
+      description: "Ethical optimisation strategies for purpose-driven brands.",
       link: "/services/ai-seo"
     },
     {
       title: "Content Creation",
-      description: "Compelling storytelling that connects with your audience.",
+      description: "Compelling visual storytelling that connects with your audience.",
       link: "/services/content-creation"
     },
     {
       title: "Digital Marketing",
-      description: "Sustainable marketing strategies that drive meaningful growth.",
+      description: "Targeted digital marketing strategies that drive meaningful growth.",
       link: "/services/digital-marketing"
     }
   ];
