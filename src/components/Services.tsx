@@ -12,17 +12,17 @@ const Services = () => {
     },
     {
       title: "AI-Driven SEO",
-      description: "Ethical optimisation strategies for purpose-driven brands.",
+      description: "Ethical optimization strategies for purpose-driven brands.",
       link: "/services/ai-seo"
     },
     {
       title: "Content Creation",
-      description: "Compelling visual storytelling that connects with your audience.",
+      description: "Compelling storytelling that connects with your audience.",
       link: "/services/content-creation"
     },
     {
       title: "Digital Marketing",
-      description: "Targeted digital marketing strategies that drive meaningful growth.",
+      description: "Sustainable marketing strategies that drive meaningful growth.",
       link: "/services/digital-marketing"
     }
   ];
@@ -35,7 +35,7 @@ const Services = () => {
             Our Services
           </h2>
           <p className="text-foreground/80 dark:text-gray-300">
-            Sustainable digital solutions tailored for purpose-driven brands
+            Sustainable digital solutions tailored for purpose-driven brands in Australia and beyond.
           </p>
         </div>
 
