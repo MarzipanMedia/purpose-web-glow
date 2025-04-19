@@ -15,11 +15,11 @@ const Hero = () => {
             </h1>
             <p className="text-lg md:text-xl text-foreground/80 max-w-2xl">
               Your website should do more than just exist—it should drive traffic, increase conversions, and align with your values. We offer sustainable Web Design & AI-Driven SEO for Purpose-Driven Brands. 
-              Helping you shine brighter online without costing the earth.
+              We help businesses shine brighter online without costing the earth.
             </p>
             <div className="flex flex-wrap gap-4 pt-2">
               <Link to="/services" className="btn-primary flex items-center gap-2">
-                Our Services <ArrowRight className="h-4 w-4" />
+                Digital Services <ArrowRight className="h-4 w-4" />
               </Link>
               <Link to="/projects" className="btn-secondary flex items-center gap-2">
                 View Our Work <ArrowRight className="h-4 w-4" />
