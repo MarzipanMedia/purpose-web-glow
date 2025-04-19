@@ -22,7 +22,7 @@ const MainServices = () => {
     {
       id: "ai-seo",
       title: "AI-Driven SEO",
-      description: "Ethical optimisation strategies powered by the latest AI tools to help your purpose-driven brand reach the right audience.",
+      description: "Ethical optimisation strategies powered by the latest AI tools, backed by 10 years of human experience, to help you reach the right audience.",
       icon: <Search className="h-10 w-10" />,
       features: [
         "Keyword research and analysis",
