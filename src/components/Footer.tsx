@@ -51,7 +51,6 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-display font-medium mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li><Link to="/" className="text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300">Home</Link></li>
               <li><Link to="/services" className="text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300">Services</Link></li>
               <li><Link to="/projects" className="text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300">Projects</Link></li>
               <li><Link to="/blog" className="text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300">Blog</Link></li>
@@ -64,8 +63,8 @@ const Footer = () => {
             <ul className="space-y-2">
               <li><Link to="/services#sustainable-web" className="text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300">Sustainable Web Design</Link></li>
               <li><Link to="/services#ai-seo" className="text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300">AI-Driven SEO</Link></li>
-              <li><Link to="/services#brand-strategy" className="text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300">Brand Strategy</Link></li>
-              <li><Link to="/services#content" className="text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300">Content Creation</Link></li>
+              <li><Link to="/services#digital-marketing" className="text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300">Dgital Marketing</Link></li>
+              <li><Link to="/services#content" className="text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300">Digital Content Creation</Link></li>
             </ul>
           </div>
           
@@ -89,6 +88,7 @@ const Footer = () => {
           <div className="flex gap-6">
             <Link to="/privacy" className="hover:text-white transition-all duration-300 hover-link">Privacy Policy</Link>
             <Link to="/terms" className="hover:text-white transition-all duration-300 hover-link">Terms of Service</Link>
+            <Link to="/alwayswas" className="hover:text-white transition-all duration-300 hover-link">Always Was</Link>          
           </div>
         </div>
       </div>
