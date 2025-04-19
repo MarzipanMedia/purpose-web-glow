@@ -14,7 +14,7 @@ const Hero = () => {
               <span className="gradient-text"> purpose</span>
             </h1>
             <p className="text-lg md:text-xl text-foreground/80 max-w-2xl">
-              Sustainable Web Design & AI-Driven SEO for Purpose-Driven Brands. 
+              Your website should do more than just exist—it should drive traffic, increase conversions, and align with your values. We offer sustainable Web Design & AI-Driven SEO for Purpose-Driven Brands. 
               We help purpose-led businesses thrive online without costing the earth.
             </p>
             <div className="flex flex-wrap gap-4 pt-2">
