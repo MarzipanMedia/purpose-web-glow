@@ -100,7 +100,7 @@ const BlogPreview: React.FC = () => {
                     {stripHtmlTags(post.excerpt.rendered)}
                   </p>
                   <Link 
-                    to={`/blog/${post.slug}`} 
+                    to={`/blog/${post.id}`} 
                     className="inline-flex items-center gap-1 text-brandRed font-medium transition-all hover:gap-2"
                   >
                     Read Article <ArrowRight className="h-4 w-4 transition-all" />
