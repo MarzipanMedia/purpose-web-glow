@@ -1,7 +1,7 @@
+
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import BeachScene from '../icons/BeachScene';
 
 const AboutHero = () => {
   return (
@@ -28,8 +28,16 @@ const AboutHero = () => {
           </div>
           
           <div className="relative">
-            <div className="aspect-square rounded-2xl overflow-hidden relative animate-fade-in bg-gradient-to-br from-white/80 to-marzipan/20 dark:from-gray-900/80 dark:to-gray-800/20 p-12">
-              <BeachScene />
+            <div className="aspect-square rounded-2xl overflow-hidden relative animate-fade-in">
+              <img 
+                src="/about-hero.jpg" 
+                alt="Marzipan Media team working on sustainable digital solutions" 
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = '/placeholder.svg';
+                }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
             </div>
             <div className="absolute -bottom-6 -left-6 bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg max-w-xs animate-fade-in" style={{ animationDelay: '0.3s' }}>
               <h3 className="text-lg font-semibold mb-2">Sustainable Digital Solutions</h3>
