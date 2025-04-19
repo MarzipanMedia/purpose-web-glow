@@ -20,9 +20,8 @@ const BlogPreview: React.FC = () => {
   };
 
   const stripHtmlTags = (html: string) => {
-    const tmp = document.createElement('div');
-    tmp.innerHTML = html;
-    return tmp.textContent || tmp.innerText || '';
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    return doc.body.textContent || '';
   };
 
   return (
@@ -46,7 +45,7 @@ const BlogPreview: React.FC = () => {
         {isLoading ? (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[1, 2, 3].map((_, index) => (
-              <Card key={index} className="animate-pulse">
+              <Card key={index} className="h-[350px] animate-pulse">
                 <div className="aspect-[16/9] bg-gray-200" />
                 <CardContent className="p-6">
                   <div className="h-4 bg-gray-200 rounded w-1/4 mb-3" />
@@ -78,6 +77,9 @@ const BlogPreview: React.FC = () => {
                       src={post._embedded['wp:featuredmedia'][0].source_url}
                       alt={post.title.rendered}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading={index === 0 ? "eager" : "lazy"}
+                      width="400"
+                      height="225"
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-foreground/30 group-hover:scale-105 transition-transform duration-500">

@@ -32,7 +32,6 @@ const HeroAlt = () => {
           
           <div className="md:col-span-5 animate-fade-in" style={{ animationDelay: "0.3s" }}>
             <div className="relative">
-              {/* Sun-like rays around the circle */}
               <div className="absolute inset-0 w-full h-full">
                 {[...Array(12)].map((_, i) => (
                   <div
@@ -46,11 +45,9 @@ const HeroAlt = () => {
                 ))}
               </div>
               
-              {/* Pulsing glow effect */}
-              <div className="absolute inset-0 bg-gradient-radial from-yellow-500/30 via-brandRed/20 to-transparent opacity-70 rounded-full animate-pulse-slow"></div>
+              <div className="absolute inset-0 bg-gradient-radial from-yellow-500/30 via-brandRed/20 to-transparent opacity-70 rounded-full"></div>
               
-              {/* Main sun/circle with gradient */}
-              <div className="bg-gradient-to-br from-yellow-500 via-brandRed to-brandRed/80 rounded-full aspect-square flex items-center justify-center p-12 transition-all duration-700 animate-pulse-slow text-white shadow-lg">
+              <div className="bg-gradient-to-br from-yellow-500 via-brandRed to-brandRed/80 rounded-full aspect-square flex items-center justify-center p-12 transition-all duration-700 text-white shadow-lg">
                 <div className="text-center">
                   <p className="text-xl font-display">Eco-friendly</p>
                   <h3 className="text-3xl font-display font-semibold">Web Design</h3>
