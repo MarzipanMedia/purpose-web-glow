@@ -57,11 +57,11 @@ const BlogPreview: React.FC = () => {
           </div>
           <h2 className="text-3xl md:text-4xl font-display font-semibold opacity-0 animate-fade-in"
               style={{ animationDelay: "0.2s", animationFillMode: "forwards" }}>
-            From Our Blog
+            From The Marzipan Blog
           </h2>
           <p className="mt-4 text-foreground/80 opacity-0 animate-fade-in"
              style={{ animationDelay: "0.3s", animationFillMode: "forwards" }}>
-            Raise your game online with the latest digital marketing insights and tips. We Share our thoughts, ideas, and strategies for sustainable digital presence.
+            Raise your game online with the latest digital marketing insights and tips. We share our thoughts, ideas, and strategies for a sustainable digital presence.
           </p>
         </div>
 
