@@ -36,12 +36,12 @@ const OurApproach = () => {
               </div>
             </div>
             
-            {/* Modified the positioning of the floating box */}
+            {/* Adjusted callout box positioning */}
             <div className={`
-              ${isMobile 
+              absolute ${isMobile 
                 ? 'relative mt-6 w-full' 
-                : 'absolute rounded-lg shadow-lg max-w-xs bg-brandRed text-white p-6 mt-8 lg:mt-0 lg:-bottom-6 lg:right-0 lg:translate-x-1/4'}
-              animate-fade-in
+                : 'right-0 -bottom-12 lg:-bottom-6 max-w-xs translate-x-0 lg:translate-x-1/4'}
+              bg-brandRed text-white p-6 rounded-lg shadow-lg animate-fade-in
             `} 
               style={{ animationDelay: '0.4s' }}
             >
