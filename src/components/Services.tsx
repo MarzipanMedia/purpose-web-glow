@@ -46,9 +46,9 @@ const Services = () => {
               to={service.link}
               className="group p-6 bg-background rounded-lg border border-border/50 hover:border-border transition-colors dark:bg-gray-800 dark:border-gray-700 dark:hover:border-gray-600"
             >
-              <h2 className="text-xl font-display font-semibold mb-2 dark:text-white">
+              <h3 className="text-xl font-display font-semibold mb-2 dark:text-white">
                 {service.title}
-              </h2>
+              </h3>
               <p className="text-foreground/70 mb-4 dark:text-gray-300">{service.description}</p>
               <div className="flex items-center text-brandBlue font-medium dark:text-brandBlue">
                 Learn More <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
