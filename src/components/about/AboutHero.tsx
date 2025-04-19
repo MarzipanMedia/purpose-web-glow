@@ -30,7 +30,7 @@ const AboutHero = () => {
           <div className="relative">
             <div className="aspect-square rounded-2xl overflow-hidden relative animate-fade-in">
               <img 
-                src="/about-hero.jpg" 
+                src="/marzipan-web-design-sdyney.png" 
                 alt="Marzipan Media team working on sustainable digital solutions" 
                 className="w-full h-full object-cover"
                 onError={(e) => {
