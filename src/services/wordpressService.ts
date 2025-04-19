@@ -1,4 +1,3 @@
-
 import { useQuery, useMutation } from '@tanstack/react-query';
 
 export interface WordPressPost {
@@ -58,7 +57,7 @@ const API_URL = 'https://marzipan.com.au/wp-json/wp/v2/posts';
 // Replace with your actual endpoint
 const EMAIL_ENDPOINT = 'https://marzipan.com.au/wp-json/marzipan/v1/send-email';
 
-export const useFetchPosts = (page = 1, perPage = 6) => {
+export const useFetchPosts = (page = 1, perPage = 3) => {
   return useQuery({
     queryKey: ['wordpressPosts', page, perPage],
     queryFn: async () => {
