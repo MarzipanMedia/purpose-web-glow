@@ -61,7 +61,7 @@ const BlogPreview: React.FC = () => {
           </h2>
           <p className="mt-4 text-foreground/80 opacity-0 animate-fade-in"
              style={{ animationDelay: "0.3s", animationFillMode: "forwards" }}>
-            Thoughts, ideas, and strategies for sustainable digital presence
+            Raise your game online with the latest digital marketing tips and insights. //n Thoughts, ideas, and strategies for a sustainable digital presence
           </p>
         </div>
 
