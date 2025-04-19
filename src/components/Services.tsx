@@ -7,12 +7,12 @@ const Services = () => {
   const services = [
     {
       title: "Sustainable Web Design",
-      description: "Beautiful, eco-friendly websites that minimise environmental impact.",
+      description: "Beautiful, eco-friendly websites that minimize environmental impact.",
       link: "/services/sustainable-web-design"
     },
     {
       title: "AI-Driven SEO",
-      description: "Ethical optimisation strategies for purpose-driven brands.",
+      description: "Ethical optimization strategies for purpose-driven brands.",
       link: "/services/ai-seo"
     },
     {
@@ -35,7 +35,7 @@ const Services = () => {
             Our Services
           </h2>
           <p className="text-foreground/80 dark:text-gray-300">
-            Sustainable digital solutions tailored for purpose-driven brands
+            Sustainable digital solutions tailored for purpose-driven brands.<br>Break through the noise. Drive traffic, increase conversions, and align with your values.
           </p>
         </div>
 
