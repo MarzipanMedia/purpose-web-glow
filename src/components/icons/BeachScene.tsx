@@ -19,37 +19,14 @@ const BeachScene = () => {
         fill="none"
       />
 
-      {/* Pulsing Sun */}
-      <g>
-        <circle
-          cx="100"
-          cy="50"
-          r="20"
-          className="fill-brandRed/60 dark:fill-brandRed/40 animate-pulse-slow"
-          style={{ animationDuration: '4s' }}
-        />
-      </g>
-
-      {/* Palm Trees */}
-      <g className="animate-float" style={{ transformOrigin: 'center' }}>
-        {/* Left Palm Tree */}
-        <path
-          d="M70 140c-5-10 10-40 10-40s10 30 5 40c-5 10-10 10-15 0z"
-          className="fill-brandBlue/20 dark:fill-brandBlue/10"
-        />
-
-        {/* Right Palm Tree */}
-        <path
-          d="M130 140c5-10-10-40-10-40s-10 30-5 40c5 10 10 10 15 0z"
-          className="fill-brandBlue/20 dark:fill-brandBlue/10"
-        />
-
-        {/* Ground/Beach */}
-        <path
-          d="M50 160h100c0 10-50 20-50 20s-50-10-50-20z"
-          className="fill-marzipan dark:fill-marzipan/90"
-        />
-      </g>
+      {/* Floating Sun */}
+      <circle
+        cx="100"
+        cy="100"
+        r="60"
+        className="fill-brandRed/80 dark:fill-brandRed/70 animate-float"
+        style={{ transformOrigin: 'center' }}
+      />
     </svg>
   );
 };
