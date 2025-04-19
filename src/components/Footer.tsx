@@ -63,7 +63,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li><Link to="/services#sustainable-web" className="text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300">Sustainable Web Design</Link></li>
               <li><Link to="/services#ai-seo" className="text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300">AI-Driven SEO</Link></li>
-              <li><Link to="/services#digital-marketing" className="text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300">Dgital Marketing</Link></li>
+              <li><Link to="/services#digital-marketing" className="text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300">Digital Marketing</Link></li>
               <li><Link to="/services#content" className="text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300">Digital Content Creation</Link></li>
             </ul>
           </div>
@@ -84,7 +84,7 @@ const Footer = () => {
         </div>
         
         <div className="mt-12 pt-6 border-t border-white/20 text-white/60 text-sm flex flex-col md:flex-row justify-between items-center gap-4">
-          <div>© {new Date().getFullYear()} Marzipan | Sustainable Web Design Sdyney | ABN: 61 181 193 114.</div>
+          <div>© {new Date().getFullYear()} Marzipan | Sustainable Web Design Sydney | ABN: 61 181 193 114.</div>
           <div className="flex gap-6">
             <Link to="/privacy" className="hover:text-white transition-all duration-300 hover-link">Privacy Policy</Link>
             <Link to="/terms" className="hover:text-white transition-all duration-300 hover-link">Terms of Service</Link>
