@@ -16,7 +16,7 @@ const BeachScene = () => {
         cx="130"
         cy="130"
         r="60"
-        className="fill-brandRed/80 dark:fill-brandRed/60 animate-float"
+        className="fill-brandRed/60 dark:fill-brandRed/60 animate-float"
         style={{ transformOrigin: 'center' }}
       />
     </svg>
