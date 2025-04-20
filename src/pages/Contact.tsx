@@ -1,14 +1,84 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import MetaHead from '@/components/MetaHead';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Send, MapPin, Phone, Mail } from 'lucide-react';
+import { Textarea } from '@/components/ui/textarea';
+import { Send, MapPin, Phone, Mail, Loader2, CheckCircle } from 'lucide-react';
+import { z } from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { toast } from '@/components/ui/sonner';
+
+// Form schema with validation
+const formSchema = z.object({
+  name: z.string().min(2, { message: "Name must be at least 2 characters" }),
+  email: z.string().email({ message: "Please enter a valid email address" }),
+  subject: z.string().min(5, { message: "Subject must be at least 5 characters" }),
+  message: z.string().min(10, { message: "Message must be at least 10 characters" }),
+});
+
+type FormValues = z.infer<typeof formSchema>;
 
 const Contact = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  const form = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    },
+  });
+
+  const onSubmit = async (data: FormValues) => {
+    setIsSubmitting(true);
+    
+    try {
+      // Replace with your actual email service endpoint
+      const response = await fetch("https://formsubmit.co/ajax/ben@marzipan.com.au", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          ...data,
+          _subject: `Contact Form: ${data.subject}`,
+          _template: "table",
+          _autoresponse: "Thank you for contacting Marzipan Digital. We've received your message and will get back to you shortly.",
+          _replyto: data.email,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      // Success handling
+      setIsSuccess(true);
+      toast.success("Message sent successfully! We'll be in touch soon.");
+      form.reset();
+
+      // Reset success state after 5 seconds
+      setTimeout(() => {
+        setIsSuccess(false);
+      }, 5000);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast.error("There was a problem sending your message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div>
       <MetaHead 
@@ -25,37 +95,100 @@ const Contact = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2 slide-up stagger-item">
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="name">Your Name</Label>
-                    <Input id="name" placeholder="Jane Smith" />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Email Address</Label>
-                    <Input id="email" type="email" placeholder="jane@example.com" />
-                  </div>
+              {isSuccess ? (
+                <div className="bg-green-50 dark:bg-green-900/20 p-8 rounded-lg border border-green-200 dark:border-green-800 text-center">
+                  <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
+                  <h3 className="text-2xl font-semibold mb-2">Message Sent!</h3>
+                  <p className="text-muted-foreground mb-6">
+                    Thank you for reaching out. We've received your message and will get back to you shortly.
+                  </p>
+                  <Button 
+                    variant="outline" 
+                    onClick={() => setIsSuccess(false)}
+                    className="mx-auto"
+                  >
+                    Send Another Message
+                  </Button>
                 </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="subject">Subject</Label>
-                  <Input id="subject" placeholder="How can we help you?" />
-                </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="message">Message</Label>
-                  <textarea 
-                    id="message" 
-                    rows={6}
-                    className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                    placeholder="Tell us about your project or inquiry..."
-                  ></textarea>
-                </div>
-                
-                <Button size="lg" className="gap-2 hover:gap-3 transition-all">
-                  Send Message <Send className="h-4 w-4" />
-                </Button>
-              </form>
+              ) : (
+                <Form {...form}>
+                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <FormField
+                        control={form.control}
+                        name="name"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Your Name</FormLabel>
+                            <FormControl>
+                              <Input placeholder="Jane Smith" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Email Address</FormLabel>
+                            <FormControl>
+                              <Input type="email" placeholder="jane@example.com" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                    
+                    <FormField
+                      control={form.control}
+                      name="subject"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Subject</FormLabel>
+                          <FormControl>
+                            <Input placeholder="How can we help you?" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    
+                    <FormField
+                      control={form.control}
+                      name="message"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Message</FormLabel>
+                          <FormControl>
+                            <Textarea 
+                              rows={6}
+                              placeholder="Tell us about your project or inquiry..."
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    
+                    <Button 
+                      type="submit" 
+                      size="lg" 
+                      className="gap-2 hover:gap-3 transition-all" 
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        <>Processing <Loader2 className="h-4 w-4 animate-spin" /></>
+                      ) : (
+                        <>Send Message <Send className="h-4 w-4" /></>
+                      )}
+                    </Button>
+                  </form>
+                </Form>
+              )}
             </div>
             
             <div className="space-y-10 slide-up stagger-item">
