@@ -23,10 +23,10 @@ const RecentProjects = () => {
             Featured Work
           </div>
           <h2 className="text-3xl md:text-4xl font-display font-semibold">
-            Recent Projects
+            Recent Campaigns & Creations
           </h2>
           <p className="mt-4 text-foreground/80">
-            Sustainable digital solutions that make an impact
+            By combining ethical AI, sustainable web design, and performance-driven SEO strategies, we create websites that don’t just grow traffic—they grow impact.
           </p>
         </div>
 
