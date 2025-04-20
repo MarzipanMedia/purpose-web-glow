@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -53,10 +52,10 @@ const BenAdams = () => {
       <Header />
       
       <main className="flex-grow">
-        <div className="container-custom py-20">
-          <div className="max-w-4xl mx-auto">
-            {/* Hero Section with larger image */}
-            <div className="mb-16">
+        {/* Hero Section with contrasting background */}
+        <section className="py-20 bg-gray-50 dark:bg-gray-900">
+          <div className="container-custom">
+            <div className="max-w-4xl mx-auto">
               <div className="aspect-square w-full max-w-xl mx-auto mb-8 rounded-2xl overflow-hidden bg-marzipan/20">
                 <img 
                   src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b"
@@ -88,42 +87,60 @@ const BenAdams = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
 
-            {/* Bio Section */}
-            <div className="prose dark:prose-invert max-w-none mb-20">
-              <p className="text-lg leading-relaxed mb-6">
-                As Co-Founder and Technical Director at Marzipan Media, Ben Adams brings a wealth of experience in sustainable web development and technical innovation. With a keen focus on environmental consciousness, Ben leads our technical strategy to create digital solutions that are both powerful and planet-friendly.
-              </p>
-              
-              <p className="text-lg leading-relaxed mb-6">
-                Ben's expertise in sustainable web development has been instrumental in shaping Marzipan's approach to creating environmentally responsible digital solutions. He ensures that our technical implementations not only meet the highest standards of performance but also maintain minimal environmental impact.
-              </p>
+        {/* Bio Section with different background */}
+        <section className="py-20 bg-white dark:bg-gray-800">
+          <div className="container-custom">
+            <div className="max-w-4xl mx-auto">
+              <div className="prose dark:prose-invert max-w-none">
+                <p className="text-lg leading-relaxed mb-6">
+                  As Co-Founder and Technical Director at Marzipan Media, Ben Adams brings a wealth of experience in sustainable web development and technical innovation. With a keen focus on environmental consciousness, Ben leads our technical strategy to create digital solutions that are both powerful and planet-friendly.
+                </p>
+                
+                <p className="text-lg leading-relaxed mb-6">
+                  Ben's expertise in sustainable web development has been instrumental in shaping Marzipan's approach to creating environmentally responsible digital solutions. He ensures that our technical implementations not only meet the highest standards of performance but also maintain minimal environmental impact.
+                </p>
 
-              <p className="text-lg leading-relaxed">
-                Working alongside co-founder Ben Thompson, Ben Adams helps drive Marzipan's mission to revolutionise digital marketing through sustainable practices and innovative technical solutions. His leadership in implementing eco-friendly web development practices has established Marzipan as a pioneer in sustainable digital solutions.
-              </p>
+                <p className="text-lg leading-relaxed">
+                  Working alongside co-founder Ben Thompson, Ben Adams helps drive Marzipan's mission to revolutionise digital marketing through sustainable practices and innovative technical solutions. His leadership in implementing eco-friendly web development practices has established Marzipan as a pioneer in sustainable digital solutions.
+                </p>
+              </div>
             </div>
+          </div>
+        </section>
 
-            {/* Featured Projects Section */}
-            <div className="mb-20">
+        {/* Featured Projects Section with contrasting background */}
+        <section className="py-20 bg-marzipan/10 dark:bg-gray-900/50">
+          <div className="container-custom">
+            <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-display font-semibold mb-8 text-center">Featured Projects</h2>
               <ProjectsGrid projects={featuredProjects} />
             </div>
+          </div>
+        </section>
 
-            {/* CTA Section */}
+        {/* CTA Section with different background */}
+        <section className="py-20 bg-brandBlue text-white">
+          <div className="container-custom">
             <CTASection 
               title="Want to learn more about sustainable web development?"
               subtitle="Explore our collection of free resources and ebooks on creating environmentally conscious digital solutions."
               showResourceLink={true}
             />
+          </div>
+        </section>
 
-            {/* Friends with Benefits Section */}
-            <div className="mt-20">
+        {/* Friends with Benefits Section with contrasting background */}
+        <section className="py-20 bg-gray-50 dark:bg-gray-800">
+          <div className="container-custom">
+            <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-display font-semibold mb-8 text-center">Friends with Benefits</h2>
               <ClientLogos />
             </div>
           </div>
-        </div>
+        </section>
       </main>
       
       <Footer />

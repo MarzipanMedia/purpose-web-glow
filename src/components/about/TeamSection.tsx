@@ -1,5 +1,6 @@
 import React from 'react';
 import { Linkedin, Mail, Twitter } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface TeamMember {
   name: string;
@@ -76,19 +77,40 @@ const TeamSection = () => {
               className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 animate-fade-in"
               style={{ animationDelay: `${0.1 + index * 0.1}s` }}
             >
-              <div className="aspect-square relative">
-                <img 
-                  src={member.image} 
-                  alt={member.name}
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src = '/placeholder.svg';
-                  }}
-                />
-              </div>
+              {member.name === "Ben Adams" ? (
+                <Link to="/benadams" className="block">
+                  <div className="aspect-square relative">
+                    <img 
+                      src={member.image} 
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = '/placeholder.svg';
+                      }}
+                    />
+                  </div>
+                </Link>
+              ) : (
+                <div className="aspect-square relative">
+                  <img 
+                    src={member.image} 
+                    alt={member.name}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = '/placeholder.svg';
+                    }}
+                  />
+                </div>
+              )}
               
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-1">{member.name}</h3>
+                {member.name === "Ben Adams" ? (
+                  <Link to="/benadams">
+                    <h3 className="text-xl font-semibold mb-1 hover:text-brandBlue dark:hover:text-marzipan transition-colors">{member.name}</h3>
+                  </Link>
+                ) : (
+                  <h3 className="text-xl font-semibold mb-1">{member.name}</h3>
+                )}
                 <p className="text-brandBlue dark:text-marzipan mb-3">{member.role}</p>
                 <p className="text-foreground/70 mb-4">{member.bio}</p>
                 
