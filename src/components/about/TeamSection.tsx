@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Linkedin, Mail, Twitter } from 'lucide-react';
 
@@ -18,7 +17,7 @@ const TeamSection = () => {
   const teamMembers: TeamMember[] = [
     {
       name: "Ben Thompson",
-      role: "Founder & Digital Strategist",
+      role: "Co-Founder & Digital Strategist",
       bio: "With over 10 years in sustainable digital marketing, Ben leads our mission to create digital experiences that respect both users and the planet.",
       image: "/team-member-1.jpg",
       social: {
@@ -28,9 +27,19 @@ const TeamSection = () => {
       }
     },
     {
+      name: "Ben Adams",
+      role: "Co-Founder & Technical Director",
+      bio: "A seasoned technologist with expertise in sustainable web development, Ben drives our technical innovation whilst ensuring our solutions remain environmentally conscious.",
+      image: "/placeholder.svg",
+      social: {
+        linkedin: "https://linkedin.com/in/benadams",
+        email: "benadams@marzipan.com.au"
+      }
+    },
+    {
       name: "Sarah Chen",
       role: "Head of Sustainable Web Design",
-      bio: "Sarah specializes in creating beautiful, lightweight websites that minimize carbon footprint without compromising on user experience.",
+      bio: "Sarah specialises in creating beautiful, lightweight websites that minimize carbon footprint without compromising on user experience.",
       image: "/team-member-2.jpg",
       social: {
         linkedin: "https://linkedin.com/in/sarahchen",
