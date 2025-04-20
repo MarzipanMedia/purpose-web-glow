@@ -3,43 +3,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  imageUrl: string;
-  category: string;
-  slug: string;
-}
+import { projects } from './projects/projectsData';
 
 const RecentProjects = () => {
-  const featuredProjects: Project[] = [
-    {
-      id: 1,
-      title: "EcoLiving Collective",
-      description: "A carbon-neutral online store with optimised images and minimal server requests, reducing digital footprint while maintaining beautiful aesthetics.",
-      imageUrl: "/ecoliving-project.jpg", 
-      category: "Sustainable E-commerce",
-      slug: "ecoliving-collective"
-    },
-    {
-      id: 2,
-      title: "Ocean Conservation Alliance",
-      description: "Accessible, lightweight website showcasing the organisation's impact with text-based storytelling instead of heavy media.",
-      imageUrl: "/ocean-project.jpg", 
-      category: "Non-profit Organisation",
-      slug: "ocean-conservation"
-    },
-    {
-      id: 3,
-      title: "Mindful Markets",
-      description: "A progressive web app connecting conscious consumers with sustainable local businesses using low-bandwidth strategies.",
-      imageUrl: "/mindful-project.jpg", 
-      category: "Ethical Marketplace",
-      slug: "mindful-markets"
-    }
-  ];
+  // Get the latest 3 projects based on date
+  const featuredProjects = [...projects]
+    .sort((a, b) => {
+      const dateA = a.date ? new Date(a.date).getTime() : 0;
+      const dateB = b.date ? new Date(b.date).getTime() : 0;
+      return dateB - dateA;
+    })
+    .slice(0, 3);
 
   return (
     <section className="py-20 bg-white">
@@ -59,14 +33,14 @@ const RecentProjects = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {featuredProjects.map((project, index) => (
             <div 
-              key={project.id} 
+              key={project.slug} 
               className="group bg-white border border-marzipan/30 rounded-lg overflow-hidden transition-all duration-300 hover:shadow-md animate-fade-in hover:translate-y-[-4px]"
               style={{ animationDelay: `${0.1 + index * 0.1}s` }}
             >
               <div className="overflow-hidden">
                 <AspectRatio ratio={16/9}>
                   <img 
-                    src={project.imageUrl} 
+                    src={project.imageUrl || `/placeholder.svg`} 
                     alt={project.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
@@ -106,3 +80,4 @@ const RecentProjects = () => {
 };
 
 export default RecentProjects;
+
