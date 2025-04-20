@@ -34,7 +34,7 @@ const AboutHero = () => {
                 alt="Marzipan Media team working on sustainable digital solutions" 
                 className="w-full h-full object-cover"
                 onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/placeholder.svg';
+                  (e.target as HTMLImageElement).src = 'webdesign-sydney-bondi.png';
                 }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
