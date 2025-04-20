@@ -119,7 +119,7 @@ const AiSeo = () => {
                 Our AI-Powered SEO Services
               </h2>
               <p className="text-foreground/80">
-                Leveraging cutting-edge artificial intelligence, backed by more than 10yrs industry experience, to boost your organic visibility while maintaining your brand's integrity.
+                Leveraging cutting-edge artificial intelligence to boost your organic visibility while maintaining your brand's integrity.
               </p>
             </div>
             
