@@ -63,7 +63,7 @@ const AiSeoProcess = () => {
                 <p className="text-foreground/80">
                   Get a complimentary consultation to discover how AI can transform your SEO strategy.
                 </p>
-                <div className="space-y-3 mb-8">
+                <div className="space-y-3 mb-10">
                   {["AI-driven website audit", "Keyword opportunity analysis", "Competitor benchmarking", "Actionable AI SEO recommendations"].map((benefit, index) => (
                     <div key={index} className="flex items-center gap-2">
                       <Check className="h-5 w-5 text-green-500" />
