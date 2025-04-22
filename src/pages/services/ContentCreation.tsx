@@ -202,30 +202,34 @@ const ContentCreation = () => {
                       <p className="text-foreground/80">
                         Schedule a complimentary 30-minute consultation to discuss your content needs and goals.
                       </p>
-                      <div className="space-y-3 mb-8">
-                        <div className="flex items-center gap-2">
-                          <Check className="h-5 w-5 text-green-500" />
+                      <div className="space-y-4 mb-10">
+                        <div className="flex items-start gap-2">
+                          <Check className="h-5 w-5 text-green-500 shrink-0 mt-0.5" />
                           <span>Content gap analysis</span>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <Check className="h-5 w-5 text-green-500" />
+                        <div className="flex items-start gap-2">
+                          <Check className="h-5 w-5 text-green-500 shrink-0 mt-0.5" />
                           <span>Audience targeting recommendations</span>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <Check className="h-5 w-5 text-green-500" />
+                        <div className="flex items-start gap-2">
+                          <Check className="h-5 w-5 text-green-500 shrink-0 mt-0.5" />
                           <span>Channel strategy assessment</span>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <Check className="h-5 w-5 text-green-500" />
+                        <div className="flex items-start gap-2">
+                          <Check className="h-5 w-5 text-green-500 shrink-0 mt-0.5" />
                           <span>One actionable content idea</span>
                         </div>
                       </div>
-                      <Link 
-                        to="#contact" 
-                        className="btn-primary w-full justify-center mt-6 md:mt-8"
-                      >
-                        Schedule Your Consultation
-                      </Link>
+                      <div className="pt-2">
+                        <Button 
+                          asChild
+                          className="w-full bg-brandBlue hover:bg-brandBlue/90 text-white py-6"
+                        >
+                          <Link to="#contact">
+                            Schedule Your Consultation
+                          </Link>
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 </div>

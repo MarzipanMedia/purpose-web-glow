@@ -199,30 +199,31 @@ const DigitalMarketing = () => {
                     <p className="text-foreground/80">
                       Get a complimentary audit of your current digital marketing efforts and discover opportunities for growth.
                     </p>
-                    <div className="space-y-3 mb-8">
-                      <div className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-green-500" />
-                        <span>Social media performance review</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-green-500" />
-                        <span>Google Ads account assessment</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-green-500" />
-                        <span>Competitor benchmarking</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-green-500" />
-                        <span>Action plan with 3 key recommendations</span>
-                      </div>
+                    
+                    <div className="space-y-4 mb-10">
+                      {[
+                        "Social media performance review",
+                        "Google Ads account assessment", 
+                        "Competitor benchmarking",
+                        "Action plan with 3 key recommendations"
+                      ].map((benefit, index) => (
+                        <div key={index} className="flex items-start gap-2">
+                          <Check className="h-5 w-5 text-green-500 shrink-0 mt-0.5" />
+                          <span>{benefit}</span>
+                        </div>
+                      ))}
                     </div>
-                    <Link 
-                      to="#contact" 
-                      className="btn-primary w-full justify-center mt-6 md:mt-8"
-                    >
-                      Request Your Free Audit
-                    </Link>
+                    
+                    <div className="pt-2">
+                      <Button 
+                        asChild
+                        className="w-full bg-brandBlue hover:bg-brandBlue/90 text-white py-6"
+                      >
+                        <Link to="#contact">
+                          Request Your Free Audit
+                        </Link>
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </div>
