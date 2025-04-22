@@ -74,6 +74,7 @@ const AiSeoProcess = () => {
                   <Check className="h-5 w-5 text-green-500" />
                   <span>{benefit}</span>
                 </div>
+                <br></br>
               ))}
             </div>
             <Link 
