@@ -37,7 +37,7 @@ const Index = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <MetaHead 
-        title="Sustainable Web Design & Affordable SEO" 
+        title="Sustainable Web Design & AI-Powered SEO" 
         description="Sustainable Web Design & AI-Driven SEO for Purpose-Driven Brands. Ensuring your online presence is as powerful as your purpose."
       />
       <Header />
