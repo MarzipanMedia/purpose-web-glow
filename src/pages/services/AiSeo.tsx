@@ -220,6 +220,7 @@ const AiSeo = () => {
                         <span>Actionable AI SEO recommendations</span>
                       </div>
                     </div>
+                    <br></br>
                     <Link 
                       to="#contact" 
                       className="btn-primary w-full justify-center mt-3 md:mt-5"
