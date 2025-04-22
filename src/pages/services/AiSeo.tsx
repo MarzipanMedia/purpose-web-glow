@@ -222,7 +222,7 @@ const AiSeo = () => {
                     </div>
                     <Link 
                       to="#contact" 
-                      className="btn-primary w-full justify-center mt-6 md:mt-8"
+                      className="btn-primary w-full justify-center mt-8 md:mt-9"
                     >
                       Schedule Your Consultation
                     </Link>
