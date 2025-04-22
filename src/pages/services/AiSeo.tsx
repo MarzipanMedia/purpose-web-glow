@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -219,16 +220,13 @@ const AiSeo = () => {
                         <span>Actionable AI SEO recommendations</span>
                       </div>
                     </div>
-                    <div className="space-y-6">
-  {/* ...previous content */}
-  <Link 
-    to="#contact" 
-    className="btn-primary w-full justify-center mt-6 md:mt-8"
-  >
-    Schedule Your Consultation
-  </Link>
-</div>
-
+                    <Link 
+                      to="#contact" 
+                      className="btn-primary w-full justify-center mt-6 md:mt-8"
+                    >
+                      Schedule Your Consultation
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
