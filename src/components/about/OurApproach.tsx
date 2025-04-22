@@ -9,8 +9,9 @@ const OurApproach = () => {
   return (
     <section className="py-20 bg-gradient-to-br from-marzipan/20 to-brandBlue/10 dark:from-gray-800 dark:to-gray-900">
       <div className="container-custom">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative">
-          <div className="order-2 lg:order-1 relative">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start relative">
+          {/* First column - What Makes Us Different */}
+          <div className="order-2 lg:order-1 relative pb-24 lg:pb-16">
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 animate-fade-in">
               <h3 className="text-2xl font-semibold mb-6 dark:text-white">What Makes Us Different</h3>
               
@@ -36,13 +37,14 @@ const OurApproach = () => {
               </div>
             </div>
             
-            {/* Adjusted callout box positioning */}
+            {/* Callout box with adjusted positioning and margins */}
             <div className={`
-              absolute ${isMobile 
-                ? 'relative mt-6 w-full' 
-                : 'right-0 -bottom-12 lg:-bottom-6 max-w-xs translate-x-0 lg:translate-x-1/4'}
+              ${isMobile 
+                ? 'relative mt-8 w-full' 
+                : 'absolute -right-4 -bottom-12 lg:translate-x-1/4 max-w-xs'}
               bg-brandRed text-white p-6 rounded-lg shadow-lg animate-fade-in
-            `} 
+              transition-all duration-300
+            `}
               style={{ animationDelay: '0.4s' }}
             >
               <h4 className="text-lg font-semibold mb-2">Grow Impact, Not Just Traffic</h4>
@@ -52,6 +54,7 @@ const OurApproach = () => {
             </div>
           </div>
           
+          {/* Second column - Our Approach text content */}
           <div className="order-1 lg:order-2 space-y-6">
             <h2 className="text-3xl md:text-4xl font-display font-semibold leading-tight dark:text-white">
               Our <span className="gradient-text">Approach</span>
