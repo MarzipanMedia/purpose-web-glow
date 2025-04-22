@@ -88,7 +88,6 @@ const AiSeoProcess = () => {
     </div>
   </div>
 </section>
-
   );
 };
 
