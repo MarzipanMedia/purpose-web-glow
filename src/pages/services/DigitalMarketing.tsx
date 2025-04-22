@@ -183,8 +183,8 @@ const DigitalMarketing = () => {
                   <div className="flex gap-4 items-start">
                     <span className="inline-flex items-center justify-center h-8 w-8 rounded-full bg-brandBlue text-white font-medium">4</span>
                     <div>
-                      <h4 className="text-xl font-medium mb-1">Analysis & Optimization</h4>
-                      <p className="text-foreground/70">Data-driven refinement to maximize performance and impact over time.</p>
+                      <h4 className="text-xl font-medium mb-1">Analysis & Optimisation</h4>
+                      <p className="text-foreground/70">Data-driven refinement to maximise performance and impact over time.</p>
                     </div>
                   </div>
                 </div>

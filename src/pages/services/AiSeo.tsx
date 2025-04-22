@@ -1,16 +1,14 @@
-
 import React from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Search, Check, LineChart, BarChart, Brain } from 'lucide-react';
+import { ArrowRight, Brain, Check, Search, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { Form, FormField, FormItem, FormLabel, FormControl } from '@/components/ui/form';
 import { useForm } from 'react-hook-form';
 import { useIsMobile } from '../../hooks/use-mobile';
-import SeoChecker from '../../components/seo/SeoChecker';
 
 const AiSeo = () => {
   const form = useForm();
@@ -22,10 +20,10 @@ const AiSeo = () => {
   };
 
   const clientLogos = [
-    { name: 'Green Growth Partners', initial: 'G' },
     { name: 'EcoLiving Collective', initial: 'E' },
     { name: 'Sustainable Solutions Co.', initial: 'S' },
-    { name: 'Organic Earth', initial: 'O' },
+    { name: 'Green Growth Partners', initial: 'G' },
+    { name: 'Community Earth', initial: 'C' },
   ];
 
   return (
@@ -38,18 +36,18 @@ const AiSeo = () => {
           <div className="container-custom">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div className="animate-fade-in">
-                <div className="inline-block bg-brandRed/10 text-brandRed px-4 py-1 rounded-full mb-4">
-                  Smart Optimisation
+                <div className="inline-block bg-brandBlue/10 text-brandBlue px-4 py-1 rounded-full mb-4">
+                  AI-Driven Strategies
                 </div>
                 <h1 className="text-4xl md:text-5xl font-display font-bold mb-6">
-                  AI-Driven SEO for Purpose-Led Brands
+                  Ethical AI SEO for Sustainable Growth
                 </h1>
                 <p className="text-lg text-foreground/80 mb-8">
-                  Ethical optimisation strategies powered by the latest AI tools to help your purpose-driven brand reach the right audience.
+                  Harness the power of AI to drive sustainable SEO strategies that align with your values and deliver long-term results.
                 </p>
                 <div className="flex flex-wrap gap-4">
-                  <Link to="#seo-checker" className="btn-primary flex items-center gap-2">
-                    Try Free SEO Checker <ArrowRight className="h-4 w-4" />
+                  <Link to="#contact" className="btn-primary flex items-center gap-2">
+                    Get Started <ArrowRight className="h-4 w-4" />
                   </Link>
                   <Link to="/projects" className="btn-secondary flex items-center gap-2">
                     View Our Work <ArrowRight className="h-4 w-4" />
@@ -58,35 +56,35 @@ const AiSeo = () => {
               </div>
               
               <div className="animate-fade-in" style={{ animationDelay: "0.2s" }}>
-                <div className="bg-gradient-to-br from-brandRed to-brandRed/70 rounded-lg p-8 text-white">
+                <div className="bg-gradient-to-br from-brandBlue to-brandBlue/70 rounded-lg p-8">
                   <div className="flex items-center mb-6">
-                    <Search className="h-10 w-10 mr-4" />
-                    <h2 className="text-2xl font-display">Why Choose AI-Driven SEO?</h2>
+                    <Brain className="h-10 w-10 mr-4 text-white" />
+                    <h2 className="text-2xl font-display text-white">Why Choose AI SEO?</h2>
                   </div>
                   <ul className="space-y-4">
                     <li className="flex items-start">
                       <div className="mt-1 mr-3 bg-white/20 p-1 rounded-full">
-                        <Check className="h-4 w-4" />
+                        <Check className="h-4 w-4 text-white" />
                       </div>
-                      <span>Precision targeting focused on your ideal audience</span>
+                      <span className="text-white/90">Ethical AI practices that respect user privacy</span>
                     </li>
                     <li className="flex items-start">
                       <div className="mt-1 mr-3 bg-white/20 p-1 rounded-full">
-                        <Check className="h-4 w-4" />
+                        <Check className="h-4 w-4 text-white" />
                       </div>
-                      <span>Advanced content optimisation for higher rankings</span>
+                      <span className="text-white/90">Data-driven insights for informed decision-making</span>
                     </li>
                     <li className="flex items-start">
                       <div className="mt-1 mr-3 bg-white/20 p-1 rounded-full">
-                        <Check className="h-4 w-4" />
+                        <Check className="h-4 w-4 text-white" />
                       </div>
-                      <span>Data-driven strategies that evolve with algorithm changes</span>
+                      <span className="text-white/90">Sustainable strategies that benefit both your business and the planet</span>
                     </li>
                     <li className="flex items-start">
                       <div className="mt-1 mr-3 bg-white/20 p-1 rounded-full">
-                        <Check className="h-4 w-4" />
+                        <Check className="h-4 w-4 text-white" />
                       </div>
-                      <span>Ethical approaches that align with your brand values</span>
+                      <span className="text-white/90">Improved search rankings and organic traffic</span>
                     </li>
                   </ul>
                 </div>
@@ -95,67 +93,51 @@ const AiSeo = () => {
           </div>
         </section>
         
-        {/* SEO Checker Section */}
-        <section id="seo-checker" className="py-16 bg-white scroll-mt-16">
-          <div className="container-custom">
-            <div className="text-center max-w-3xl mx-auto mb-10 animate-fade-in">
-              <h2 className="text-3xl font-display font-semibold mb-4">
-                Check Your Website's SEO Performance
-              </h2>
-              <p className="text-foreground/80">
-                Our free tool analyses your website and provides actionable insights to improve your search rankings
-              </p>
-            </div>
-            
-            <SeoChecker />
-          </div>
-        </section>
-        
-        {/* Features Section */}
-        <section className="py-16 bg-marzipan/10">
+        {/* Services Section */}
+        <section className="py-16 bg-white">
           <div className="container-custom">
             <div className="text-center max-w-3xl mx-auto mb-12 animate-fade-in">
               <h2 className="text-3xl font-display font-semibold mb-4">
-                Our AI-Powered SEO Services
+                Our AI SEO Services
               </h2>
               <p className="text-foreground/80">
-                Leveraging cutting-edge artificial intelligence to boost your organic visibility while maintaining your brand's integrity.
+                Leverage our AI-powered SEO solutions to enhance your online presence, drive organic growth, and make a positive impact.
               </p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <Card className="border-marzipan/30 animate-fade-in hover:shadow-md transition-all" style={{ animationDelay: "0.1s" }}>
                 <CardContent className="p-6">
-                  <div className="bg-brandRed/10 text-brandRed rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                    <Brain className="h-6 w-6" />
+                  <div className="bg-brandBlue/10 text-brandBlue rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                    <Search className="h-6 w-6" />
                   </div>
-                  <h3 className="text-xl font-display font-medium mb-3">AI Content Optimisation</h3>
+                  <h3 className="text-xl font-display font-medium mb-3">AI Keyword Research</h3>
                   <p className="text-foreground/70">
-                    Advanced AI analysis ensures your content satisfies both search engines and human readers with perfect keyword balance.
+                    Identify high-value keywords with AI-driven analysis to target the right audience and drive relevant traffic.
                   </p>
                 </CardContent>
               </Card>
               
               <Card className="border-marzipan/30 animate-fade-in hover:shadow-md transition-all" style={{ animationDelay: "0.2s" }}>
                 <CardContent className="p-6">
-                  <div className="bg-brandRed/10 text-brandRed rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                    <Search className="h-6 w-6" />
+                  <div className="bg-brandBlue/10 text-brandBlue rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                    <ShieldCheck className="h-6 w-6" />
                   </div>
-                  <h3 className="text-xl font-display font-medium mb-3">Semantic Search Strategy</h3>
+                  <h3 className="text-xl font-display font-medium mb-3">AI Content Optimisation</h3>
                   <p className="text-foreground/70">
-                    Target search intent rather than just keywords to connect with users who are truly interested in your mission.
+                    Enhance your content with AI-powered recommendations to improve readability, relevance, and search engine rankings.
                   </p>
                 </CardContent>
               </Card>
               
               <Card className="border-marzipan/30 animate-fade-in hover:shadow-md transition-all" style={{ animationDelay: "0.3s" }}>
                 <CardContent className="p-6">
-                  <div className="bg-brandRed/10 text-brandRed rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                    <BarChart className="h-6 w-6" />
+                  <div className="bg-brandBlue/10 text-brandBlue rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                    <Brain className="h-6 w-6" />
                   </div>
-                  <h3 className="text-xl font-display font-medium mb-3">Predictive Analytics</h3>
+                  <h3 className="text-xl font-display font-medium mb-3">AI Link Building</h3>
                   <p className="text-foreground/70">
-                    Stay ahead of trends with AI-powered forecasting that helps you create content before your audience searches for it.
+                    Build high-quality backlinks with AI-driven strategies that identify relevant and authoritative websites.
                   </p>
                 </CardContent>
               </Card>
@@ -164,129 +146,87 @@ const AiSeo = () => {
         </section>
         
         {/* Process Section */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-marzipan/20">
           <div className="container-custom">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="space-y-6 animate-fade-in">
                 <h2 className="text-3xl md:text-4xl font-display font-semibold">
-                  Our AI-Driven SEO Process
+                  Our AI SEO Process
                 </h2>
                 <p className="text-lg text-foreground/80">
-                  We combine advanced AI tools with human expertise to create SEO strategies that truly understand your audience.
+                  We leverage cutting-edge AI technology to develop and implement ethical SEO strategies that drive sustainable growth.
                 </p>
                 
                 <div className="space-y-6 mt-8">
                   <div className="flex gap-4 items-start">
-                    <span className="inline-flex items-center justify-center h-8 w-8 rounded-full bg-brandRed text-white font-medium">1</span>
+                    <span className="inline-flex items-center justify-center h-8 w-8 rounded-full bg-brandBlue text-white font-medium">1</span>
                     <div>
-                      <h4 className="text-xl font-medium mb-1">Deep Analysis</h4>
-                      <p className="text-foreground/70">AI-powered auditing of your current SEO performance and competitive landscape.</p>
+                      <h4 className="text-xl font-medium mb-1">AI-Driven Audit</h4>
+                      <p className="text-foreground/70">Comprehensive website analysis using AI to identify opportunities for improvement.</p>
                     </div>
                   </div>
                   
                   <div className="flex gap-4 items-start">
-                    <span className="inline-flex items-center justify-center h-8 w-8 rounded-full bg-brandRed text-white font-medium">2</span>
+                    <span className="inline-flex items-center justify-center h-8 w-8 rounded-full bg-brandBlue text-white font-medium">2</span>
                     <div>
-                      <h4 className="text-xl font-medium mb-1">Strategic Planning</h4>
-                      <p className="text-foreground/70">Creating a tailored SEO roadmap based on AI insights and your brand values.</p>
+                      <h4 className="text-xl font-medium mb-1">Strategy Development</h4>
+                      <p className="text-foreground/70">Crafting a tailored SEO strategy based on AI insights and your unique business goals.</p>
                     </div>
                   </div>
                   
                   <div className="flex gap-4 items-start">
-                    <span className="inline-flex items-center justify-center h-8 w-8 rounded-full bg-brandRed text-white font-medium">3</span>
+                    <span className="inline-flex items-center justify-center h-8 w-8 rounded-full bg-brandBlue text-white font-medium">3</span>
                     <div>
-                      <h4 className="text-xl font-medium mb-1">Optimised Implementation</h4>
-                      <p className="text-foreground/70">Executing strategies with continuous AI monitoring for maximum effectiveness.</p>
+                      <h4 className="text-xl font-medium mb-1">Ethical Implementation</h4>
+                      <p className="text-foreground/70">Implementing AI-powered SEO techniques with a focus on ethical practices and user experience.</p>
                     </div>
                   </div>
                   
                   <div className="flex gap-4 items-start">
-                    <span className="inline-flex items-center justify-center h-8 w-8 rounded-full bg-brandRed text-white font-medium">4</span>
+                    <span className="inline-flex items-center justify-center h-8 w-8 rounded-full bg-brandBlue text-white font-medium">4</span>
                     <div>
-                      <h4 className="text-xl font-medium mb-1">Adaptive Refinement</h4>
-                      <p className="text-foreground/70">Ongoing optimisation using machine learning to adapt to changing algorithms and market conditions.</p>
+                      <h4 className="text-xl font-medium mb-1">Analysis & Optimisation</h4>
+                      <p className="text-foreground/70">Continuous monitoring and data-driven refinement to improve search performance.</p>
                     </div>
                   </div>
                 </div>
               </div>
               
-              <div className="mt-8 lg:mt-0">
-                <div className="bg-gradient-to-br from-secondary to-secondary/40 p-6 lg:p-8 rounded-lg animate-fade-in" style={{ animationDelay: "0.2s" }}>
-                  <div className="bg-white/80 backdrop-blur-sm p-6 rounded-lg">
-                    <h3 className="text-2xl font-display font-semibold mb-4 text-center">
-                      Free SEO Performance Analysis
-                    </h3>
-                    <div className="space-y-6">
-                      <p className="text-foreground/80">
-                        Discover how AI-driven strategies can transform your organic visibility with our complimentary analysis.
-                      </p>
-                      <div className="space-y-3">
-                        <div className="flex items-center gap-2">
-                          <Check className="h-5 w-5 text-green-500" />
-                          <span>Keyword opportunity assessment</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <Check className="h-5 w-5 text-green-500" />
-                          <span>Content gap analysis</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <Check className="h-5 w-5 text-green-500" />
-                          <span>Technical SEO evaluation</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <Check className="h-5 w-5 text-green-500" />
-                          <span>Competitor positioning insights</span>
-                        </div>
+              <div className="bg-gradient-to-br from-secondary to-secondary/40 p-8 rounded-lg animate-fade-in" style={{ animationDelay: "0.2s" }}>
+                <div className="bg-white/80 backdrop-blur-sm p-6 rounded-lg">
+                  <h3 className="text-2xl font-display font-semibold mb-4 text-center">
+                    Free AI SEO Consultation
+                  </h3>
+                  <div className="space-y-6">
+                    <p className="text-foreground/80">
+                      Get a complimentary consultation to discover how AI can transform your SEO strategy.
+                    </p>
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-2">
+                        <Check className="h-5 w-5 text-green-500" />
+                        <span>AI-driven website audit</span>
                       </div>
-                      <Link 
-                        to="#seo-checker" 
-                        className="btn-primary w-full justify-center"
-                      >
-                        Get Your Free Analysis
-                      </Link>
+                      <div className="flex items-center gap-2">
+                        <Check className="h-5 w-5 text-green-500" />
+                        <span>Keyword opportunity analysis</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Check className="h-5 w-5 text-green-500" />
+                        <span>Competitor benchmarking</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Check className="h-5 w-5 text-green-500" />
+                        <span>Actionable AI SEO recommendations</span>
+                      </div>
                     </div>
+                    <Link 
+                      to="#contact" 
+                      className="btn-primary w-full justify-center"
+                    >
+                      Schedule Your Consultation
+                    </Link>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        
-        {/* Results Section */}
-        <section className="py-16 bg-marzipan/10">
-          <div className="container-custom">
-            <div className="text-center max-w-3xl mx-auto mb-12 animate-fade-in">
-              <h2 className="text-3xl font-display font-semibold mb-4">
-                Measurable Results For Purpose-Driven Brands
-              </h2>
-              <p className="text-foreground/80">
-                Our AI-powered SEO strategies deliver meaningful metrics that matter to your mission
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-gradient-to-br from-brandRed/10 to-brandRed/5 p-6 rounded-lg text-center animate-fade-in" style={{ animationDelay: "0.1s" }}>
-                <LineChart className="h-12 w-12 mx-auto mb-4 text-brandRed" />
-                <div className="text-3xl font-display font-bold mb-2">150%+</div>
-                <p className="text-foreground/70">Average Organic Traffic Increase</p>
-              </div>
-              
-              <div className="bg-gradient-to-br from-brandRed/10 to-brandRed/5 p-6 rounded-lg text-center animate-fade-in" style={{ animationDelay: "0.2s" }}>
-                <LineChart className="h-12 w-12 mx-auto mb-4 text-brandRed" />
-                <div className="text-3xl font-display font-bold mb-2">80%+</div>
-                <p className="text-foreground/70">More Qualified Lead Generation</p>
-              </div>
-              
-              <div className="bg-gradient-to-br from-brandRed/10 to-brandRed/5 p-6 rounded-lg text-center animate-fade-in" style={{ animationDelay: "0.3s" }}>
-                <LineChart className="h-12 w-12 mx-auto mb-4 text-brandRed" />
-                <div className="text-3xl font-display font-bold mb-2">40%+</div>
-                <p className="text-foreground/70">Lower Bounce Rates</p>
-              </div>
-              
-              <div className="bg-gradient-to-br from-brandRed/10 to-brandRed/5 p-6 rounded-lg text-center animate-fade-in" style={{ animationDelay: "0.4s" }}>
-                <LineChart className="h-12 w-12 mx-auto mb-4 text-brandRed" />
-                <div className="text-3xl font-display font-bold mb-2">65%+</div>
-                <p className="text-foreground/70">Higher Conversion Rates</p>
               </div>
             </div>
           </div>
@@ -300,7 +240,7 @@ const AiSeo = () => {
                 Trusted By Purpose-Driven Brands
               </h2>
               <p className="text-foreground/70">
-                Join these forward-thinking organizations who've chosen our AI-driven approach
+                Join these forward-thinking organizations who've chosen our AI SEO expertise
               </p>
             </div>
             
@@ -308,10 +248,10 @@ const AiSeo = () => {
               {clientLogos.map((client, index) => (
                 <div 
                   key={index} 
-                  className="flex flex-col items-center justify-center p-6 rounded-lg border border-marzipan/30 bg-white animate-fade-in hover:bg-marzipan/5 transition-all duration-300"
+                  className="flex flex-col items-center justify-center p-6 rounded-lg border border-marzipan/30 bg-marzipan/5 animate-fade-in hover:bg-marzipan/20 transition-all duration-300"
                   style={{ animationDelay: `${0.1 + index * 0.1}s` }}
                 >
-                  <div className="h-16 w-16 rounded-full bg-brandRed/10 flex items-center justify-center text-2xl font-display text-brandRed font-semibold mb-3">
+                  <div className="h-16 w-16 rounded-full bg-brandBlue/10 flex items-center justify-center text-2xl font-display text-brandBlue font-semibold mb-3">
                     {client.initial}
                   </div>
                   <p className="text-center font-medium">{client.name}</p>
@@ -322,15 +262,15 @@ const AiSeo = () => {
         </section>
         
         {/* CTA and Contact Form Section */}
-        <section id="contact" className="py-20 bg-gradient-to-br from-brandRed to-brandRed/80 text-white">
+        <section id="contact" className="py-20 bg-gradient-to-br from-brandBlue to-brandBlue/80 text-white">
           <div className="container-custom">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               <div className="space-y-6 animate-fade-in">
                 <h2 className="text-3xl md:text-4xl font-display font-semibold">
-                  Ready to boost your organic visibility?
+                  Ready to unlock the power of AI SEO?
                 </h2>
                 <p className="text-xl text-white/90">
-                  Get in touch to discuss how our AI-driven SEO strategies can help your purpose-driven brand connect with the right audience.
+                  Get in touch to discuss how our AI-driven strategies can help your brand achieve sustainable growth and make a positive impact.
                 </p>
                 
                 <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 mt-8">
@@ -340,25 +280,25 @@ const AiSeo = () => {
                       <div className="mt-1 mr-3 bg-white/20 p-1 rounded-full">
                         <Check className="h-4 w-4" />
                       </div>
-                      <span>Specialised in ethical SEO for purpose-driven brands</span>
+                      <span>Ethical AI practices that respect user privacy</span>
                     </li>
                     <li className="flex items-start">
                       <div className="mt-1 mr-3 bg-white/20 p-1 rounded-full">
                         <Check className="h-4 w-4" />
                       </div>
-                      <span>AI-powered strategies that adapt to algorithm changes</span>
+                      <span>Data-driven insights for informed decision-making</span>
                     </li>
                     <li className="flex items-start">
                       <div className="mt-1 mr-3 bg-white/20 p-1 rounded-full">
                         <Check className="h-4 w-4" />
                       </div>
-                      <span>Focus on meaningful metrics that drive your mission</span>
+                      <span>Sustainable strategies for long-term growth</span>
                     </li>
                     <li className="flex items-start">
                       <div className="mt-1 mr-3 bg-white/20 p-1 rounded-full">
                         <Check className="h-4 w-4" />
                       </div>
-                      <span>Transparent reporting and continuous optimisation</span>
+                      <span>Improved search rankings and organic traffic</span>
                     </li>
                   </ul>
                 </div>
@@ -426,14 +366,14 @@ const AiSeo = () => {
                     
                     <FormField
                       control={form.control}
-                      name="website"
+                      name="company"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Website URL</FormLabel>
+                          <FormLabel>Company/Organization</FormLabel>
                           <FormControl>
                             <input
                               className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                              placeholder="https://yourwebsite.com"
+                              placeholder="Your Organization"
                               {...field}
                             />
                           </FormControl>
@@ -446,10 +386,10 @@ const AiSeo = () => {
                       name="message"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Your Message</FormLabel>
+                          <FormLabel>Your SEO Goals</FormLabel>
                           <FormControl>
                             <Textarea
-                              placeholder="Tell us about your SEO goals..."
+                              placeholder="Tell us about your SEO goals and challenges..."
                               className="resize-none min-h-[120px]"
                               {...field}
                             />
@@ -458,10 +398,7 @@ const AiSeo = () => {
                       )}
                     />
                     
-                    <Button 
-                      type="submit" 
-                      className="w-full bg-brandRed hover:bg-brandRed/90 flex items-center justify-center"
-                    >
+                    <Button type="submit" className="w-full bg-brandBlue hover:bg-brandBlue/90">
                       Send Message
                     </Button>
                     

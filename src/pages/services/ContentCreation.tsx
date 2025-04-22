@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -186,7 +185,7 @@ const ContentCreation = () => {
                   <div className="flex gap-4 items-start">
                     <span className="inline-flex items-center justify-center h-8 w-8 rounded-full bg-brandBlue text-white font-medium">4</span>
                     <div>
-                      <h4 className="text-xl font-medium mb-1">Distribution & Analysis</h4>
+                      <h4 className="text-xl font-medium mb-1">Analysis & Optimisation</h4>
                       <p className="text-foreground/70">Strategic distribution and continuous performance tracking to maximise impact.</p>
                     </div>
                   </div>
