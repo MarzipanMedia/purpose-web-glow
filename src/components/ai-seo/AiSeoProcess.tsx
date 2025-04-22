@@ -72,9 +72,8 @@ const AiSeoProcess = () => {
               ].map((benefit, index) => (
                 <div key={index} className="flex items-center gap-2">
                   <Check className="h-5 w-5 text-green-500" />
-                  <span>{benefit}</span>
+                  <span>{benefit}</span><br></br>
                 </div>
-                <br>
               ))}
             </div>
             <Link 
