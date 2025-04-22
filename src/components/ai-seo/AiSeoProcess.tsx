@@ -73,7 +73,7 @@ const AiSeoProcess = () => {
                 </div>
                 <Link 
                   to="#contact" 
-                  className="btn-primary w-full justify-center mt-6 md:mt-8"
+                  className="btn-primary w-full justify-center mt-6 md:mt-8 mb-4"
                 >
                   Schedule Your Consultation
                 </Link>
