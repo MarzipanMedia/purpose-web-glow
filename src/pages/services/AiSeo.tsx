@@ -201,7 +201,7 @@ const AiSeo = () => {
                     <p className="text-foreground/80">
                       Get a complimentary consultation to discover how AI can transform your SEO strategy.
                     </p>
-                    <div className="space-y-3">
+                    <div className="space-y-3 mb-8">
                       <div className="flex items-center gap-2">
                         <Check className="h-5 w-5 text-green-500" />
                         <span>AI-driven website audit</span>
@@ -221,7 +221,7 @@ const AiSeo = () => {
                     </div>
                     <Link 
                       to="#contact" 
-                      className="btn-primary w-full justify-center"
+                      className="btn-primary w-full justify-center mt-6 md:mt-8"
                     >
                       Schedule Your Consultation
                     </Link>

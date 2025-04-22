@@ -199,7 +199,7 @@ const DigitalMarketing = () => {
                     <p className="text-foreground/80">
                       Get a complimentary audit of your current digital marketing efforts and discover opportunities for growth.
                     </p>
-                    <div className="space-y-3">
+                    <div className="space-y-3 mb-8">
                       <div className="flex items-center gap-2">
                         <Check className="h-5 w-5 text-green-500" />
                         <span>Social media performance review</span>
@@ -219,7 +219,7 @@ const DigitalMarketing = () => {
                     </div>
                     <Link 
                       to="#contact" 
-                      className="btn-primary w-full justify-center"
+                      className="btn-primary w-full justify-center mt-6 md:mt-8"
                     >
                       Request Your Free Audit
                     </Link>
