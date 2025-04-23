@@ -1,44 +1,101 @@
 
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
 interface Testimonial {
   quote: string;
   author: string;
   company: string;
   image: string | null;
+  rating?: number;
+  datePublished?: string;
 }
 
-const TestimonialsSection = () => {
-  const testimonials: Testimonial[] = [
-    {
-      quote: "Working with Marzipan completely transformed our online presence. Not only is our website beautiful and performant, but we feel good about our reduced digital footprint.",
-      author: "Sarah Johnson",
-      company: "EcoLiving Collective",
-      image: null
+interface TestimonialsSectionProps {
+  title?: string;
+  subtitle?: string;
+  testimonials?: Testimonial[];
+}
+
+const defaultTestimonials: Testimonial[] = [
+  {
+    quote: "Working with Marzipan completely transformed our online presence. Not only is our website beautiful and performant, but we feel good about our reduced digital footprint.",
+    author: "Sarah Johnson",
+    company: "EcoLiving Collective",
+    image: null,
+    rating: 5,
+    datePublished: "2024-03-15"
+  },
+  {
+    quote: "As a B-Corp, sustainability is at our core. Marzipan understood our values and created a website that perfectly represents our brand while being environmentally conscious.",
+    author: "Michael Chen",
+    company: "Sustainable Solutions Co.",
+    image: null,
+    rating: 5,
+    datePublished: "2024-02-20"
+  },
+  {
+    quote: "The SEO results speak for themselves. Our organic traffic has increased by 150% since working with Marzipan, and our page load speeds are incredibly fast.",
+    author: "Jessica Williams",
+    company: "Green Growth Partners",
+    image: null,
+    rating: 5,
+    datePublished: "2024-01-10"
+  }
+];
+
+const TestimonialsSection = ({
+  title = "Client Success Stories",
+  subtitle = "What Our Clients Say",
+  testimonials = defaultTestimonials
+}: TestimonialsSectionProps) => {
+  // Calculate average rating
+  const averageRating = testimonials.reduce((acc, curr) => acc + (curr.rating || 5), 0) / testimonials.length;
+
+  // Prepare schema markup
+  const testimonialSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Marzipan Digital",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": averageRating.toFixed(1),
+      "reviewCount": testimonials.length
     },
-    {
-      quote: "As a B-Corp, sustainability is at our core. Marzipan understood our values and created a website that perfectly represents our brand while being environmentally conscious.",
-      author: "Michael Chen",
-      company: "Sustainable Solutions Co.",
-      image: null
-    },
-    {
-      quote: "The SEO results speak for themselves. Our organic traffic has increased by 150% since working with Marzipan, and our page load speeds are incredibly fast.",
-      author: "Jessica Williams",
-      company: "Green Growth Partners",
-      image: null
-    }
-  ];
+    "review": testimonials.map(testimonial => ({
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": testimonial.rating || 5
+      },
+      "author": {
+        "@type": "Person",
+        "name": testimonial.author
+      },
+      "reviewBody": testimonial.quote,
+      "publisher": {
+        "@type": "Organization",
+        "name": testimonial.company
+      },
+      "datePublished": testimonial.datePublished
+    }))
+  };
 
   return (
     <section className="py-20 bg-white">
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(testimonialSchema)}
+        </script>
+      </Helmet>
+      
       <div className="container-custom">
         <div className="text-center max-w-3xl mx-auto mb-12 animate-on-scroll opacity-0">
           <div className="inline-block bg-brandBlue/10 text-brandBlue px-4 py-1 rounded-full mb-4">
-            <h2 className="text-sm font-medium">Client Success Stories</h2>
+            <h2 className="text-sm font-medium">{title}</h2>
           </div>
           <h3 className="text-3xl md:text-4xl font-display font-semibold">
-            What Our Clients Say
+            {subtitle}
           </h3>
         </div>
         
