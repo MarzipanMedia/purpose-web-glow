@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { z } from "zod";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -9,6 +9,8 @@ import CarbonForm from '../components/carbon/CarbonForm';
 import CarbonResultDisplay from '../components/carbon/CarbonResult';
 import InfoSection from '../components/carbon/InfoSection';
 import { useWebsiteCarbon } from '../hooks/useWebsiteCarbon';
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { AlertCircle } from "lucide-react";
 
 // Schema for form validation
 const formSchema = z.object({
@@ -21,6 +23,7 @@ const WebsiteCarbon = () => {
   const { 
     isLoading, 
     result, 
+    error,
     emailSubmitted, 
     emailSending, 
     fetchCarbonData,
@@ -28,7 +31,16 @@ const WebsiteCarbon = () => {
     setEmailSending
   } = useWebsiteCarbon();
   
+  // Log on component mount for debugging
+  useEffect(() => {
+    console.log("WebsiteCarbon component mounted");
+    return () => {
+      console.log("WebsiteCarbon component unmounted");
+    };
+  }, []);
+  
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    console.log("Form submitted with values:", values);
     await fetchCarbonData(values.url, values.email, values.adminEmail);
   };
 
@@ -45,6 +57,17 @@ const WebsiteCarbon = () => {
         <section className="py-16 md:py-20 bg-gradient-subtle dark:bg-gray-900">
           <div className="container-custom">
             <CarbonHero />
+            
+            {error && (
+              <Alert variant="warning" className="max-w-2xl mx-auto mt-4 mb-6 border-amber-300 bg-amber-50 dark:bg-amber-900/20 dark:border-amber-800">
+                <AlertCircle className="h-4 w-4 text-amber-600 dark:text-amber-400" />
+                <AlertTitle>Connection Issue</AlertTitle>
+                <AlertDescription>
+                  Using estimated data due to connection issues. The results are approximate.
+                </AlertDescription>
+              </Alert>
+            )}
+            
             <CarbonForm isLoading={isLoading} onSubmit={onSubmit} />
             
             {result && (

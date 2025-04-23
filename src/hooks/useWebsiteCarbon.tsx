@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { toast } from "sonner";
 import { useSendCarbonResultEmail, CarbonResult } from '../services/wordpressService';
 
-// Sample data to use when the API fails
+// Sample data to use when the API fails - expanded with more realistic values
 const sampleCarbonData = {
   url: "",
   green: false,
@@ -24,6 +24,7 @@ export const useWebsiteCarbon = () => {
   const [result, setResult] = useState<CarbonResult | null>(null);
   const [emailSubmitted, setEmailSubmitted] = useState(false);
   const [emailSending, setEmailSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   
   // Use the WordPress email mutation
   const sendEmailMutation = useSendCarbonResultEmail();
@@ -31,18 +32,35 @@ export const useWebsiteCarbon = () => {
   const fetchCarbonData = async (url: string, email?: string, adminEmail?: string) => {
     setIsLoading(true);
     setResult(null);
+    setError(null);
+
+    console.log("Fetching carbon data for:", url);
 
     try {
-      // Proxy the request to avoid CORS issues
-      const response = await fetch(`https://api.websitecarbon.com/site?url=${encodeURIComponent(url)}`);
+      // Use a CORS proxy to avoid cross-origin issues
+      const corsProxy = 'https://corsproxy.io/?';
+      const apiUrl = `https://api.websitecarbon.com/site?url=${encodeURIComponent(url)}`;
+      
+      console.log("Using API URL:", apiUrl);
+      
+      const response = await fetch(`${corsProxy}${encodeURIComponent(apiUrl)}`, {
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
       
       if (!response.ok) {
-        throw new Error(`Error: ${response.status}`);
+        throw new Error(`Error ${response.status}: ${response.statusText}`);
       }
 
       const data = await response.json();
-      setResult(data);
       console.log("Carbon data received:", data);
+      
+      if (!data || !data.statistics) {
+        throw new Error("Invalid data structure received from API");
+      }
+
+      setResult(data);
 
       // Send email if provided via WordPress API
       if (email) {
@@ -60,6 +78,7 @@ export const useWebsiteCarbon = () => {
       
       toast.warning("Unable to connect to carbon API. Using estimated data instead.");
       setResult(fallbackData as CarbonResult);
+      setError(`Failed to fetch live data: ${error instanceof Error ? error.message : 'Unknown error'}`);
       
       // Still send email with sample data if provided
       if (email) {
@@ -78,6 +97,8 @@ export const useWebsiteCarbon = () => {
     setEmailSending(true);
     
     try {
+      console.log("Sending email with carbon data:", { email, url, adminEmail });
+      
       await sendEmailMutation.mutateAsync({
         email,
         carbonData,
@@ -104,6 +125,7 @@ export const useWebsiteCarbon = () => {
     result,
     emailSubmitted,
     emailSending,
+    error,
     fetchCarbonData,
     setEmailSubmitted,
     setEmailSending

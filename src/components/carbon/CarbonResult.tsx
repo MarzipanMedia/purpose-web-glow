@@ -23,6 +23,17 @@ const CarbonResultDisplay: React.FC<CarbonResultProps> = ({
   setEmailSending
 }) => {
   const newsletterMutation = useSubscribeToNewsletter();
+  const [email, setEmail] = useState("");
+
+  // Safe access to potentially missing properties with default values
+  const url = result?.url || "example.com";
+  const isGreen = result?.green || false;
+  const bytes = result?.bytes || 0;
+  const cleanerThan = result?.cleanerThan || 50;
+  
+  // Safely access nested properties
+  const co2Grams = result?.statistics?.co2?.grid?.grams || 0;
+  const co2Litres = result?.statistics?.co2?.grid?.litres || 0;
 
   // Format bytes to KB/MB
   const formatBytes = (bytes: number) => {
@@ -32,7 +43,9 @@ const CarbonResultDisplay: React.FC<CarbonResultProps> = ({
   };
 
   // Handle newsletter subscription
-  const handleNewsletterSubscribe = async (email: string) => {
+  const handleNewsletterSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
     if (!email || !email.includes('@')) {
       toast.error("Please enter a valid email address");
       return;
@@ -59,9 +72,9 @@ const CarbonResultDisplay: React.FC<CarbonResultProps> = ({
 
   return (
     <Card className="max-w-2xl mx-auto mt-8 border border-marzipan/30 shadow-sm animate-scale-up dark:border-gray-700 dark:bg-gray-800">
-      <CardHeader className={result.green ? "bg-green-50/50 dark:bg-green-900/20" : "bg-yellow-50/50 dark:bg-yellow-900/20"}>
+      <CardHeader className={isGreen ? "bg-green-50/50 dark:bg-green-900/20" : "bg-yellow-50/50 dark:bg-yellow-900/20"}>
         <div className="flex items-center gap-3">
-          {result.green ? (
+          {isGreen ? (
             <div className="bg-green-100 dark:bg-green-800 p-2 rounded-full">
               <Leaf className="h-6 w-6 text-green-600 dark:text-green-300" />
             </div>
@@ -72,10 +85,10 @@ const CarbonResultDisplay: React.FC<CarbonResultProps> = ({
           )}
           <div>
             <CardTitle className="text-xl dark:text-white">
-              {result.url.replace(/^https?:\/\//, '')}
+              {url.replace(/^https?:\/\//, '')}
             </CardTitle>
             <CardDescription className="dark:text-gray-300">
-              {result.green 
+              {isGreen 
                 ? "This website is hosted green!" 
                 : "This website is not hosted on renewable energy"}
             </CardDescription>
@@ -90,7 +103,7 @@ const CarbonResultDisplay: React.FC<CarbonResultProps> = ({
             </div>
             <div>
               <p className="text-sm text-muted-foreground dark:text-gray-400">Page Size</p>
-              <p className="font-medium dark:text-white">{formatBytes(result.bytes)}</p>
+              <p className="font-medium dark:text-white">{formatBytes(bytes)}</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
@@ -99,17 +112,17 @@ const CarbonResultDisplay: React.FC<CarbonResultProps> = ({
             </div>
             <div>
               <p className="text-sm text-muted-foreground dark:text-gray-400">Carbon Emission</p>
-              <p className="font-medium dark:text-white">{result.statistics.co2.grid.grams.toFixed(2)}g of CO2</p>
+              <p className="font-medium dark:text-white">{co2Grams.toFixed(2)}g of CO2</p>
             </div>
           </div>
         </div>
 
         <div className="mt-6">
-          <p className="text-sm text-muted-foreground mb-2 dark:text-gray-400">Cleaner than {result.cleanerThan}% of pages tested</p>
+          <p className="text-sm text-muted-foreground mb-2 dark:text-gray-400">Cleaner than {cleanerThan}% of pages tested</p>
           <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
             <div 
               className="bg-brandBlue h-2.5 rounded-full" 
-              style={{ width: `${result.cleanerThan}%` }}
+              style={{ width: `${cleanerThan}%` }}
             ></div>
           </div>
         </div>
@@ -117,9 +130,9 @@ const CarbonResultDisplay: React.FC<CarbonResultProps> = ({
         <div className="mt-8 p-4 bg-marzipan/20 dark:bg-marzipan/10 rounded-lg border border-marzipan/30 dark:border-marzipan/20">
           <h3 className="font-medium mb-2 dark:text-white">What does this mean?</h3>
           <p className="text-sm text-foreground/80 dark:text-gray-300">
-            {result.green 
-              ? `This site is hosted on renewable energy, which is great! However, it could still be optimized further to reduce its ${result.statistics.co2.grid.grams.toFixed(2)}g carbon footprint per page view.`
-              : `This site produces ${result.statistics.co2.grid.grams.toFixed(2)}g of CO2 per page view. Switching to green hosting and optimizing page size could significantly reduce its carbon footprint.`
+            {isGreen 
+              ? `This site is hosted on renewable energy, which is great! However, it could still be optimized further to reduce its ${co2Grams.toFixed(2)}g carbon footprint per page view.`
+              : `This site produces ${co2Grams.toFixed(2)}g of CO2 per page view. Switching to green hosting and optimizing page size could significantly reduce its carbon footprint.`
             }
           </p>
         </div>
@@ -140,17 +153,15 @@ const CarbonResultDisplay: React.FC<CarbonResultProps> = ({
             <p className="text-sm text-center mb-3 dark:text-gray-300">Subscribe to receive sustainable web design tips</p>
             <form 
               className="flex flex-col sm:flex-row gap-3"
-              onSubmit={(e) => {
-                e.preventDefault();
-                const email = (e.target as HTMLFormElement).email.value;
-                handleNewsletterSubscribe(email);
-              }}
+              onSubmit={handleNewsletterSubscribe}
             >
               <Input 
                 name="email" 
                 type="email" 
                 placeholder="your@email.com" 
                 className="flex-grow dark:bg-gray-700 dark:border-gray-600 dark:text-white" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
               <Button 
                 type="submit" 
