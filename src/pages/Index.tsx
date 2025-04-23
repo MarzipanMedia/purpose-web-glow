@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
@@ -13,6 +12,7 @@ import StatsSection from '@/components/home/StatsSection';
 import WebsiteCarbonCTA from '@/components/home/WebsiteCarbonCTA';
 import TestimonialsSection from '@/components/home/TestimonialsSection';
 import FinalCTA from '@/components/home/FinalCTA';
+import CarbonShowcase from '@/components/carbon/CarbonShowcase';
 
 const Index = () => {
   // Add scroll animation observer
@@ -45,6 +45,7 @@ const Index = () => {
       <main className="flex-grow">
         <Hero />
         <StatsSection />
+        <CarbonShowcase />
         
         <section className="relative bg-gradient-to-b from-gray-50 to-white">
           <Services />
