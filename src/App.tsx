@@ -26,6 +26,7 @@ import Resources from "./pages/Resources";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import BenAdams from "./pages/BenAdams";
+import AlwaysWas from "./pages/AlwaysWas";
 
 const queryClient = new QueryClient();
 
@@ -69,6 +70,7 @@ const App = () => (
               <Route path="/privacy" element={<PageTransition><Privacy /></PageTransition>} />
               <Route path="/terms" element={<PageTransition><Terms /></PageTransition>} />
               <Route path="/benadams" element={<PageTransition><BenAdams /></PageTransition>} />
+              <Route path="/alwayswas" element={<PageTransition><AlwaysWas /></PageTransition>} />
               <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
             </Routes>
           </BrowserRouter>
