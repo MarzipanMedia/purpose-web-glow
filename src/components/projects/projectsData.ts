@@ -135,6 +135,7 @@ export const projects: ProjectData[] = [
 },
   {
     title: "Toasty",
+    imageUrl: "/toasty-seo-support.png",
     category: "Outdoor Apparel",
     description: "SEO optimisation and performance improvements for a small business specialising in weatherproof jackets, boosting their visibility and online presence.",
     features: ["Mobile Site Speed Improvement", "Domain Authority Growth", "Keyword Ranking Boost", "SEO Score Enhancement", "Checkout Process Optimisation"],
