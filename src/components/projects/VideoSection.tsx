@@ -56,8 +56,8 @@ const VideoSection: React.FC<VideoSectionProps> = ({
                   </AspectRatio>
                 </div>
                 <div className="p-4">
-                  <h3 className="font-medium text-lg">Digital Story {index + 1}</h3>
-                  <p className="text-foreground/70 text-sm">Stories of hope, courage and innovation</p>
+                  <h3 className="font-medium text-lg">Digital Content Creation {index + 1}</h3>
+                  <p className="text-foreground/70 text-sm">Helping Brands Shine Brighter Online</p>
                 </div>
               </div>
             );
