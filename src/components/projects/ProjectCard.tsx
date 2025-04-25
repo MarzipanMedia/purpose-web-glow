@@ -12,9 +12,20 @@ export interface ProjectCardProps {
   textColor: string;
   index: number;
   slug: string;
+  websiteUrl?: string;
 }
 
-const ProjectCard = ({ title, category, description, features, color, textColor, index, slug }: ProjectCardProps) => {
+const ProjectCard = ({ 
+  title, 
+  category, 
+  description, 
+  features, 
+  color, 
+  textColor, 
+  index, 
+  slug,
+  websiteUrl 
+}: ProjectCardProps) => {
   return (
     <div 
       className={`rounded-lg overflow-hidden animate-fade-in ${color}`}
@@ -46,11 +57,16 @@ const ProjectCard = ({ title, category, description, features, color, textColor,
           >
             View Case Study <ArrowRight className="h-4 w-4" />
           </Link>
-          <button 
-            className={`inline-flex items-center gap-1 text-sm font-medium ${textColor === 'text-white' ? 'hover:text-white/80' : 'hover:text-foreground/80'}`}
-          >
-            Visit Website <ExternalLink className="h-4 w-4" />
-          </button>
+          {websiteUrl && (
+            <a 
+              href={websiteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`inline-flex items-center gap-1 text-sm font-medium ${textColor === 'text-white' ? 'hover:text-white/80' : 'hover:text-foreground/80'}`}
+            >
+              Visit Website <ExternalLink className="h-4 w-4" />
+            </a>
+          )}
         </div>
       </div>
     </div>

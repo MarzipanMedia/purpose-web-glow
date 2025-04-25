@@ -23,6 +23,7 @@ const ProjectsGrid = ({ projects }: ProjectsGridProps) => {
               color={project.color}
               textColor={project.textColor}
               slug={project.slug}
+              websiteUrl={project.websiteUrl}
             />
           ))}
         </div>
