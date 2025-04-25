@@ -38,6 +38,7 @@ export const projects: ProjectData[] = [
   },
   {
     title: "Jarli – Reach for the stars",
+    imageUrl: "/jarli-reach-stars-marzipana.png",
     category: "Indigenous Animation",
     description: "Social media strategy and content creation for an award-winning animated film inspiring Indigenous children to explore STEM and space science.",
     features: ["Social Media Assets", "Digital Content Creation", "Interactive AR Backgrounds", "Campaign Strategy", "Animated GIFs"],
@@ -53,6 +54,7 @@ export const projects: ProjectData[] = [
   },
   {
   "title": "Royal Botanic Garden – A Living Digital Archive",
+   imageUrl: "/jarli-reach-stars-marzipana.png", 
   "category": "Cultural Institution",
   "description": "Website, video, and app creation for Australia’s oldest scientific institution and public garden.",
   "features": [
@@ -78,7 +80,7 @@ export const projects: ProjectData[] = [
   ],
   "longDescription": "It was an honour to lead the digital transformation of the Royal Botanic Garden in Sydney – Australia’s oldest scientific institution and a beloved public garden in the heart of the city.\\n\\nWith an outdated CMS, deteriorating UX, and poor accessibility, the Garden's online presence no longer reflected its importance. Marzipan Media, prequalified under the NSW SCM2701 scheme, stepped in to deliver a complete overhaul.\\n\\nFor over six years, we’ve supported the Garden across social media, SEO, video production, and digital strategy. In 2017, we worked in-house to lead a full website redevelopment across the Garden and its four sister sites, managing everything from initial brief creation and tendering, to supplier coordination and go-live.\\n\\nThe result was a content-first, image-led website rich with accessibility, mobile responsiveness, and storytelling tools – the first time in the Garden’s 200-year history that its digital presence truly matched the magic of its physical space.\\n\\nOur content creation strategy included photography, drone footage, and video production, with work still seen throughout the Garden today. Highlights include video showcases of the Vivid Event, the Calyx building, and the passionate staff behind the scenes.\\n\\nOur journey continues with CRM integrations (Salesforce), team training, and ongoing digital strategy – helping the Garden bloom online just as beautifully as it does in real life.",
   "videos": [
-    "https://youtu.be/BvQK0CHwD5s"  // Replace with actual link if needed
+    "https://youtu.be/wZihT4gxvkA"  // made with marzipan
   ]
 },
 {
