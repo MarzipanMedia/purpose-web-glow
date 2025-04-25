@@ -55,14 +55,14 @@ const FAQSection: React.FC<FAQSectionProps> = ({ title, description, faqs }) => 
               <AccordionItem 
                 key={index} 
                 value={`item-${index}`}
-                className="border border-marzipan/30 rounded-lg overflow-hidden bg-white shadow-sm"
+                className="border border-marzipan/30 rounded-lg overflow-hidden bg-white dark:bg-gray-900 shadow-sm"
               >
-                <AccordionTrigger className="px-6 py-4 hover:no-underline font-display font-medium text-lg md:text-xl text-left">
+                <AccordionTrigger className="px-6 py-4 hover:no-underline font-display font-medium text-lg md:text-xl text-left dark:text-white">
                   <h3 className="inline-flex items-center">
                     <span className="text-brandRed mr-2">{index + 1}.</span> {faq.question}
                   </h3>
                 </AccordionTrigger>
-                <AccordionContent className="px-6 pt-2 pb-6 text-foreground/80">
+                <AccordionContent className="px-6 pt-2 pb-6 text-foreground/80 dark:text-white/90">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
