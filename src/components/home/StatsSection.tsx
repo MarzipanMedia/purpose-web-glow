@@ -10,6 +10,7 @@ const StatsSection = () => {
           <h2 className="text-3xl md:text-4xl font-display font-semibold mb-4 text-brandBlue">
             Our Impact at a Glance
           </h2>
+          <p>We help purpose-driven brands rank higher on Google with AI-driven SEO while ensuring their digital presence is lightweight, high-speed, and environmentally responsible. By combining ethical AI, sustainable web design, and performance-driven SEO strategies, we create websites that don’t just grow traffic—they grow impact</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
           <div className="p-6 bg-white rounded-lg shadow-md border-t-4 border-brandBlue animate-on-scroll opacity-0" style={{ transitionDelay: "0.1s" }}>
