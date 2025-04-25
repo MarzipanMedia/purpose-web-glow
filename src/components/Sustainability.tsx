@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Leaf, Zap, Recycle } from 'lucide-react';
 import { useIsMobile } from '../hooks/use-mobile';
@@ -20,6 +19,7 @@ const Sustainability = () => {
     {
       title: "Sustainable Practices",
       description: "From eco-hosting to lean code, we incorporate sustainability at every level of web development.",
+      additionalText: "We're proud to be a new kind of digital agency, born out of Bondi. We're focused on one thing, helping you <strong>shine brighter online.</strong>",
       icon: <Recycle className="h-6 w-6" />
     }
   ];
@@ -49,6 +49,12 @@ const Sustainability = () => {
                   <div>
                     <h3 className="text-lg font-display font-medium dark:text-white">{principle.title}</h3>
                     <p className="text-foreground/70 dark:text-gray-400">{principle.description}</p>
+                    {principle.additionalText && (
+                      <p 
+                        className="text-lg text-foreground/80 dark:text-gray-300 mt-4" 
+                        dangerouslySetInnerHTML={{ __html: principle.additionalText }}
+                      />
+                    )}
                   </div>
                 </div>
               ))}
