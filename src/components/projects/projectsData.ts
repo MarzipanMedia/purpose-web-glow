@@ -19,7 +19,7 @@ export interface ProjectData {
 export const projects: ProjectData[] = [
   {
     title: "Sydney Jewish Museum",
-    imageUrl: "public/jewish-museum-seo.png",
+    imageUrl: "/jewish-museum-seo.png",
     category: "Cultural Institution",
     description: "Digital marketing, SEO optimisation, and content creation for the Sydney Jewish Museum to share stories of hope, courage, and survival.",
     features: ["Social Media Marketing", "SEO Optimisation", "Content Creation", "Paid Search Management", "Digital Storytelling"],
