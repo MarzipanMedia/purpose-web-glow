@@ -51,10 +51,6 @@ const Sustainability = () => {
                     <p className="text-foreground/70 dark:text-gray-400">{principle.description}</p>
                   </div>
                 </div>
-      <p className="text-lg text-foreground/80 dark:text-gray-300">
-              At Marzipan, we believe the digital world shouldn't come at the cost of our physical one. 
-              Our sustainable design principles create beautiful websites that minimise environmental impact.
-            </p>
               ))}
             </div>
           </div>
