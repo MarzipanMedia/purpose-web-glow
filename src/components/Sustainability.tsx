@@ -51,7 +51,7 @@ const Sustainability = () => {
                     <p className="text-foreground/70 dark:text-gray-400">{principle.description}</p>
                     {principle.additionalText && (
                       <p 
-                        className="text-lg text-foreground/80 dark:text-gray-300" 
+                        className="text-lg text-foreground/80 dark:text-gray-300 mt-2" 
                         dangerouslySetInnerHTML={{ __html: principle.additionalText }}
                       />
                     )}
