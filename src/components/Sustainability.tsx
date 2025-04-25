@@ -38,6 +38,7 @@ const Sustainability = () => {
             <p className="text-lg text-foreground/80 dark:text-gray-300">
               At Marzipan, we believe the digital world shouldn't come at the cost of our physical one. 
               Our sustainable design principles create beautiful websites that minimise environmental impact.
+              Proud to be a new kind of digital agency, born in Bondi, we’re focused on one thing: helping you shine brighter online.
             </p>
             
             <div className="grid grid-cols-1 gap-6 mt-8">
