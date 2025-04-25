@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
@@ -6,14 +5,13 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { projects } from './projects/projectsData';
 
 const RecentProjects = () => {
-  // Get the latest 3 projects based on date
-  const featuredProjects = [...projects]
-    .sort((a, b) => {
-      const dateA = a.date ? new Date(a.date).getTime() : 0;
-      const dateB = b.date ? new Date(b.date).getTime() : 0;
-      return dateB - dateA;
-    })
-    .slice(0, 3);
+  // Randomly select 3 projects
+  const getRandomProjects = () => {
+    const shuffled = [...projects].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, 3);
+  };
+
+  const featuredProjects = getRandomProjects();
 
   return (
     <section className="py-20 bg-white">
@@ -80,4 +78,3 @@ const RecentProjects = () => {
 };
 
 export default RecentProjects;
-
