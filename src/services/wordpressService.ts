@@ -20,6 +20,16 @@ export interface WordPressPost {
   };
   categories?: number[];
   tags?: number[];
+  
+  // Add SEO metadata
+  yoast_head_json?: {
+    title: string;
+    description: string;
+    canonical: string;
+    og_title: string;
+    og_description: string;
+    og_image: string[];
+  };
 }
 
 export interface WordPressCategory {
@@ -189,5 +199,24 @@ export const useSubscribeToNewsletter = () => {
       
       return await response.json();
     },
+  });
+};
+
+export const useFetchPostWithSeo = (postId: number) => {
+  return useQuery({
+    queryKey: ['wordpressPost', postId],
+    queryFn: async () => {
+      const response = await fetch(`${API_URL}/${postId}?_embed&_fields=id,title,content,excerpt,date,yoast_head_json`);
+      
+      if (!response.ok) {
+        throw new Error(`WordPress API error: ${response.status}`);
+      }
+      
+      return await response.json() as WordPressPost;
+    },
+    retry: 1,
+    refetchOnWindowFocus: false,
+    staleTime: 5 * 60 * 1000, // 5 minutes
+    gcTime: 10 * 60 * 1000, // 10 minutes
   });
 };

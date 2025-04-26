@@ -1,17 +1,27 @@
 
+User-agent: *
+Allow: /
+
+# Main site sitemap
+Sitemap: https://marzipan.com.au/sitemap.xml
+
+# Blog sitemap
+Sitemap: https://blog.marzipan.com.au/sitemap.xml
+
+# Allow main domain
+Host: marzipan.com.au
+
+# Common crawl efficiency directives
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Twitterbot
 Allow: /
 
 User-agent: facebookexternalhit
 Allow: /
-
-User-agent: *
-Allow: /
-
-Sitemap: https://marzipan.com.au/sitemap.xml

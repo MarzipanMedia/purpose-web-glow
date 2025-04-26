@@ -8,6 +8,7 @@ interface MetaHeadProps {
   image?: string;
   type?: 'website' | 'article' | 'blog';
   url?: string;
+  canonicalUrl?: string;
 }
 
 const MetaHead = ({
@@ -16,6 +17,7 @@ const MetaHead = ({
   image = '/Marzipan-Logo.png',
   type = 'website',
   url,
+  canonicalUrl,
 }: MetaHeadProps) => {
   // Construct full title with brand name
   const fullTitle = `${title} | Marzipan Digital`;
@@ -51,6 +53,9 @@ const MetaHead = ({
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
       
+      {/* Canonical URL */}
+      {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+      
       {/* Open Graph meta tags */}
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
@@ -76,4 +81,3 @@ const MetaHead = ({
 };
 
 export default MetaHead;
-
