@@ -54,7 +54,7 @@ export const projects: ProjectData[] = [
   },
   {
   "title": "Royal Botanic Garden – A Living Digital Archive",
-   imageUrl: "/jarli-reach-stars-marzipana.png", 
+   imageUrl: "/video-content-sydney-rbg-marzipan.png", 
   "category": "Cultural Institution",
   "description": "Website, video, and app creation for Australia’s oldest scientific institution and public garden.",
   "features": [
