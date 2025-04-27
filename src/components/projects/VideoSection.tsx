@@ -1,10 +1,9 @@
-
 import React from 'react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Card } from "@/components/ui/card";
 import { RotateCw } from 'lucide-react';
 
-interface VideoData {
+export interface VideoData {
   url: string;
   title: string;
   description?: string;
