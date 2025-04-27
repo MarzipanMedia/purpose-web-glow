@@ -61,11 +61,11 @@ export interface CarbonResult {
 }
 
 // Replace with your actual WordPress site URL
-const API_URL = 'https://blog.marzipan.com.au/wp-json/wp/v2/posts';
+const API_URL = 'https://marzipan.com.au/wp-json/wp/v2/posts';
 
 // If you have WordPress REST API custom endpoints set up for emails
 // Replace with your actual endpoint
-const EMAIL_ENDPOINT = 'https://marzipan.com.au/wp-json/marzipan/v1/send-email';
+const EMAIL_ENDPOINT = 'https://blog.marzipan.com.au/wp-json/marzipan/v1/send-email';
 
 export const useFetchPosts = (page = 1, perPage = 3) => {
   return useQuery({
