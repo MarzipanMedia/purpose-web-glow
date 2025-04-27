@@ -11,9 +11,16 @@ export interface ProjectData {
   services?: string[];
   websiteUrl?: string;
   longDescription?: string;
-  videos?: string[];
+  videos?: (string | VideoData)[];
   date?: string;
   tags?: string[];
+}
+
+interface VideoData {
+  url: string;
+  title: string;
+  description?: string;
+  orientation?: 'landscape' | 'portrait';
 }
 
 export const projects: ProjectData[] = [
@@ -31,9 +38,21 @@ export const projects: ProjectData[] = [
     websiteUrl: "https://sydneyjewishmuseum.com.au",
     longDescription: "One of our favourite new clients has to be the Sydney Jewish Museum. We're proudly supporting their social media marketing, SEO and content creation. Working with cultural spaces has always been in our very foundations as a company. Having been lucky enough to work alongside many of Sydney's finest cultural spaces and places, we were thrilled that SJM got in touch toward the end of 2020.\n\nSince then, we have worked alongside the marketing team to produce amazing digital content for their Instagram Reels, optimise their website for search, and drive memberships and visitation through social media advertising and paid search campaigns on Google and Bing. In our first 6 months, we have been able to demonstrate an average month-on-month rise in organic traffic of around 25%.\n\nCommunity growth on their two social media platforms has also been high, and our conversion rates on Adword Grants Management and Facebook Business Manager have shown consistent growth.\n\nBut that's not why we love it. That's what we do for most of our clients!\n\nWhat's been amazing is learning the stories here. The real-life tales that are often showcasing the true spirit of human kindness. We're able to tell stories of hope, courage and survival in a way that can resonate with new audiences and inspire change for a new generation. We're spreading kindness with our new Reels made for the Be a Mensch movement, and for the museum, we're sharing Holocaust survivor stories for the first time on their Reels, and we're handpicking tales from their blog for content ads. Tales that inspire acts of kindness and bravery while at the same time being able to generate more traffic back to their website, more engagement with their brand and positive brand interactions.\n\nThe Museum is a must for anyone in the Sydney area, and we highly recommend taking a tour with one of the amazing volunteers, many of whom are direct descendants of survivors and able to retell the human stories of yesterday, giving history a voice for tomorrow.",
     videos: [
-      "https://vimeo.com/609537392",
-      "https://vimeo.com/577042403",
-      "https://vimeo.com/609540655"
+      {
+        url: "https://vimeo.com/609537392",
+        title: "Sydney Jewish Museum - Stories of Hope",
+        description: "Sharing stories of courage and survival"
+      },
+      {
+        url: "https://vimeo.com/577042403",
+        title: "Be a Mensch Campaign",
+        description: "Spreading kindness and understanding"
+      },
+      {
+        url: "https://vimeo.com/609540655",
+        title: "Holocaust Survivor Stories",
+        description: "Preserving memories for future generations"
+      }
     ]
   },
   {
@@ -49,7 +68,11 @@ export const projects: ProjectData[] = [
     services: ["Social Media Marketing", "Content Creation", "Digital Animation"],
     longDescription: "It's not every day you get help on projects that lift you higher, but that's exactly what happened when the House of Kitch invited us to create social media assets for Jarli, an award-winning short film to inspire Indigenous school children to reach for the stars. Together we created digital content assets for Instagram, Facebook and Twitter for the launch of this beautiful animated film.\n\nJarli is a proud Aboriginal girl with a knack for building things, especially things that fly. Created by the Royal Australian Air Force and UTS_ALA to inspire our kids to study STEM subjects and perhaps one day join the RAAF. 'Jarli' is another animation gem that weaves visual and oral story elements to explore the dream of flight, indigenous astronomy, and the future of our planet and its people. Jarli, 16, lives with her family in a remote community in Australia. She might look small, but she asks big questions and has big ideas. She also has a knack for building things – especially things that fly – and wants to fly herself one day… maybe even into outer space. Jarli dreams of being the first person to travel to other worlds in our solar system.\n\nDirected by Simon Rippingale, the inspirational animated short is a collaboration with First Nations storytellers, the UTS Animal Logic Academy in collaboration with the Royal Australian Air Force and Like a Photon Creative. The goal was to inspire young people (particularly girls, especially indigenous kids) to reach for the stars and widen their eyes to possibilities opened up by STEM.\n\nA critical element for Australia to achieve its sovereign space ambitions is the development of a workforce with the necessary STEM skills. With the space industry tripling in size by 2030, engagement with school kids, and encouraging them to study STEM, needs to start now.\n\nA talented team of Indigenous creatives included co-director: Chantelle Murray, writers: Jonathan Bell & Andrew Dillon and voice actors: Madeleine Madden, Wayne Blair, Mark Coles Smith and Rahmah Bin Buyong. Simon Rippingale co-directed Jarli as part of his PHD thesis under Professor Andrew Johnston.\n\nWhile the Jarli film premiered at the Sydney Film Festival, Jarli was pre-screened to a very special audience of Aboriginal children from the Katherine community in outback Northern Territory on RAAF Base Tindal. Audience members were treated to a unique pop-up cinema experience in an open aircraft hangar and a view of the night-flying activity at Tindal.\n\nProject timings are always a curious thing, and this one landed just after a short stint of fostering by Marzipan cofounder and digital guy, Ben Adams who looked after two young aboriginal children. These kids had seen some of the worst things imaginable and yet were able to still see the joy and wonder of the world, without bitterness or judgement. There are so many systemic barriers in the way of closing the gap but we're certain projects born out of love, such as this one, may help pave the way. They loved watched Jarli and enjoyed our social media games, assets and creative that was created for the film.\n\nMarzipan have created a range of social media tiles for its full release, including animated gifs, interactive AR backgrounds for Instagram and more.\n\nNot ready to stay on the ground too long, Jarli hitched a ride to the International Space Station on the NASA SpaceX Falcon 9 CRS-24 mission during National Science Week 2022. Chief Defence Scientist, Professor Tanya Monro AC said Jarli struck a chord with all of us because of her resilience, creativity and ingenuity – the qualities the next generation of Australians need to harness to achieve extraordinary things.\n\n\"It is so inspiring for Australian children, particularly First Nations children, to see clever Australian inventions driving collaboration with the US Space Force and NASA… We can't confirm this but are certain the NASA folks would have loved playing with our Instagram AR tiles ; )\"",
     videos: [
-      "https://youtu.be/YoiijfjK-J8"
+      {
+        url: "https://youtu.be/YoiijfjK-J8",
+        title: "Jarli - Reach for the Stars",
+        description: "Inspiring Indigenous children to explore STEM and space science"
+      }
     ]
   },
   {
@@ -80,8 +103,16 @@ export const projects: ProjectData[] = [
   ],
   "longDescription": "It was an honour to lead the digital transformation of the Royal Botanic Garden in Sydney – Australia’s oldest scientific institution and a beloved public garden in the heart of the city.\\n\\nWith an outdated CMS, deteriorating UX, and poor accessibility, the Garden's online presence no longer reflected its importance. Marzipan Media, prequalified under the NSW SCM2701 scheme, stepped in to deliver a complete overhaul.\\n\\nFor over six years, we’ve supported the Garden across social media, SEO, video production, and digital strategy. In 2017, we worked in-house to lead a full website redevelopment across the Garden and its four sister sites, managing everything from initial brief creation and tendering, to supplier coordination and go-live.\\n\\nThe result was a content-first, image-led website rich with accessibility, mobile responsiveness, and storytelling tools – the first time in the Garden’s 200-year history that its digital presence truly matched the magic of its physical space.\\n\\nOur content creation strategy included photography, drone footage, and video production, with work still seen throughout the Garden today. Highlights include video showcases of the Vivid Event, the Calyx building, and the passionate staff behind the scenes.\\n\\nOur journey continues with CRM integrations (Salesforce), team training, and ongoing digital strategy – helping the Garden bloom online just as beautifully as it does in real life.",
   "videos": [
-    "https://youtu.be/wZihT4gxvkA",
-    "https://youtu.be/ezuDrxkn2C0"// made with marzipan
+    {
+      url: "https://youtu.be/wZihT4gxvkA",
+      title: "Royal Botanic Garden Sydney - A Living Archive",
+      description: "Exploring Australia's oldest scientific institution"
+    },
+    {
+      url: "https://youtu.be/ezuDrxkn2C0",
+      title: "Behind the Scenes at the Garden",
+      description: "Meet the passionate staff preserving our botanical heritage"
+    }
   ]
 },
 {
