@@ -60,8 +60,8 @@ export interface CarbonResult {
   timestamp: number;
 }
 
-// Replace with your actual WordPress site URL
-const API_URL = 'https://marzipan.com.au/wp-json/wp/v2/posts';
+// Update the API URL to the correct WordPress instance
+const API_URL = 'https://blog.marzipan.com.au/wp-json/wp/v2';
 
 // If you have WordPress REST API custom endpoints set up for emails
 // Replace with your actual endpoint
@@ -71,8 +71,8 @@ export const useFetchPosts = (page = 1, perPage = 3) => {
   return useQuery({
     queryKey: ['wordpressPosts', page, perPage],
     queryFn: async () => {
-      console.log(`Fetching WordPress posts: ${API_URL}?_embed&page=${page}&per_page=${perPage}`);
-      const response = await fetch(`${API_URL}?_embed&page=${page}&per_page=${perPage}`);
+      console.log(`Fetching WordPress posts: ${API_URL}/posts?_embed&page=${page}&per_page=${perPage}`);
+      const response = await fetch(`${API_URL}/posts?_embed&page=${page}&per_page=${perPage}`);
       
       if (!response.ok) {
         throw new Error(`WordPress API error: ${response.status}`);
@@ -206,7 +206,7 @@ export const useFetchPostWithSeo = (postId: number) => {
   return useQuery({
     queryKey: ['wordpressPost', postId],
     queryFn: async () => {
-      const response = await fetch(`${API_URL}/${postId}?_embed&_fields=id,title,content,excerpt,date,yoast_head_json`);
+      const response = await fetch(`${API_URL}/posts/${postId}?_embed&_fields=id,title,content,excerpt,date,yoast_head_json`);
       
       if (!response.ok) {
         throw new Error(`WordPress API error: ${response.status}`);

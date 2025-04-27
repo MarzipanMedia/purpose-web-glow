@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
@@ -105,7 +104,7 @@ const BlogPreview: React.FC = () => {
                     to={`/blog/${post.id}`} 
                     className="inline-flex items-center gap-1 text-brandRed font-medium transition-all hover:gap-2"
                   >
-                    Read Article <ArrowRight className="h-4 w-4 transition-all" />
+                    Read Article <ArrowRight className="h-4 w-4" />
                   </Link>
                 </CardContent>
               </Card>

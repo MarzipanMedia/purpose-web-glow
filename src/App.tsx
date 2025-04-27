@@ -27,6 +27,7 @@ import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import BenAdams from "./pages/BenAdams";
 import AlwaysWas from "./pages/AlwaysWas";
+import BlogPost from "./components/blog/BlogPost";
 
 const queryClient = new QueryClient();
 
@@ -62,8 +63,8 @@ const App = () => (
               <Route path="/projects" element={<PageTransition><Projects /></PageTransition>} />
               <Route path="/projects/:slug" element={<PageTransition><ProjectDetail /></PageTransition>} />
               <Route path="/about" element={<PageTransition><About /></PageTransition>} />
-              <Route path="/blog" element={<PageTransition><Blog /></PageTransition>} />
-              <Route path="/wordpress-blog" element={<PageTransition><BlogWithWordPress /></PageTransition>} />
+              <Route path="/blog" element={<PageTransition><BlogWithWordPress /></PageTransition>} />
+              <Route path="/blog/:id" element={<PageTransition><BlogPost /></PageTransition>} />
               <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
               <Route path="/website-carbon" element={<PageTransition><WebsiteCarbon /></PageTransition>} />
               <Route path="/resources" element={<PageTransition><Resources /></PageTransition>} />
