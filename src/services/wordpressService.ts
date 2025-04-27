@@ -6,6 +6,9 @@ export interface WordPressPost {
   title: {
     rendered: string;
   };
+  content: {
+    rendered: string;
+  };
   excerpt: {
     rendered: string;
   };
@@ -14,6 +17,11 @@ export interface WordPressPost {
     'wp:featuredmedia'?: Array<{
       source_url: string;
     }>;
+    'wp:term'?: Array<Array<{
+      id: number;
+      name: string;
+      slug: string;
+    }>>;
     author?: Array<{
       name: string;
     }>;
