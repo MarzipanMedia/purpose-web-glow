@@ -7,7 +7,8 @@ import { useFetchPosts } from '@/services/wordpressService';
 import { format } from 'date-fns';
 
 const BlogPreview: React.FC = () => {
-  const { data: postsData, isLoading, error } = useFetchPosts(3);
+  // Changed from fetching page 3 to page 1 to get the most recent posts
+  const { data: postsData, isLoading, error } = useFetchPosts(1, 3);
 
   const getBackgroundColor = (index: number) => {
     const colors = ["#FEF7CD", "#F2FCE2", "#D3E4FD"];
