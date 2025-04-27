@@ -9,7 +9,7 @@ interface LogoProps {
 
 const Logo = ({ variant = 'default', className = '' }: LogoProps) => {
   const logoSrc = variant === 'default' 
-    ? '/Marzipan-Logo.png' 
+    ? '/Marzipan-Logo..WEBP' 
     : '/Marzipan-Logo-Rev.png';
   
   return (

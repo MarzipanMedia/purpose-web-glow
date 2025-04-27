@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
@@ -14,7 +13,7 @@ interface MetaHeadProps {
 const MetaHead = ({
   title,
   description,
-  image = '/Marzipan-Logo.png',
+  image = '/Marzipan-Logo..WEBP',
   type = 'website',
   url,
   canonicalUrl,
@@ -31,7 +30,7 @@ const MetaHead = ({
     "@type": "Organization",
     "name": "Marzipan Media",
     "url": "https://marzipan.com.au",
-    "logo": "/Marzipan-Logo.png",
+    "logo": "/Marzipan-Logo..WEBP",
     "sameAs": [
       "https://www.instagram.com/marzipanmedia",
       "https://linkedin.com/company/18211194"
