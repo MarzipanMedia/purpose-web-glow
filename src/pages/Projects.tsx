@@ -14,7 +14,7 @@ const Projects = () => {
     <div className="min-h-screen flex flex-col">
       <MetaHead 
         title="Our Projects"
-        description="Explore our portfolio of purpose-driven brands we've helped thrive online with sustainable web design and ethical SEO strategies."
+        description="Explore our portfolio of purpose-driven brands we've helped shine brighter online with sustainable web design, targeted online ads and ethical SEO strategies."
       />
       
       <Header />
