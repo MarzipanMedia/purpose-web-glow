@@ -41,7 +41,8 @@ export const projects: ProjectData[] = [
       {
         url: "https://vimeo.com/609537392",
         title: "Sydney Jewish Museum - Stories of Hope",
-        description: "Sharing stories of courage and survival"
+        description: "Sharing stories of courage and survival",
+        orientation?: 'portrait';
       },
       {
         url: "https://vimeo.com/577042403",
@@ -117,6 +118,7 @@ export const projects: ProjectData[] = [
 },
 {
   "title": "Willow – A Safe, Fast, and Sustainable Website for Women in Crisis",
+   imageUrl: "/willow-womens-sustainable-website.webp", 
   "category": "Social Impact",
   "description": "Mobile-first website providing legal info for women facing crisis — fast, safe, and discreet.",
   "features": [
