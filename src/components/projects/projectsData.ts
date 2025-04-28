@@ -59,6 +59,71 @@ export const projects: ProjectData[] = [
     ]
   },
   {
+    title: "Willow – A Safe, Fast, and Sustainable Website for Women in Crisis",
+    imageUrl: "/willow-womens-sustainable-website.webp",
+    category: "Social Impact",
+    description: "Mobile-first website providing legal info for women facing crisis — fast, safe, and discreet.",
+    features: [
+      "0.46g CO₂ per View",
+      "Safe Exit & History Clearing",
+      "Mobile-First Design",
+      "Low Literacy UX",
+      "Trauma-Aware UI"
+    ],
+    color: "bg-[#564872]",
+    textColor: "text-white",
+    slug: "willow",
+    client: "Women's Legal Service NSW",
+    services: [
+      "Web Design",
+      "UX/UI Strategy",
+      "Sustainable Development",
+      "Accessibility Design",
+      "Digital Strategy"
+    ],
+    longDescription: "Willow.org.au is one of Marzipan Media's most meaningful digital projects — a mobile-first microsite designed to provide legal information for women escaping violence or facing crisis.\n\nThe Challenge\n\nWomen facing crisis situations often need quick, discreet access to legal resources. Many have limited digital access, low literacy levels, or restricted internet freedom. The challenge was to create a website that would be both accessible and secure for users in vulnerable situations.\n\nOur Solution\n\nCommissioned by Women's Legal Service NSW and funded through state grants and community partnerships, we developed Willow as a discreet and accessible WordPress site.\n\nKey Features:\n\n• Safe Exit buttons for covert browsing\n• Automatic browser clearing to protect user history\n• Ultra-lightweight design to prioritise speed and safety\n• Mobile-first architecture for accessibility\n• Low-bandwidth optimization for 3G connections\n\nDesign Approach\n\nCollaboratively designed by women, the site's visual language draws inspiration from the resilience and flexibility of the willow tree. This brings a balance of softness and strength to difficult content, creating an interface that is both calming and clear.\n\nTechnical Implementation\n\nFrom the beginning, Willow was engineered for real-world conditions:\n\n• Optimized for slow networks and shared devices\n• Built for urgent, time-sensitive access\n• Designed with privacy and security in mind\n• Developed for maximum compatibility\n\nEnvironmental Impact\n\nWillow is not only a lifeline — it's a model of Sustainable Web Design:\n\n• Emits just 0.46g of CO₂ per page view\n• Cleaner than 50% of global websites\n• Uses lightweight design principles\n• Minimizes script usage\n• Implements optimized assets\n\nThis makes it an ethical choice in both form and function, serving its social mission while minimizing environmental impact.",
+    videos: []
+  },
+  {
+  "title": "Popology – A Bold Website That Balances Beauty, Speed, and Sustainability",
+  "category": "Creative Agency",
+  "description": "High-performance website build for experiential agency Popology, blending stunning design with low carbon impact.",
+  "features": [
+    "Ultra-Fast Load Speeds",
+    "Low Carbon Footprint",
+    "Dynamic Project Showcases",
+    "Sustainable Development",
+    "Interactive Page Transitions"
+  ],
+  "color": "bg-[#AE2012]",
+  "textColor": "text-white",
+  "slug": "popology",
+  "client": "Popology",
+  "services": [
+    "Web Development",
+    "Performance Optimisation",
+    "Sustainable Web Design",
+    "Technical Consulting"
+  ],
+  "longDescription": "When experiential agency Popology needed a high-impact website to match their creative edge, they turned to longtime collaborators Marzipan Media to bring the vision to life — merging stunning design with world-class performance.\n\nTogether, we created popology.com.au — a website that loads fast, looks phenomenal, and reflects both agencies’ shared values of innovation and sustainability.\n\nPopology led the creative direction — crafting a playful, immersive design that captures the energy of their brand experiences. Marzipan took that concept and brought it to life through a modern, ultra-lightweight build designed for speed and user engagement.\n\nFrom page transitions to dynamic project showcases, the result is an interactive site that invites exploration — with lightning-fast load times and near-invisible code.\n\nThis project wasn’t just about performance — it was about impact. The site was built using sustainable web development practices that reduce carbon emissions with every visit. It proves you don’t have to sacrifice creativity to be climate-conscious.\n\nBuilt on cutting-edge tech, optimised for mobile, and incredibly lightweight, it’s a model for how sustainable sites should be built — beautiful, efficient, and future-ready.",
+  "videos": []
+},
+  {
+    title: "Toasty",
+    imageUrl: "/toasty-seo-support.png",
+    category: "Outdoor Apparel",
+    description: "SEO optimisation and performance improvements for a small business specialising in weatherproof jackets, boosting their visibility and online presence.",
+    features: ["Mobile Site Speed Improvement", "Domain Authority Growth", "Keyword Ranking Boost", "SEO Score Enhancement", "Checkout Process Optimisation"],
+    color: "bg-[#E67E22]",
+    textColor: "text-white",
+    slug: "toasty",
+    client: "Toasty",
+    services: ["SEO Optimisation", "Performance Enhancement", "Digital Marketing"],
+    date: "Nov 2024",
+    tags: ["SEO", "Digital Marketing", "Small Business"],
+    longDescription: "Small businesses are the backbone of innovation, but standing out in today's competitive digital space can be a challenge. SEO for small businesses is crucial. At Marzipan Media, we specialise in helping purpose-driven brands like Toasty, creators of the Ultimate Weatherproof Jacket, achieve their digital goals through strategic SEO.\n\nHere's how we elevated Toasty's online presence and why maintaining SEO is essential for small businesses.\n\nThe Challenge\n\nThis was quite a personal story with Toasty, they had a fantastic product – a jacket designed to withstand the harshest outdoor conditions – but when our Marzipan founder, Ben tried to purchase one online he noticed the website may be holding them back from a speedy check out process. Not only that but their digital visibility was limiting their reach. Like many new businesses with freshly launched websites, Toasty was starting from ground zero with their SEO, and their mobile site performance needed significant improvement to compete in today's mobile-first world.\n\nKey areas of focus included:\n\n- Improving mobile site speed to enhance user experience.\n- Building domain authority to establish trust and visibility.\n- Increasing rankings for high-value keywords and phrases.\n- Ironing out checkout process and email deliverability.\n- Boosting their overall SEO score to improve discoverability.\n\nOur SEO Results\n\nOver the course of the SEO sprint, we delivered tangible results that positioned Toasty for long-term success:\n\n### Mobile Site Speed\nWe improved their mobile site speed by 30%, ensuring users could navigate their site quickly and efficiently – a crucial factor for both user satisfaction and Google rankings.\n\n### Domain Authority\nWe increased Toasty's domain authority from 1 to 8, laying the foundation for better rankings and greater trust from search engines.\n\n### Keyword Rankings\nBy optimizing content and targeting strategic keywords, we lifted a large number of key phrases an average of 12 places in search engine rankings. Now, adventurers searching for durable weatherproof jackets are more likely to find Toasty.\n\n### Overall SEO Score\nUsing tools like SEOability, we took their SEO score from 59 to 82, a significant leap that reflects their improved optimisation and readiness to compete in the market. Many of these tools are free and can be a great help to your SEO for small businesses.\n\nWhy SEO Is Essential for Small Businesses\n\nOur work with Toasty underscores the importance of ongoing SEO for small businesses. Here's why it matters:\n\n### Visibility and Discoverability\nRanking higher on search engines means being seen by the right people at the right time. For Toasty, this means outdoor enthusiasts searching for durable, weatherproof jackets now find them more easily.\n\n### Building Credibility\nSEO isn't just about rankings – it's about building trust. A strong domain authority signals to customers that Toasty is a reliable, established brand in the outdoor gear market.\n\n### Long-Term Benefits\nUnlike short-term advertising campaigns, SEO for small businesses offers sustainable growth. The work we've done with Toasty will continue to pay dividends as they expand their reach.\n\n### Improved User Experience\nEnhancing mobile site speed and optimising the site layout not only improves rankings but also keeps users engaged, leading to higher conversion rates.\n\nA Jacket Worth Discovering\n\nWith their new and improved SEO, more adventurers can now discover Toasty's Ultimate Weatherproof Jacket – a game-changer for anyone seeking reliable, stylish gear for the great outdoors. Whether you're hiking in unpredictable weather or braving the elements, Toasty's jackets ensure you stay dry, warm, and ready for your next adventure.\n\nWe took out Toasty jackets camping on the south coast through a chilly autumnal weekend and loved them. Living up to their name keeping us warm in the cold evenings and tasty dry after our early morning swims. It truly was a pleasure getting to know the website and the product so well. We hope this small SEO sprint helps lift their reach.\n\nThe Takeaway\n\nOur partnership with Toasty demonstrates the power of a well-executed SEO strategy. From technical improvements to keyword optimisation, every step we took was designed to position them as leaders in their industry. And while the results speak for themselves, this is only the beginning of Toasty's journey to becoming a household name in outdoor gear."
+  },
+  {
     title: "Jarli – Reach for the stars",
     imageUrl: "/jarli-reach-stars-marzipana.png",
     category: "Indigenous Animation",
@@ -104,7 +169,7 @@ export const projects: ProjectData[] = [
     "SEO",
     "Stakeholder Engagement"
   ],
-  "longDescription": "It was an honour to lead the digital transformation of the Royal Botanic Garden in Sydney – Australia’s oldest scientific institution and a beloved public garden in the heart of the city.\\n\\nWith an outdated CMS, deteriorating UX, and poor accessibility, the Garden's online presence no longer reflected its importance. Marzipan Media, prequalified under the NSW SCM2701 scheme, stepped in to deliver a complete overhaul.\\n\\nFor over six years, we’ve supported the Garden across social media, SEO, video production, and digital strategy. In 2017, we worked in-house to lead a full website redevelopment across the Garden and its four sister sites, managing everything from initial brief creation and tendering, to supplier coordination and go-live.\\n\\nThe result was a content-first, image-led website rich with accessibility, mobile responsiveness, and storytelling tools – the first time in the Garden’s 200-year history that its digital presence truly matched the magic of its physical space.\\n\\nOur content creation strategy included photography, drone footage, and video production, with work still seen throughout the Garden today. Highlights include video showcases of the Vivid Event, the Calyx building, and the passionate staff behind the scenes.\\n\\nOur journey continues with CRM integrations (Salesforce), team training, and ongoing digital strategy – helping the Garden bloom online just as beautifully as it does in real life.",
+  "longDescription": "It was an honour to lead the digital transformation of the Royal Botanic Garden in Sydney – Australia’s oldest scientific institution and a beloved public garden in the heart of the city.\n\nWith an outdated CMS, deteriorating UX, and poor accessibility, the Garden's online presence no longer reflected its importance. Marzipan Media, prequalified under the NSW SCM2701 scheme, stepped in to deliver a complete overhaul.\n\nFor over six years, we’ve supported the Garden across social media, SEO, video production, and digital strategy. In 2017, we worked in-house to lead a full website redevelopment across the Garden and its four sister sites, managing everything from initial brief creation and tendering, to supplier coordination and go-live.\n\nThe result was a content-first, image-led website rich with accessibility, mobile responsiveness, and storytelling tools – the first time in the Garden’s 200-year history that its digital presence truly matched the magic of its physical space.\n\nOur content creation strategy included photography, drone footage, and video production, with work still seen throughout the Garden today. Highlights include video showcases of the Vivid Event, the Calyx building, and the passionate staff behind the scenes.\n\nOur journey continues with CRM integrations (Salesforce), team training, and ongoing digital strategy – helping the Garden bloom online just as beautifully as it does in real life.",
   "videos": [
     {
       url: "https://youtu.be/wZihT4gxvkA",
@@ -117,72 +182,7 @@ export const projects: ProjectData[] = [
       description: "Meet the passionate staff preserving our botanical heritage"
     }
   ]
-},
-{
-  "title": "Willow – A Safe, Fast, and Sustainable Website for Women in Crisis",
-  "imageUrl": "/willow-womens-sustainable-website.webp",
-  "category": "Social Impact",
-  "description": "Mobile-first website providing legal info for women facing crisis — fast, safe, and discreet.",
-  "features": [
-    "0.46g CO₂ per View",
-    "Safe Exit & History Clearing",
-    "Mobile-First Design",
-    "Low Literacy UX",
-    "Trauma-Aware UI"
-  ],
-  "color": "bg-[#564872]",
-  "textColor": "text-white",
-  "slug": "willow",
-  "client": "Women's Legal Service NSW",
-  "services": [
-    "Web Design",
-    "UX/UI Strategy",
-    "Sustainable Development",
-    "Accessibility Design",
-    "Digital Strategy"
-  ],
-  "longDescription": "## Project Overview\n\nWillow.org.au is one of Marzipan Media's most meaningful digital projects — a mobile-first microsite designed to provide legal information for women escaping violence or facing crisis.\n\n## The Challenge\n\nWomen facing crisis situations often need quick, discreet access to legal resources. Many have limited digital access, low literacy levels, or restricted internet freedom. The challenge was to create a website that would be both accessible and secure for users in vulnerable situations.\n\n## Our Solution\n\nCommissioned by Women's Legal Service NSW and funded through state grants and community partnerships, we developed Willow as a discreet and accessible WordPress site.\n\n### Key Features\n\n- Safe Exit buttons for covert browsing\n- Automatic browser clearing to protect user history\n- Ultra-lightweight design to prioritise speed and safety\n- Mobile-first architecture for accessibility\n- Low-bandwidth optimization for 3G connections\n\n## Design Approach\n\nCollaboratively designed by women, the site's visual language draws inspiration from the resilience and flexibility of the willow tree. This brings a balance of softness and strength to difficult content, creating an interface that is both calming and clear.\n\n## Technical Implementation\n\nFrom the beginning, Willow was engineered for real-world conditions:\n\n- Optimized for slow networks and shared devices\n- Built for urgent, time-sensitive access\n- Designed with privacy and security in mind\n- Developed for maximum compatibility\n\n## Environmental Impact\n\nWillow is not only a lifeline — it's a model of Sustainable Web Design:\n\n- Emits just 0.46g of CO₂ per page view\n- Cleaner than 50% of global websites\n- Uses lightweight design principles\n- Minimizes script usage\n- Implements optimized assets\n\nThis makes it an ethical choice in both form and function, serving its social mission while minimizing environmental impact.",
-  "videos": []
-},
-  {
-  "title": "Popology – A Bold Website That Balances Beauty, Speed, and Sustainability",
-  "category": "Creative Agency",
-  "description": "High-performance website build for experiential agency Popology, blending stunning design with low carbon impact.",
-  "features": [
-    "Ultra-Fast Load Speeds",
-    "Low Carbon Footprint",
-    "Dynamic Project Showcases",
-    "Sustainable Development",
-    "Interactive Page Transitions"
-  ],
-  "color": "bg-[#AE2012]",
-  "textColor": "text-white",
-  "slug": "popology",
-  "client": "Popology",
-  "services": [
-    "Web Development",
-    "Performance Optimisation",
-    "Sustainable Web Design",
-    "Technical Consulting"
-  ],
-  "longDescription": "When experiential agency Popology needed a high-impact website to match their creative edge, they turned to longtime collaborators Marzipan Media to bring the vision to life — merging stunning design with world-class performance.\\n\\nTogether, we created popology.com.au — a website that loads fast, looks phenomenal, and reflects both agencies’ shared values of innovation and sustainability.\\n\\nPopology led the creative direction — crafting a playful, immersive design that captures the energy of their brand experiences. Marzipan took that concept and brought it to life through a modern, ultra-lightweight build designed for speed and user engagement.\\n\\nFrom page transitions to dynamic project showcases, the result is an interactive site that invites exploration — with lightning-fast load times and near-invisible code.\\n\\nThis project wasn’t just about performance — it was about impact. The site was built using sustainable web development practices that reduce carbon emissions with every visit. It proves you don’t have to sacrifice creativity to be climate-conscious.\\n\\nBuilt on cutting-edge tech, optimised for mobile, and incredibly lightweight, it’s a model for how sustainable sites should be built — beautiful, efficient, and future-ready.",
-  "videos": []
-},
-  {
-    title: "Toasty",
-    imageUrl: "/toasty-seo-support.png",
-    category: "Outdoor Apparel",
-    description: "SEO optimisation and performance improvements for a small business specialising in weatherproof jackets, boosting their visibility and online presence.",
-    features: ["Mobile Site Speed Improvement", "Domain Authority Growth", "Keyword Ranking Boost", "SEO Score Enhancement", "Checkout Process Optimisation"],
-    color: "bg-[#E67E22]",
-    textColor: "text-white",
-    slug: "toasty",
-    client: "Toasty",
-    services: ["SEO Optimisation", "Performance Enhancement", "Digital Marketing"],
-    date: "Nov 2024",
-    tags: ["SEO", "Digital Marketing", "Small Business"],
-    longDescription: "Small businesses are the backbone of innovation, but standing out in today's competitive digital space can be a challenge. SEO for small businesses is crucial. At Marzipan Media, we specialise in helping purpose-driven brands like Toasty, creators of the Ultimate Weatherproof Jacket, achieve their digital goals through strategic SEO.\n\nHere's how we elevated Toasty's online presence and why maintaining SEO is essential for small businesses.\n\n## The Challenge\n\nThis was quite a personal story with Toasty, they had a fantastic product – a jacket designed to withstand the harshest outdoor conditions – but when our Marzipan founder, Ben tried to purchase one online he noticed the website may be holding them back from a speedy check out process. Not only that but their digital visibility was limiting their reach. Like many new businesses with freshly launched websites, Toasty was starting from ground zero with their SEO, and their mobile site performance needed significant improvement to compete in today's mobile-first world.\n\nKey areas of focus included:\n\n- Improving mobile site speed to enhance user experience.\n- Building domain authority to establish trust and visibility.\n- Increasing rankings for high-value keywords and phrases.\n- Ironing out checkout process and email deliverability.\n- Boosting their overall SEO score to improve discoverability.\n\n## Our SEO Results\n\nOver the course of the SEO sprint, we delivered tangible results that positioned Toasty for long-term success:\n\n### Mobile Site Speed\nWe improved their mobile site speed by 30%, ensuring users could navigate their site quickly and efficiently – a crucial factor for both user satisfaction and Google rankings.\n\n### Domain Authority\nWe increased Toasty's domain authority from 1 to 8, laying the foundation for better rankings and greater trust from search engines.\n\n### Keyword Rankings\nBy optimizing content and targeting strategic keywords, we lifted a large number of key phrases an average of 12 places in search engine rankings. Now, adventurers searching for durable weatherproof jackets are more likely to find Toasty.\n\n### Overall SEO Score\nUsing tools like SEOability, we took their SEO score from 59 to 82, a significant leap that reflects their improved optimisation and readiness to compete in the market. Many of these tools are free and can be a great help to your SEO for small businesses.\n\n## Why SEO Is Essential for Small Businesses\n\nOur work with Toasty underscores the importance of ongoing SEO for small businesses. Here's why it matters:\n\n### Visibility and Discoverability\nRanking higher on search engines means being seen by the right people at the right time. For Toasty, this means outdoor enthusiasts searching for durable, weatherproof jackets now find them more easily.\n\n### Building Credibility\nSEO isn't just about rankings – it's about building trust. A strong domain authority signals to customers that Toasty is a reliable, established brand in the outdoor gear market.\n\n### Long-Term Benefits\nUnlike short-term advertising campaigns, SEO for small businesses offers sustainable growth. The work we've done with Toasty will continue to pay dividends as they expand their reach.\n\n### Improved User Experience\nEnhancing mobile site speed and optimising the site layout not only improves rankings but also keeps users engaged, leading to higher conversion rates.\n\n## A Jacket Worth Discovering\n\nWith their new and improved SEO, more adventurers can now discover Toasty's Ultimate Weatherproof Jacket – a game-changer for anyone seeking reliable, stylish gear for the great outdoors. Whether you're hiking in unpredictable weather or braving the elements, Toasty's jackets ensure you stay dry, warm, and ready for your next adventure.\n\nWe took out Toasty jackets camping on the south coast through a chilly autumnal weekend and loved them. Living up to their name keeping us warm in the cold evenings and tasty dry after our early morning swims. It truly was a pleasure getting to know the website and the product so well. We hope this small SEO sprint helps lift their reach.\n\n## The Takeaway\n\nOur partnership with Toasty demonstrates the power of a well-executed SEO strategy. From technical improvements to keyword optimisation, every step we took was designed to position them as leaders in their industry. And while the results speak for themselves, this is only the beginning of Toasty's journey to becoming a household name in outdoor gear."
-  }
+}
 ];
 
 export interface ProcessStep {
