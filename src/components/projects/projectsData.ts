@@ -42,7 +42,7 @@ export const projects: ProjectData[] = [
         url: "https://vimeo.com/609537392",
         title: "Sydney Jewish Museum - Stories of Hope",
         description: "Sharing stories of courage and survival",
-        orientation?: 'portrait';
+        orientation: 'portrait'
       },
       {
         url: "https://vimeo.com/577042403",
