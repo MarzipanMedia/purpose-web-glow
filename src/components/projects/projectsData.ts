@@ -121,68 +121,48 @@ export const projects: ProjectData[] = [
     services: ["SEO Optimisation", "Performance Enhancement", "Digital Marketing"],
     date: "Nov 2024",
     tags: ["SEO", "Digital Marketing", "Small Business"],
-    longDescription: "Small businesses are the backbone of innovation, but standing out in today's competitive digital space can be a challenge. SEO for small businesses is crucial. At Marzipan Media, we specialise in helping purpose-driven brands like Toasty, creators of the Ultimate Weatherproof Jacket, achieve their digital goals through strategic SEO.\n\nHere's how we elevated Toasty's online presence and why maintaining SEO is essential for small businesses.\n\nThe Challenge\n\nThis was quite a personal story with Toasty, they had a fantastic product – a jacket designed to withstand the harshest outdoor conditions – but when our Marzipan founder, Ben tried to purchase one online he noticed the website may be holding them back from a speedy check out process. Not only that but their digital visibility was limiting their reach. Like many new businesses with freshly launched websites, Toasty was starting from ground zero with their SEO, and their mobile site performance needed significant improvement to compete in today's mobile-first world.\n\nKey areas of focus included:\n\n- Improving mobile site speed to enhance user experience.\n- Building domain authority to establish trust and visibility.\n- Increasing rankings for high-value keywords and phrases.\n- Ironing out checkout process and email deliverability.\n- Boosting their overall SEO score to improve discoverability.\n\nOur SEO Results\n\nOver the course of the SEO sprint, we delivered tangible results that positioned Toasty for long-term success:\n\n### Mobile Site Speed\nWe improved their mobile site speed by 30%, ensuring users could navigate their site quickly and efficiently – a crucial factor for both user satisfaction and Google rankings.\n\n### Domain Authority\nWe increased Toasty's domain authority from 1 to 8, laying the foundation for better rankings and greater trust from search engines.\n\n### Keyword Rankings\nBy optimizing content and targeting strategic keywords, we lifted a large number of key phrases an average of 12 places in search engine rankings. Now, adventurers searching for durable weatherproof jackets are more likely to find Toasty.\n\n### Overall SEO Score\nUsing tools like SEOability, we took their SEO score from 59 to 82, a significant leap that reflects their improved optimisation and readiness to compete in the market. Many of these tools are free and can be a great help to your SEO for small businesses.\n\nWhy SEO Is Essential for Small Businesses\n\nOur work with Toasty underscores the importance of ongoing SEO for small businesses. Here's why it matters:\n\n### Visibility and Discoverability\nRanking higher on search engines means being seen by the right people at the right time. For Toasty, this means outdoor enthusiasts searching for durable, weatherproof jackets now find them more easily.\n\n### Building Credibility\nSEO isn't just about rankings – it's about building trust. A strong domain authority signals to customers that Toasty is a reliable, established brand in the outdoor gear market.\n\n### Long-Term Benefits\nUnlike short-term advertising campaigns, SEO for small businesses offers sustainable growth. The work we've done with Toasty will continue to pay dividends as they expand their reach.\n\n### Improved User Experience\nEnhancing mobile site speed and optimising the site layout not only improves rankings but also keeps users engaged, leading to higher conversion rates.\n\nA Jacket Worth Discovering\n\nWith their new and improved SEO, more adventurers can now discover Toasty's Ultimate Weatherproof Jacket – a game-changer for anyone seeking reliable, stylish gear for the great outdoors. Whether you're hiking in unpredictable weather or braving the elements, Toasty's jackets ensure you stay dry, warm, and ready for your next adventure.\n\nWe took out Toasty jackets camping on the south coast through a chilly autumnal weekend and loved them. Living up to their name keeping us warm in the cold evenings and tasty dry after our early morning swims. It truly was a pleasure getting to know the website and the product so well. We hope this small SEO sprint helps lift their reach.\n\nThe Takeaway\n\nOur partnership with Toasty demonstrates the power of a well-executed SEO strategy. From technical improvements to keyword optimisation, every step we took was designed to position them as leaders in their industry. And while the results speak for themselves, this is only the beginning of Toasty's journey to becoming a household name in outdoor gear."
+    longDescription: "Small businesses are the backbone of innovation, but standing out in today's competitive digital space can be a challenge. At Marzipan Media, we specialise in helping purpose-driven brands like Toasty, creators of the Ultimate Weatherproof Jacket, achieve their digital goals through strategic SEO.\n\nThe Challenge\n\nThis was quite a personal story with Toasty. They had a fantastic product – a jacket designed to withstand the harshest outdoor conditions – but when our Marzipan founder, Ben tried to purchase one online, he noticed the website was holding them back from delivering a smooth checkout process. Their digital visibility was also limiting their reach.\n\nLike many new businesses with freshly launched websites, Toasty was starting from ground zero with their SEO, and their mobile site performance needed significant improvement to compete in today's mobile-first world.\n\nOur Approach\n\nWe focused on several key areas to boost Toasty's online presence:\n\n• Mobile Site Speed: We improved their mobile site speed by 30%, ensuring users could navigate quickly and efficiently.\n\n• Domain Authority: We increased Toasty's domain authority from 1 to 8, laying the foundation for better rankings.\n\n• Keyword Rankings: By optimizing content and targeting strategic keywords, we lifted key phrases an average of 12 places in search rankings.\n\n• Overall SEO Score: Using industry-standard tools, we took their SEO score from 59 to 82, a significant leap that reflects their improved optimisation.\n\nReal Results\n\nThe impact of our work went beyond just numbers. More adventurers can now discover Toasty's Ultimate Weatherproof Jacket – a game-changer for anyone seeking reliable, stylish gear for the great outdoors.\n\nWe took the jackets camping on the south coast through a chilly autumnal weekend and loved them. Living up to their name, they kept us warm in the cold evenings and stayed dry after our early morning swims. It truly was a pleasure getting to know both the website and the product so well.\n\nA Partnership for Growth\n\nOur collaboration with Toasty demonstrates the power of a well-executed SEO strategy. From technical improvements to keyword optimisation, every step was designed to position them as leaders in their industry. And while the results speak for themselves, this is only the beginning of Toasty's journey to becoming a household name in outdoor gear.",
   },
   {
-    title: "Jarli – Reach for the stars",
-    imageUrl: "/jarli-reach-stars-marzipana.png",
-    category: "Indigenous Animation",
-    description: "Social media strategy and content creation for an award-winning animated film inspiring Indigenous children to explore STEM and space science.",
-    features: ["Social Media Assets", "Digital Content Creation", "Interactive AR Backgrounds", "Campaign Strategy", "Animated GIFs"],
-    color: "bg-[#27548E]",
+    title: "Royal Botanic Garden – A Living Digital Archive",
+    imageUrl: "/video-content-sydney-rbg-marzipan.png", 
+    category: "Cultural Institution",
+    description: "Website, video, and app creation for Australia's oldest scientific institution and public garden.",
+    features: [
+      "Website Redesign",
+      "Video Content Creation",
+      "Photography",
+      "Wayfinding App",
+      "Digital Strategy",
+      "Stakeholder Management"
+    ],
+    color: "bg-[#186074]",
     textColor: "text-white",
-    slug: "jarli",
-    client: "House of Kitch / Royal Australian Air Force",
-    services: ["Social Media Marketing", "Content Creation", "Digital Animation"],
-    longDescription: "It's not every day you get help on projects that lift you higher, but that's exactly what happened when the House of Kitch invited us to create social media assets for Jarli, an award-winning short film to inspire Indigenous school children to reach for the stars. Together we created digital content assets for Instagram, Facebook and Twitter for the launch of this beautiful animated film.\n\nJarli is a proud Aboriginal girl with a knack for building things, especially things that fly. Created by the Royal Australian Air Force and UTS_ALA to inspire our kids to study STEM subjects and perhaps one day join the RAAF. 'Jarli' is another animation gem that weaves visual and oral story elements to explore the dream of flight, indigenous astronomy, and the future of our planet and its people. Jarli, 16, lives with her family in a remote community in Australia. She might look small, but she asks big questions and has big ideas. She also has a knack for building things – especially things that fly – and wants to fly herself one day… maybe even into outer space. Jarli dreams of being the first person to travel to other worlds in our solar system.\n\nDirected by Simon Rippingale, the inspirational animated short is a collaboration with First Nations storytellers, the UTS Animal Logic Academy in collaboration with the Royal Australian Air Force and Like a Photon Creative. The goal was to inspire young people (particularly girls, especially indigenous kids) to reach for the stars and widen their eyes to possibilities opened up by STEM.\n\nA critical element for Australia to achieve its sovereign space ambitions is the development of a workforce with the necessary STEM skills. With the space industry tripling in size by 2030, engagement with school kids, and encouraging them to study STEM, needs to start now.\n\nA talented team of Indigenous creatives included co-director: Chantelle Murray, writers: Jonathan Bell & Andrew Dillon and voice actors: Madeleine Madden, Wayne Blair, Mark Coles Smith and Rahmah Bin Buyong. Simon Rippingale co-directed Jarli as part of his PHD thesis under Professor Andrew Johnston.\n\nWhile the Jarli film premiered at the Sydney Film Festival, Jarli was pre-screened to a very special audience of Aboriginal children from the Katherine community in outback Northern Territory on RAAF Base Tindal. Audience members were treated to a unique pop-up cinema experience in an open aircraft hangar and a view of the night-flying activity at Tindal.\n\nProject timings are always a curious thing, and this one landed just after a short stint of fostering by Marzipan cofounder and digital guy, Ben Adams who looked after two young aboriginal children. These kids had seen some of the worst things imaginable and yet were able to still see the joy and wonder of the world, without bitterness or judgement. There are so many systemic barriers in the way of closing the gap but we're certain projects born out of love, such as this one, may help pave the way. They loved watched Jarli and enjoyed our social media games, assets and creative that was created for the film.\n\nMarzipan have created a range of social media tiles for its full release, including animated gifs, interactive AR backgrounds for Instagram and more.\n\nNot ready to stay on the ground too long, Jarli hitched a ride to the International Space Station on the NASA SpaceX Falcon 9 CRS-24 mission during National Science Week 2022. Chief Defence Scientist, Professor Tanya Monro AC said Jarli struck a chord with all of us because of her resilience, creativity and ingenuity – the qualities the next generation of Australians need to harness to achieve extraordinary things.\n\n\"It is so inspiring for Australian children, particularly First Nations children, to see clever Australian inventions driving collaboration with the US Space Force and NASA… We can't confirm this but are certain the NASA folks would have loved playing with our Instagram AR tiles ; )\"",
+    slug: "royal-botanic-garden",
+    client: "Royal Botanic Garden Sydney",
+    services: [
+      "Web Design",
+      "Project Management",
+      "Digital Content Creation",
+      "Video Production",
+      "App Development",
+      "SEO",
+      "Stakeholder Engagement"
+    ],
+    longDescription: "It was an honour to lead the digital transformation of Australia's oldest scientific institution and one of Sydney's most beloved public spaces – the Royal Botanic Garden Sydney.\n\nThe Challenge\n\nThe Garden's online presence no longer reflected its significance as a world-class scientific and cultural institution. With an outdated CMS, deteriorating user experience, and poor accessibility, the digital infrastructure needed a complete overhaul.\n\nOur Comprehensive Solution\n\nAs a prequalified agency under the NSW SCM2701 scheme, we embarked on a multi-year partnership to revitalise the Garden's digital presence:\n\n• Full Website Redevelopment: Led the complete redesign across the Garden and its four sister sites\n• Strategic Leadership: Managed everything from initial brief creation to supplier coordination\n• Content Creation: Developed a rich library of photography, drone footage, and video content\n• Technical Integration: Implemented CRM solutions and provided comprehensive team training\n\nKey Achievements\n\n• Created the first truly accessible, mobile-responsive website in the Garden's 200-year history\n• Developed a content-first, image-led platform that showcases the Garden's beauty\n• Produced compelling video content still featured throughout the Garden today\n• Successfully integrated Salesforce CRM for improved visitor engagement\n\nHighlight Projects\n\n• The Calyx building launch campaign\n• Vivid Sydney event coverage\n• Behind-the-scenes documentary series featuring the Garden's passionate staff\n• Development of an intuitive wayfinding app for visitors\n\nOngoing Partnership\n\nFor over six years, we've continued to support the Garden across social media, SEO, video production, and digital strategy. Our work ensures that the Garden's digital presence blooms as beautifully as its physical space, connecting with visitors both online and in person.",
     videos: [
       {
-        url: "https://youtu.be/YoiijfjK-J8",
-        title: "Jarli - Reach for the Stars",
-        description: "Inspiring Indigenous children to explore STEM and space science"
+        url: "https://youtu.be/wZihT4gxvkA",
+        title: "Royal Botanic Garden Sydney - A Living Archive",
+        description: "Exploring Australia's oldest scientific institution"
+      },
+      {
+        url: "https://youtu.be/ezuDrxkn2C0",
+        title: "Behind the Scenes at the Garden",
+        description: "Meet the passionate staff preserving our botanical heritage"
       }
     ]
-  },
-  {
-  "title": "Royal Botanic Garden – A Living Digital Archive",
-   imageUrl: "/video-content-sydney-rbg-marzipan.png", 
-  "category": "Cultural Institution",
-  "description": "Website, video, and app creation for Australia’s oldest scientific institution and public garden.",
-  "features": [
-    "Website Redesign",
-    "Video Content Creation",
-    "Photography",
-    "Wayfinding App",
-    "Digital Strategy",
-    "Stakeholder Management"
-  ],
-  "color": "bg-[#186074]",
-  "textColor": "text-white",
-  "slug": "royal-botanic-garden",
-  "client": "Royal Botanic Garden Sydney",
-  "services": [
-    "Web Design",
-    "Project Management",
-    "Digital Content Creation",
-    "Video Production",
-    "App Development",
-    "SEO",
-    "Stakeholder Engagement"
-  ],
-  "longDescription": "It was an honour to lead the digital transformation of the Royal Botanic Garden in Sydney – Australia’s oldest scientific institution and a beloved public garden in the heart of the city.\n\nWith an outdated CMS, deteriorating UX, and poor accessibility, the Garden's online presence no longer reflected its importance. Marzipan Media, prequalified under the NSW SCM2701 scheme, stepped in to deliver a complete overhaul.\n\nFor over six years, we’ve supported the Garden across social media, SEO, video production, and digital strategy. In 2017, we worked in-house to lead a full website redevelopment across the Garden and its four sister sites, managing everything from initial brief creation and tendering, to supplier coordination and go-live.\n\nThe result was a content-first, image-led website rich with accessibility, mobile responsiveness, and storytelling tools – the first time in the Garden’s 200-year history that its digital presence truly matched the magic of its physical space.\n\nOur content creation strategy included photography, drone footage, and video production, with work still seen throughout the Garden today. Highlights include video showcases of the Vivid Event, the Calyx building, and the passionate staff behind the scenes.\n\nOur journey continues with CRM integrations (Salesforce), team training, and ongoing digital strategy – helping the Garden bloom online just as beautifully as it does in real life.",
-  "videos": [
-    {
-      url: "https://youtu.be/wZihT4gxvkA",
-      title: "Royal Botanic Garden Sydney - A Living Archive",
-      description: "Exploring Australia's oldest scientific institution"
-    },
-    {
-      url: "https://youtu.be/ezuDrxkn2C0",
-      title: "Behind the Scenes at the Garden",
-      description: "Meet the passionate staff preserving our botanical heritage"
-    }
-  ]
-}
+  }
 ];
 
 export interface ProcessStep {
