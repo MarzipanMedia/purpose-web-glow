@@ -47,13 +47,13 @@ export const projects: ProjectData[] = [
       {
         url: "https://vimeo.com/577042403",
         title: "Be a Mensch Campaign",
-        description: "Spreading kindness and understanding"
+        description: "Spreading kindness and understanding",
         orientation: 'portrait'
       },
       {
         url: "https://vimeo.com/609540655",
         title: "Holocaust Survivor Stories",
-        description: "Preserving memories for future generations"
+        description: "Preserving memories for future generations",
         orientation: 'portrait'
       }
     ]
