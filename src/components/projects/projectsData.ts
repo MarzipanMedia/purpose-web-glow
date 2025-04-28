@@ -120,7 +120,7 @@ export const projects: ProjectData[] = [
 },
 {
   "title": "Willow – A Safe, Fast, and Sustainable Website for Women in Crisis",
-   imageUrl: "/willow-womens-sustainable-website.webp", 
+  "imageUrl": "/willow-womens-sustainable-website.webp",
   "category": "Social Impact",
   "description": "Mobile-first website providing legal info for women facing crisis — fast, safe, and discreet.",
   "features": [
@@ -133,7 +133,7 @@ export const projects: ProjectData[] = [
   "color": "bg-[#564872]",
   "textColor": "text-white",
   "slug": "willow",
-  "client": "Women’s Legal Service NSW",
+  "client": "Women's Legal Service NSW",
   "services": [
     "Web Design",
     "UX/UI Strategy",
@@ -141,7 +141,7 @@ export const projects: ProjectData[] = [
     "Accessibility Design",
     "Digital Strategy"
   ],
-  "longDescription": "Willow.org.au is one of Marzipan Media’s most meaningful digital projects — a mobile-first microsite designed to provide legal information for women escaping violence or facing crisis.\\n\\nCommissioned by Women’s Legal Service NSW and funded through state grants and community partnerships, Willow is a discreet and accessible WordPress site that offers vital resources for women with low literacy, limited digital access, or restricted internet freedom.\\n\\nFrom the beginning, Willow was engineered for real-world conditions: slow networks, shared devices, and urgent moments. The site loads quickly — even on low-bandwidth 3G connections in rural NSW — and includes:\\n\\nSafe Exit buttons for covert browsing\\nAutomatic browser clearing to protect user history\\nUltra-lightweight design to prioritise speed and safety\\n\\nCollaboratively designed by women, the site’s visual language — inspired by the resilience and flexibility of the willow tree — brings softness and strength to difficult content. The interface is calming, while remaining clear and direct.\\n\\nWillow is not only a lifeline — it’s a model of Sustainable Web Design. Emitting just 0.46g of CO₂ per page view, it’s cleaner than over half of all websites globally. Lightweight design, reduced scripts, and optimised assets make it an ethical choice in both form and function.",
+  "longDescription": "## Project Overview\n\nWillow.org.au is one of Marzipan Media's most meaningful digital projects — a mobile-first microsite designed to provide legal information for women escaping violence or facing crisis.\n\n## The Challenge\n\nWomen facing crisis situations often need quick, discreet access to legal resources. Many have limited digital access, low literacy levels, or restricted internet freedom. The challenge was to create a website that would be both accessible and secure for users in vulnerable situations.\n\n## Our Solution\n\nCommissioned by Women's Legal Service NSW and funded through state grants and community partnerships, we developed Willow as a discreet and accessible WordPress site.\n\n### Key Features\n\n- Safe Exit buttons for covert browsing\n- Automatic browser clearing to protect user history\n- Ultra-lightweight design to prioritise speed and safety\n- Mobile-first architecture for accessibility\n- Low-bandwidth optimization for 3G connections\n\n## Design Approach\n\nCollaboratively designed by women, the site's visual language draws inspiration from the resilience and flexibility of the willow tree. This brings a balance of softness and strength to difficult content, creating an interface that is both calming and clear.\n\n## Technical Implementation\n\nFrom the beginning, Willow was engineered for real-world conditions:\n\n- Optimized for slow networks and shared devices\n- Built for urgent, time-sensitive access\n- Designed with privacy and security in mind\n- Developed for maximum compatibility\n\n## Environmental Impact\n\nWillow is not only a lifeline — it's a model of Sustainable Web Design:\n\n- Emits just 0.46g of CO₂ per page view\n- Cleaner than 50% of global websites\n- Uses lightweight design principles\n- Minimizes script usage\n- Implements optimized assets\n\nThis makes it an ethical choice in both form and function, serving its social mission while minimizing environmental impact.",
   "videos": []
 },
   {
