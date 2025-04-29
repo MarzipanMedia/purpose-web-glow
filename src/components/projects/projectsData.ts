@@ -146,7 +146,7 @@ export const projects: ProjectData[] = [
     "Sustainable Development",
     "Interactive Page Transitions"
   ],
-  "color": "bg-[#AE2012]",
+  "color": "bg-[#4569E6]",
   "textColor": "text-white",
   "slug": "popology",
   "client": "Popology",
