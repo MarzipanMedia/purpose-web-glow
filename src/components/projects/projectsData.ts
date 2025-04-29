@@ -199,7 +199,7 @@ export const processSteps: ProcessStep[] = [
   },
   {
     step: "06",
-    title: "Continuous Optimization",
+    title: "Continuous Optimisation",
     description: "Regular audits and improvements to maintain and enhance sustainability over time."
   }
 ];

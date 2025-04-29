@@ -13,7 +13,7 @@ const HeroSection = () => {
             Sustainable Digital Success Stories
           </h1>
           <p className="text-lg text-foreground/80">
-            Explore our portfolio of purpose-driven brands we've helped thrive online with sustainable web design and ethical SEO strategies.
+            Explore our diverse portfolio of purpose-driven brands we've helped thrive online with sustainable web design, ethical SEO strategies, and innovative digital marketing solutions tailored to each unique vision.
           </p>
         </div>
       </div>
