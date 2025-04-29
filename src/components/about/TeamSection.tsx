@@ -24,17 +24,17 @@ const TeamSection = () => {
       image: "/placeholder.svg",
       social: {
         linkedin: "https://linkedin.com/in/benadams",
-        email: "benadams@marzipan.com.au"
+        email: "ben@marzipan.com.au"
       }
     },
     {
       name: "Tran N",
       role: "Lead Developer",
-      bio: "Tran specializes in creating efficient, sustainable code that powers our digital solutions. With expertise in modern web technologies, Tran ensures our projects are built on solid technical foundations.",
+      bio: "Tran specialises in creating efficient, sustainable code that powers our digital solutions. With expertise in modern web technologies, Tran ensures our projects are built on solid technical foundations.",
       image: "/placeholder.svg",
       social: {
-        linkedin: "https://linkedin.com/in/trann",
-        email: "tran@marzipan.com.au"
+        behance: "https://www.behance.net/thisistrann",
+        email: "ben@marzipan.com.au"
       }
     }
   ];
