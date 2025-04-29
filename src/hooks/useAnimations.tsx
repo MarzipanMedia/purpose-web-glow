@@ -125,10 +125,11 @@ export const useGlowEffect = () => {
   };
 };
 
-// Enhanced staggered text animation with better timing control
+// Enhanced staggered text animation with better typing for headings
 export const useStaggeredText = (text: string, delay: number = 0.05) => {
   const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLElement>(null);
+  // Update the ref to explicitly use HTMLHeadingElement
+  const ref = useRef<HTMLHeadingElement>(null);
 
   const words = text.split(" ");
   

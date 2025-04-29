@@ -19,7 +19,7 @@ const CarbonHero: React.FC = () => {
 
   return (
     <div 
-      ref={glowRef as React.RefObject<HTMLDivElement>}
+      ref={glowRef}
       className="max-w-3xl mx-auto text-center animate-fade-in relative py-10"
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
@@ -42,7 +42,7 @@ const CarbonHero: React.FC = () => {
           <span className="text-sm font-medium">Free Tool</span>
         </div>
         <h1 
-          ref={headingRef as React.RefObject<HTMLHeadingElement>}
+          ref={headingRef}
           className="text-3xl md:text-5xl font-display font-bold mb-6 dark:text-white"
         >
           {renderHeadingWords()}
