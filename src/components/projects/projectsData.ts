@@ -130,12 +130,14 @@ export const projects: ProjectData[] = [
       "Accessibility Design",
       "Digital Strategy"
     ],
+    websiteUrl: "https://willow.org.au",
     longDescription: "Willow.org.au is one of Marzipan Media's most meaningful digital projects — a mobile-first microsite designed to provide legal information for women escaping violence or facing crisis.\n\nThe Challenge\n\nWomen facing crisis situations often need quick, discreet access to legal resources. Many have limited digital access, low literacy levels, or restricted internet freedom. The challenge was to create a website that would be both accessible and secure for users in vulnerable situations.\n\nOur Solution\n\nCommissioned by Women's Legal Service NSW and funded through state grants and community partnerships, we developed Willow as a discreet and accessible WordPress site.\n\nKey Features:\n\n• Safe Exit buttons for covert browsing\n• Automatic browser clearing to protect user history\n• Ultra-lightweight design to prioritise speed and safety\n• Mobile-first architecture for accessibility\n• Low-bandwidth optimization for 3G connections\n\nDesign Approach\n\nCollaboratively designed by women, the site's visual language draws inspiration from the resilience and flexibility of the willow tree. This brings a balance of softness and strength to difficult content, creating an interface that is both calming and clear.\n\nTechnical Implementation\n\nFrom the beginning, Willow was engineered for real-world conditions:\n\n• Optimized for slow networks and shared devices\n• Built for urgent, time-sensitive access\n• Designed with privacy and security in mind\n• Developed for maximum compatibility\n\nEnvironmental Impact\n\nWillow is not only a lifeline — it's a model of Sustainable Web Design:\n\n• Emits just 0.46g of CO₂ per page view\n• Cleaner than 50% of global websites\n• Uses lightweight design principles\n• Minimizes script usage\n• Implements optimized assets\n\nThis makes it an ethical choice in both form and function, serving its social mission while minimizing environmental impact.",
     videos: []
   },
   {
-  "title": "Popology – A Bold Website That Balances Beauty, Speed, and Sustainability",
-  "category": "Creative Agency",
+  "title": "Popology – A Bold Website That Pops with Speed and Sustainability",
+  "imageUrl": "/popology-sustainable-web.webp",
+    "category": "Creative Agency",
   "description": "High-performance website build for experiential agency Popology, blending stunning design with low carbon impact.",
   "features": [
     "Ultra-Fast Load Speeds",
@@ -154,6 +156,7 @@ export const projects: ProjectData[] = [
     "Sustainable Web Design",
     "Technical Consulting"
   ],
+    websiteUrl: "https://popology.com.au",
   "longDescription": "When experiential agency Popology needed a high-impact website to match their creative edge, they turned to longtime collaborators Marzipan Media to bring the vision to life — merging stunning design with world-class performance.\n\nTogether, we created popology.com.au — a website that loads fast, looks phenomenal, and reflects both agencies’ shared values of innovation and sustainability.\n\nPopology led the creative direction — crafting a playful, immersive design that captures the energy of their brand experiences. Marzipan took that concept and brought it to life through a modern, ultra-lightweight build designed for speed and user engagement.\n\nFrom page transitions to dynamic project showcases, the result is an interactive site that invites exploration — with lightning-fast load times and near-invisible code.\n\nThis project wasn’t just about performance — it was about impact. The site was built using sustainable web development practices that reduce carbon emissions with every visit. It proves you don’t have to sacrifice creativity to be climate-conscious.\n\nBuilt on cutting-edge tech, optimised for mobile, and incredibly lightweight, it’s a model for how sustainable sites should be built — beautiful, efficient, and future-ready.",
   "videos": []
 },
