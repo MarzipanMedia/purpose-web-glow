@@ -18,6 +18,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     document.head.appendChild(linkEl);
   });
+  
+  // Add Sydney location breadcrumb data for Google
+  const locationScript = document.createElement('script');
+  locationScript.type = 'application/ld+json';
+  locationScript.text = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Australia",
+        "item": "https://marzipan.com.au/australia"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "New South Wales",
+        "item": "https://marzipan.com.au/australia/nsw"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Sydney",
+        "item": "https://marzipan.com.au/australia/nsw/sydney"
+      }
+    ]
+  });
+  document.head.appendChild(locationScript);
 });
 
 // Add event listener to catch image loading errors
@@ -33,6 +62,22 @@ window.addEventListener('error', function(e) {
     }
   }
 }, true);
+
+// Track and report Sydney location visits for analytics
+const trackSydneyVisits = () => {
+  // Check if URL contains Sydney-related paths
+  const isSydneyPage = window.location.pathname.toLowerCase().includes('sydney');
+  
+  if (isSydneyPage && window.gtag) {
+    window.gtag('event', 'sydney_page_visit', {
+      'event_category': 'local_pages',
+      'event_label': window.location.pathname
+    });
+  }
+};
+
+// Set up history change listener
+window.addEventListener('popstate', trackSydneyVisits);
 
 // Optimize component mounting
 createRoot(document.getElementById("root")!).render(<App />);
