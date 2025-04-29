@@ -128,7 +128,6 @@ export const useGlowEffect = () => {
 // Enhanced staggered text animation with better typing for headings
 export const useStaggeredText = (text: string, delay: number = 0.05) => {
   const [isVisible, setIsVisible] = useState(false);
-  // Update the ref to explicitly use HTMLHeadingElement
   const ref = useRef<HTMLHeadingElement>(null);
 
   const words = text.split(" ");
@@ -164,10 +163,11 @@ export const useStaggeredText = (text: string, delay: number = 0.05) => {
           opacity: isVisible ? 1 : 0,
           transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
           transition: `opacity 0.5s ease, transform 0.5s ease`,
-          transitionDelay: `${delay * index}s`
+          transitionDelay: `${delay * index}s`,
+          marginRight: '0.25em' // Add space between words
         }}
       >
-        {word}{' '}
+        {word}
       </span>
     ));
   };

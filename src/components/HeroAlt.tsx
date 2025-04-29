@@ -61,12 +61,11 @@ const HeroAlt = () => {
             <div className="inline-flex items-center gap-2 bg-brandRed/10 text-brandRed px-4 py-2 rounded-full opacity-0 animate-text-reveal" style={{ animationDelay: "0.3s", animationFillMode: "forwards" }}>
               <Leaf className="h-4 w-4" /> Sustainable Web Design
             </div>
-            <h1 
-              ref={headingRef}
-              className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight"
-            >
-              {renderHeadingWords()}
-              <span className="text-brandRed block mt-2 opacity-0 animate-text-reveal" style={{ animationDelay: "1s", animationFillMode: "forwards" }}> purpose</span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight">
+              <div ref={headingRef}>
+                {renderHeadingWords()}
+              </div>
+              <span className="text-brandRed block mt-2 opacity-0 animate-text-reveal" style={{ animationDelay: "1s", animationFillMode: "forwards" }}>purpose</span>
             </h1>
             <p className="text-lg md:text-xl text-foreground/80 max-w-2xl opacity-0 animate-text-reveal" style={{ animationDelay: "0.7s", animationFillMode: "forwards" }}>
               Sustainable Web Design & AI-Driven SEO for Purpose-Driven Brands. 

@@ -15,7 +15,7 @@ const Hero = () => {
   } = useGlowEffect();
 
   const { ref: headingRef, renderWords: renderHeadingWords } = useStaggeredText(
-    "Ensuring your online presence is as powerful as your purpose", 
+    "Ensuring your online presence is as powerful as your", 
     0.06
   );
 
@@ -58,12 +58,11 @@ const Hero = () => {
       <div className="container-custom relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
           <div className="md:col-span-7 space-y-6 animate-fade-in" style={{ animationDelay: "0.1s" }}>
-            <h1 
-              ref={headingRef}
-              className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight"
-            >
-              {renderHeadingWords()}
-              <span className="gradient-text block mt-2"> purpose</span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight">
+              <div ref={headingRef}>
+                {renderHeadingWords()}
+              </div>
+              <span className="gradient-text block mt-2">purpose</span>
             </h1>
             <p className="text-lg md:text-xl text-foreground/80 max-w-2xl opacity-0 animate-text-reveal" style={{ animationDelay: "0.7s", animationFillMode: "forwards" }}>
               Your website should do more than just exist—it should drive traffic, increase conversions, and align with your values. We offer sustainable Web Design & AI-Driven SEO for Purpose-Driven Brands. 

@@ -61,11 +61,10 @@ const AiSeoHero = () => {
             <div className="inline-block bg-brandBlue/10 text-brandBlue px-4 py-1 rounded-full mb-4 opacity-0 animate-text-reveal" style={{ animationDelay: "0.3s", animationFillMode: "forwards" }}>
               AI-Driven Strategies
             </div>
-            <h1 
-              ref={headingRef}
-              className="text-4xl md:text-5xl font-display font-bold mb-6"
-            >
-              {renderHeadingWords()}
+            <h1 className="text-4xl md:text-5xl font-display font-bold mb-6">
+              <div ref={headingRef}>
+                {renderHeadingWords()}
+              </div>
             </h1>
             <p className="text-lg text-foreground/80 mb-8 opacity-0 animate-text-reveal" style={{ animationDelay: "0.7s", animationFillMode: "forwards" }}>
               Harness the power of AI to drive sustainable SEO strategies that align with your values and deliver long-term results.

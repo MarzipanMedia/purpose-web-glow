@@ -3,6 +3,18 @@ import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 
+// Add gtag type declaration
+declare global {
+  interface Window {
+    gtag: (
+      command: string, 
+      action: string, 
+      params?: Record<string, any>
+    ) => void;
+    dataLayer: any[];
+  }
+}
+
 // Preload critical resources
 document.addEventListener('DOMContentLoaded', () => {
   // Add preload links for critical fonts
