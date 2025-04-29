@@ -9,6 +9,7 @@ interface MetaHeadProps {
   type?: 'website' | 'article' | 'blog';
   url?: string;
   canonicalUrl?: string;
+  schemaData?: object[]; // Add support for custom schema.org JSON-LD
 }
 
 const MetaHead = ({
@@ -18,6 +19,7 @@ const MetaHead = ({
   type = 'website',
   url,
   canonicalUrl,
+  schemaData = [],
 }: MetaHeadProps) => {
   // Construct full title with brand name
   const fullTitle = `${title} | Marzipan Digital`;
@@ -47,6 +49,9 @@ const MetaHead = ({
     "description": description
   };
   
+  // Combine default schema with custom schema data
+  const allSchemaData = [organizationSchema, webPageSchema, ...schemaData];
+  
   return (
     <Helmet>
       {/* Basic meta tags */}
@@ -69,13 +74,17 @@ const MetaHead = ({
       <meta name="twitter:description" content={description} />
       {image && <meta name="twitter:image" content={image} />}
 
+      {/* Accessibility and mobile optimization */}
+      <html lang="en" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta name="theme-color" content="#186074" />
+
       {/* Schema.org JSON-LD */}
-      <script type="application/ld+json">
-        {JSON.stringify(organizationSchema)}
-      </script>
-      <script type="application/ld+json">
-        {JSON.stringify(webPageSchema)}
-      </script>
+      {allSchemaData.map((schema, index) => (
+        <script key={index} type="application/ld+json">
+          {JSON.stringify(schema)}
+        </script>
+      ))}
     </Helmet>
   );
 };

@@ -1,3 +1,5 @@
+import { LucideIcon, SearchCheck, LineChart, Palette, Code, Cloud, BarChart } from 'lucide-react';
+
 export interface ProjectData {
   title: string;
   category: string;
@@ -14,6 +16,7 @@ export interface ProjectData {
   videos?: (string | VideoData)[];
   date?: string;
   tags?: string[];
+  featured?: boolean;
 }
 
 interface VideoData {
@@ -22,6 +25,52 @@ interface VideoData {
   description?: string;
   orientation?: 'landscape' | 'portrait';
 }
+
+export interface ProcessStep {
+  step: string;
+  title: string;
+  description: string;
+  icon?: LucideIcon;
+}
+
+export const processSteps: ProcessStep[] = [
+  {
+    step: "01",
+    title: "Sustainability Audit",
+    description: "We assess your current digital footprint and identify opportunities for sustainable improvements.",
+    icon: SearchCheck
+  },
+  {
+    step: "02",
+    title: "Strategic Planning",
+    description: "We create a roadmap for your digital presence that balances business goals with environmental responsibility.",
+    icon: LineChart
+  },
+  {
+    step: "03",
+    title: "Eco-Friendly Design",
+    description: "Our designs minimize resource usage while creating beautiful, effective user experiences.",
+    icon: Palette
+  },
+  {
+    step: "04",
+    title: "Efficient Development",
+    description: "Clean, optimized code ensures your website runs as efficiently as possible.",
+    icon: Code
+  },
+  {
+    step: "05",
+    title: "Green Hosting Setup",
+    description: "We configure your site on renewable-powered hosting providers with optimal caching.",
+    icon: Cloud
+  },
+  {
+    step: "06",
+    title: "Continuous Optimisation",
+    description: "Regular audits and improvements to maintain and enhance sustainability over time.",
+    icon: BarChart
+  }
+];
 
 export const projects: ProjectData[] = [
   {
@@ -162,44 +211,5 @@ export const projects: ProjectData[] = [
         description: "Meet the passionate staff preserving our botanical heritage"
       }
     ]
-  }
-];
-
-export interface ProcessStep {
-  step: string;
-  title: string;
-  description: string;
-}
-
-export const processSteps: ProcessStep[] = [
-  {
-    step: "01",
-    title: "Sustainability Audit",
-    description: "We assess your current digital footprint and identify opportunities for sustainable improvements."
-  },
-  {
-    step: "02",
-    title: "Strategic Planning",
-    description: "We create a roadmap for your digital presence that balances business goals with environmental responsibility."
-  },
-  {
-    step: "03",
-    title: "Eco-Friendly Design",
-    description: "Our designs minimize resource usage while creating beautiful, effective user experiences."
-  },
-  {
-    step: "04",
-    title: "Efficient Development",
-    description: "Clean, optimized code ensures your website runs as efficiently as possible."
-  },
-  {
-    step: "05",
-    title: "Green Hosting Setup",
-    description: "We configure your site on renewable-powered hosting providers with optimal caching."
-  },
-  {
-    step: "06",
-    title: "Continuous Optimisation",
-    description: "Regular audits and improvements to maintain and enhance sustainability over time."
   }
 ];
