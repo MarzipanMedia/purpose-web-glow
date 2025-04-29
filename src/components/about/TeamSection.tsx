@@ -30,7 +30,7 @@ const TeamSection = () => {
     {
       name: "Tran N",
       role: "Lead Developer",
-      bio: "Tran specialises in creating efficient, sustainable code that powers our online solutions. With expertise in figma, WordPress and web development Tran ensures our projects are built on solid technical foundations.",
+      bio: "Tran specialises in creating efficient code that powers our online solutions. With expertise in Figma, WordPress and web development, Tran ensures our projects are built on solid technical foundations.",
       image: "/tran (1).png",
       social: {
         behance: "https://www.behance.net/thisistrann",
@@ -45,7 +45,7 @@ const TeamSection = () => {
         <div className="text-center mb-16">
           <h2 id="team-section-heading" className="text-3xl md:text-4xl font-display font-semibold mb-4">Meet Our Team</h2>
           <p className="text-foreground/70 max-w-3xl mx-auto text-lg">
-            We're a small but mighty team of digital specialists passionate about creating sustainable digital futures.
+            We're a small but mighty team of digital specialists passionate about creating sustainable digital content so you can shine brighter online.
           </p>
         </div>
         
