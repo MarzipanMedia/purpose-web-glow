@@ -21,7 +21,7 @@ const TeamSection = () => {
       name: "Ben Adams",
       role: "Co-Founder & Technical Director",
       bio: "A seasoned technologist with expertise in sustainable web development, Ben drives our technical innovation whilst ensuring our solutions remain environmentally conscious.",
-      image: "/placeholder.svg",
+      image: "/marzipan-ben.webp",
       social: {
         linkedin: "https://linkedin.com/in/benadams",
         email: "ben@marzipan.com.au"
