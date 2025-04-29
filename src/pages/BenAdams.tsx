@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -27,7 +28,9 @@ const BenAdams = () => {
     slug: "jarli",
     imageUrl: "/jarli-reach-stars-marzipana.png",
     client: "Jarli Education",
-    services: ["Web Development", "Educational Content", "Cultural Consulting"]
+    services: ["Web Development", "Educational Content", "Cultural Consulting"],
+    websiteUrl: "https://jarli.edu.au", // Added websiteUrl property
+    date: "2023-10-15" // Added date property
   };
 
   // Featured projects to display
