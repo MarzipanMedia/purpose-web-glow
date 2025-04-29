@@ -36,7 +36,7 @@ const TeamSection = () => {
       name: "Tran N",
       role: "Lead Developer",
       bio: "Tran specialises in creating efficient code that powers our online solutions for Sydney-based businesses. With expertise in Figma, WordPress and web development, Tran ensures our projects are built on solid technical foundations.",
-      image: "/tran (1).png",
+      image: "/tran-wp-web-developer.png",
       location: "Sydney, NSW",
       social: {
         behance: "https://www.behance.net/thisistrann",
