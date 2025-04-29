@@ -19,7 +19,7 @@ const ServicesHero = () => {
 
   return (
     <section 
-      ref={glowRef as React.RefObject<HTMLDivElement>}
+      ref={glowRef}
       className="py-20 bg-gradient-subtle relative overflow-hidden"
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
@@ -30,10 +30,10 @@ const ServicesHero = () => {
         className="absolute pointer-events-none bg-gradient-radial from-brandBlue/20 to-transparent rounded-full w-[400px] h-[400px] -z-0 blur-3xl transition-opacity duration-300"
         style={{
           opacity: isHovering ? 0.7 : 0,
-          left: `${glowPosition.x - 200}px`,
-          top: `${glowPosition.y - 200}px`,
+          left: `${glowPosition.x}px`,
+          top: `${glowPosition.y}px`,
           transform: 'translate(-50%, -50%)',
-          transition: 'opacity 0.3s ease'
+          transition: 'opacity 0.3s ease, left 0.5s ease-out, top 0.5s ease-out'
         }}
       />
 
@@ -47,7 +47,7 @@ const ServicesHero = () => {
             <span className="text-sm font-medium">Our Services</span>
           </div>
           <h1 
-            ref={headingRef as React.RefObject<HTMLHeadingElement>}
+            ref={headingRef}
             className="text-4xl md:text-5xl font-display font-bold mb-6"
           >
             {renderHeadingWords()}

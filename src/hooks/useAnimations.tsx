@@ -91,8 +91,7 @@ export const useMousePosition = (ref: React.RefObject<HTMLElement>) => {
   return position;
 };
 
-// New animation hooks for hero sections
-
+// Enhanced glow effect for hero sections
 export const useGlowEffect = () => {
   const glowRef = useRef<HTMLDivElement>(null);
   const [glowPosition, setGlowPosition] = useState({ x: 0, y: 0 });
@@ -126,11 +125,11 @@ export const useGlowEffect = () => {
   };
 };
 
+// Enhanced staggered text animation with better timing control
 export const useStaggeredText = (text: string, delay: number = 0.05) => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLElement>(null);
 
-  // Split text into words array for animation
   const words = text.split(" ");
   
   useEffect(() => {
@@ -175,10 +174,11 @@ export const useStaggeredText = (text: string, delay: number = 0.05) => {
   return { ref, renderWords, isVisible };
 };
 
-// Updated to use generic type for element references
-export const useMagneticButton = <T extends HTMLElement = HTMLElement>(intensity: number = 0.3) => {
+// Generic magnetic button effect for any element type
+export const useMagneticButton = <T extends HTMLElement>(intensity: number = 0.3) => {
   const buttonRef = useRef<T>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
     if (!buttonRef.current) return;
@@ -191,15 +191,18 @@ export const useMagneticButton = <T extends HTMLElement = HTMLElement>(intensity
       x: x * intensity,
       y: y * intensity
     });
+    setIsHovering(true);
   }, [intensity]);
 
   const handleMouseLeave = useCallback(() => {
     setPosition({ x: 0, y: 0 });
+    setIsHovering(false);
   }, []);
 
   return {
     buttonRef,
     position,
+    isHovering,
     handleMouseMove,
     handleMouseLeave
   };

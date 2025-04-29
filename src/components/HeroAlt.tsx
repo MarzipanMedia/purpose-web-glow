@@ -21,21 +21,23 @@ const HeroAlt = () => {
 
   const { 
     buttonRef: primaryBtnRef, 
-    position: primaryBtnPosition, 
+    position: primaryBtnPosition,
+    isHovering: isPrimaryBtnHovering,
     handleMouseMove: handlePrimaryBtnMouseMove, 
     handleMouseLeave: handlePrimaryBtnMouseLeave 
   } = useMagneticButton<HTMLAnchorElement>(0.2);
 
   const { 
     buttonRef: secondaryBtnRef, 
-    position: secondaryBtnPosition, 
+    position: secondaryBtnPosition,
+    isHovering: isSecondaryBtnHovering,
     handleMouseMove: handleSecondaryBtnMouseMove, 
     handleMouseLeave: handleSecondaryBtnMouseLeave 
   } = useMagneticButton<HTMLAnchorElement>(0.2);
 
   return (
     <section 
-      ref={glowRef as React.RefObject<HTMLDivElement>}
+      ref={glowRef}
       className="relative overflow-hidden py-20 md:py-28 bg-gradient-to-br from-white via-brandRed/5 to-brandRed/10"
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
@@ -46,10 +48,10 @@ const HeroAlt = () => {
         className="absolute pointer-events-none bg-gradient-radial from-brandRed/20 to-transparent rounded-full w-[500px] h-[500px] -z-0 blur-3xl transition-opacity duration-300"
         style={{
           opacity: isHovering ? 0.6 : 0,
-          left: `${glowPosition.x - 250}px`,
-          top: `${glowPosition.y - 250}px`,
+          left: `${glowPosition.x}px`,
+          top: `${glowPosition.y}px`,
           transform: 'translate(-50%, -50%)',
-          transition: 'opacity 0.3s ease'
+          transition: 'opacity 0.3s ease, left 0.5s ease-out, top 0.5s ease-out'
         }}
       />
 
@@ -60,7 +62,7 @@ const HeroAlt = () => {
               <Leaf className="h-4 w-4" /> Sustainable Web Design
             </div>
             <h1 
-              ref={headingRef as React.RefObject<HTMLHeadingElement>}
+              ref={headingRef}
               className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight"
             >
               {renderHeadingWords()}
@@ -79,7 +81,8 @@ const HeroAlt = () => {
                 onMouseLeave={handlePrimaryBtnMouseLeave}
                 style={{
                   transform: `translate(${primaryBtnPosition.x}px, ${primaryBtnPosition.y}px)`,
-                  transition: 'transform 0.2s cubic-bezier(0.25, 0.75, 0.5, 1.25)'
+                  transition: 'transform 0.2s cubic-bezier(0.25, 0.75, 0.5, 1.25)',
+                  boxShadow: isPrimaryBtnHovering ? '0 10px 25px -5px rgba(174, 32, 18, 0.3)' : 'none'
                 }}
               >
                 <span className="relative z-10">Our Services</span>
@@ -94,7 +97,8 @@ const HeroAlt = () => {
                 onMouseLeave={handleSecondaryBtnMouseLeave}
                 style={{
                   transform: `translate(${secondaryBtnPosition.x}px, ${secondaryBtnPosition.y}px)`,
-                  transition: 'transform 0.2s cubic-bezier(0.25, 0.75, 0.5, 1.25)'
+                  transition: 'transform 0.2s cubic-bezier(0.25, 0.75, 0.5, 1.25)',
+                  boxShadow: isSecondaryBtnHovering ? '0 10px 25px -5px rgba(241, 233, 208, 0.3)' : 'none'
                 }}
               >
                 <span className="relative z-10">View Our Work</span>

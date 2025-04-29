@@ -1,5 +1,5 @@
 
-import React, { useRef } from 'react';
+import React from 'react';
 import { useGlowEffect, useStaggeredText } from '../../hooks/useAnimations';
 
 const HeroSection = () => {
@@ -19,7 +19,7 @@ const HeroSection = () => {
 
   return (
     <section 
-      ref={glowRef as React.RefObject<HTMLDivElement>}
+      ref={glowRef}
       className="py-20 bg-gradient-subtle relative overflow-hidden"
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
@@ -30,16 +30,16 @@ const HeroSection = () => {
         className="absolute pointer-events-none bg-gradient-radial from-brandBlue/15 to-transparent rounded-full w-[400px] h-[400px] -z-0 blur-3xl transition-opacity duration-300"
         style={{
           opacity: isHovering ? 0.7 : 0,
-          left: `${glowPosition.x - 200}px`,
-          top: `${glowPosition.y - 200}px`,
+          left: `${glowPosition.x}px`,
+          top: `${glowPosition.y}px`,
           transform: 'translate(-50%, -50%)',
-          transition: 'opacity 0.3s ease'
+          transition: 'opacity 0.3s ease, left 0.5s ease-out, top 0.5s ease-out'
         }}
       />
 
       {/* Decorative circles */}
-      <div className="absolute -top-20 -right-20 w-64 h-64 border-4 border-brandBlue/5 rounded-full opacity-50"></div>
-      <div className="absolute -bottom-24 -left-16 w-48 h-48 border-4 border-brandBlue/5 rounded-full opacity-50"></div>
+      <div className="absolute -top-20 -right-20 w-64 h-64 border-4 border-brandBlue/5 rounded-full opacity-50 animate-float"></div>
+      <div className="absolute -bottom-24 -left-16 w-48 h-48 border-4 border-brandBlue/5 rounded-full opacity-50 animate-float-delayed"></div>
 
       <div className="container-custom relative z-10">
         <div className="max-w-3xl animate-fade-in">
@@ -47,7 +47,7 @@ const HeroSection = () => {
             Our Work
           </div>
           <h1 
-            ref={headingRef as React.RefObject<HTMLHeadingElement>}
+            ref={headingRef}
             className="text-4xl md:text-5xl font-display font-bold mb-6"
           >
             {renderHeadingWords()}

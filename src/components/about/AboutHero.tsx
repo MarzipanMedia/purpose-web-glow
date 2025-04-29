@@ -21,21 +21,23 @@ const AboutHero = () => {
 
   const { 
     buttonRef: primaryBtnRef, 
-    position: primaryBtnPosition, 
+    position: primaryBtnPosition,
+    isHovering: isPrimaryBtnHovering,
     handleMouseMove: handlePrimaryBtnMouseMove, 
     handleMouseLeave: handlePrimaryBtnMouseLeave 
   } = useMagneticButton<HTMLAnchorElement>(0.2);
 
   const { 
     buttonRef: secondaryBtnRef, 
-    position: secondaryBtnPosition, 
+    position: secondaryBtnPosition,
+    isHovering: isSecondaryBtnHovering,
     handleMouseMove: handleSecondaryBtnMouseMove, 
     handleMouseLeave: handleSecondaryBtnMouseLeave 
   } = useMagneticButton<HTMLAnchorElement>(0.2);
 
   return (
     <section 
-      ref={glowRef as React.RefObject<HTMLDivElement>}
+      ref={glowRef}
       className="py-20 bg-gradient-to-br from-brandBlue/10 to-marzipan/20 relative overflow-hidden"
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
@@ -46,10 +48,10 @@ const AboutHero = () => {
         className="absolute pointer-events-none bg-gradient-radial from-brandBlue/20 to-transparent rounded-full w-[500px] h-[500px] -z-0 blur-3xl transition-opacity duration-300"
         style={{
           opacity: isHovering ? 0.6 : 0,
-          left: `${glowPosition.x - 250}px`,
-          top: `${glowPosition.y - 250}px`,
+          left: `${glowPosition.x}px`,
+          top: `${glowPosition.y}px`,
           transform: 'translate(-50%, -50%)',
-          transition: 'opacity 0.3s ease'
+          transition: 'opacity 0.3s ease, left 0.5s ease-out, top 0.5s ease-out'
         }}
       />
 
@@ -57,7 +59,7 @@ const AboutHero = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6 animate-fade-in">
             <h1 
-              ref={headingRef as React.RefObject<HTMLHeadingElement>}
+              ref={headingRef}
               className="text-4xl md:text-5xl lg:text-6xl font-display font-semibold leading-tight"
             >
               {renderHeadingWords()}
@@ -76,7 +78,8 @@ const AboutHero = () => {
                 onMouseLeave={handlePrimaryBtnMouseLeave}
                 style={{
                   transform: `translate(${primaryBtnPosition.x}px, ${primaryBtnPosition.y}px)`,
-                  transition: 'transform 0.2s cubic-bezier(0.25, 0.75, 0.5, 1.25)'
+                  transition: 'transform 0.2s cubic-bezier(0.25, 0.75, 0.5, 1.25)',
+                  boxShadow: isPrimaryBtnHovering ? '0 10px 25px -5px rgba(24, 96, 116, 0.3)' : 'none'
                 }}
               >
                 <span className="relative z-10">Get in touch</span> 
@@ -91,7 +94,8 @@ const AboutHero = () => {
                 onMouseLeave={handleSecondaryBtnMouseLeave}
                 style={{
                   transform: `translate(${secondaryBtnPosition.x}px, ${secondaryBtnPosition.y}px)`,
-                  transition: 'transform 0.2s cubic-bezier(0.25, 0.75, 0.5, 1.25)'
+                  transition: 'transform 0.2s cubic-bezier(0.25, 0.75, 0.5, 1.25)',
+                  boxShadow: isSecondaryBtnHovering ? '0 10px 25px -5px rgba(241, 233, 208, 0.3)' : 'none'
                 }}
               >
                 <span className="relative z-10">See our work</span>

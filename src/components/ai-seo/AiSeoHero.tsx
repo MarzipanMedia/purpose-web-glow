@@ -21,21 +21,23 @@ const AiSeoHero = () => {
 
   const { 
     buttonRef: primaryBtnRef, 
-    position: primaryBtnPosition, 
+    position: primaryBtnPosition,
+    isHovering: isPrimaryBtnHovering,
     handleMouseMove: handlePrimaryBtnMouseMove, 
     handleMouseLeave: handlePrimaryBtnMouseLeave 
   } = useMagneticButton<HTMLAnchorElement>(0.2);
 
   const { 
     buttonRef: secondaryBtnRef, 
-    position: secondaryBtnPosition, 
+    position: secondaryBtnPosition,
+    isHovering: isSecondaryBtnHovering,
     handleMouseMove: handleSecondaryBtnMouseMove, 
     handleMouseLeave: handleSecondaryBtnMouseLeave 
   } = useMagneticButton<HTMLAnchorElement>(0.2);
 
   return (
     <section 
-      ref={glowRef as React.RefObject<HTMLDivElement>}
+      ref={glowRef}
       className="py-20 bg-gradient-subtle relative overflow-hidden"
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
@@ -46,10 +48,10 @@ const AiSeoHero = () => {
         className="absolute pointer-events-none bg-gradient-radial from-brandBlue/20 to-transparent rounded-full w-[500px] h-[500px] -z-0 blur-3xl transition-opacity duration-300"
         style={{
           opacity: isHovering ? 0.6 : 0,
-          left: `${glowPosition.x - 250}px`,
-          top: `${glowPosition.y - 250}px`,
+          left: `${glowPosition.x}px`,
+          top: `${glowPosition.y}px`,
           transform: 'translate(-50%, -50%)',
-          transition: 'opacity 0.3s ease'
+          transition: 'opacity 0.3s ease, left 0.5s ease-out, top 0.5s ease-out'
         }}
       />
 
@@ -60,7 +62,7 @@ const AiSeoHero = () => {
               AI-Driven Strategies
             </div>
             <h1 
-              ref={headingRef as React.RefObject<HTMLHeadingElement>}
+              ref={headingRef}
               className="text-4xl md:text-5xl font-display font-bold mb-6"
             >
               {renderHeadingWords()}
@@ -77,7 +79,8 @@ const AiSeoHero = () => {
                 onMouseLeave={handlePrimaryBtnMouseLeave}
                 style={{
                   transform: `translate(${primaryBtnPosition.x}px, ${primaryBtnPosition.y}px)`,
-                  transition: 'transform 0.2s cubic-bezier(0.25, 0.75, 0.5, 1.25)'
+                  transition: 'transform 0.2s cubic-bezier(0.25, 0.75, 0.5, 1.25)',
+                  boxShadow: isPrimaryBtnHovering ? '0 10px 25px -5px rgba(24, 96, 116, 0.3)' : 'none'
                 }}
               >
                 <span className="relative z-10">Get Started</span> 
@@ -92,7 +95,8 @@ const AiSeoHero = () => {
                 onMouseLeave={handleSecondaryBtnMouseLeave}
                 style={{
                   transform: `translate(${secondaryBtnPosition.x}px, ${secondaryBtnPosition.y}px)`,
-                  transition: 'transform 0.2s cubic-bezier(0.25, 0.75, 0.5, 1.25)'
+                  transition: 'transform 0.2s cubic-bezier(0.25, 0.75, 0.5, 1.25)',
+                  boxShadow: isSecondaryBtnHovering ? '0 10px 25px -5px rgba(241, 233, 208, 0.3)' : 'none'
                 }}
               >
                 <span className="relative z-10">View Our Work</span> 
