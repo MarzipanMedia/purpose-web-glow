@@ -2,7 +2,7 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useGlowEffect, useStaggeredText, useMagneticButton } from '../../hooks/useAnimations';
+import { useGlowEffect, useMagneticButton } from '../../hooks/useAnimations';
 
 const AboutHero = () => {
   const { 
@@ -13,11 +13,6 @@ const AboutHero = () => {
     handleMouseEnter, 
     handleMouseLeave 
   } = useGlowEffect();
-
-  const { ref: headingRef, renderWords: renderHeadingWords } = useStaggeredText(
-    "Digital marketing with purpose and impact", 
-    0.08
-  );
 
   const { 
     buttonRef: primaryBtnRef, 
@@ -59,9 +54,7 @@ const AboutHero = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6 animate-fade-in">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-semibold leading-tight">
-              <div ref={headingRef}>
-                {renderHeadingWords()}
-              </div>
+              Digital marketing with <span className="bg-gradient-to-r from-brandBlue to-brandRed bg-clip-text text-transparent">purpose</span> and <span className="bg-gradient-to-r from-brandBlue to-brandRed bg-clip-text text-transparent">impact</span>
             </h1>
             <p className="text-lg text-foreground/80 max-w-xl opacity-0 animate-text-reveal" style={{ animationDelay: "0.8s", animationFillMode: "forwards" }}>
               Marzipan Media is a digital content & marketing agency based in Sydney. 
