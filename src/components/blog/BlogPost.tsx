@@ -50,7 +50,7 @@ const BlogPost = () => {
     "description": cleanExcerpt,
     "image": post._embedded?.['wp:featuredmedia']?.[0]?.source_url,
     "datePublished": post.date,
-    "dateModified": post.modified,
+    "dateModified": post.modified || post.date, // Use post.date as fallback if modified is undefined
     "author": {
       "@type": "Organization",
       "name": "Marzipan Digital",

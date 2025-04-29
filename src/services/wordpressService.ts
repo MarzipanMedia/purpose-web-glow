@@ -3,6 +3,7 @@ import { useQuery, useMutation } from '@tanstack/react-query';
 export interface WordPressPost {
   id: number;
   date: string;
+  modified?: string; // Added 'modified' as optional property
   title: {
     rendered: string;
   };
@@ -16,6 +17,11 @@ export interface WordPressPost {
   _embedded?: {
     'wp:featuredmedia'?: Array<{
       source_url: string;
+      alt_text?: string; // Added alt_text
+      media_details?: { // Added media_details
+        width?: number;
+        height?: number;
+      };
     }>;
     'wp:term'?: Array<Array<{
       id: number;
