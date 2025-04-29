@@ -19,8 +19,8 @@ const TeamSection = () => {
   const teamMembers: TeamMember[] = [
     {
       name: "Ben Adams",
-      role: "Co-Founder & Technical Director",
-      bio: "A seasoned technologist with expertise in sustainable web development, Ben drives our technical innovation whilst ensuring our solutions remain environmentally conscious.",
+      role: "Co-Founder & Web, Content & SEO",
+      bio: "A seasoned technologist with expertise in sustainable web development, Ben drives our digital innovation whilst ensuring our solutions remain environmentally conscious.",
       image: "/marzipan-ben.webp",
       social: {
         linkedin: "https://linkedin.com/in/benadams",
@@ -30,8 +30,8 @@ const TeamSection = () => {
     {
       name: "Tran N",
       role: "Lead Developer",
-      bio: "Tran specialises in creating efficient, sustainable code that powers our digital solutions. With expertise in modern web technologies, Tran ensures our projects are built on solid technical foundations.",
-      image: "/placeholder.svg",
+      bio: "Tran specialises in creating efficient, sustainable code that powers our online solutions. With expertise in figma, WordPress and web development Tran ensures our projects are built on solid technical foundations.",
+      image: "/tran (1).png",
       social: {
         behance: "https://www.behance.net/thisistrann",
         email: "ben@marzipan.com.au"
