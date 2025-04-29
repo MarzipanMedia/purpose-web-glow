@@ -76,8 +76,8 @@ export const projects: ProjectData[] = [
   {
     title: "Jarli - Reach for the Stars",
     imageUrl: "/jarli-reach-stars-marzipana.png",
-    category: "Indigenous Education",
-    description: "Interactive educational platform celebrating Indigenous astronomy knowledge and connecting it with modern science education.",
+    category: "Indigenous Animation",
+    description: "Social media strategy and content creation for an award-winning short film to inspire Indigenous school children to reach for the stars",
     features: ["Indigenous Knowledge", "Educational Content", "Interactive Learning", "Cultural Preservation", "Accessibility Design"],
     color: "bg-[#5A3D2B]",
     textColor: "text-white",
@@ -87,8 +87,15 @@ export const projects: ProjectData[] = [
     websiteUrl: "https://jarli.edu.au",
     longDescription: "Jarli - Reach for the Stars represents one of Marzipan Media's most culturally significant projects. As a team deeply committed to purpose-driven work, this educational platform for Indigenous astronomy knowledge holds special importance in our portfolio.\n\nThe Challenge\n\nOur client approached us with a vision to create an engaging digital platform that would celebrate and preserve Indigenous astronomy knowledge while making it accessible to students and educators across Australia. The challenge was to bridge traditional knowledge with modern science education in a respectful, accurate, and compelling way.\n\nOur Approach\n\nWorking closely with Indigenous knowledge keepers, astronomers, and educational experts, we designed a platform that:\n\n• Centers Indigenous perspectives and knowledge systems\n• Creates connections between traditional and contemporary scientific understanding\n• Provides interactive learning resources for various age groups\n• Ensures cultural protocols are respected throughout the experience\n\nKey Features\n\n• Interactive star map showing both Western and Indigenous constellations\n• Storytelling components featuring Indigenous astronomy narratives\n• Curriculum-aligned activities for classroom implementation\n• Bilingual content preserving language alongside English translations\n• Accessibility features ensuring the platform is available to all learners\n\nImpact and Outcomes\n\nSince its launch, Jarli has been embraced by educational institutions nationwide. The platform has:\n\n• Been incorporated into science curricula across multiple states\n• Received recognition from Indigenous educational organizations\n• Created meaningful cultural learning opportunities for thousands of students\n• Helped preserve and celebrate astronomical knowledge that dates back tens of thousands of years\n\nThis project exemplifies our belief that digital experiences can serve as powerful tools for cultural preservation, educational advancement, and fostering greater understanding between different knowledge systems. We're proud to have played a role in bringing this important cultural and educational resource to life.",
     date: "2023-10-15",
-    tags: ["Education", "Indigenous Knowledge", "Astronomy", "Cultural Preservation", "Interactive Learning"],
+    tags: ["Social Media", "Indigenous Knowledge", "Interactive", "Content Creation", "Interactive Learning"],
     featured: true
+    videos: [
+      {
+        url: "https://youtu.be/YoiijfjK-J8",
+        title: "Jarli - Reach for the Stars",
+        description: "Yeah Nah",
+        orientation: 'landscape'
+      },
   },
   {
     title: "Sydney Jewish Museum",
