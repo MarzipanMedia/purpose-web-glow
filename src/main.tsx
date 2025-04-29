@@ -12,15 +12,51 @@ declare global {
       params?: Record<string, any>
     ) => void;
     dataLayer: any[];
+    LCP: (element: Element) => void;
   }
 }
 
+// Performance monitoring function
+const monitorWebVitals = () => {
+  // Initialize LCP reporting
+  let lcpElement: Element | null = null;
+  window.LCP = (element) => {
+    lcpElement = element;
+  };
+
+  // Track Largest Contentful Paint
+  const observer = new PerformanceObserver((entryList) => {
+    for (const entry of entryList.getEntries()) {
+      // @ts-ignore - LCP entry types
+      if (entry.element === lcpElement) {
+        console.log('LCP registered:', entry.startTime);
+        if (window.gtag) {
+          window.gtag('event', 'web_vitals', {
+            metric_name: 'LCP',
+            metric_value: entry.startTime,
+            metric_id: 'LCP'
+          });
+        }
+      }
+    }
+  });
+
+  // Start observing paint entries
+  observer.observe({ type: 'largest-contentful-paint', buffered: true });
+
+  return () => {
+    observer.disconnect();
+  };
+};
+
 // Preload critical resources
 document.addEventListener('DOMContentLoaded', () => {
-  // Add preload links for critical fonts
+  // Add preload links for critical fonts and assets
   const preloadLinks = [
     { rel: 'preload', href: 'https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap', as: 'style' },
-    { rel: 'preload', href: 'https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap', as: 'style' }
+    { rel: 'preload', href: 'https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap', as: 'style' },
+    { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' },
+    { rel: 'preconnect', href: 'https://fonts.googleapis.com' }
   ];
 
   preloadLinks.forEach(link => {
@@ -30,6 +66,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     document.head.appendChild(linkEl);
   });
+  
+  // Start monitoring performance after DOM is ready
+  monitorWebVitals();
   
   // Add Sydney location breadcrumb data for Google
   const locationScript = document.createElement('script');
@@ -91,5 +130,10 @@ const trackSydneyVisits = () => {
 // Set up history change listener
 window.addEventListener('popstate', trackSydneyVisits);
 
-// Optimize component mounting
-createRoot(document.getElementById("root")!).render(<App />);
+// Optimize component mounting - create root once
+const appRoot = document.getElementById("root");
+if (appRoot) {
+  createRoot(appRoot).render(<App />);
+} else {
+  console.error("Root element not found");
+}

@@ -1,10 +1,30 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { useGlowEffect, useStaggeredText, useMagneticButton } from '../hooks/useAnimations';
 
 const Hero = () => {
+  // Optimize performance by using a state to control when effects are initialized
+  const [isLoaded, setIsLoaded] = useState(false);
+  
+  useEffect(() => {
+    // Mark component as loaded after initial render
+    setIsLoaded(true);
+    
+    // Report LCP element to improve metrics
+    const reportLcp = () => {
+      const lcpElement = document.querySelector('.hero-headline');
+      if (lcpElement) {
+        // @ts-ignore - Using web vitals API
+        if (window.LCP) window.LCP(lcpElement);
+      }
+    };
+    
+    // Execute after a short delay to ensure the element is properly rendered
+    setTimeout(reportLcp, 100);
+  }, []);
+  
   const { 
     glowRef, 
     glowPosition, 
@@ -39,26 +59,28 @@ const Hero = () => {
     <section 
       ref={glowRef}
       className="relative overflow-hidden py-20 md:py-28 bg-gradient-subtle"
-      onMouseMove={handleMouseMove}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onMouseMove={isLoaded ? handleMouseMove : undefined}
+      onMouseEnter={isLoaded ? handleMouseEnter : undefined}
+      onMouseLeave={isLoaded ? handleMouseLeave : undefined}
     >
-      {/* Glow effect that follows mouse */}
-      <div 
-        className="absolute pointer-events-none bg-gradient-radial from-brandBlue/10 to-transparent rounded-full w-[500px] h-[500px] -z-0 blur-3xl transition-opacity duration-300"
-        style={{
-          opacity: isHovering ? 0.7 : 0,
-          left: `${glowPosition.x}px`,
-          top: `${glowPosition.y}px`,
-          transform: 'translate(-50%, -50%)',
-          transition: 'opacity 0.3s ease, left 0.5s ease-out, top 0.5s ease-out'
-        }}
-      />
+      {/* Simplified glow effect for initial render */}
+      {isLoaded && (
+        <div 
+          className="absolute pointer-events-none bg-gradient-radial from-brandBlue/10 to-transparent rounded-full w-[500px] h-[500px] -z-0 blur-3xl transition-opacity duration-300"
+          style={{
+            opacity: isHovering ? 0.7 : 0,
+            left: `${glowPosition.x}px`,
+            top: `${glowPosition.y}px`,
+            transform: 'translate(-50%, -50%)',
+            transition: 'opacity 0.3s ease, left 0.5s ease-out, top 0.5s ease-out'
+          }}
+        />
+      )}
 
       <div className="container-custom relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
           <div className="md:col-span-7 space-y-6 animate-fade-in" style={{ animationDelay: "0.1s" }}>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight hero-headline">
               <div ref={headingRef}>
                 {renderHeadingWords()}
               </div>
@@ -73,10 +95,10 @@ const Hero = () => {
                 to="/services" 
                 ref={primaryBtnRef}
                 className="btn-primary flex items-center gap-2 overflow-hidden relative group"
-                onMouseMove={handlePrimaryBtnMouseMove}
-                onMouseLeave={handlePrimaryBtnMouseLeave}
+                onMouseMove={isLoaded ? handlePrimaryBtnMouseMove : undefined}
+                onMouseLeave={isLoaded ? handlePrimaryBtnMouseLeave : undefined}
                 style={{
-                  transform: `translate(${primaryBtnPosition.x}px, ${primaryBtnPosition.y}px)`,
+                  transform: isLoaded ? `translate(${primaryBtnPosition.x}px, ${primaryBtnPosition.y}px)` : 'none',
                   transition: 'transform 0.2s cubic-bezier(0.25, 0.75, 0.5, 1.25)',
                   boxShadow: isPrimaryBtnHovering ? '0 10px 25px -5px rgba(24, 96, 116, 0.3)' : 'none'
                 }}
@@ -89,10 +111,10 @@ const Hero = () => {
                 to="/projects" 
                 ref={secondaryBtnRef}
                 className="btn-secondary flex items-center gap-2 overflow-hidden relative group"
-                onMouseMove={handleSecondaryBtnMouseMove}
-                onMouseLeave={handleSecondaryBtnMouseLeave}
+                onMouseMove={isLoaded ? handleSecondaryBtnMouseMove : undefined}
+                onMouseLeave={isLoaded ? handleSecondaryBtnMouseLeave : undefined}
                 style={{
-                  transform: `translate(${secondaryBtnPosition.x}px, ${secondaryBtnPosition.y}px)`,
+                  transform: isLoaded ? `translate(${secondaryBtnPosition.x}px, ${secondaryBtnPosition.y}px)` : 'none',
                   transition: 'transform 0.2s cubic-bezier(0.25, 0.75, 0.5, 1.25)',
                   boxShadow: isSecondaryBtnHovering ? '0 10px 25px -5px rgba(241, 233, 208, 0.3)' : 'none'
                 }}
@@ -106,8 +128,8 @@ const Hero = () => {
           
           <div className="md:col-span-5 animate-fade-in" style={{ animationDelay: "0.3s" }}>
             <div className="relative">
-              {/* Add multiple pulse rings */}
-              {[...Array(3)].map((_, i) => (
+              {/* Only render animations after initial load */}
+              {isLoaded && [...Array(3)].map((_, i) => (
                 <div
                   key={i}
                   className="absolute inset-0 bg-gradient-radial from-brandBlue/20 to-transparent opacity-70 rounded-full animate-pulse-slow"

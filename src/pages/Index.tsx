@@ -1,21 +1,46 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
 import Services from '../components/Services';
-import Sustainability from '../components/Sustainability';
 import ClientLogos from '../components/ClientLogos';
-import RecentProjects from '../components/RecentProjects';
-import BlogPreview from '../components/BlogPreview';
-import Footer from '../components/Footer';
 import MetaHead from '@/components/MetaHead';
 import StatsSection from '@/components/home/StatsSection';
-import WebsiteCarbonCTA from '@/components/home/WebsiteCarbonCTA';
-import TestimonialsSection from '@/components/home/TestimonialsSection';
-import FinalCTA from '@/components/home/FinalCTA';
 import CarbonShowcase from '@/components/carbon/CarbonShowcase';
 
+// Lazy load components that aren't needed for initial render
+const Sustainability = lazy(() => import('../components/Sustainability'));
+const RecentProjects = lazy(() => import('../components/RecentProjects'));
+const BlogPreview = lazy(() => import('../components/BlogPreview'));
+const Footer = lazy(() => import('../components/Footer'));
+const WebsiteCarbonCTA = lazy(() => import('@/components/home/WebsiteCarbonCTA'));
+const TestimonialsSection = lazy(() => import('@/components/home/TestimonialsSection'));
+const FinalCTA = lazy(() => import('@/components/home/FinalCTA'));
+
+// Loading fallback component
+const LoadingFallback = () => <div className="min-h-[200px] flex items-center justify-center">
+  <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+</div>;
+
 const Index = () => {
+  // Add important elements preload
+  useEffect(() => {
+    // Preload critical images
+    const imagesToPreload = [
+      '/marzipan-web-design-syd-min.webp',
+      '/marzipan-logo.webp'
+    ];
+
+    imagesToPreload.forEach(imgSrc => {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = imgSrc;
+      link.type = 'image/webp';
+      document.head.appendChild(link);
+    });
+  }, []);
+
   // Add scroll animation observer
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -92,27 +117,34 @@ const Index = () => {
       <Header />
       
       <main className="flex-grow">
+        {/* Critical above-the-fold content */}
         <Hero />
         <StatsSection />
-        <CarbonShowcase />
         
-        <section className="relative bg-gradient-to-b from-gray-50 to-white">
-          <Services />
-        </section>
-        
-        <section className="relative">
-          <Sustainability />
-        </section>
-        
-        <WebsiteCarbonCTA />
-        <ClientLogos />
-        <RecentProjects />
-        <BlogPreview />
-        <TestimonialsSection />
-        <FinalCTA />
+        {/* Non-critical content loaded with Suspense */}
+        <Suspense fallback={<LoadingFallback />}>
+          <CarbonShowcase />
+          
+          <section className="relative bg-gradient-to-b from-gray-50 to-white">
+            <Services />
+          </section>
+          
+          <section className="relative">
+            <Sustainability />
+          </section>
+          
+          <WebsiteCarbonCTA />
+          <ClientLogos />
+          <RecentProjects />
+          <BlogPreview />
+          <TestimonialsSection />
+          <FinalCTA />
+        </Suspense>
       </main>
       
-      <Footer />
+      <Suspense fallback={<LoadingFallback />}>
+        <Footer />
+      </Suspense>
     </div>
   );
 };
