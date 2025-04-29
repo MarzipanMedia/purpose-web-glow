@@ -5,43 +5,37 @@ import MetaHead from '@/components/MetaHead';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { Linkedin, Mail, ArrowRight } from 'lucide-react';
-import ProjectsGrid from '../components/projects/ProjectsGrid';
+import ProjectCard from '../components/projects/ProjectCard';
 import CTASection from '../components/projects/CTASection';
 import ClientLogos from '../components/ClientLogos';
 import { Link } from 'react-router-dom';
 import BookGrid from '../components/books/BookGrid';
+import { projects } from '../components/projects/projectsData';
 
 const BenAdams = () => {
-  // Featured projects data
+  // Get the specified projects from projectsData
+  const willowProject = projects.find(project => project.slug === "willow");
+  const toastyProject = projects.find(project => project.slug === "toasty");
+  // Note: Jarli is not in the current projectsData, so we'll create a custom one
+  const jarliProject = {
+    title: "Jarli - Reach for the Stars",
+    category: "Indigenous Education",
+    description: "Interactive educational platform celebrating Indigenous astronomy knowledge and connecting it with modern science education.",
+    features: ["Indigenous Knowledge", "Educational Content", "Interactive Learning", "Cultural Preservation"],
+    color: "bg-[#5A3D2B]",
+    textColor: "text-white",
+    slug: "jarli",
+    imageUrl: "/jarli-reach-stars-marzipana.png",
+    client: "Jarli Education",
+    services: ["Web Development", "Educational Content", "Cultural Consulting"]
+  };
+
+  // Featured projects to display
   const featuredProjects = [
-    {
-      title: "EcoLiving Collective",
-      category: "Sustainable E-commerce",
-      description: "A carbon-neutral online store with optimised images and minimal server requests.",
-      features: ["98% Performance Score", "Green Hosting", "Image Optimization"],
-      color: "bg-brandBlue",
-      textColor: "text-white",
-      slug: "ecoliving-collective"
-    },
-    {
-      title: "Ocean Conservation Alliance",
-      category: "Non-profit Organisation",
-      description: "Accessible, lightweight website showcasing marine conservation efforts.",
-      features: ["Sustainable Design", "Low Carbon", "High Performance"],
-      color: "bg-marzipan/80",
-      textColor: "text-foreground",
-      slug: "ocean-conservation"
-    },
-    {
-      title: "Mindful Markets",
-      category: "Digital Marketplace",
-      description: "Progressive web app connecting conscious consumers with sustainable businesses.",
-      features: ["PWA", "Optimised Code", "Eco Hosting"],
-      color: "bg-brandRed",
-      textColor: "text-white",
-      slug: "mindful-markets"
-    }
-  ];
+    willowProject,
+    toastyProject,
+    jarliProject
+  ].filter(Boolean); // Filter out any undefined projects
 
   // Sample books (replace these with your Amazon affiliate links + preferred books later)
   const books = [
@@ -64,7 +58,7 @@ const BenAdams = () => {
       author: "Dieter Helm",
       image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
       link: "https://www.amazon.co.uk/Net-Zero-Stop-Causing-Climate/dp/000840449X?tag=youraffiliatetag-21",
-      blurb: "Helm’s straight-talking, expert vision for cutting carbon emissions in Britain and beyond.",
+      blurb: "Helm's straight-talking, expert vision for cutting carbon emissions in Britain and beyond.",
     },
     {
       title: "Digital Minimalism",
@@ -158,12 +152,32 @@ const BenAdams = () => {
           </div>
         </section>
 
-        {/* Featured Projects Section with contrasting background */}
+        {/* Featured Projects Section with contrasting background - UPDATED */}
         <section className="py-20 bg-marzipan/10 dark:bg-gray-900/50">
           <div className="container-custom">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-5xl mx-auto">
               <h2 className="text-3xl font-display font-semibold mb-8 text-center">Featured Projects</h2>
-              <ProjectsGrid projects={featuredProjects} />
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {featuredProjects.map((project, index) => (
+                  project && (
+                    <ProjectCard
+                      key={project.slug || index}
+                      title={project.title}
+                      category={project.category}
+                      description={project.description}
+                      features={project.features}
+                      color={project.color}
+                      textColor={project.textColor}
+                      slug={project.slug}
+                      index={index}
+                      websiteUrl={project.websiteUrl}
+                      imageUrl={project.imageUrl}
+                      isNew={project.date && new Date(project.date) > new Date(Date.now() - 90 * 24 * 60 * 60 * 1000)}
+                    />
+                  )
+                ))}
+              </div>
             </div>
           </div>
         </section>
