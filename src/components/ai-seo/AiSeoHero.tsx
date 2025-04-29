@@ -24,14 +24,14 @@ const AiSeoHero = () => {
     position: primaryBtnPosition, 
     handleMouseMove: handlePrimaryBtnMouseMove, 
     handleMouseLeave: handlePrimaryBtnMouseLeave 
-  } = useMagneticButton(0.2);
+  } = useMagneticButton<HTMLAnchorElement>(0.2);
 
   const { 
     buttonRef: secondaryBtnRef, 
     position: secondaryBtnPosition, 
     handleMouseMove: handleSecondaryBtnMouseMove, 
     handleMouseLeave: handleSecondaryBtnMouseLeave 
-  } = useMagneticButton(0.2);
+  } = useMagneticButton<HTMLAnchorElement>(0.2);
 
   return (
     <section 
@@ -71,10 +71,10 @@ const AiSeoHero = () => {
             <div className="flex flex-wrap gap-4 opacity-0 animate-text-reveal" style={{ animationDelay: "0.9s", animationFillMode: "forwards" }}>
               <Link 
                 to="#contact" 
-                ref={primaryBtnRef as React.RefObject<HTMLAnchorElement>}
+                ref={primaryBtnRef}
                 className="btn-primary group relative overflow-hidden flex items-center gap-2"
-                onMouseMove={handlePrimaryBtnMouseMove as any}
-                onMouseLeave={handlePrimaryBtnMouseLeave as any}
+                onMouseMove={handlePrimaryBtnMouseMove}
+                onMouseLeave={handlePrimaryBtnMouseLeave}
                 style={{
                   transform: `translate(${primaryBtnPosition.x}px, ${primaryBtnPosition.y}px)`,
                   transition: 'transform 0.2s cubic-bezier(0.25, 0.75, 0.5, 1.25)'
@@ -86,10 +86,10 @@ const AiSeoHero = () => {
               </Link>
               <Link 
                 to="/projects" 
-                ref={secondaryBtnRef as React.RefObject<HTMLAnchorElement>}
+                ref={secondaryBtnRef}
                 className="btn-secondary group relative overflow-hidden flex items-center gap-2"
-                onMouseMove={handleSecondaryBtnMouseMove as any}
-                onMouseLeave={handleSecondaryBtnMouseLeave as any}
+                onMouseMove={handleSecondaryBtnMouseMove}
+                onMouseLeave={handleSecondaryBtnMouseLeave}
                 style={{
                   transform: `translate(${secondaryBtnPosition.x}px, ${secondaryBtnPosition.y}px)`,
                   transition: 'transform 0.2s cubic-bezier(0.25, 0.75, 0.5, 1.25)'

@@ -175,8 +175,9 @@ export const useStaggeredText = (text: string, delay: number = 0.05) => {
   return { ref, renderWords, isVisible };
 };
 
-export const useMagneticButton = (intensity: number = 0.3) => {
-  const buttonRef = useRef<HTMLButtonElement>(null);
+// Updated to use generic type for element references
+export const useMagneticButton = <T extends HTMLElement = HTMLElement>(intensity: number = 0.3) => {
+  const buttonRef = useRef<T>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {

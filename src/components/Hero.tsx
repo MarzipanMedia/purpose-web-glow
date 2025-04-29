@@ -24,14 +24,14 @@ const Hero = () => {
     position: primaryBtnPosition, 
     handleMouseMove: handlePrimaryBtnMouseMove, 
     handleMouseLeave: handlePrimaryBtnMouseLeave 
-  } = useMagneticButton(0.2);
+  } = useMagneticButton<HTMLAnchorElement>(0.2);
 
   const { 
     buttonRef: secondaryBtnRef, 
     position: secondaryBtnPosition, 
     handleMouseMove: handleSecondaryBtnMouseMove, 
     handleMouseLeave: handleSecondaryBtnMouseLeave 
-  } = useMagneticButton(0.2);
+  } = useMagneticButton<HTMLAnchorElement>(0.2);
 
   return (
     <section 
@@ -70,10 +70,10 @@ const Hero = () => {
             <div className="flex flex-wrap gap-4 pt-2 opacity-0 animate-text-reveal" style={{ animationDelay: "1s", animationFillMode: "forwards" }}>
               <Link 
                 to="/services" 
-                ref={primaryBtnRef as React.RefObject<HTMLAnchorElement>}
+                ref={primaryBtnRef}
                 className="btn-primary flex items-center gap-2 overflow-hidden relative group"
-                onMouseMove={handlePrimaryBtnMouseMove as any}
-                onMouseLeave={handlePrimaryBtnMouseLeave as any}
+                onMouseMove={handlePrimaryBtnMouseMove}
+                onMouseLeave={handlePrimaryBtnMouseLeave}
                 style={{
                   transform: `translate(${primaryBtnPosition.x}px, ${primaryBtnPosition.y}px)`,
                   transition: 'transform 0.2s cubic-bezier(0.25, 0.75, 0.5, 1.25)'
@@ -85,10 +85,10 @@ const Hero = () => {
               </Link>
               <Link 
                 to="/projects" 
-                ref={secondaryBtnRef as React.RefObject<HTMLAnchorElement>}
+                ref={secondaryBtnRef}
                 className="btn-secondary flex items-center gap-2 overflow-hidden relative group"
-                onMouseMove={handleSecondaryBtnMouseMove as any}
-                onMouseLeave={handleSecondaryBtnMouseLeave as any}
+                onMouseMove={handleSecondaryBtnMouseMove}
+                onMouseLeave={handleSecondaryBtnMouseLeave}
                 style={{
                   transform: `translate(${secondaryBtnPosition.x}px, ${secondaryBtnPosition.y}px)`,
                   transition: 'transform 0.2s cubic-bezier(0.25, 0.75, 0.5, 1.25)'
