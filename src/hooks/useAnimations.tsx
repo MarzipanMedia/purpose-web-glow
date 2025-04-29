@@ -1,5 +1,5 @@
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 
 type AnimationOptions = {
   threshold?: number;
@@ -89,4 +89,117 @@ export const useMousePosition = (ref: React.RefObject<HTMLElement>) => {
   }, [ref]);
   
   return position;
+};
+
+// New animation hooks for hero sections
+
+export const useGlowEffect = () => {
+  const glowRef = useRef<HTMLDivElement>(null);
+  const [glowPosition, setGlowPosition] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    if (!glowRef.current) return;
+    
+    const rect = glowRef.current.getBoundingClientRect();
+    setGlowPosition({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    });
+  }, []);
+
+  const handleMouseEnter = useCallback(() => {
+    setIsHovering(true);
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setIsHovering(false);
+  }, []);
+
+  return {
+    glowRef,
+    glowPosition,
+    isHovering,
+    handleMouseMove,
+    handleMouseEnter,
+    handleMouseLeave
+  };
+};
+
+export const useStaggeredText = (text: string, delay: number = 0.05) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLElement>(null);
+
+  // Split text into words array for animation
+  const words = text.split(" ");
+  
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.3 }
+    );
+    
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+    
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, []);
+
+  const renderWords = () => {
+    return words.map((word, index) => (
+      <span
+        key={index}
+        className="inline-block"
+        style={{
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+          transition: `opacity 0.5s ease, transform 0.5s ease`,
+          transitionDelay: `${delay * index}s`
+        }}
+      >
+        {word}{' '}
+      </span>
+    ));
+  };
+
+  return { ref, renderWords, isVisible };
+};
+
+export const useMagneticButton = (intensity: number = 0.3) => {
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    if (!buttonRef.current) return;
+    
+    const rect = buttonRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    
+    setPosition({
+      x: x * intensity,
+      y: y * intensity
+    });
+  }, [intensity]);
+
+  const handleMouseLeave = useCallback(() => {
+    setPosition({ x: 0, y: 0 });
+  }, []);
+
+  return {
+    buttonRef,
+    position,
+    handleMouseMove,
+    handleMouseLeave
+  };
 };
