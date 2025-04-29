@@ -10,6 +10,8 @@ interface MetaHeadProps {
   url?: string;
   canonicalUrl?: string;
   schemaData?: object[]; // Add support for custom schema.org JSON-LD
+  keywords?: string;
+  author?: string;
 }
 
 const MetaHead = ({
@@ -20,6 +22,8 @@ const MetaHead = ({
   url,
   canonicalUrl,
   schemaData = [],
+  keywords = "sustainable web design Sydney, digital agency Sydney, affordable SEO services, purpose-driven marketing",
+  author = "Marzipan Digital",
 }: MetaHeadProps) => {
   // Construct full title with brand name
   const fullTitle = `${title} | Marzipan Digital`;
@@ -33,7 +37,7 @@ const MetaHead = ({
     "@type": "Organization",
     "name": "Marzipan Media",
     "url": "https://marzipan.com.au",
-    "logo": "/marzipan-logo.webp",
+    "logo": "https://marzipan.com.au/marzipan-logo.webp",
     "sameAs": [
       "https://www.instagram.com/marzipanmedia",
       "https://linkedin.com/company/18211194"
@@ -46,7 +50,20 @@ const MetaHead = ({
     "@type": "WebPage",
     "name": fullTitle,
     "url": currentUrl,
-    "description": description
+    "description": description,
+    "keywords": keywords,
+    "author": {
+      "@type": "Organization",
+      "name": "Marzipan Digital"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Marzipan Digital",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://marzipan.com.au/marzipan-logo.webp"
+      }
+    }
   };
   
   // Combine default schema with custom schema data
@@ -57,6 +74,8 @@ const MetaHead = ({
       {/* Basic meta tags */}
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
+      <meta name="keywords" content={keywords} />
+      <meta name="author" content={author} />
       
       {/* Canonical URL */}
       {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}

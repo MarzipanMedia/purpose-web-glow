@@ -6,33 +6,35 @@ interface ClientLogo {
   name: string;
   imageUrl: string;
   alt: string;
+  width?: number;
+  height?: number;
 }
 
 const ClientLogos: React.FC = () => {
-  // Array of client logos
+  // Array of client logos with enhanced alt text and dimensions
   const logos: ClientLogo[] = [
-    { id: 1, name: "FINSIA", imageUrl: "/client-logos/Finsia-SEO-logo.png", alt: "FINSIA  content creation" },
-    { id: 2, name: "Australian Georgraphic", imageUrl: "/client-logos/ag-webdesign-logo.png", alt: "AusGeo Web Design" },
-    { id: 3, name: "Willow", imageUrl: "/client-logos/willow-webdesign-logo.png", alt: "Sustainable Web Design" },
-    { id: 4, name: "National Art School", imageUrl: "/client-logos/nas-adwords-logo.png", alt: "National Art School Adwords" },
-    { id: 5, name: "Museums of History NSW", imageUrl: "/client-logos/mhnsw-content-logo.png", alt: "Museums of History NSW" },
-    { id: 6, name: "Prime", imageUrl: "/client-logos/prime-seo-logo.png", alt: "Prime SEO" },
-    { id: 7, name: "Toasty", imageUrl: "/client-logos/toasty-seo-logo.png", alt: "Toasty SEO + FB ads" },
-    { id: 8, name: "LA Gum", imageUrl: "/client-logos/lagum-seo-logo.png", alt: "LA Gum SEO SEM Socials" },
-    { id: 9, name: "NSW GOv", imageUrl: "/client-logos/nsw-scm2701-logo.png", alt: "NSW SCM2701 qualified" },
-    { id: 10, name: "NipCo SEO", imageUrl: "/client-logos/nipco-seo-logo.png", alt: "NipCo SEO" },
-{ id: 11, name: "Birchal", imageUrl: "/client-logos/birchal-sem-logo.png", alt: "Birchal Approved" },
-{ id: 12, name: "Focus", imageUrl: "/client-logos/focus.png", alt: "Focus SEO" },
+    { id: 1, name: "FINSIA", imageUrl: "/client-logos/Finsia-SEO-logo.png", alt: "FINSIA - Financial Services Institute of Australasia content creation client", width: 160, height: 60 },
+    { id: 2, name: "Australian Geographic", imageUrl: "/client-logos/ag-webdesign-logo.png", alt: "Australian Geographic sustainable web design project by Marzipan", width: 160, height: 60 },
+    { id: 3, name: "Willow", imageUrl: "/client-logos/willow-webdesign-logo.png", alt: "Willow sustainable web design and development by Marzipan Digital", width: 160, height: 60 },
+    { id: 4, name: "National Art School", imageUrl: "/client-logos/nas-adwords-logo.png", alt: "National Art School Google Ads campaign managed by Marzipan", width: 160, height: 60 },
+    { id: 5, name: "Museums of History NSW", imageUrl: "/client-logos/mhnsw-content-logo.png", alt: "Museums of History NSW content creation and digital strategy by Marzipan", width: 160, height: 60 },
+    { id: 6, name: "Prime", imageUrl: "/client-logos/prime-seo-logo.png", alt: "Prime SEO campaign and digital optimization by Marzipan Digital", width: 160, height: 60 },
+    { id: 7, name: "Toasty", imageUrl: "/client-logos/toasty-seo-logo.png", alt: "Toasty SEO and Facebook ads campaign by Marzipan Digital", width: 160, height: 60 },
+    { id: 8, name: "LA Gum", imageUrl: "/client-logos/lagum-seo-logo.png", alt: "LA Gum SEO, SEM and social media marketing by Marzipan", width: 160, height: 60 },
+    { id: 9, name: "NSW Government", imageUrl: "/client-logos/nsw-scm2701-logo.png", alt: "NSW Government SCM2701 qualified digital agency - Marzipan", width: 160, height: 60 },
+    { id: 10, name: "NipCo SEO", imageUrl: "/client-logos/nipco-seo-logo.png", alt: "NipCo SEO strategy and implementation by Marzipan Digital", width: 160, height: 60 },
+    { id: 11, name: "Birchal", imageUrl: "/client-logos/birchal-sem-logo.png", alt: "Birchal SEM and digital marketing campaign by Marzipan", width: 160, height: 60 },
+    { id: 12, name: "Focus", imageUrl: "/client-logos/focus.png", alt: "Focus SEO optimization and digital strategy by Marzipan", width: 160, height: 60 },
   ];
 
   return (
-    <section className="py-16 bg-brandBlue/10 dark:bg-gray-800/30">
+    <section className="py-16 bg-brandBlue/10 dark:bg-gray-800/30" aria-labelledby="trusted-partners-heading">
       <div className="container-custom">
         <div className="text-center max-w-3xl mx-auto mb-10 animate-on-scroll opacity-0">
           <div className="inline-block bg-brandBlue/10 text-brandBlue px-4 py-1 rounded-full mb-4 dark:bg-brandBlue/30 dark:text-white">
             Trusted Partners
           </div>
-          <h2 className="text-3xl md:text-4xl font-display font-semibold dark:text-white">
+          <h2 id="trusted-partners-heading" className="text-3xl md:text-4xl font-display font-semibold dark:text-white">
             Brands We've Worked With
           </h2>
           <p className="mt-4 text-foreground/80 dark:text-gray-200">
@@ -51,6 +53,9 @@ const ClientLogos: React.FC = () => {
                 src={logo.imageUrl} 
                 alt={logo.alt} 
                 className="max-h-16 max-w-full object-contain"
+                width={logo.width || 160}
+                height={logo.height || 60}
+                loading="lazy"
                 onError={(e) => {
                   // Fallback if the image fails to load
                   const target = e.target as HTMLImageElement;
@@ -73,6 +78,9 @@ const ClientLogos: React.FC = () => {
                 src={logo.imageUrl} 
                 alt={logo.alt} 
                 className="max-h-16 max-w-full object-contain"
+                width={logo.width || 160}
+                height={logo.height || 60}
+                loading="lazy"
                 onError={(e) => {
                   // Fallback if the image fails to load
                   const target = e.target as HTMLImageElement;

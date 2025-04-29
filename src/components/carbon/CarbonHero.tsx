@@ -24,6 +24,7 @@ const CarbonHero: React.FC = () => {
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      aria-label="Carbon footprint checker section with interactive glow effect"
     >
       {/* Mouse following glow effect */}
       <div 
@@ -35,6 +36,7 @@ const CarbonHero: React.FC = () => {
           transform: 'translate(-50%, -50%)',
           transition: 'opacity 0.3s ease'
         }}
+        aria-hidden="true"
       />
 
       <div className="relative z-10">

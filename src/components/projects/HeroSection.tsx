@@ -24,6 +24,7 @@ const HeroSection = () => {
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      aria-label="Projects showcase with interactive effects"
     >
       {/* Mouse following glow effect */}
       <div 
@@ -35,11 +36,12 @@ const HeroSection = () => {
           transform: 'translate(-50%, -50%)',
           transition: 'opacity 0.3s ease, left 0.5s ease-out, top 0.5s ease-out'
         }}
+        aria-hidden="true"
       />
 
       {/* Decorative circles */}
-      <div className="absolute -top-20 -right-20 w-64 h-64 border-4 border-brandBlue/5 rounded-full opacity-50 animate-float"></div>
-      <div className="absolute -bottom-24 -left-16 w-48 h-48 border-4 border-brandBlue/5 rounded-full opacity-50 animate-float-delayed"></div>
+      <div className="absolute -top-20 -right-20 w-64 h-64 border-4 border-brandBlue/5 rounded-full opacity-50 animate-float" aria-hidden="true"></div>
+      <div className="absolute -bottom-24 -left-16 w-48 h-48 border-4 border-brandBlue/5 rounded-full opacity-50 animate-float-delayed" aria-hidden="true"></div>
 
       <div className="container-custom relative z-10">
         <div className="max-w-3xl animate-fade-in">

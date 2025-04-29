@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Linkedin, Mail, Twitter } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -61,10 +62,10 @@ const TeamSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+    <section className="py-20 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800" aria-labelledby="team-section-heading">
       <div className="container-custom">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-display font-semibold mb-4">Meet Our Team</h2>
+          <h2 id="team-section-heading" className="text-3xl md:text-4xl font-display font-semibold mb-4">Meet Our Team</h2>
           <p className="text-foreground/70 max-w-3xl mx-auto text-lg">
             We're a small but mighty team of digital specialists passionate about creating sustainable digital futures.
           </p>
@@ -82,8 +83,11 @@ const TeamSection = () => {
                   <div className="aspect-square relative">
                     <img 
                       src={member.image} 
-                      alt={member.name}
+                      alt={`${member.name}, ${member.role} at Marzipan Digital`}
                       className="w-full h-full object-cover"
+                      width="400"
+                      height="400"
+                      loading="lazy"
                       onError={(e) => {
                         (e.target as HTMLImageElement).src = '/placeholder.svg';
                       }}
@@ -94,8 +98,11 @@ const TeamSection = () => {
                 <div className="aspect-square relative">
                   <img 
                     src={member.image} 
-                    alt={member.name}
+                    alt={`${member.name}, ${member.role} at Marzipan Digital`}
                     className="w-full h-full object-cover"
+                    width="400"
+                    height="400"
+                    loading="lazy"
                     onError={(e) => {
                       (e.target as HTMLImageElement).src = '/placeholder.svg';
                     }}
