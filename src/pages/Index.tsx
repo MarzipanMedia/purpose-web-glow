@@ -1,28 +1,9 @@
-
 import React, { useEffect, lazy, Suspense } from 'react';
 import Header from '../components/Header';
 import SimpleHero from '../components/SimpleHero';
 import Services from '../components/Services';
 import MetaHead from '@/components/MetaHead';
 import StatsSection from '@/components/home/StatsSection';
-
-// Preload critical assets
-const preloadCriticalAssets = () => {
-  // Preload critical images
-  const imagesToPreload = [
-    '/marzipan-web-design-syd-min.webp',
-    '/marzipan-logo.webp'
-  ];
-  
-  imagesToPreload.forEach(imgSrc => {
-    const link = document.createElement('link');
-    link.rel = 'preload';
-    link.as = 'image';
-    link.href = imgSrc;
-    link.type = 'image/webp';
-    document.head.appendChild(link);
-  });
-};
 
 // Lazy load components that aren't needed for initial render
 const ClientLogos = lazy(() => import('../components/ClientLogos'));
@@ -35,42 +16,43 @@ const WebsiteCarbonCTA = lazy(() => import('@/components/home/WebsiteCarbonCTA')
 const TestimonialsSection = lazy(() => import('@/components/home/TestimonialsSection'));
 const FinalCTA = lazy(() => import('@/components/home/FinalCTA'));
 
-// Loading fallback component
+// Simple loading fallback component
 const LoadingFallback = () => <div className="min-h-[200px] flex items-center justify-center">
   <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
 </div>;
 
 const Index = () => {
-  // Add important elements preload
+  // Optimize LCP marking
   useEffect(() => {
-    // Initialize critical assets preloading with minimal overhead
-    setTimeout(preloadCriticalAssets, 10);
-    
-    // Mark LCP element for performance monitoring
-    setTimeout(() => {
-      const lcpElement = document.querySelector('.hero-headline');
-      if (lcpElement && window.LCP) window.LCP(lcpElement);
-    }, 50);
+    // Mark LCP element immediately
+    const lcpElement = document.querySelector('.hero-headline');
+    if (lcpElement && window.LCP) window.LCP(lcpElement);
   }, []);
-
-  // Add scroll animation observer - improved to use IntersectionObserver once
+  
+  // Optimize animation observer - use a single observer for better performance
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
+    let observer: IntersectionObserver | null = null;
+    // Don't initialize this right away - give priority to LCP
+    const timer = setTimeout(() => {
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-visible');
+            observer?.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
 
-    // Defer animation setup until after initial load
-    setTimeout(() => {
       const animatedElements = document.querySelectorAll('.animate-on-scroll');
-      animatedElements.forEach(el => observer.observe(el));
+      animatedElements.forEach(el => observer?.observe(el));
     }, 1000);
 
-    return () => observer.disconnect();
+    return () => {
+      clearTimeout(timer);
+      if (observer) {
+        observer.disconnect();
+      }
+    };
   }, []);
 
   // Home page specific schema data
@@ -134,7 +116,7 @@ const Index = () => {
         <SimpleHero />
         <StatsSection />
         
-        {/* Non-critical content loaded with Suspense - with more granular chunks */}
+        {/* Non-critical content loaded with Suspense */}
         <Suspense fallback={<LoadingFallback />}>
           <CarbonShowcase />
         </Suspense>
@@ -143,33 +125,17 @@ const Index = () => {
           <Services />
         </section>
         
+        {/* Lazy load content below the fold */}
         <Suspense fallback={<LoadingFallback />}>
-          <section className="relative">
-            <Sustainability />
-          </section>
+          <Sustainability />
         </Suspense>
         
         <Suspense fallback={<LoadingFallback />}>
           <WebsiteCarbonCTA />
-        </Suspense>
-        
-        <Suspense fallback={<LoadingFallback />}>
           <ClientLogos />
-        </Suspense>
-        
-        <Suspense fallback={<LoadingFallback />}>
           <RecentProjects />
-        </Suspense>
-        
-        <Suspense fallback={<LoadingFallback />}>
           <BlogPreview />
-        </Suspense>
-        
-        <Suspense fallback={<LoadingFallback />}>
           <TestimonialsSection />
-        </Suspense>
-        
-        <Suspense fallback={<LoadingFallback />}>
           <FinalCTA />
         </Suspense>
       </main>

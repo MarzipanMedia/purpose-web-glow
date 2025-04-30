@@ -1,11 +1,11 @@
 /* Only updating key performance-related sections, keeping the rest intact */
-
 @import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600&family=Jost:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Root variables - keep existing code */
 :root {
   --background: 50 33% 98%;
   --foreground: 222.2 84% 4.9%;
@@ -94,10 +94,12 @@
 }
 
 @layer components {
+  /* Container styles - keep existing code */
   .container-custom {
     @apply container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl;
   }
   
+  /* Button styles - keep existing code */
   .btn-primary {
     @apply bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors hover:shadow-md dark:bg-brandBlue dark:hover:bg-brandBlue/90;
   }
@@ -111,6 +113,8 @@
     @apply bg-gradient-to-r from-brandBlue to-brandRed bg-clip-text text-transparent;
     background-size: 100%;
   }
+  
+  /* Other component styles - keep existing code */
   
   /* Improved callout box styling */
   .callout-box {
@@ -134,6 +138,7 @@
 }
 
 @layer utilities {
+  /* Utility classes - keep existing code */
   .page-transition {
     @apply opacity-0 animate-fade-in;
   }
@@ -142,7 +147,7 @@
     @apply transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full;
   }
   
-  /* Enhanced scroll animations - optimized for performance */
+  /* Optimize animations for performance */
   .animate-on-scroll {
     opacity: 0;
     transform: translateY(20px);
@@ -152,8 +157,8 @@
   }
   
   .animate-visible {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
+    opacity: 1;
+    transform: translateY(0);
   }
   
   /* Text highlight animation */
@@ -195,84 +200,32 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes appear {
-  from { opacity: 0; transform: scale(0.98); }
-  to { opacity: 1; transform: scale(1); }
-}
-
 /* Performance optimized animations */
 .animate-fade-in {
   animation: fadeIn 0.4s ease-out forwards;
 }
 
-.animate-slide-up {
-  animation: slideUp 0.6s ease-out forwards;
-}
-
-.animate-appear {
-  animation: appear 0.4s ease-out forwards;
-}
-
 /* Respect user preferences for reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .animate-fade-in,
-  .animate-slide-up,
-  .animate-appear,
-  .animate-on-scroll,
-  .animate-text-reveal {
-    transition: none !important;
-    animation: none !important;
-    transform: none !important;
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .animate-on-scroll {
     opacity: 1 !important;
-  }
-  
-  * {
-    animation-duration: 0.001ms !important;
-    transition-duration: 0.001ms !important;
-  }
-}
-
-/* Dark mode specific text classes */
-.dark .text-foreground {
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.dark .text-foreground\/80 {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.dark .text-foreground\/70 {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.dark .text-foreground\/60 {
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.dark .text-foreground\/40 {
-  color: rgba(255, 255, 255, 0.4);
-}
-
-/* Mobile-specific optimizations - simplified from original */
-@media (max-width: 768px) {
-  /* Critical elements in mobile view */
-  .floating-element {
-    position: relative !important;
-    margin-top: 1rem !important;
-    width: 100% !important;
     transform: none !important;
   }
-  
-  /* Reduce animation in mobile view */
-  .animate-fade-in, 
-  .animate-slide-up,
-  .animate-appear,
-  .animate-pulse-slow {
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 768px) {
+  /* Simplify mobile animations */
+  .animate-fade-in {
     animation-duration: 0.3s;
   }
   
@@ -284,29 +237,5 @@
   .py-20 {
     padding-top: 3rem;
     padding-bottom: 3rem;
-  }
-  
-  .py-16 {
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
-  }
-  
-  /* Better padding for mobile callout boxes */
-  .callout-box > div {
-    padding: 1.25rem !important;
-  }
-}
-
-/* Desktop process sections */
-@media (min-width: 1024px) {
-  .process-section-callout {
-    position: relative;
-    margin-left: 0;
-    width: 100%;
-  }
-  
-  /* Create proper grid spacing */
-  .grid.grid-cols-1.lg\:grid-cols-2 {
-    align-items: flex-start;
   }
 }

@@ -4,13 +4,12 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
 const SimpleHero = () => {
-  // Add LCP identification when component mounts
+  // Add LCP identification when component mounts - simplified approach
   useEffect(() => {
-    if (window.LCP) {
-      const headlineElement = document.querySelector('.hero-headline');
-      if (headlineElement) {
-        window.LCP(headlineElement);
-      }
+    // Mark LCP element as soon as possible
+    const headlineElement = document.querySelector('.hero-headline');
+    if (headlineElement && window.LCP) {
+      window.LCP(headlineElement);
     }
   }, []);
 
@@ -21,8 +20,8 @@ const SimpleHero = () => {
       
       <div className="container-custom relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-          <div className="md:col-span-7 space-y-6 animate-fade-in">
-            {/* Simplified heading with fewer DOM elements */}
+          <div className="md:col-span-7 space-y-6">
+            {/* Simplified heading with fewer DOM elements and no animations on initial load */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight hero-headline">
               Ensuring your online presence is as powerful as your
               <span className="gradient-text block mt-2">purpose</span>
@@ -36,7 +35,7 @@ const SimpleHero = () => {
             <div className="flex flex-wrap gap-4 pt-2">
               <Link 
                 to="/services" 
-                className="btn-primary flex items-center gap-2 group transition-all duration-300"
+                className="btn-primary flex items-center gap-2 group transition-colors"
               >
                 <span>Digital Services</span>
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -44,7 +43,7 @@ const SimpleHero = () => {
               
               <Link 
                 to="/projects" 
-                className="btn-secondary flex items-center gap-2 group transition-all duration-300"
+                className="btn-secondary flex items-center gap-2 group transition-colors"
               >
                 <span>View Our Work</span>
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -54,10 +53,10 @@ const SimpleHero = () => {
           
           <div className="md:col-span-5">
             <div className="relative">
-              {/* Static circles with simple CSS */}
-              <div className="absolute inset-0 rounded-full bg-brandBlue/10 animate-pulse" style={{animationDuration: "5s"}}></div>
+              {/* Static simplified circle instead of dynamic animations */}
+              <div className="absolute inset-0 rounded-full bg-brandBlue/10"></div>
               
-              <div className="bg-marzipan/80 rounded-full aspect-square flex items-center justify-center p-12 relative z-10 transition-transform duration-300 hover:scale-105">
+              <div className="bg-marzipan/80 rounded-full aspect-square flex items-center justify-center p-12 relative z-10">
                 <div className="text-center">
                   <p className="text-xl font-display">Eco-friendly</p>
                   <h2 className="text-3xl font-display font-semibold">Web Design</h2>

@@ -43,57 +43,44 @@ if (typeof window !== 'undefined') {
   };
 }
 
-// Performance monitoring function - optimized with lower overhead
+// Simplified performance monitoring function
 const monitorWebVitals = () => {
-  // Initialize LCP reporting with passive observation
-  let lcpElement: Element | null = null;
-  window.LCP = (element) => {
-    lcpElement = element;
-  };
-
-  // Only observe if not in development mode
   if (process.env.NODE_ENV === 'production') {
-    // Track Largest Contentful Paint with minimal overhead
-    const observer = new PerformanceObserver((entryList) => {
-      for (const entry of entryList.getEntries()) {
-        // @ts-ignore - LCP entry types
-        if (entry.element === lcpElement) {
-          console.log('LCP registered:', entry.startTime);
-          if (window.gtag) {
-            // Defer analytics reporting
-            setTimeout(() => {
+    // Minimal LCP observer
+    try {
+      const observer = new PerformanceObserver((entryList) => {
+        const entries = entryList.getEntries();
+        if (entries.length > 0) {
+          console.log('LCP measured:', entries[0].startTime);
+          // Defer analytics reporting to not block main thread
+          setTimeout(() => {
+            if (window.gtag) {
               window.gtag('event', 'web_vitals', {
                 metric_name: 'LCP',
-                metric_value: entry.startTime,
+                metric_value: entries[0].startTime,
                 metric_id: 'LCP'
               });
-            }, 1000);
-          }
+            }
+          }, 1000);
         }
-      }
-    });
-
-    // Start observing paint entries with minimal overhead
-    observer.observe({ type: 'largest-contentful-paint', buffered: true });
+      });
+      
+      observer.observe({ type: 'largest-contentful-paint', buffered: true });
+    } catch (e) {
+      console.error('PerformanceObserver not supported', e);
+    }
   }
 };
 
-// Use setTimeout to schedule non-critical operations
-const scheduleIdleTask = (callback: () => void, timeout = 1) => {
-  setTimeout(callback, timeout);
-};
-
-// Use scheduleIdleTask to preload critical resources
+// Simplified preload function
 const preloadCriticalResources = () => {
-  // Add preload links for critical fonts and assets
-  const preloadLinks = [
+  // Only preconnect to essential domains to save resources
+  const preconnects = [
     { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' },
-    { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-    { rel: 'preload', href: 'https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600&display=swap', as: 'style' },
-    { rel: 'preload', href: 'https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap', as: 'style' },
+    { rel: 'preconnect', href: 'https://fonts.googleapis.com' }
   ];
 
-  preloadLinks.forEach(link => {
+  preconnects.forEach(link => {
     const linkEl = document.createElement('link');
     Object.entries(link).forEach(([key, value]) => {
       linkEl.setAttribute(key, value);
@@ -101,40 +88,11 @@ const preloadCriticalResources = () => {
     document.head.appendChild(linkEl);
   });
   
-  // Add Sydney location breadcrumb data for Google
-  const locationScript = document.createElement('script');
-  locationScript.type = 'application/ld+json';
-  locationScript.text = JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Australia",
-        "item": "https://marzipan.com.au/australia"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "New South Wales",
-        "item": "https://marzipan.com.au/australia/nsw"
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "name": "Sydney",
-        "item": "https://marzipan.com.au/australia/nsw/sydney"
-      }
-    ]
-  });
-  document.head.appendChild(locationScript);
-  
-  // Start monitoring performance after resources loaded
+  // Initialize monitoring after critical resources
   monitorWebVitals();
 };
 
-// Add event listener to catch image loading errors with lower overhead
+// Optimize image error handling - use passive listeners
 window.addEventListener('error', function(e) {
   if (e.target && (e.target as HTMLElement).tagName === 'IMG') {
     const img = e.target as HTMLImageElement;
@@ -145,33 +103,14 @@ window.addEventListener('error', function(e) {
   }
 }, {passive: true});
 
-// Track Sydney location visits for analytics - with deferred execution
-const trackSydneyVisits = () => {
-  // Check if URL contains Sydney-related paths
-  const isSydneyPage = window.location.pathname.toLowerCase().includes('sydney');
-  
-  if (isSydneyPage && window.gtag) {
-    // Use setTimeout to defer analytics to avoid blocking main thread
-    setTimeout(() => {
-      window.gtag('event', 'sydney_page_visit', {
-        'event_category': 'local_pages',
-        'event_label': window.location.pathname
-      });
-    }, 2000);
-  }
-};
-
-// Optimize component mounting - create root once
+// Optimize component mounting
 const appRoot = document.getElementById("root");
 if (appRoot) {
   // Initialize the app
   createRoot(appRoot).render(<App />);
   
-  // Use setTimeout for non-critical operations
-  setTimeout(preloadCriticalResources, 10);
-  
-  // Set up history change listener with passive option
-  window.addEventListener('popstate', trackSydneyVisits, { passive: true });
+  // Preload critical resources soon but don't block initial render
+  setTimeout(preloadCriticalResources, 20);
 } else {
   console.error("Root element not found");
 }
