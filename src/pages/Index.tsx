@@ -1,7 +1,7 @@
 
 import React, { useEffect, lazy, Suspense } from 'react';
 import Header from '../components/Header';
-import Hero from '../components/Hero';
+import SimpleHero from '../components/SimpleHero';
 import Services from '../components/Services';
 import ClientLogos from '../components/ClientLogos';
 import MetaHead from '@/components/MetaHead';
@@ -118,7 +118,7 @@ const Index = () => {
       
       <main className="flex-grow">
         {/* Critical above-the-fold content */}
-        <Hero />
+        <SimpleHero />
         <StatsSection />
         
         {/* Non-critical content loaded with Suspense */}
