@@ -23,16 +23,19 @@ declare global {
 
 // Polyfill for requestIdleCallback and cancelIdleCallback
 if (typeof window !== 'undefined') {
-  // Cast setTimeout to number to match requestIdleCallback return type
+  // Properly typed polyfill for browsers that don't support requestIdleCallback
   window.requestIdleCallback = window.requestIdleCallback || function(
     callback: IdleRequestCallback,
     options?: IdleRequestOptions
   ) {
-    const id = setTimeout(() => callback({
+    // Use a numeric timeout ID and ensure it's properly cast to match the expected return type
+    const timeoutId = setTimeout(() => callback({
       didTimeout: false,
       timeRemaining: function() { return Infinity; }
     }), options?.timeout || 1);
-    return id as unknown as number;
+    
+    // Convert the timeout ID to a number to match the requestIdleCallback signature
+    return Number(timeoutId);
   };
 
   window.cancelIdleCallback = window.cancelIdleCallback || function(id: number) {
