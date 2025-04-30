@@ -12,6 +12,16 @@ import { useWebsiteCarbon } from '../hooks/useWebsiteCarbon';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
 
+// Schedule tasks safely with fallback for browsers without requestIdleCallback
+const scheduleIdleTask = (callback: () => void, timeout = 100) => {
+  if (typeof window.requestIdleCallback === 'function') {
+    window.requestIdleCallback(callback);
+  } else {
+    // Fallback for browsers without requestIdleCallback
+    setTimeout(callback, timeout);
+  }
+};
+
 // Schema for form validation
 const formSchema = z.object({
   url: z.string().url({ message: "Please enter a valid URL including http:// or https://" }),

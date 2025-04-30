@@ -13,6 +13,11 @@ declare global {
     ) => void;
     dataLayer: any[];
     LCP: (element: Element) => void;
+    requestIdleCallback?: (
+      callback: IdleRequestCallback,
+      options?: IdleRequestOptions
+    ) => number;
+    cancelIdleCallback?: (handle: number) => void;
   }
 }
 
