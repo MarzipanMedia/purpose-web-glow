@@ -51,7 +51,17 @@ const monitorWebVitals = () => {
   }
 };
 
-// Use requestIdleCallback to preload critical resources
+// Polyfill-safe function for scheduling non-critical operations
+const scheduleIdleTask = (callback: () => void, timeout = 1) => {
+  if (typeof window.requestIdleCallback === 'function') {
+    window.requestIdleCallback(callback);
+  } else {
+    // Fallback for browsers without requestIdleCallback
+    setTimeout(callback, timeout);
+  }
+};
+
+// Use scheduleIdleTask to preload critical resources
 const preloadCriticalResources = () => {
   // Add preload links for critical fonts and assets
   const preloadLinks = [
@@ -135,13 +145,8 @@ if (appRoot) {
   // Initialize the app
   createRoot(appRoot).render(<App />);
   
-  // Use requestIdleCallback to load non-critical resources
-  if ('requestIdleCallback' in window) {
-    (window as any).requestIdleCallback(preloadCriticalResources);
-  } else {
-    // Fallback for browsers without requestIdleCallback
-    setTimeout(preloadCriticalResources, 1);
-  }
+  // Use scheduleIdleTask for non-critical operations
+  scheduleIdleTask(preloadCriticalResources);
   
   // Set up history change listener with passive option
   window.addEventListener('popstate', trackSydneyVisits, { passive: true });

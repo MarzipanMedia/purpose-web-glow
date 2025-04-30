@@ -4,7 +4,7 @@ import React from 'react';
 const CarbonHero: React.FC = () => {
   return (
     <div 
-      className="max-w-3xl mx-auto text-center animate-fade-in relative py-10"
+      className="max-w-3xl mx-auto text-center relative py-10"
       aria-label="Carbon footprint checker section"
     >
       <div className="relative z-10">
