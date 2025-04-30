@@ -3,12 +3,30 @@ import React, { useEffect, lazy, Suspense } from 'react';
 import Header from '../components/Header';
 import SimpleHero from '../components/SimpleHero';
 import Services from '../components/Services';
-import ClientLogos from '../components/ClientLogos';
 import MetaHead from '@/components/MetaHead';
 import StatsSection from '@/components/home/StatsSection';
-import CarbonShowcase from '@/components/carbon/CarbonShowcase';
+
+// Preload critical assets
+const preloadCriticalAssets = () => {
+  // Preload critical images
+  const imagesToPreload = [
+    '/marzipan-web-design-syd-min.webp',
+    '/marzipan-logo.webp'
+  ];
+  
+  imagesToPreload.forEach(imgSrc => {
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'image';
+    link.href = imgSrc;
+    link.type = 'image/webp';
+    document.head.appendChild(link);
+  });
+};
 
 // Lazy load components that aren't needed for initial render
+const ClientLogos = lazy(() => import('../components/ClientLogos'));
+const CarbonShowcase = lazy(() => import('@/components/carbon/CarbonShowcase'));
 const Sustainability = lazy(() => import('../components/Sustainability'));
 const RecentProjects = lazy(() => import('../components/RecentProjects'));
 const BlogPreview = lazy(() => import('../components/BlogPreview'));
@@ -25,23 +43,17 @@ const LoadingFallback = () => <div className="min-h-[200px] flex items-center ju
 const Index = () => {
   // Add important elements preload
   useEffect(() => {
-    // Preload critical images
-    const imagesToPreload = [
-      '/marzipan-web-design-syd-min.webp',
-      '/marzipan-logo.webp'
-    ];
-
-    imagesToPreload.forEach(imgSrc => {
-      const link = document.createElement('link');
-      link.rel = 'preload';
-      link.as = 'image';
-      link.href = imgSrc;
-      link.type = 'image/webp';
-      document.head.appendChild(link);
-    });
+    // Initialize critical assets preloading with minimal overhead
+    requestIdleCallback ? 
+      requestIdleCallback(() => preloadCriticalAssets()) : 
+      setTimeout(preloadCriticalAssets, 100);
+    
+    // Mark LCP element for performance monitoring
+    const lcpElement = document.querySelector('.hero-headline');
+    if (lcpElement && window.LCP) window.LCP(lcpElement);
   }, []);
 
-  // Add scroll animation observer
+  // Add scroll animation observer - improved to use IntersectionObserver once
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -52,12 +64,13 @@ const Index = () => {
       });
     }, { threshold: 0.1 });
 
-    const animatedElements = document.querySelectorAll('.animate-on-scroll');
-    animatedElements.forEach(el => observer.observe(el));
+    // Defer animation setup until after initial load
+    setTimeout(() => {
+      const animatedElements = document.querySelectorAll('.animate-on-scroll');
+      animatedElements.forEach(el => observer.observe(el));
+    }, 1000);
 
-    return () => {
-      animatedElements.forEach(el => observer.unobserve(el));
-    };
+    return () => observer.disconnect();
   }, []);
 
   // Home page specific schema data
@@ -121,23 +134,42 @@ const Index = () => {
         <SimpleHero />
         <StatsSection />
         
-        {/* Non-critical content loaded with Suspense */}
+        {/* Non-critical content loaded with Suspense - with more granular chunks */}
         <Suspense fallback={<LoadingFallback />}>
           <CarbonShowcase />
+        </Suspense>
           
-          <section className="relative bg-gradient-to-b from-gray-50 to-white">
-            <Services />
-          </section>
-          
+        <section className="relative bg-gradient-to-b from-gray-50 to-white">
+          <Services />
+        </section>
+        
+        <Suspense fallback={<LoadingFallback />}>
           <section className="relative">
             <Sustainability />
           </section>
-          
+        </Suspense>
+        
+        <Suspense fallback={<LoadingFallback />}>
           <WebsiteCarbonCTA />
+        </Suspense>
+        
+        <Suspense fallback={<LoadingFallback />}>
           <ClientLogos />
+        </Suspense>
+        
+        <Suspense fallback={<LoadingFallback />}>
           <RecentProjects />
+        </Suspense>
+        
+        <Suspense fallback={<LoadingFallback />}>
           <BlogPreview />
+        </Suspense>
+        
+        <Suspense fallback={<LoadingFallback />}>
           <TestimonialsSection />
+        </Suspense>
+        
+        <Suspense fallback={<LoadingFallback />}>
           <FinalCTA />
         </Suspense>
       </main>

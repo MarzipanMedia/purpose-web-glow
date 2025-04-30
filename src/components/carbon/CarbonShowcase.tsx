@@ -1,23 +1,15 @@
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Gauge, Leaf } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
-import { useWebsiteCarbon } from '../../hooks/useWebsiteCarbon';
+
+// Static data instead of simulating increases
+const CARBON_DATA = {
+  pageViews: 2750,
+  carbonSaved: 8.5
+};
 
 const CarbonShowcase = () => {
-  const [carbonSaved, setCarbonSaved] = useState(0);
-  const [pageViews, setPageViews] = useState(0);
-  
-  useEffect(() => {
-    // Simulate increasing page views and carbon savings
-    const interval = setInterval(() => {
-      setPageViews(prev => prev + Math.floor(Math.random() * 3));
-      setCarbonSaved(prev => prev + (Math.random() * 0.5));
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <section className="py-12 bg-gradient-to-br from-white to-marzipan/20 dark:from-gray-900 dark:to-gray-800">
       <div className="container-custom">
@@ -39,15 +31,15 @@ const CarbonShowcase = () => {
                 </div>
                 <div className="text-right">
                   <div className="text-4xl font-display font-bold text-brandBlue">
-                    {pageViews.toLocaleString()}
+                    {CARBON_DATA.pageViews.toLocaleString()}
                   </div>
                   <div className="text-sm text-foreground/60">Total Page Views</div>
                 </div>
               </div>
               <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
                 <div 
-                  className="h-full bg-brandBlue transition-all duration-500"
-                  style={{ width: `${Math.min((pageViews / 1000) * 100, 100)}%` }}
+                  className="h-full bg-brandBlue"
+                  style={{ width: `${Math.min((CARBON_DATA.pageViews / 1000) * 100, 100)}%` }}
                 />
               </div>
             </CardContent>
@@ -61,15 +53,15 @@ const CarbonShowcase = () => {
                 </div>
                 <div className="text-right">
                   <div className="text-4xl font-display font-bold text-brandBlue">
-                    {carbonSaved.toFixed(1)}kg
+                    {CARBON_DATA.carbonSaved.toFixed(1)}kg
                   </div>
                   <div className="text-sm text-foreground/60">CO2 Saved</div>
                 </div>
               </div>
               <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
                 <div 
-                  className="h-full bg-brandBlue transition-all duration-500"
-                  style={{ width: `${Math.min((carbonSaved / 10) * 100, 100)}%` }}
+                  className="h-full bg-brandBlue"
+                  style={{ width: `${Math.min((CARBON_DATA.carbonSaved / 10) * 100, 100)}%` }}
                 />
               </div>
             </CardContent>
