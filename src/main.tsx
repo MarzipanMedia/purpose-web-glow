@@ -13,11 +13,17 @@ declare global {
     ) => void;
     dataLayer: any[];
     LCP: (element: Element) => void;
+    requestIdleCallback: (
+      callback: IdleRequestCallback,
+      options?: IdleRequestOptions
+    ) => number;
+    cancelIdleCallback: (id: number) => void;
   }
 }
 
 // Polyfill for requestIdleCallback and cancelIdleCallback
 if (typeof window !== 'undefined') {
+  // Cast setTimeout to number to match requestIdleCallback return type
   window.requestIdleCallback = window.requestIdleCallback || function(
     callback: IdleRequestCallback,
     options?: IdleRequestOptions
@@ -26,7 +32,7 @@ if (typeof window !== 'undefined') {
       didTimeout: false,
       timeRemaining: function() { return Infinity; }
     }), options?.timeout || 1);
-    return id;
+    return id as unknown as number;
   };
 
   window.cancelIdleCallback = window.cancelIdleCallback || function(id: number) {
