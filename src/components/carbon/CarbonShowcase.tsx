@@ -1,19 +1,10 @@
+
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-// Schedule tasks safely with fallback for browsers without requestIdleCallback
-const scheduleIdleTask = (callback: () => void, timeout = 100) => {
-  if (typeof window.requestIdleCallback === 'function') {
-    window.requestIdleCallback(callback);
-  } else {
-    // Fallback for browsers without requestIdleCallback
-    setTimeout(callback, timeout);
-  }
-};
-
 const CarbonShowcase: React.FC = () => {
   useEffect(() => {
-    // Load carbon badge script using the polyfill
+    // Load carbon badge script using setTimeout instead of requestIdleCallback
     const loadCarbonBadge = () => {
       const script = document.createElement('script');
       script.src = 'https://unpkg.com/@websitecarbon/badge@1/dist/wcbadge.js';
@@ -29,7 +20,8 @@ const CarbonShowcase: React.FC = () => {
       };
     };
 
-    scheduleIdleTask(loadCarbonBadge);
+    // Use setTimeout with a small delay to not block main thread
+    setTimeout(loadCarbonBadge, 100);
 
     return () => {
       const script = document.querySelector('script[src="https://unpkg.com/@websitecarbon/badge@1/dist/wcbadge.js"]');

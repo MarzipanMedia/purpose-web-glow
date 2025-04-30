@@ -6,16 +6,6 @@ import Services from '../components/Services';
 import MetaHead from '@/components/MetaHead';
 import StatsSection from '@/components/home/StatsSection';
 
-// Schedule tasks safely with fallback for browsers without requestIdleCallback
-const scheduleIdleTask = (callback: () => void, timeout = 100) => {
-  if (typeof window.requestIdleCallback === 'function') {
-    window.requestIdleCallback(callback);
-  } else {
-    // Fallback for browsers without requestIdleCallback
-    setTimeout(callback, timeout);
-  }
-};
-
 // Preload critical assets
 const preloadCriticalAssets = () => {
   // Preload critical images
@@ -54,11 +44,13 @@ const Index = () => {
   // Add important elements preload
   useEffect(() => {
     // Initialize critical assets preloading with minimal overhead
-    scheduleIdleTask(preloadCriticalAssets);
+    setTimeout(preloadCriticalAssets, 10);
     
     // Mark LCP element for performance monitoring
-    const lcpElement = document.querySelector('.hero-headline');
-    if (lcpElement && window.LCP) window.LCP(lcpElement);
+    setTimeout(() => {
+      const lcpElement = document.querySelector('.hero-headline');
+      if (lcpElement && window.LCP) window.LCP(lcpElement);
+    }, 50);
   }, []);
 
   // Add scroll animation observer - improved to use IntersectionObserver once

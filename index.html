@@ -29,16 +29,29 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@marzipandigital" />
     <meta name="twitter:image" content="/marzipan-logo.webp" />
-    <link href="https://fonts.googleapis.com/css2?family=Questrial&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Preload critical fonts with display swap -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Questrial&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-      <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-YEYRTEBNW4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-YEYRTEBNW4');
-</script>
+    
+    <!-- Google tag (gtag.js) - defer non-critical JS -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YEYRTEBNW4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-YEYRTEBNW4', {
+        'send_page_view': false // Defer page view sending
+      });
+      // Send page view after page has loaded
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          gtag('event', 'page_view');
+        }, 100);
+      });
+    </script>
   </head>
   <body>
     <div id="root"></div>

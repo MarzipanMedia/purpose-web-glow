@@ -1,9 +1,19 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
 const SimpleHero = () => {
+  // Add LCP identification when component mounts
+  useEffect(() => {
+    if (window.LCP) {
+      const headlineElement = document.querySelector('.hero-headline');
+      if (headlineElement) {
+        window.LCP(headlineElement);
+      }
+    }
+  }, []);
+
   return (
     <section className="relative overflow-hidden py-20 md:py-28 bg-gradient-subtle">
       {/* Simple static background instead of animated effects */}

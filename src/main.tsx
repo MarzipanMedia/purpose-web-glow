@@ -13,12 +13,25 @@ declare global {
     ) => void;
     dataLayer: any[];
     LCP: (element: Element) => void;
-    requestIdleCallback?: (
-      callback: IdleRequestCallback,
-      options?: IdleRequestOptions
-    ) => number;
-    cancelIdleCallback?: (handle: number) => void;
   }
+}
+
+// Polyfill for requestIdleCallback and cancelIdleCallback
+if (typeof window !== 'undefined') {
+  window.requestIdleCallback = window.requestIdleCallback || function(
+    callback: IdleRequestCallback,
+    options?: IdleRequestOptions
+  ) {
+    const id = setTimeout(() => callback({
+      didTimeout: false,
+      timeRemaining: function() { return Infinity; }
+    }), options?.timeout || 1);
+    return id;
+  };
+
+  window.cancelIdleCallback = window.cancelIdleCallback || function(id: number) {
+    clearTimeout(id);
+  };
 }
 
 // Performance monitoring function - optimized with lower overhead
@@ -56,14 +69,9 @@ const monitorWebVitals = () => {
   }
 };
 
-// Polyfill-safe function for scheduling non-critical operations
+// Use setTimeout to schedule non-critical operations
 const scheduleIdleTask = (callback: () => void, timeout = 1) => {
-  if (typeof window.requestIdleCallback === 'function') {
-    window.requestIdleCallback(callback);
-  } else {
-    // Fallback for browsers without requestIdleCallback
-    setTimeout(callback, timeout);
-  }
+  setTimeout(callback, timeout);
 };
 
 // Use scheduleIdleTask to preload critical resources
@@ -150,8 +158,8 @@ if (appRoot) {
   // Initialize the app
   createRoot(appRoot).render(<App />);
   
-  // Use scheduleIdleTask for non-critical operations
-  scheduleIdleTask(preloadCriticalResources);
+  // Use setTimeout for non-critical operations
+  setTimeout(preloadCriticalResources, 10);
   
   // Set up history change listener with passive option
   window.addEventListener('popstate', trackSydneyVisits, { passive: true });

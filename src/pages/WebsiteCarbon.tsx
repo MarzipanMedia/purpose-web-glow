@@ -12,14 +12,9 @@ import { useWebsiteCarbon } from '../hooks/useWebsiteCarbon';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
 
-// Schedule tasks safely with fallback for browsers without requestIdleCallback
-const scheduleIdleTask = (callback: () => void, timeout = 100) => {
-  if (typeof window.requestIdleCallback === 'function') {
-    window.requestIdleCallback(callback);
-  } else {
-    // Fallback for browsers without requestIdleCallback
-    setTimeout(callback, timeout);
-  }
+// Schedule tasks safely without requestIdleCallback
+const scheduleTask = (callback: () => void, timeout = 10) => {
+  setTimeout(callback, timeout);
 };
 
 // Schema for form validation
