@@ -34,6 +34,21 @@ const addResourceHints = () => {
       link.setAttribute('href', `${href}&display=swap`);
     }
   });
+  
+  // Mark the main heading as LCP element for monitoring
+  const markLCP = () => {
+    const mainHeading = document.getElementById('main-heading');
+    if (mainHeading) {
+      mainHeading.setAttribute('fetchpriority', 'high');
+    }
+  };
+  
+  // Execute when DOM is ready
+  if (document.readyState === 'interactive' || document.readyState === 'complete') {
+    markLCP();
+  } else {
+    document.addEventListener('DOMContentLoaded', markLCP);
+  }
 };
 
 // Execute resource hints immediately

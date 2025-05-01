@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { ThemeProvider } from "./components/ThemeProvider";
 import Index from "./pages/Index";
 import IndexAlt from "./pages/IndexAlt";
+import IndexAlt2 from "./pages/IndexAlt2";
 import Services from "./pages/Services";
 import Projects from "./pages/Projects";
 import About from "./pages/About";
@@ -29,6 +30,9 @@ import Terms from "./pages/Terms";
 import BenAdams from "./pages/BenAdams";
 import AlwaysWas from "./pages/AlwaysWas";
 import BlogPost from "./components/blog/BlogPost";
+
+// Import the alt2 styles
+import "./styles/alt2.css";
 
 const queryClient = new QueryClient();
 
@@ -55,6 +59,7 @@ const App = () => (
             <Routes>
               <Route path="/" element={<PageTransition><Index /></PageTransition>} />
               <Route path="/alt" element={<PageTransition><IndexAlt /></PageTransition>} />
+              <Route path="/alt2" element={<PageTransition><IndexAlt2 /></PageTransition>} />
               <Route path="/services" element={<PageTransition><Services /></PageTransition>} />
               <Route path="/services/sustainable-web-design" element={<PageTransition><SustainableWebDesign /></PageTransition>} />
               <Route path="/services/ai-seo" element={<PageTransition><AiSeo /></PageTransition>} />

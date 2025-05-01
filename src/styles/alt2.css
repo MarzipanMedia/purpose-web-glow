@@ -1,0 +1,26 @@
+
+/* Performance-optimized CSS for Alt2 page */
+
+/* Critical CSS for LCP */
+.defer-animate {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Add this to index.css or create a style import system */
+@media (prefers-reduced-motion: reduce) {
+  .defer-animate {
+    transition: opacity 0.1s ease-out;
+    transform: none;
+  }
+  
+  .animate-visible {
+    opacity: 1;
+  }
+}

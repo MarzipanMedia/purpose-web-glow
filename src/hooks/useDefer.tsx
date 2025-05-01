@@ -21,7 +21,7 @@ export const useDefer = (
   }, [callback]);
   
   useEffect(() => {
-    let timeoutId: number;
+    let timeoutId: number | NodeJS.Timeout;
     const executeCallback = () => {
       callbackRef.current();
     };
@@ -30,7 +30,7 @@ export const useDefer = (
     if ('requestIdleCallback' in window) {
       const idleCallbackId = window.requestIdleCallback(() => {
         if (delay > 0) {
-          timeoutId = window.setTimeout(executeCallback, delay);
+          timeoutId = setTimeout(executeCallback, delay);
         } else {
           executeCallback();
         }
@@ -46,7 +46,7 @@ export const useDefer = (
       };
     } else {
       // Fallback for browsers that don't support requestIdleCallback
-      timeoutId = window.setTimeout(executeCallback, delay || 100);
+      timeoutId = setTimeout(executeCallback, delay || 100);
       
       return () => {
         clearTimeout(timeoutId);
@@ -58,11 +58,11 @@ export const useDefer = (
 // Use proper interface augmentation for TypeScript
 declare global {
   interface Window {
-    // Use optional chaining to avoid conflicts with existing definitions
-    requestIdleCallback: typeof window.requestIdleCallback | 
-      ((callback: IdleRequestCallback, options?: IdleRequestOptions) => number);
-    cancelIdleCallback: typeof window.cancelIdleCallback | 
-      ((id: number) => void);
+    requestIdleCallback: (
+      callback: IdleRequestCallback, 
+      options?: IdleRequestOptions
+    ) => number;
+    cancelIdleCallback: (handle: number) => void;
   }
 }
 
