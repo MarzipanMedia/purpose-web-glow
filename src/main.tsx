@@ -1,7 +1,20 @@
-
 import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
+
+// Define types for requestIdleCallback and cancelIdleCallback
+interface IdleRequestOptions {
+  timeout?: number;
+}
+
+interface IdleRequestCallback {
+  (deadline: IdleDeadline): void;
+}
+
+interface IdleDeadline {
+  didTimeout: boolean;
+  timeRemaining: () => number;
+}
 
 // Add gtag type declaration
 declare global {
