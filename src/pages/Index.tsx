@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
 import Services from '../components/Services';
@@ -16,24 +16,48 @@ import FinalCTA from '@/components/home/FinalCTA';
 import CarbonShowcase from '@/components/carbon/CarbonShowcase';
 
 const Index = () => {
-  // Add scroll animation observer
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate-visible');
-          observer.unobserve(entry.target);
-        }
+  // Optimized scroll animation observer that doesn't block rendering
+  const setupAnimations = useCallback(() => {
+    if (typeof window.requestIdleCallback !== 'undefined') {
+      window.requestIdleCallback(() => {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('animate-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+    
+        const animatedElements = document.querySelectorAll('.animate-on-scroll');
+        animatedElements.forEach(el => observer.observe(el));
       });
-    }, { threshold: 0.1 });
-
-    const animatedElements = document.querySelectorAll('.animate-on-scroll');
-    animatedElements.forEach(el => observer.observe(el));
-
-    return () => {
-      animatedElements.forEach(el => observer.unobserve(el));
-    };
+    } else {
+      // Fallback for browsers without requestIdleCallback
+      setTimeout(() => {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('animate-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+    
+        const animatedElements = document.querySelectorAll('.animate-on-scroll');
+        animatedElements.forEach(el => observer.observe(el));
+      }, 100);
+    }
   }, []);
+
+  useEffect(() => {
+    // Delay animation setup to prioritize content rendering
+    setupAnimations();
+    
+    return () => {
+      // Nothing to clean up since we're handling unobserve in the observer itself
+    };
+  }, [setupAnimations]);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -46,13 +70,15 @@ const Index = () => {
       <main className="flex-grow">
         <Hero />
         <StatsSection />
+        
+        {/* Lazy load non-critical sections */}
         <CarbonShowcase />
         
-        <section className="relative bg-gradient-to-b from-gray-50 to-white">
+        <section className="relative bg-gradient-to-b from-gray-50 to-white animate-on-scroll">
           <Services />
         </section>
         
-        <section className="relative">
+        <section className="relative animate-on-scroll">
           <Sustainability />
         </section>
         
