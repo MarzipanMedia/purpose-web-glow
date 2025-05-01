@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -15,31 +16,31 @@ const BenAdams = () => {
   // Featured projects data
   const featuredProjects = [
     {
-      title: "EcoLiving Collective",
-      category: "Sustainable E-commerce",
-      description: "A carbon-neutral online store with optimised images and minimal server requests.",
-      features: ["98% Performance Score", "Green Hosting", "Image Optimization"],
-      color: "bg-brandBlue",
+      title: "Jarli – Reach for the stars",
+      category: "Indigenous Animation",
+      description: "Social media strategy and content creation for an award-winning animated film inspiring Indigenous children to explore STEM and space science.",
+      features: ["Social Media Assets", "Digital Content Creation", "Interactive AR Backgrounds"],
+      color: "bg-[#27548E]",
       textColor: "text-white",
-      slug: "ecoliving-collective"
+      slug: "jarli"
     },
     {
-      title: "Ocean Conservation Alliance",
-      category: "Non-profit Organisation",
-      description: "Accessible, lightweight website showcasing marine conservation efforts.",
-      features: ["Sustainable Design", "Low Carbon", "High Performance"],
-      color: "bg-marzipan/80",
-      textColor: "text-foreground",
-      slug: "ocean-conservation"
+      title: "Willow – A Safe, Fast, and Sustainable Website for Women in Crisis",
+      category: "Social Impact",
+      description: "Mobile-first website providing legal info for women facing crisis — fast, safe, and discreet.",
+      features: ["0.46g CO₂ per View", "Safe Exit & History Clearing", "Mobile-First Design"],
+      color: "bg-[#564872]",
+      textColor: "text-white",
+      slug: "willow"
     },
     {
-      title: "Mindful Markets",
-      category: "Digital Marketplace",
-      description: "Progressive web app connecting conscious consumers with sustainable businesses.",
-      features: ["PWA", "Optimised Code", "Eco Hosting"],
-      color: "bg-brandRed",
+      title: "Sydney Jewish Museum",
+      category: "Cultural Institution",
+      description: "Digital marketing, SEO optimisation, and content creation for the Sydney Jewish Museum to share stories of hope, courage, and survival.",
+      features: ["Social Media Marketing", "SEO Optimisation", "Content Creation"],
+      color: "bg-[#4A5568]",
       textColor: "text-white",
-      slug: "mindful-markets"
+      slug: "sydney-jewish-museum"
     }
   ];
 
