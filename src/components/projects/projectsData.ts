@@ -211,5 +211,29 @@ export const projects: ProjectData[] = [
         description: "Meet the passionate staff preserving our botanical heritage"
       }
     ]
+  },
+  {
+    title: "Jarli – Reach for the stars",
+    imageUrl: "/jarli-reach-stars-marzipana.png",
+    category: "Indigenous Animation",
+    description: "Social media strategy and content creation for an award-winning animated film inspiring Indigenous children to explore STEM and space science.",
+    features: ["Social Media Assets", "Digital Content Creation", "Interactive AR Backgrounds", "Campaign Strategy", "Animated GIFs"],
+    color: "bg-[#27548E]",
+    textColor: "text-white",
+    slug: "jarli",
+    client: "House of Kitch / Royal Australian Air Force",
+    services: ["Social Media Marketing", "Content Creation", "Digital Animation"],
+    longDescription: "It's not every day you get help on projects that lift you higher, but that's exactly what happened when the House of Kitch invited us to create social media assets for Jarli, an award-winning short film to inspire Indigenous school children to reach for the stars.\n\nTogether we created digital content assets for Instagram, Facebook and Twitter for the launch of this beautiful animated film. Jarli is a proud Aboriginal girl with a knack for building things, especially things that fly. Created by the Royal Australian Air Force and UTS_ALA to inspire our kids to study STEM subjects and perhaps one day join the RAAF.\n\n'Jarli' is another animation gem that weaves visual and oral story elements to explore the dream of flight, indigenous astronomy, and the future of our planet and its people. Jarli, 16, lives with her family in a remote community in Australia. She might look small, but she asks big questions and has big ideas. She also has a knack for building things – especially things that fly – and wants to fly herself one day… maybe even into outer space. Jarli dreams of being the first person to travel to other worlds in our solar system.\n\nDirected by Simon Rippingale, the inspirational animated short is a collaboration with First Nations storytellers, the UTS Animal Logic Academy in collaboration with the Royal Australian Air Force and Like a Photon Creative. The goal was to inspire young people (particularly girls, especially indigenous kids) to reach for the stars and widen their eyes to possibilities opened up by STEM.\n\nThe Challenge\n\nA critical element for Australia to achieve its sovereign space ambitions is the development of a workforce with the necessary STEM skills. With the space industry tripling in size by 2030, engagement with school kids, and encouraging them to study STEM, needs to start now.\n\nOur Approach\n\nA talented team of Indigenous creatives included co-director: Chantelle Murray, writers: Jonathan Bell & Andrew Dillon and voice actors: Madeleine Madden, Wayne Blair, Mark Coles Smith and Rahmah Bin Buyong. Simon Rippingale co-directed Jarli as part of his PHD thesis under Professor Andrew Johnston.\n\nWhile the Jarli film premiered at the Sydney Film Festival, Jarli was pre-screened to a very special audience of Aboriginal children from the Katherine community in outback Northern Territory on RAAF Base Tindal. Audience members were treated to a unique pop-up cinema experience in an open aircraft hangar and a view of the night-flying activity at Tindal.\n\nPersonal Connection\n\nProject timings are always a curious thing, and this one landed just after a short stint of fostering by Marzipan cofounder and digital guy, Ben Adams who looked after two young aboriginal children. These kids had seen some of the worst things imaginable and yet were able to still see the joy and wonder of the world, without bitterness or judgement. There are so many systemic barriers in the way of closing the gap but we're certain projects born out of love, such as this one, may help pave the way. They loved watched Jarli and enjoyed our social media games, assets and creative that was created for the film.\n\nMarzipan have created a range of social media tiles for its full release, including animated gifs, interactive AR backgrounds for Instagram and more.\n\nGlobal Impact\n\nNot ready to stay on the ground too long, Jarli hitched a ride to the International Space Station on the NASA SpaceX Falcon 9 CRS-24 mission during National Science Week 2022. Chief Defence Scientist, Professor Tanya Monro AC said Jarli struck a chord with all of us because of her resilience, creativity and ingenuity – the qualities the next generation of Australians need to harness to achieve extraordinary things.\n\n\"It is so inspiring for Australian children, particularly First Nations children, to see clever Australian inventions driving collaboration with the US Space Force and NASA… We can't confirm this but are certain the NASA folks would have loved playing with our Instagram AR tiles ; )\"",
+    videos: [
+      {
+        url: "https://youtu.be/YoiijfjK-J8",
+        title: "Jarli - Reach for the Stars",
+        description: "Award-winning animation inspiring Indigenous youth to explore STEM and space science",
+        orientation: 'landscape'
+      }
+    ],
+    date: "2022-08-15",
+    tags: ["Digital Content", "Indigenous", "Animation", "Space", "STEM"],
+    featured: true
   }
 ];
