@@ -1,66 +1,79 @@
 
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Gauge, Leaf } from 'lucide-react';
+import { Card, CardContent } from "@/components/ui/card";
+import { useWebsiteCarbon } from '../../hooks/useWebsiteCarbon';
 
-const CarbonShowcase: React.FC = () => {
-  // Load carbon badge script only after the component is mounted and visible
-  React.useEffect(() => {
-    let mounted = true;
-    
-    // Use Intersection Observer to load the script only when the component is visible
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting && mounted) {
-        // Delayed loading of non-critical script
-        setTimeout(() => {
-          if (!mounted) return;
-          
-          const script = document.createElement('script');
-          script.src = 'https://unpkg.com/@websitecarbon/badge@1/dist/wcbadge.js';
-          script.async = true;
-          script.defer = true;
-          document.body.appendChild(script);
-          
-          observer.disconnect();
-        }, 1000); // Delay loading to prioritize more critical content
-      }
-    }, { threshold: 0.1 });
-    
-    // Start observing the container element
-    const container = document.querySelector('.wcb-container');
-    if (container) {
-      observer.observe(container);
-    }
-    
-    return () => {
-      mounted = false;
-      observer.disconnect();
-      
-      // Clean up script when component unmounts
-      const script = document.querySelector('script[src="https://unpkg.com/@websitecarbon/badge@1/dist/wcbadge.js"]');
-      if (script) {
-        document.body.removeChild(script);
-      }
-    };
-  }, []);
+const CarbonShowcase = () => {
+  const [carbonSaved, setCarbonSaved] = useState(0);
+  const [pageViews, setPageViews] = useState(0);
   
+  useEffect(() => {
+    // Simulate increasing page views and carbon savings
+    const interval = setInterval(() => {
+      setPageViews(prev => prev + Math.floor(Math.random() * 3));
+      setCarbonSaved(prev => prev + (Math.random() * 0.5));
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="py-12 bg-white dark:bg-gray-800">
+    <section className="py-12 bg-gradient-to-br from-white to-marzipan/20 dark:from-gray-900 dark:to-gray-800">
       <div className="container-custom">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div>
-            <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">
-              Why Check Your Website's Carbon Footprint?
-            </h2>
-            <p className="text-gray-600 dark:text-gray-300 mb-6">
-              Websites consume energy, contributing to carbon emissions. By understanding your website's impact, you can take steps to reduce its environmental footprint.
-            </p>
-            <Link to="/website-carbon" className="text-blue-600 hover:underline dark:text-blue-400">
-              Check your website's carbon footprint →
-            </Link>
+        <div className="text-center mb-8">
+          <div className="inline-block bg-brandBlue/10 text-brandBlue px-4 py-1 rounded-full mb-4">
+            <h2 className="text-sm font-medium">Real-Time Impact</h2>
           </div>
-          <div className="flex justify-center wcb-container">
-            <div className="wcb-badge" aria-label="Website Carbon Badge will load here"></div>
-          </div>
+          <h3 className="text-2xl md:text-3xl font-display font-semibold">
+            Making the Web Greener, One Page at a Time
+          </h3>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <Card className="bg-white/50 dark:bg-gray-800/50 backdrop-blur">
+            <CardContent className="pt-6">
+              <div className="flex items-center justify-between mb-4">
+                <div className="bg-brandBlue/10 text-brandBlue rounded-full p-2">
+                  <Gauge className="h-6 w-6" />
+                </div>
+                <div className="text-right">
+                  <div className="text-4xl font-display font-bold text-brandBlue">
+                    {pageViews.toLocaleString()}
+                  </div>
+                  <div className="text-sm text-foreground/60">Total Page Views</div>
+                </div>
+              </div>
+              <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+                <div 
+                  className="h-full bg-brandBlue transition-all duration-500"
+                  style={{ width: `${Math.min((pageViews / 1000) * 100, 100)}%` }}
+                />
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-white/50 dark:bg-gray-800/50 backdrop-blur">
+            <CardContent className="pt-6">
+              <div className="flex items-center justify-between mb-4">
+                <div className="bg-brandBlue/10 text-brandBlue rounded-full p-2">
+                  <Leaf className="h-6 w-6" />
+                </div>
+                <div className="text-right">
+                  <div className="text-4xl font-display font-bold text-brandBlue">
+                    {carbonSaved.toFixed(1)}kg
+                  </div>
+                  <div className="text-sm text-foreground/60">CO2 Saved</div>
+                </div>
+              </div>
+              <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+                <div 
+                  className="h-full bg-brandBlue transition-all duration-500"
+                  style={{ width: `${Math.min((carbonSaved / 10) * 100, 100)}%` }}
+                />
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </section>

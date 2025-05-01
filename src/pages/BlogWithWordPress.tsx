@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -7,15 +8,11 @@ import { useFetchPosts, useFetchCategories } from '../services/wordpressService'
 import { Pagination, PaginationContent, PaginationItem, PaginationLink } from "@/components/ui/pagination";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { useStaticAnimation } from '../hooks/useAnimations';
 
 const BlogWithWordPress = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const { data, isLoading, isError, error } = useFetchPosts(currentPage, 6);
   const { data: categories, isLoading: categoriesLoading } = useFetchCategories();
-
-  // Use static animation helper instead of glow effect
-  const { isLoaded } = useStaticAnimation();
 
   const extractPlainText = (html: string) => {
     const doc = new DOMParser().parseFromString(html, 'text/html');
@@ -44,28 +41,17 @@ const BlogWithWordPress = () => {
       <Header />
       
       <main className="flex-grow">
-        {/* Enhanced Hero Section with simplified background */}
-        <section 
-          className="py-16 bg-gradient-subtle relative overflow-hidden"
-        >
-          {/* Static glow effect instead of mouse-following */}
-          <div 
-            className="absolute pointer-events-none bg-gradient-radial from-brandBlue/15 to-transparent rounded-full w-[500px] h-[500px] -z-0 blur-3xl opacity-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-          />
-          
-          {/* Decorative elements */}
-          <div className="absolute -top-20 -right-20 w-64 h-64 border-4 border-brandBlue/5 rounded-full opacity-50" aria-hidden="true"></div>
-          <div className="absolute -bottom-24 -left-16 w-48 h-48 border-4 border-brandBlue/5 rounded-full opacity-50" aria-hidden="true"></div>
-          
+        {/* Hero Section */}
+        <section className="py-16 bg-gradient-subtle">
           <div className="container-custom">
             <div className="max-w-3xl animate-fade-in">
               <div className="inline-block bg-brandBlue/10 text-brandBlue px-4 py-1 rounded-full mb-4">
                 WordPress Blog
               </div>
-              <h1 className="text-4xl md:text-5xl font-display font-bold mb-6 dark:text-white">
+              <h1 className="text-4xl md:text-5xl font-display font-bold mb-6">
                 Insights from Our WordPress Site
               </h1>
-              <p className="text-lg text-foreground/80 max-w-2xl">
+              <p className="text-lg text-foreground/80">
                 Posts directly from our WordPress site via the REST API. Live content that stays in sync with our main site.
               </p>
             </div>
@@ -251,18 +237,18 @@ const BlogWithWordPress = () => {
                   )}
                 </div>
                 
-                {/* Call to Action - replacing WordPress Info */}
+                {/* WordPress Info */}
                 <div className="bg-brandBlue text-white p-6 rounded-lg">
-                  <div className="text-sm text-white/70 uppercase font-medium mb-2">Ready to grow your online presence?</div>
+                  <div className="text-sm text-white/70 uppercase font-medium mb-2">WordPress Connection</div>
                   <h3 className="text-xl font-display font-medium mb-3">
-                    Get a Sustainable Website Audit
+                    Using WordPress REST API
                   </h3>
                   <p className="text-white/80 mb-4">
-                    Discover how we can help improve your website's performance, SEO, and carbon footprint with our comprehensive website audit.
+                    This page demonstrates fetching blog posts directly from a WordPress site using the REST API. Replace the API URL with your WordPress site to show your own posts.
                   </p>
-                  <Link to="/contact" className="inline-flex items-center gap-1 px-4 py-2 bg-white text-brandBlue rounded-lg hover:bg-white/90 transition-colors font-medium">
-                    Get Started <ArrowRight className="h-3.5 w-3.5" />
-                  </Link>
+                  <a href="https://developer.wordpress.org/rest-api/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm font-medium text-white hover:text-white/80 transition-colors">
+                    Learn More <ArrowRight className="h-3.5 w-3.5" />
+                  </a>
                 </div>
               </div>
             </div>

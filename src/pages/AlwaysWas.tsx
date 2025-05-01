@@ -3,13 +3,14 @@ import React, { useRef } from 'react';
 import MetaHead from '@/components/MetaHead';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { useScrollAnimation, useParallax } from '../hooks/useAnimations';
+import { useScrollAnimation, useParallax, useMousePosition } from '../hooks/useAnimations';
 
 const AlwaysWas = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLParagraphElement>(null);
   const { isVisible: sectionVisible } = useScrollAnimation({ threshold: 0.1 });
   const parallaxOffset = useParallax();
+  const mousePosition = useMousePosition(sectionRef);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -23,12 +24,18 @@ const AlwaysWas = () => {
           ref={sectionRef}
           className="min-h-[80vh] relative flex items-center justify-center bg-gradient-to-br from-[#f8f4e9] to-[#eacda3] overflow-hidden"
         >
-          {/* Simplified static decorative elements */}
+          {/* Parallax decorative circle elements */}
           <div 
-            className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] border-4 border-brandRed/20 rounded-full opacity-50 animate-float"
+            className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] border-4 border-brandRed/20 rounded-full opacity-50 transition-transform duration-700 animate-float"
+            style={{ 
+              transform: `rotate(12deg) translate(${mousePosition.x * 10}px, ${-parallaxOffset.y * 0.8}px)` 
+            }}
           />
           <div 
-            className="absolute top-[-8%] right-[-3%] w-[450px] h-[450px] border-4 border-brandRed/30 rounded-full opacity-40 animate-float-delay"
+            className="absolute top-[-8%] right-[-3%] w-[450px] h-[450px] border-4 border-brandRed/30 rounded-full opacity-40 transition-transform duration-700 animate-float-delay"
+            style={{ 
+              transform: `rotate(6deg) translate(${mousePosition.x * 5}px, ${-parallaxOffset.y * 0.5}px)` 
+            }}
           />
           
           {/* Background subtle patterns */}
@@ -53,9 +60,12 @@ const AlwaysWas = () => {
             </div>
           </div>
           
-          {/* Simplified decorative element */}
+          {/* Additional decorative elements with interaction */}
           <div 
             className="absolute bottom-[10%] left-[10%] w-[200px] h-[200px] border-2 border-brandRed/10 rounded-full animate-pulse-slow"
+            style={{ 
+              transform: `translate(${mousePosition.x * -15}px, ${mousePosition.y * -15}px)` 
+            }}
           />
         </section>
       </main>

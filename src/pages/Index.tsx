@@ -1,115 +1,69 @@
-
-import React, { lazy, Suspense } from 'react';
+import React, { useEffect } from 'react';
 import Header from '../components/Header';
-import SimpleHero from '../components/SimpleHero';
+import Hero from '../components/Hero';
 import Services from '../components/Services';
+import Sustainability from '../components/Sustainability';
+import ClientLogos from '../components/ClientLogos';
+import RecentProjects from '../components/RecentProjects';
+import BlogPreview from '../components/BlogPreview';
+import Footer from '../components/Footer';
 import MetaHead from '@/components/MetaHead';
 import StatsSection from '@/components/home/StatsSection';
-
-// Lazy load components that aren't needed for initial render
-const ClientLogos = lazy(() => import('../components/ClientLogos'));
-const CarbonShowcase = lazy(() => import('@/components/carbon/CarbonShowcase'));
-const Sustainability = lazy(() => import('../components/Sustainability'));
-const RecentProjects = lazy(() => import('../components/RecentProjects'));
-const BlogPreview = lazy(() => import('../components/BlogPreview'));
-const Footer = lazy(() => import('../components/Footer'));
-const WebsiteCarbonCTA = lazy(() => import('@/components/home/WebsiteCarbonCTA'));
-const TestimonialsSection = lazy(() => import('@/components/home/TestimonialsSection'));
-const FinalCTA = lazy(() => import('@/components/home/FinalCTA'));
-
-// Simple loading fallback component
-const LoadingFallback = () => <div className="min-h-[200px] flex items-center justify-center">
-  <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-</div>;
+import WebsiteCarbonCTA from '@/components/home/WebsiteCarbonCTA';
+import TestimonialsSection from '@/components/home/TestimonialsSection';
+import FinalCTA from '@/components/home/FinalCTA';
+import CarbonShowcase from '@/components/carbon/CarbonShowcase';
 
 const Index = () => {
-  // React useEffect hook for LCP marking was removed as it's now handled in main.tsx
-  
-  // Home page specific schema data
-  const homeSchemaData = [
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Marzipan Digital",
-      "description": "Sustainable Web Design & AI-Driven SEO for Purpose-Driven Brands in Sydney. Creating eco-friendly websites that deliver results.",
-      "url": "https://marzipan.com.au",
-      "logo": "https://marzipan.com.au/marzipan-logo.webp",
-      "image": "https://marzipan.com.au/marzipan-web-design-syd-min.webp",
-      "telephone": "+61-2-8005-0403",
-      "email": "hello@marzipan.com.au",
-      "priceRange": "$$",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "22-36 Mountain St",
-        "addressLocality": "Ultimo",
-        "addressRegion": "NSW",
-        "postalCode": "2007",
-        "addressCountry": "AU"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": -33.880836,
-        "longitude": 151.199997
-      },
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday"
-        ],
-        "opens": "09:00",
-        "closes": "17:30"
-      },
-      "sameAs": [
-        "https://www.instagram.com/marzipanmedia",
-        "https://linkedin.com/company/18211194"
-      ]
-    }
-  ];
+  // Add scroll animation observer
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    animatedElements.forEach(el => observer.observe(el));
+
+    return () => {
+      animatedElements.forEach(el => observer.unobserve(el));
+    };
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col">
       <MetaHead 
         title="Sustainable Web Design & Affordable SEO" 
-        description="Marzipan Digital creates eco-friendly websites and ethical AI-driven SEO strategies for purpose-driven Australian brands. Lower your digital carbon footprint while increasing visibility."
-        image="/marzipan-web-design-syd-min.webp"
-        keywords="sustainable web design Sydney, eco-friendly websites, ethical SEO, purpose-driven digital marketing, low carbon websites"
-        schemaData={homeSchemaData}
+        description="Sustainable Web Design & AI-Driven SEO for Purpose-Driven Brands. Ensuring your online presence is as powerful as your purpose."
       />
       <Header />
       
       <main className="flex-grow">
-        {/* Critical above-the-fold content */}
-        <SimpleHero />
+        <Hero />
         <StatsSection />
+        <CarbonShowcase />
         
-        {/* Non-critical content loaded with Suspense */}
-        <Suspense fallback={<LoadingFallback />}>
-          <CarbonShowcase />
-        </Suspense>
-          
         <section className="relative bg-gradient-to-b from-gray-50 to-white">
           <Services />
         </section>
         
-        {/* Lazy load content below the fold */}
-        <Suspense fallback={<LoadingFallback />}>
+        <section className="relative">
           <Sustainability />
-          <WebsiteCarbonCTA />
-          <ClientLogos />
-          <RecentProjects />
-          <BlogPreview />
-          <TestimonialsSection />
-          <FinalCTA />
-        </Suspense>
+        </section>
+        
+        <WebsiteCarbonCTA />
+        <ClientLogos />
+        <RecentProjects />
+        <BlogPreview />
+        <TestimonialsSection />
+        <FinalCTA />
       </main>
       
-      <Suspense fallback={<LoadingFallback />}>
-        <Footer />
-      </Suspense>
+      <Footer />
     </div>
   );
 };

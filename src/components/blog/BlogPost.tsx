@@ -39,45 +39,13 @@ const BlogPost = () => {
     );
   }
 
-  // Create a clean excerpt for meta description
-  const cleanExcerpt = post.excerpt.rendered.replace(/<[^>]+>/g, '');
-  
-  // Create blog post schema
-  const blogPostSchema = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": post.title.rendered,
-    "description": cleanExcerpt,
-    "image": post._embedded?.['wp:featuredmedia']?.[0]?.source_url,
-    "datePublished": post.date,
-    "dateModified": post.modified || post.date, // Use post.date as fallback if modified is undefined
-    "author": {
-      "@type": "Organization",
-      "name": "Marzipan Digital",
-      "url": "https://marzipan.com.au"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Marzipan Digital",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://marzipan.com.au/marzipan-logo.webp"
-      }
-    },
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": `https://marzipan.com.au/blog/${id}`
-    }
-  };
-
   return (
     <article className="min-h-screen">
       <MetaHead 
         title={post.title.rendered}
-        description={cleanExcerpt}
+        description={post.excerpt.rendered.replace(/<[^>]+>/g, '')}
         type="article"
         image={post._embedded?.['wp:featuredmedia']?.[0]?.source_url}
-        schemaData={[blogPostSchema]}
       />
 
       <div className="container-custom py-12">
@@ -85,7 +53,7 @@ const BlogPost = () => {
           to="/blog" 
           className="inline-flex items-center gap-2 text-brandBlue hover:text-brandBlue/80 mb-6"
         >
-          <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+          <ArrowLeft className="h-4 w-4" />
           Back to Blog
         </Link>
 
@@ -95,7 +63,7 @@ const BlogPost = () => {
         />
 
         <div className="flex items-center gap-2 text-foreground/60 mb-8">
-          <Calendar className="h-4 w-4" aria-hidden="true" />
+          <Calendar className="h-4 w-4" />
           <time dateTime={post.date}>
             {new Date(post.date).toLocaleDateString('en-US', {
               year: 'numeric',
@@ -109,11 +77,8 @@ const BlogPost = () => {
           <div className="mb-8">
             <img
               src={post._embedded['wp:featuredmedia'][0].source_url}
-              alt={post._embedded['wp:featuredmedia'][0].alt_text || post.title.rendered}
+              alt={post.title.rendered}
               className="w-full h-auto rounded-lg"
-              width={post._embedded['wp:featuredmedia'][0].media_details?.width || 1200}
-              height={post._embedded['wp:featuredmedia'][0].media_details?.height || 630}
-              loading="eager"
             />
           </div>
         )}

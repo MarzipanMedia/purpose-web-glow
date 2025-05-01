@@ -12,11 +12,6 @@ import { useWebsiteCarbon } from '../hooks/useWebsiteCarbon';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
 
-// Schedule tasks safely without requestIdleCallback
-const scheduleTask = (callback: () => void, timeout = 10) => {
-  setTimeout(callback, timeout);
-};
-
 // Schema for form validation
 const formSchema = z.object({
   url: z.string().url({ message: "Please enter a valid URL including http:// or https://" }),
@@ -49,34 +44,11 @@ const WebsiteCarbon = () => {
     await fetchCarbonData(values.url, values.email, values.adminEmail);
   };
 
-  // Carbon calculator schema
-  const toolSchema = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Website Carbon Footprint Checker",
-    "applicationCategory": "WebApplication",
-    "operatingSystem": "All",
-    "description": "Free tool to check and analyze your website's carbon footprint and get recommendations to make it more environmentally sustainable.",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "AUD"
-    },
-    "creator": {
-      "@type": "Organization",
-      "name": "Marzipan Digital",
-      "url": "https://marzipan.com.au"
-    }
-  };
-
   return (
     <div className="min-h-screen flex flex-col">
       <MetaHead 
         title="Website Carbon Footprint Checker | Marzipan"
-        description="Analyze your website's environmental impact with our free carbon footprint calculator. Get personalized recommendations to reduce digital emissions and create a more sustainable online presence."
-        image="/marzipan-web-design-syd-min.webp"
-        keywords="website carbon calculator, digital carbon footprint, eco-friendly website, sustainable web design, green web hosting"
-        schemaData={[toolSchema]}
+        description="Check your website's carbon footprint and discover how you can make it more sustainable with our free tool."
       />
       <Header />
       

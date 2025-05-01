@@ -1,76 +1,36 @@
-
 <!DOCTYPE html>
-<html lang="en-AU">
+<html lang="en-GB">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Marzipan Digital - Sustainable Web Design & AI-Driven SEO in Sydney</title>
+    <title>Marzipan Digital - Sustainable Web Design & AI-Driven SEO</title>
     
-    <!-- Preconnect to critical domains -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Preload logo image -->
+    <link rel="preload" as="image" href="/marzipan-logo.webp" type="image/webp">
     
-    <!-- Preload critical assets -->
-    <link rel="preload" as="image" href="/marzipan-logo.webp" type="image/webp" fetchpriority="high">
-    
-    <!-- Critical CSS inline would go here -->
-    <style>
-      /* Minimal critical CSS for initial render */
-      .hero-headline {
-        display: block;
-        visibility: visible;
-      }
-      .gradient-text {
-        background: linear-gradient(to right, #186074, #f1e9d0);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-    </style>
-    
-    <meta name="description" content="Sustainable Web Design & AI-Driven SEO for Purpose-Driven Brands in Sydney. Ensuring your online presence is as powerful as your purpose." />
+    <meta name="description" content="Sustainable Web Design & AI-Driven SEO for Purpose-Driven Brands. Ensuring your online presence is as powerful as your purpose." />
     <meta name="author" content="Marzipan Digital" />
-    <meta name="keywords" content="sustainable web design Sydney, digital agency Sydney, affordable SEO services, purpose-driven marketing, Marzipan Media, eco-friendly websites Sydney">
+    <meta name="keywords" content="sustainable web design Sydney, digital agency Sydney, affordable SEO services, purpose-driven marketing, Marzipan Media">
 
-    <!-- Geo meta tags for local SEO -->
-    <meta name="geo.region" content="AU-NSW" />
-    <meta name="geo.placename" content="Sydney" />
-    <meta name="geo.position" content="-33.880836;151.199997" />
-    <meta name="ICBM" content="-33.880836, 151.199997" />
 
-    <!-- Open Graph tags -->
-    <meta property="og:title" content="Marzipan Digital - Sustainable Web Design & AI-Driven SEO in Sydney" />
-    <meta property="og:description" content="Sustainable Web Design & AI-Driven SEO for Purpose-Driven Brands in Sydney. Ensuring your online presence is as powerful as your purpose." />
+    <meta property="og:title" content="Marzipan Digital - Sustainable Web Design & AI-Driven SEO" />
+    <meta property="og:description" content="Sustainable Web Design & AI-Driven SEO for Purpose-Driven Brands. Ensuring your online presence is as powerful as your purpose." />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="/marzipan-logo.webp" />
-    <meta property="og:locale" content="en_AU" />
-    <meta property="og:site_name" content="Marzipan Digital Sydney" />
 
-    <!-- Twitter tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@marzipandigital" />
     <meta name="twitter:image" content="/marzipan-logo.webp" />
-    
-    <!-- Load fonts with display swap for better performance -->
-    <link href="https://fonts.googleapis.com/css2?family=Questrial&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" fetchpriority="low">
+    <link href="https://fonts.googleapis.com/css2?family=Questrial&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    
-    <!-- Defer Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YEYRTEBNW4"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-YEYRTEBNW4', {
-        'send_page_view': false // Defer page view sending
-      });
-      // Send page view after critical content has loaded
-      window.addEventListener('load', function() {
-        setTimeout(function() {
-          gtag('event', 'page_view');
-        }, 2000); // Increased delay for better performance
-      });
-    </script>
+      <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YEYRTEBNW4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YEYRTEBNW4');
+</script>
   </head>
   <body>
     <div id="root"></div>

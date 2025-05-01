@@ -1,71 +1,71 @@
-/* Only updating key performance-related sections, keeping the rest intact */
-@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600&family=Jost:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&family=Jost:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Root variables - keep existing code */
-:root {
-  --background: 50 33% 98%;
-  --foreground: 222.2 84% 4.9%;
+@layer base {
+  :root {
+    --background: 50 33% 98%;
+    --foreground: 222.2 84% 4.9%;
 
-  --card: 0 0% 100%;
-  --card-foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
 
-  --popover: 0 0% 100%;
-  --popover-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
 
-  --primary: 196 67% 27%;
-  --primary-foreground: 210 40% 98%;
+    --primary: 196 67% 27%;
+    --primary-foreground: 210 40% 98%;
 
-  --secondary: 49 54% 88%;
-  --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 49 54% 88%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
 
-  --muted: 210 40% 96.1%;
-  --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
 
-  --accent: 5 83% 37%;
-  --accent-foreground: 210 40% 98%;
+    --accent: 5 83% 37%;
+    --accent-foreground: 210 40% 98%;
 
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
 
-  --border: 214.3 31.8% 91.4%;
-  --input: 214.3 31.8% 91.4%;
-  --ring: 196 67% 27%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 196 67% 27%;
 
-  --radius: 0.5rem;
-}
+    --radius: 0.5rem;
+  }
 
-.dark {
-  --background: 240 10% 3.9%;
-  --foreground: 0 0% 98%;
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
 
-  --card: 240 10% 3.9%;
-  --card-foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
 
-  --popover: 240 10% 3.9%;
-  --popover-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
 
-  --primary: 196 67% 27%;
-  --primary-foreground: 0 0% 98%;
+    --primary: 196 67% 27%;
+    --primary-foreground: 0 0% 98%;
 
-  --secondary: 49 54% 88%;
-  --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 49 54% 88%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
 
-  --muted: 240 3.7% 15.9%;
-  --muted-foreground: 210 20.2% 80.1%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 210 20.2% 80.1%;
 
-  --accent: 5 83% 37%;
-  --accent-foreground: 0 0% 98%;
+    --accent: 5 83% 37%;
+    --accent-foreground: 0 0% 98%;
 
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
 
-  --border: 240 3.7% 15.9%;
-  --input: 240 3.7% 15.9%;
-  --ring: 196 67% 27%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 196 67% 27%;
+  }
 }
 
 @layer base {
@@ -80,26 +80,13 @@
   h1, h2, h3, h4, h5, h6 {
     @apply font-display font-medium dark:text-white;
   }
-
-  /* Add font-display swap for better font loading performance */
-  @font-face {
-    font-family: 'Public Sans';
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'Jost';
-    font-display: swap;
-  }
 }
 
 @layer components {
-  /* Container styles - keep existing code */
   .container-custom {
     @apply container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl;
   }
   
-  /* Button styles - keep existing code */
   .btn-primary {
     @apply bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors hover:shadow-md dark:bg-brandBlue dark:hover:bg-brandBlue/90;
   }
@@ -108,13 +95,9 @@
     @apply bg-secondary text-foreground px-6 py-3 rounded-lg hover:bg-secondary/90 transition-colors hover:shadow-md dark:bg-marzipan/80 dark:text-gray-900;
   }
   
-  /* Optimized gradient text with better performance */
   .gradient-text {
-    @apply bg-gradient-to-r from-brandBlue to-brandRed bg-clip-text text-transparent;
-    background-size: 100%;
+    @apply bg-gradient-to-r from-brandBlue to-brandRed bg-clip-text text-transparent dark:from-brandBlue/90 dark:to-brandRed/90;
   }
-  
-  /* Other component styles - keep existing code */
   
   /* Improved callout box styling */
   .callout-box {
@@ -138,7 +121,6 @@
 }
 
 @layer utilities {
-  /* Utility classes - keep existing code */
   .page-transition {
     @apply opacity-0 animate-fade-in;
   }
@@ -147,18 +129,17 @@
     @apply transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full;
   }
   
-  /* Optimize animations for performance */
+  /* Enhanced scroll animations */
   .animate-on-scroll {
-    opacity: 0;
-    transform: translateY(20px);
     transition: opacity 0.6s, transform 0.6s;
     transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-    will-change: opacity, transform;
+    transform: translateY(20px);
+    opacity: 0;
   }
   
   .animate-visible {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 1 !important;
+    transform: translateY(0) !important;
   }
   
   /* Text highlight animation */
@@ -194,42 +175,170 @@
   }
 }
 
-/* Simplified keyframe animations - reduced complexity */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Performance optimized animations */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* New animations */
+@keyframes textHighlight {
+  0% {
+    background-size: 0% 100%;
+  }
+  100% {
+    background-size: 100% 100%;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes floatDelay {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes expand {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 4rem;
+  }
+}
+
+@keyframes textReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Critical CSS for above-the-fold content */
 .animate-fade-in {
-  animation: fadeIn 0.4s ease-out forwards;
+  animation: fadeIn 0.5s ease forwards;
 }
 
-/* Respect user preferences for reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  ::before,
-  ::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-  
-  .animate-on-scroll {
-    opacity: 1 !important;
-    transform: none !important;
-  }
+.animate-slide-up {
+  animation: slideUp 0.7s ease forwards;
+}
+
+.animate-appear {
+  animation: appear 0.4s ease-out forwards;
+}
+
+/* New animation classes */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delay {
+  animation: floatDelay 8s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+.animate-expand {
+  animation: expand 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  animation-delay: 1s;
+}
+
+.animate-text-reveal {
+  animation: textReveal 1.2s ease-out forwards;
+  opacity: 0;
+}
+
+/* Delay animation for non-critical elements */
+@media (prefers-reduced-motion: no-preference) {
+  .stagger-item:nth-child(1) { animation-delay: 0.1s; }
+  .stagger-item:nth-child(2) { animation-delay: 0.2s; }
+  .stagger-item:nth-child(3) { animation-delay: 0.3s; }
+  .stagger-item:nth-child(4) { animation-delay: 0.4s; }
+  .stagger-item:nth-child(5) { animation-delay: 0.5s; }
+  .stagger-item:nth-child(6) { animation-delay: 0.6s; }
+}
+
+/* Dark mode specific text classes */
+.dark .text-foreground {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.dark .text-foreground\/80 {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.dark .text-foreground\/70 {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.dark .text-foreground\/60 {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.dark .text-foreground\/40 {
+  color: rgba(255, 255, 255, 0.4);
 }
 
 /* Mobile-specific optimizations */
 @media (max-width: 768px) {
-  /* Simplify mobile animations */
-  .animate-fade-in {
+  /* Critical elements in mobile view */
+  .floating-element {
+    position: relative !important;
+    margin-top: 1.5rem !important;
+    width: 100% !important;
+    transform: none !important;
+  }
+  
+  /* Reduce animation in mobile view */
+  .animate-fade-in, 
+  .animate-slide-up,
+  .animate-appear,
+  .animate-pulse-slow {
     animation-duration: 0.3s;
   }
   
-  /* Better spacing for mobile */
+  /* Improve spacing in mobile view */
   .grid.gap-12, .grid.gap-8 {
     gap: 1.5rem;
   }
@@ -237,5 +346,29 @@
   .py-20 {
     padding-top: 3rem;
     padding-bottom: 3rem;
+  }
+  
+  .py-16 {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+  
+  /* Better padding for mobile callout boxes */
+  .callout-box > div {
+    padding: 1.25rem !important;
+  }
+}
+
+/* Desktop process sections */
+@media (min-width: 1024px) {
+  .process-section-callout {
+    position: relative;
+    margin-left: 0;
+    width: 100%;
+  }
+  
+  /* Create proper grid spacing */
+  .grid.grid-cols-1.lg\:grid-cols-2 {
+    align-items: flex-start;
   }
 }

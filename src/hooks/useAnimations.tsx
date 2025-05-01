@@ -1,5 +1,5 @@
 
-import { useEffect, useState, useRef, useCallback } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 type AnimationOptions = {
   threshold?: number;
@@ -89,16 +89,4 @@ export const useMousePosition = (ref: React.RefObject<HTMLElement>) => {
   }, [ref]);
   
   return position;
-};
-
-// Simple static animations helper for components that previously used complex animations
-export const useStaticAnimation = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  
-  useEffect(() => {
-    // Mark component as loaded after initial render
-    setIsLoaded(true);
-  }, []);
-  
-  return { isLoaded };
 };
