@@ -55,15 +55,14 @@ export const useDefer = (
   }, dependencies);
 };
 
-// Make TypeScript aware of requestIdleCallback and cancelIdleCallback if not already defined
-// Uses module augmentation rather than redefinition to prevent conflicts
+// Use proper interface augmentation for TypeScript
 declare global {
   interface Window {
-    requestIdleCallback?: (
-      callback: IdleRequestCallback,
-      options?: IdleRequestOptions
-    ) => number;
-    cancelIdleCallback?: (id: number) => void;
+    // Use optional chaining to avoid conflicts with existing definitions
+    requestIdleCallback: typeof window.requestIdleCallback | 
+      ((callback: IdleRequestCallback, options?: IdleRequestOptions) => number);
+    cancelIdleCallback: typeof window.cancelIdleCallback | 
+      ((id: number) => void);
   }
 }
 
