@@ -34,5 +34,10 @@ window.addEventListener('error', function(e) {
   }
 }, true);
 
-// Optimize component mounting
-createRoot(document.getElementById("root")!).render(<App />);
+// Create root and render App
+const rootElement = document.getElementById("root");
+if (rootElement) {
+  createRoot(rootElement).render(<App />);
+} else {
+  console.error("Root element not found");
+}
