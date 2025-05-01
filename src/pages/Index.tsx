@@ -1,4 +1,5 @@
-import React, { useEffect, useCallback } from 'react';
+
+import React, { useEffect } from 'react';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
 import Services from '../components/Services';
@@ -12,36 +13,25 @@ import StatsSection from '@/components/home/StatsSection';
 import WebsiteCarbonCTA from '@/components/home/WebsiteCarbonCTA';
 import TestimonialsSection from '@/components/home/TestimonialsSection';
 import FinalCTA from '@/components/home/FinalCTA';
+import CarbonShowcase from '@/components/carbon/CarbonShowcase';
 
 const Index = () => {
-  // Simplified CSS-based animation approach
+  // Add scroll animation observer
   useEffect(() => {
-    // Delay loading non-critical animations until after main content is rendered
-    const animateElements = () => {
-      const animatedElements = document.querySelectorAll('.animate-on-scroll');
-      
-      // Use simple Intersection Observer for animations
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.1 });
-      
-      animatedElements.forEach(el => observer.observe(el));
-    };
-    
-    // Ensure main content is loaded first before handling animations
-    if (document.readyState === 'complete') {
-      setTimeout(animateElements, 100); // Small delay to prioritize critical content
-    } else {
-      window.addEventListener('load', () => setTimeout(animateElements, 100));
-    }
-    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    animatedElements.forEach(el => observer.observe(el));
+
     return () => {
-      // Clean up if needed
+      animatedElements.forEach(el => observer.unobserve(el));
     };
   }, []);
 
@@ -54,17 +44,15 @@ const Index = () => {
       <Header />
       
       <main className="flex-grow">
-        {/* Main LCP element - optimized hero section */}
         <Hero />
-        
-        {/* Other content loads after initial render */}
         <StatsSection />
+        <CarbonShowcase />
         
-        <section className="relative bg-gradient-to-b from-gray-50 to-white animate-on-scroll">
+        <section className="relative bg-gradient-to-b from-gray-50 to-white">
           <Services />
         </section>
         
-        <section className="relative animate-on-scroll">
+        <section className="relative">
           <Sustainability />
         </section>
         
