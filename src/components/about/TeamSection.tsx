@@ -20,20 +20,19 @@ const TeamSection = () => {
       name: "Ben Adams",
       role: "Co-Founder & Technical Director",
       bio: "A seasoned technologist with expertise in sustainable web development, Ben drives our technical innovation whilst ensuring our solutions remain environmentally conscious.",
-      image: "/placeholder.svg",
+      image: "/marzipan-ben.webp",
       social: {
         linkedin: "https://linkedin.com/in/benadams",
         email: "benadams@marzipan.com.au"
       }
     },
     {
-      name: "Sarah Chen",
-      role: "Head of Sustainable Web Design",
-      bio: "Sarah specialises in creating beautiful, lightweight websites that minimize carbon footprint without compromising on user experience.",
-      image: "/team-member-2.jpg",
+      name: "Tran",
+      role: "Wordpress & Figma Developer",
+      bio: "Tran specialises in crafting beautiful, lightweight code without compromising on user experience.",
+      image: "/tran-wp-web-developer.png",
       social: {
-        linkedin: "https://linkedin.com/in/sarahchen",
-        email: "sarah@marzipan.com.au"
+        email: "ben@marzipan.com.au"
       }
     }
   ];
