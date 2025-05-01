@@ -17,17 +17,6 @@ interface TeamMember {
 const TeamSection = () => {
   const teamMembers: TeamMember[] = [
     {
-      name: "Ben Thompson",
-      role: "Co-Founder & Digital Strategist",
-      bio: "With over 10 years in sustainable digital marketing, Ben leads our mission to create digital experiences that respect both users and the planet.",
-      image: "/team-member-1.jpg",
-      social: {
-        linkedin: "https://linkedin.com/in/benthompson",
-        twitter: "https://twitter.com/benthompson",
-        email: "ben@marzipan.com.au"
-      }
-    },
-    {
       name: "Ben Adams",
       role: "Co-Founder & Technical Director",
       bio: "A seasoned technologist with expertise in sustainable web development, Ben drives our technical innovation whilst ensuring our solutions remain environmentally conscious.",
@@ -45,17 +34,6 @@ const TeamSection = () => {
       social: {
         linkedin: "https://linkedin.com/in/sarahchen",
         email: "sarah@marzipan.com.au"
-      }
-    },
-    {
-      name: "Amir Patel",
-      role: "AI & SEO Specialist",
-      bio: "Amir combines ethical AI technologies with proven SEO strategies to help purpose-driven brands improve their visibility and impact.",
-      image: "/team-member-3.jpg",
-      social: {
-        linkedin: "https://linkedin.com/in/amirpatel",
-        twitter: "https://twitter.com/amirpatel",
-        email: "amir@marzipan.com.au"
       }
     }
   ];
