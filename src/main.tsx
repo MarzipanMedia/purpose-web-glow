@@ -31,7 +31,7 @@ declare global {
 // Polyfill requestIdleCallback for browsers that don't support it
 const requestIdleCallback = 
   (window as CustomWindow).requestIdleCallback ||
-  function(cb: IdleRequestCallback) {
+  function(cb: IdleRequestCallback): number {
     const start = Date.now();
     return setTimeout(function() {
       cb({
@@ -40,12 +40,12 @@ const requestIdleCallback =
           return Math.max(0, 50 - (Date.now() - start));
         }
       });
-    }, 1);
+    }, 1) as unknown as number; // Cast timeout ID to number for TypeScript
   };
 
 const cancelIdleCallback = 
   (window as CustomWindow).cancelIdleCallback || 
-  function(id: number) {
+  function(id: number): void {
     clearTimeout(id);
   };
 
