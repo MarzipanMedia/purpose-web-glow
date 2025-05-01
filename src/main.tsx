@@ -17,22 +17,25 @@ interface IdleDeadline {
   timeRemaining: () => number;
 }
 
-// Add gtag type declaration
+// Add gtag and other type declarations
+interface WindowWithIdleCallback extends Window {
+  gtag: (
+    command: string, 
+    action: string, 
+    params?: Record<string, any>
+  ) => void;
+  dataLayer: any[];
+  LCP: (element: Element) => void;
+  requestIdleCallback: (
+    callback: IdleRequestCallback,
+    options?: IdleRequestOptions
+  ) => number;
+  cancelIdleCallback: (id: number) => void;
+}
+
+// Properly cast window to our extended interface
 declare global {
-  interface Window {
-    gtag: (
-      command: string, 
-      action: string, 
-      params?: Record<string, any>
-    ) => void;
-    dataLayer: any[];
-    LCP: (element: Element) => void;
-    requestIdleCallback: (
-      callback: IdleRequestCallback,
-      options?: IdleRequestOptions
-    ) => number;
-    cancelIdleCallback: (id: number) => void;
-  }
+  interface Window extends WindowWithIdleCallback {}
 }
 
 // More robust polyfill for requestIdleCallback and cancelIdleCallback

@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef, useCallback } from 'react';
 
 type AnimationOptions = {
@@ -91,120 +90,14 @@ export const useMousePosition = (ref: React.RefObject<HTMLElement>) => {
   return position;
 };
 
-// Enhanced glow effect for hero sections
-export const useGlowEffect = () => {
-  const glowRef = useRef<HTMLDivElement>(null);
-  const [glowPosition, setGlowPosition] = useState({ x: 0, y: 0 });
-  const [isHovering, setIsHovering] = useState(false);
-
-  const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    if (!glowRef.current) return;
-    
-    const rect = glowRef.current.getBoundingClientRect();
-    setGlowPosition({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top
-    });
-  }, []);
-
-  const handleMouseEnter = useCallback(() => {
-    setIsHovering(true);
-  }, []);
-
-  const handleMouseLeave = useCallback(() => {
-    setIsHovering(false);
-  }, []);
-
-  return {
-    glowRef,
-    glowPosition,
-    isHovering,
-    handleMouseMove,
-    handleMouseEnter,
-    handleMouseLeave
-  };
-};
-
-// Enhanced staggered text animation with better typing for headings
-export const useStaggeredText = (text: string, delay: number = 0.05) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLHeadingElement>(null);
-
-  const words = text.split(" ");
+// Simple static animations helper for components that previously used complex animations
+export const useStaticAnimation = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
   
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.3 }
-    );
-    
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-    
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
-    };
+    // Mark component as loaded after initial render
+    setIsLoaded(true);
   }, []);
-
-  const renderWords = () => {
-    return words.map((word, index) => (
-      <span
-        key={index}
-        className="inline-block"
-        style={{
-          opacity: isVisible ? 1 : 0,
-          transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-          transition: `opacity 0.5s ease, transform 0.5s ease`,
-          transitionDelay: `${delay * index}s`,
-          marginRight: '0.25em' // Add space between words
-        }}
-      >
-        {word}
-      </span>
-    ));
-  };
-
-  return { ref, renderWords, isVisible };
-};
-
-// Generic magnetic button effect for any element type
-export const useMagneticButton = <T extends HTMLElement>(intensity: number = 0.3) => {
-  const buttonRef = useRef<T>(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isHovering, setIsHovering] = useState(false);
-
-  const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    if (!buttonRef.current) return;
-    
-    const rect = buttonRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    
-    setPosition({
-      x: x * intensity,
-      y: y * intensity
-    });
-    setIsHovering(true);
-  }, [intensity]);
-
-  const handleMouseLeave = useCallback(() => {
-    setPosition({ x: 0, y: 0 });
-    setIsHovering(false);
-  }, []);
-
-  return {
-    buttonRef,
-    position,
-    isHovering,
-    handleMouseMove,
-    handleMouseLeave
-  };
+  
+  return { isLoaded };
 };
