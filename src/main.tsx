@@ -13,15 +13,15 @@ const addResourceHints = () => {
 
   // Add preload for critical fonts and styles
   const preloadLinks = [
-    { rel: 'preload', href: 'https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap', as: 'style' },
-    { rel: 'preload', href: 'https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap', as: 'style' }
+    { rel: 'preload', href: 'https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700&display=swap', as: 'style' },
+    { rel: 'preload', href: '/marzipan-logo.webp', as: 'image', fetchpriority: 'high' }
   ];
 
   // Add all resource hints to document head
   [...preconnectLinks, ...preloadLinks].forEach(link => {
     const linkEl = document.createElement('link');
     Object.entries(link).forEach(([key, value]) => {
-      linkEl.setAttribute(key, value);
+      if (value !== undefined) linkEl.setAttribute(key, value);
     });
     document.head.appendChild(linkEl);
   });
@@ -54,10 +54,14 @@ window.addEventListener('error', function(e) {
   }
 }, true);
 
-// Create root and render App
+// Create root and render App with high priority
 const rootElement = document.getElementById("root");
 if (rootElement) {
-  createRoot(rootElement).render(<App />);
+  const appRoot = createRoot(rootElement);
+  // Use a microtask to ensure critical rendering happens as soon as possible
+  queueMicrotask(() => {
+    appRoot.render(<App />);
+  });
 } else {
   console.error("Root element not found");
 }

@@ -26,7 +26,8 @@ export const useDefer = (
       callbackRef.current();
     };
     
-    if (typeof window.requestIdleCallback !== 'undefined') {
+    // Check if requestIdleCallback is available in the browser
+    if ('requestIdleCallback' in window) {
       const idleCallbackId = window.requestIdleCallback(() => {
         if (delay > 0) {
           timeoutId = window.setTimeout(executeCallback, delay);
@@ -36,7 +37,7 @@ export const useDefer = (
       });
       
       return () => {
-        if (typeof window.cancelIdleCallback !== 'undefined') {
+        if ('cancelIdleCallback' in window) {
           window.cancelIdleCallback(idleCallbackId);
         }
         if (timeoutId) {
@@ -54,17 +55,14 @@ export const useDefer = (
   }, dependencies);
 };
 
-// Add TypeScript definitions for requestIdleCallback and cancelIdleCallback
+// Use proper interface augmentation for TypeScript
 declare global {
   interface Window {
-    requestIdleCallback: (
-      callback: (deadline: {
-        didTimeout: boolean;
-        timeRemaining: () => number;
-      }) => void,
-      opts?: { timeout: number }
-    ) => number;
-    cancelIdleCallback: (id: number) => void;
+    // Use optional chaining to avoid conflicts with existing definitions
+    requestIdleCallback: typeof window.requestIdleCallback | 
+      ((callback: IdleRequestCallback, options?: IdleRequestOptions) => number);
+    cancelIdleCallback: typeof window.cancelIdleCallback | 
+      ((id: number) => void);
   }
 }
 
