@@ -2,58 +2,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Brain, Check } from 'lucide-react';
-import { useGlowEffect, useStaggeredText, useMagneticButton } from '../../hooks/useAnimations';
+import { useStaticAnimation } from '../../hooks/useAnimations';
 
 const AiSeoHero = () => {
-  const { 
-    glowRef, 
-    glowPosition, 
-    isHovering, 
-    handleMouseMove, 
-    handleMouseEnter, 
-    handleMouseLeave 
-  } = useGlowEffect();
-
-  const { ref: headingRef, renderWords: renderHeadingWords } = useStaggeredText(
-    "Ethical AI SEO for Sustainable Growth", 
-    0.08
-  );
-
-  const { 
-    buttonRef: primaryBtnRef, 
-    position: primaryBtnPosition,
-    isHovering: isPrimaryBtnHovering,
-    handleMouseMove: handlePrimaryBtnMouseMove, 
-    handleMouseLeave: handlePrimaryBtnMouseLeave 
-  } = useMagneticButton<HTMLAnchorElement>(0.2);
-
-  const { 
-    buttonRef: secondaryBtnRef, 
-    position: secondaryBtnPosition,
-    isHovering: isSecondaryBtnHovering,
-    handleMouseMove: handleSecondaryBtnMouseMove, 
-    handleMouseLeave: handleSecondaryBtnMouseLeave 
-  } = useMagneticButton<HTMLAnchorElement>(0.2);
+  const { isLoaded } = useStaticAnimation();
 
   return (
     <section 
-      ref={glowRef}
       className="py-20 bg-gradient-subtle relative overflow-hidden"
-      onMouseMove={handleMouseMove}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
     >
-      {/* Mouse following glow effect */}
-      <div 
-        className="absolute pointer-events-none bg-gradient-radial from-brandBlue/20 to-transparent rounded-full w-[500px] h-[500px] -z-0 blur-3xl transition-opacity duration-300"
-        style={{
-          opacity: isHovering ? 0.6 : 0,
-          left: `${glowPosition.x}px`,
-          top: `${glowPosition.y}px`,
-          transform: 'translate(-50%, -50%)',
-          transition: 'opacity 0.3s ease, left 0.5s ease-out, top 0.5s ease-out'
-        }}
-      />
+      {/* Static background elements instead of mouse-following glow */}
+      <div className="absolute pointer-events-none bg-gradient-radial from-brandBlue/20 to-transparent rounded-full w-[500px] h-[500px] -z-0 blur-3xl opacity-30 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
 
       <div className="container-custom relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -62,9 +21,7 @@ const AiSeoHero = () => {
               AI-Driven Strategies
             </div>
             <h1 className="text-4xl md:text-5xl font-display font-bold mb-6">
-              <div ref={headingRef}>
-                {renderHeadingWords()}
-              </div>
+              Ethical AI SEO for Sustainable Growth
             </h1>
             <p className="text-lg text-foreground/80 mb-8 opacity-0 animate-text-reveal" style={{ animationDelay: "0.7s", animationFillMode: "forwards" }}>
               Harness the power of AI to drive sustainable SEO strategies that align with your values and deliver long-term results.
@@ -72,15 +29,7 @@ const AiSeoHero = () => {
             <div className="flex flex-wrap gap-4 opacity-0 animate-text-reveal" style={{ animationDelay: "0.9s", animationFillMode: "forwards" }}>
               <Link 
                 to="#contact" 
-                ref={primaryBtnRef}
-                className="btn-primary group relative overflow-hidden flex items-center gap-2"
-                onMouseMove={handlePrimaryBtnMouseMove}
-                onMouseLeave={handlePrimaryBtnMouseLeave}
-                style={{
-                  transform: `translate(${primaryBtnPosition.x}px, ${primaryBtnPosition.y}px)`,
-                  transition: 'transform 0.2s cubic-bezier(0.25, 0.75, 0.5, 1.25)',
-                  boxShadow: isPrimaryBtnHovering ? '0 10px 25px -5px rgba(24, 96, 116, 0.3)' : 'none'
-                }}
+                className="btn-primary group relative overflow-hidden flex items-center gap-2 transition-all hover:scale-105"
               >
                 <span className="relative z-10">Get Started</span> 
                 <ArrowRight className="h-4 w-4 relative z-10 group-hover:translate-x-1 transition-transform" />
@@ -88,15 +37,7 @@ const AiSeoHero = () => {
               </Link>
               <Link 
                 to="/projects" 
-                ref={secondaryBtnRef}
-                className="btn-secondary group relative overflow-hidden flex items-center gap-2"
-                onMouseMove={handleSecondaryBtnMouseMove}
-                onMouseLeave={handleSecondaryBtnMouseLeave}
-                style={{
-                  transform: `translate(${secondaryBtnPosition.x}px, ${secondaryBtnPosition.y}px)`,
-                  transition: 'transform 0.2s cubic-bezier(0.25, 0.75, 0.5, 1.25)',
-                  boxShadow: isSecondaryBtnHovering ? '0 10px 25px -5px rgba(241, 233, 208, 0.3)' : 'none'
-                }}
+                className="btn-secondary group relative overflow-hidden flex items-center gap-2 transition-all hover:scale-105"
               >
                 <span className="relative z-10">View Our Work</span> 
                 <ArrowRight className="h-4 w-4 relative z-10 group-hover:translate-x-1 transition-transform" />

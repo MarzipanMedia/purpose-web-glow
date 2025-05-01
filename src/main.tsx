@@ -1,150 +1,96 @@
 
-import { createRoot } from 'react-dom/client'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 
-// Define types for requestIdleCallback and cancelIdleCallback
-interface IdleRequestOptions {
-  timeout?: number;
-}
-
-interface IdleRequestCallback {
-  (deadline: IdleDeadline): void;
-}
-
-interface IdleDeadline {
-  didTimeout: boolean;
-  timeRemaining: () => number;
-}
-
-// Add gtag and other type declarations
-interface WindowWithIdleCallback extends Window {
-  gtag: (
-    command: string, 
-    action: string, 
-    params?: Record<string, any>
-  ) => void;
-  dataLayer: any[];
-  LCP: (element: Element) => void;
+// Define these types only once, outside of React's render cycle
+// Make sure to use declaration merging properly
+interface CustomWindow extends Window {
   requestIdleCallback: (
     callback: IdleRequestCallback,
     options?: IdleRequestOptions
   ) => number;
-  cancelIdleCallback: (id: number) => void;
+  cancelIdleCallback: (handle: number) => void;
+  LCP?: (element: Element) => void;
+  gtag?: (...args: any[]) => void;
 }
 
-// Properly cast window to our extended interface
 declare global {
-  interface Window extends WindowWithIdleCallback {}
-}
-
-// More robust polyfill for requestIdleCallback and cancelIdleCallback
-if (typeof window !== 'undefined') {
-  // Properly typed polyfill for browsers that don't support requestIdleCallback
-  if (!('requestIdleCallback' in window)) {
-    window.requestIdleCallback = function(
+  interface Window {
+    requestIdleCallback: (
       callback: IdleRequestCallback,
       options?: IdleRequestOptions
-    ) {
-      const start = Date.now();
-      return setTimeout(() => {
-        callback({
-          didTimeout: false,
-          timeRemaining: function() { 
-            return Math.max(0, 50 - (Date.now() - start)); 
-          }
-        });
-      }, options?.timeout || 1) as unknown as number;
-    };
+    ) => number;
+    cancelIdleCallback: (handle: number) => void;
+    LCP?: (element: Element) => void;
+    gtag?: (...args: any[]) => void;
   }
-
-  if (!('cancelIdleCallback' in window)) {
-    window.cancelIdleCallback = function(id: number) {
-      clearTimeout(id);
-    };
-  }
-  
-  // Simple LCP marking utility that doesn't rely on requestIdleCallback
-  window.LCP = function markLCP(element: Element) {
-    if (!element) return;
-    
-    // Use PerformanceObserver if available
-    if ('PerformanceObserver' in window) {
-      try {
-        new PerformanceObserver((entryList) => {
-          const entries = entryList.getEntries();
-          if (entries.length > 0) {
-            console.log('LCP recorded:', entries[0].startTime);
-            if (window.gtag) {
-              setTimeout(() => {
-                window.gtag('event', 'web_vitals', {
-                  metric_name: 'LCP',
-                  metric_value: entries[0].startTime,
-                  metric_id: 'LCP'
-                });
-              }, 0);
-            }
-          }
-        }).observe({ type: 'largest-contentful-paint', buffered: true });
-      } catch (e) {
-        console.error('PerformanceObserver error:', e);
-      }
-    }
-  };
 }
 
-// Simplified preload function for critical resources
-const preloadCriticalResources = () => {
-  // Only preconnect to essential domains to save resources
-  const preconnects = [
-    { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' },
-    { rel: 'preconnect', href: 'https://fonts.googleapis.com' }
-  ];
+// Polyfill requestIdleCallback for browsers that don't support it
+const requestIdleCallback = 
+  (window as CustomWindow).requestIdleCallback ||
+  function(cb: IdleRequestCallback) {
+    const start = Date.now();
+    return setTimeout(function() {
+      cb({
+        didTimeout: false,
+        timeRemaining: function() {
+          return Math.max(0, 50 - (Date.now() - start));
+        }
+      });
+    }, 1);
+  };
 
-  preconnects.forEach(link => {
-    const linkEl = document.createElement('link');
-    Object.entries(link).forEach(([key, value]) => {
-      if (value !== undefined) {
-        linkEl.setAttribute(key, value);
-      }
+const cancelIdleCallback = 
+  (window as CustomWindow).cancelIdleCallback || 
+  function(id: number) {
+    clearTimeout(id);
+  };
+
+// Make polyfills available globally if needed
+if (!(window as CustomWindow).requestIdleCallback) {
+  (window as CustomWindow).requestIdleCallback = requestIdleCallback;
+  (window as CustomWindow).cancelIdleCallback = cancelIdleCallback;
+}
+
+// Report web vitals
+const reportWebVitals = (metric: any) => {
+  // Analytics code...
+  if ((window as CustomWindow).gtag) {
+    (window as CustomWindow).gtag('event', metric.name, {
+      event_category: 'Web Vitals',
+      event_label: metric.id,
+      value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value),
+      non_interaction: true,
     });
-    document.head.appendChild(linkEl);
-  });
+  }
+  console.log(metric);
 };
 
-// Run preload immediately but with low priority
-preloadCriticalResources();
-
-// Optimize image error handling - use passive listeners
-window.addEventListener('error', function(e) {
-  if (e.target && (e.target as HTMLElement).tagName === 'IMG') {
-    const img = e.target as HTMLImageElement;
-    if (img.src.includes('project.jpg')) {
-      img.src = '/placeholder.svg';
-      img.alt = 'Project placeholder image';
+// Configure LCP reporting if needed
+const configureLCP = () => {
+  if ((window as CustomWindow).LCP) {
+    // Most important content
+    const h1Elements = document.querySelectorAll('.hero-headline');
+    if (h1Elements.length > 0) {
+      (window as CustomWindow).LCP?.(h1Elements[0]);
     }
   }
-}, {passive: true});
+};
 
-// Optimize component mounting
-const appRoot = document.getElementById("root");
-if (appRoot) {
-  // Initialize the app
-  createRoot(appRoot).render(<App />);
+// Initial render
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+)
+
+// Configure performance measurements after render
+requestIdleCallback(() => {
+  // Report LCP element if needed
+  configureLCP();
   
-  // Simple web vitals monitoring
-  if (process.env.NODE_ENV === 'production') {
-    setTimeout(() => {
-      try {
-        const lcpElement = document.querySelector('.hero-headline');
-        if (lcpElement && window.LCP) {
-          window.LCP(lcpElement);
-        }
-      } catch (e) {
-        console.error('LCP marking error:', e);
-      }
-    }, 0);
-  }
-} else {
-  console.error("Root element not found");
-}
+  // Add performance observers or other post-load tasks...
+});

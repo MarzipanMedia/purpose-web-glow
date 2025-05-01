@@ -7,22 +7,15 @@ import { useFetchPosts, useFetchCategories } from '../services/wordpressService'
 import { Pagination, PaginationContent, PaginationItem, PaginationLink } from "@/components/ui/pagination";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { useGlowEffect } from '../hooks/useAnimations';
+import { useStaticAnimation } from '../hooks/useAnimations';
 
 const BlogWithWordPress = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const { data, isLoading, isError, error } = useFetchPosts(currentPage, 6);
   const { data: categories, isLoading: categoriesLoading } = useFetchCategories();
 
-  // Add glow effect from home page for hero section
-  const { 
-    glowRef, 
-    glowPosition, 
-    isHovering, 
-    handleMouseMove, 
-    handleMouseEnter, 
-    handleMouseLeave 
-  } = useGlowEffect();
+  // Use static animation helper instead of glow effect
+  const { isLoaded } = useStaticAnimation();
 
   const extractPlainText = (html: string) => {
     const doc = new DOMParser().parseFromString(html, 'text/html');
@@ -51,24 +44,13 @@ const BlogWithWordPress = () => {
       <Header />
       
       <main className="flex-grow">
-        {/* Enhanced Hero Section with background similar to home page */}
+        {/* Enhanced Hero Section with simplified background */}
         <section 
-          ref={glowRef}
           className="py-16 bg-gradient-subtle relative overflow-hidden"
-          onMouseMove={handleMouseMove}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
         >
-          {/* Glow effect that follows mouse */}
+          {/* Static glow effect instead of mouse-following */}
           <div 
-            className="absolute pointer-events-none bg-gradient-radial from-brandBlue/15 to-transparent rounded-full w-[500px] h-[500px] -z-0 blur-3xl transition-opacity duration-300"
-            style={{
-              opacity: isHovering ? 0.7 : 0,
-              left: `${glowPosition.x}px`,
-              top: `${glowPosition.y}px`,
-              transform: 'translate(-50%, -50%)',
-              transition: 'opacity 0.3s ease, left 0.5s ease-out, top 0.5s ease-out'
-            }}
+            className="absolute pointer-events-none bg-gradient-radial from-brandBlue/15 to-transparent rounded-full w-[500px] h-[500px] -z-0 blur-3xl opacity-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
           />
           
           {/* Decorative elements */}
