@@ -1,3 +1,4 @@
+
 import React, { useEffect, useCallback } from 'react';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
@@ -12,38 +13,51 @@ import StatsSection from '@/components/home/StatsSection';
 import WebsiteCarbonCTA from '@/components/home/WebsiteCarbonCTA';
 import TestimonialsSection from '@/components/home/TestimonialsSection';
 import FinalCTA from '@/components/home/FinalCTA';
+import CarbonShowcase from '@/components/carbon/CarbonShowcase';
 
 const Index = () => {
-  // Simplified CSS-based animation approach
-  useEffect(() => {
-    // Delay loading non-critical animations until after main content is rendered
-    const animateElements = () => {
-      const animatedElements = document.querySelectorAll('.animate-on-scroll');
-      
-      // Use simple Intersection Observer for animations
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.1 });
-      
-      animatedElements.forEach(el => observer.observe(el));
-    };
+  // Optimized scroll animation observer that doesn't block rendering
+  const setupAnimations = useCallback(() => {
+    if (typeof window.requestIdleCallback !== 'undefined') {
+      window.requestIdleCallback(() => {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('animate-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
     
-    // Ensure main content is loaded first before handling animations
-    if (document.readyState === 'complete') {
-      setTimeout(animateElements, 100); // Small delay to prioritize critical content
+        const animatedElements = document.querySelectorAll('.animate-on-scroll');
+        animatedElements.forEach(el => observer.observe(el));
+      });
     } else {
-      window.addEventListener('load', () => setTimeout(animateElements, 100));
+      // Fallback for browsers without requestIdleCallback
+      setTimeout(() => {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('animate-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+    
+        const animatedElements = document.querySelectorAll('.animate-on-scroll');
+        animatedElements.forEach(el => observer.observe(el));
+      }, 100);
     }
+  }, []);
+
+  useEffect(() => {
+    // Delay animation setup to prioritize content rendering
+    setupAnimations();
     
     return () => {
-      // Clean up if needed
+      // Nothing to clean up since we're handling unobserve in the observer itself
     };
-  }, []);
+  }, [setupAnimations]);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -54,11 +68,11 @@ const Index = () => {
       <Header />
       
       <main className="flex-grow">
-        {/* Main LCP element - optimized hero section */}
         <Hero />
-        
-        {/* Other content loads after initial render */}
         <StatsSection />
+        
+        {/* Lazy load non-critical sections */}
+        <CarbonShowcase />
         
         <section className="relative bg-gradient-to-b from-gray-50 to-white animate-on-scroll">
           <Services />
