@@ -5,11 +5,16 @@ import { ArrowRight } from 'lucide-react';
 
 const Hero = () => {
   return (
-    <section className="relative overflow-hidden py-20 md:py-28 bg-gradient-subtle">
+    <section className="relative overflow-hidden py-20 md:py-28 bg-gradient-to-br from-white via-marzipan/5 to-marzipan/10" id="hero-section">
       <div className="container-custom">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-          <div className="md:col-span-7 space-y-6 animate-fade-in" style={{ animationDelay: "0.1s" }}>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight">
+          {/* Main content with clear LCP identification */}
+          <div className="md:col-span-7 space-y-6">
+            <h1 
+              id="main-heading" 
+              className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight"
+              fetchpriority="high"
+            >
               Ensuring your online presence is as powerful as your 
               <span className="gradient-text"> purpose</span>
             </h1>
@@ -27,20 +32,14 @@ const Hero = () => {
             </div>
           </div>
           
-          <div className="md:col-span-5 animate-fade-in" style={{ animationDelay: "0.3s" }}>
-            <div className="relative">
-              {/* Add multiple pulse rings */}
-              {[...Array(3)].map((_, i) => (
-                <div
-                  key={i}
-                  className="absolute inset-0 bg-gradient-radial from-brandBlue/20 to-transparent opacity-70 rounded-full animate-pulse-slow"
-                  style={{ 
-                    animationDelay: `${i * 1.3}s`,
-                    transform: `scale(${1 + i * 0.05})` 
-                  }}
-                />
-              ))}
-              <div className="bg-marzipan/80 rounded-full aspect-square flex items-center justify-center p-12 relative z-10">
+          <div className="md:col-span-5">
+            <div className="relative" style={{ aspectRatio: '1/1', width: '100%' }}>
+              {/* Using consistent CSS-based styling for visuals */}
+              <div className="absolute inset-0 bg-gradient-radial from-brandBlue/20 to-transparent opacity-70 rounded-full"></div>
+              <div 
+                className="bg-marzipan/80 rounded-full aspect-square flex items-center justify-center p-12 relative z-10"
+                style={{ width: '100%', height: 'auto' }}
+              >
                 <div className="text-center">
                   <p className="text-xl font-display">Eco-friendly</p>
                   <h2 className="text-3xl font-display font-semibold">Web Design</h2>
