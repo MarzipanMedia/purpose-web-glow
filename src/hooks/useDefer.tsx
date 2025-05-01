@@ -21,14 +21,17 @@ export const useDefer = (
   }, [callback]);
   
   useEffect(() => {
-    let timeoutId: number | NodeJS.Timeout;
+    // Mark document as JS ready
+    document.documentElement.classList.add('js-ready');
+    
+    let timeoutId: number | ReturnType<typeof setTimeout>;
     const executeCallback = () => {
       callbackRef.current();
     };
     
     // Check if requestIdleCallback is available in the browser
-    if ('requestIdleCallback' in window) {
-      const idleCallbackId = window.requestIdleCallback(() => {
+    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+      const idleCallbackId = requestIdleCallback(() => {
         if (delay > 0) {
           timeoutId = setTimeout(executeCallback, delay);
         } else {
@@ -37,8 +40,8 @@ export const useDefer = (
       });
       
       return () => {
-        if ('cancelIdleCallback' in window) {
-          window.cancelIdleCallback(idleCallbackId);
+        if (typeof window !== 'undefined' && 'cancelIdleCallback' in window) {
+          cancelIdleCallback(idleCallbackId);
         }
         if (timeoutId) {
           clearTimeout(timeoutId);
@@ -55,15 +58,20 @@ export const useDefer = (
   }, dependencies);
 };
 
-// Use proper interface augmentation for TypeScript
-declare global {
-  interface Window {
-    requestIdleCallback: (
-      callback: IdleRequestCallback, 
-      options?: IdleRequestOptions
-    ) => number;
-    cancelIdleCallback: (handle: number) => void;
-  }
+// Use proper type definitions that won't cause TypeScript errors
+interface IdleRequestOptions {
+  timeout: number;
 }
 
+interface IdleRequestCallback {
+  (deadline: IdleDeadline): void;
+}
+
+interface IdleDeadline {
+  didTimeout: boolean;
+  timeRemaining: () => number;
+}
+
+// No need to augment Window interface, TypeScript already has these types
+// Just provide proper return type for the hook
 export default useDefer;

@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -43,7 +44,6 @@ const IndexAlt2 = () => {
                 <h1 
                   id="main-heading" 
                   className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight"
-                  fetchpriority="high"
                   style={{contentVisibility: "auto"}}
                 >
                   Ensuring your online presence is as powerful as your 

@@ -39,7 +39,11 @@ const addResourceHints = () => {
   const markLCP = () => {
     const mainHeading = document.getElementById('main-heading');
     if (mainHeading) {
+      // Use setAttribute to add fetchpriority
       mainHeading.setAttribute('fetchpriority', 'high');
+      
+      // Also add a custom data attribute for LCP monitoring
+      mainHeading.setAttribute('data-lcp-element', 'true');
     }
   };
   
