@@ -1,29 +1,41 @@
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 const CarbonShowcase: React.FC = () => {
-  useEffect(() => {
-    // Load carbon badge script using setTimeout instead of requestIdleCallback
-    const loadCarbonBadge = () => {
-      const script = document.createElement('script');
-      script.src = 'https://unpkg.com/@websitecarbon/badge@1/dist/wcbadge.js';
-      script.async = true;
-      document.body.appendChild(script);
-
-      script.onload = () => {
-        console.log('Carbon badge script loaded');
-      };
-
-      script.onerror = () => {
-        console.error('Failed to load carbon badge script');
-      };
-    };
-
-    // Use setTimeout with a small delay to not block main thread
-    setTimeout(loadCarbonBadge, 100);
-
+  // Load carbon badge script only after the component is mounted and visible
+  React.useEffect(() => {
+    let mounted = true;
+    
+    // Use Intersection Observer to load the script only when the component is visible
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && mounted) {
+        // Delayed loading of non-critical script
+        setTimeout(() => {
+          if (!mounted) return;
+          
+          const script = document.createElement('script');
+          script.src = 'https://unpkg.com/@websitecarbon/badge@1/dist/wcbadge.js';
+          script.async = true;
+          script.defer = true;
+          document.body.appendChild(script);
+          
+          observer.disconnect();
+        }, 1000); // Delay loading to prioritize more critical content
+      }
+    }, { threshold: 0.1 });
+    
+    // Start observing the container element
+    const container = document.querySelector('.wcb-container');
+    if (container) {
+      observer.observe(container);
+    }
+    
     return () => {
+      mounted = false;
+      observer.disconnect();
+      
+      // Clean up script when component unmounts
       const script = document.querySelector('script[src="https://unpkg.com/@websitecarbon/badge@1/dist/wcbadge.js"]');
       if (script) {
         document.body.removeChild(script);
@@ -46,8 +58,8 @@ const CarbonShowcase: React.FC = () => {
               Check your website's carbon footprint →
             </Link>
           </div>
-          <div className="flex justify-center">
-            <div className="wcb-badge"></div>
+          <div className="flex justify-center wcb-container">
+            <div className="wcb-badge" aria-label="Website Carbon Badge will load here"></div>
           </div>
         </div>
       </div>

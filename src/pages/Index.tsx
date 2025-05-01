@@ -1,4 +1,5 @@
-import React, { useEffect, lazy, Suspense } from 'react';
+
+import React, { lazy, Suspense } from 'react';
 import Header from '../components/Header';
 import SimpleHero from '../components/SimpleHero';
 import Services from '../components/Services';
@@ -22,39 +23,8 @@ const LoadingFallback = () => <div className="min-h-[200px] flex items-center ju
 </div>;
 
 const Index = () => {
-  // Optimize LCP marking
-  useEffect(() => {
-    // Mark LCP element immediately
-    const lcpElement = document.querySelector('.hero-headline');
-    if (lcpElement && window.LCP) window.LCP(lcpElement);
-  }, []);
+  // React useEffect hook for LCP marking was removed as it's now handled in main.tsx
   
-  // Optimize animation observer - use a single observer for better performance
-  useEffect(() => {
-    let observer: IntersectionObserver | null = null;
-    // Don't initialize this right away - give priority to LCP
-    const timer = setTimeout(() => {
-      observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-visible');
-            observer?.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.1 });
-
-      const animatedElements = document.querySelectorAll('.animate-on-scroll');
-      animatedElements.forEach(el => observer?.observe(el));
-    }, 1000);
-
-    return () => {
-      clearTimeout(timer);
-      if (observer) {
-        observer.disconnect();
-      }
-    };
-  }, []);
-
   // Home page specific schema data
   const homeSchemaData = [
     {
@@ -128,9 +98,6 @@ const Index = () => {
         {/* Lazy load content below the fold */}
         <Suspense fallback={<LoadingFallback />}>
           <Sustainability />
-        </Suspense>
-        
-        <Suspense fallback={<LoadingFallback />}>
           <WebsiteCarbonCTA />
           <ClientLogos />
           <RecentProjects />

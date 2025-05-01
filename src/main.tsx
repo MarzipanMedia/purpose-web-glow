@@ -21,58 +21,62 @@ declare global {
   }
 }
 
-// Polyfill for requestIdleCallback and cancelIdleCallback
+// More robust polyfill for requestIdleCallback and cancelIdleCallback
 if (typeof window !== 'undefined') {
   // Properly typed polyfill for browsers that don't support requestIdleCallback
-  window.requestIdleCallback = window.requestIdleCallback || function(
-    callback: IdleRequestCallback,
-    options?: IdleRequestOptions
-  ) {
-    // Use a numeric timeout ID and ensure it's properly cast to match the expected return type
-    const timeoutId = setTimeout(() => callback({
-      didTimeout: false,
-      timeRemaining: function() { return Infinity; }
-    }), options?.timeout || 1);
-    
-    // Convert the timeout ID to a number to match the requestIdleCallback signature
-    return Number(timeoutId);
-  };
+  if (!('requestIdleCallback' in window)) {
+    window.requestIdleCallback = function(
+      callback: IdleRequestCallback,
+      options?: IdleRequestOptions
+    ) {
+      const start = Date.now();
+      return setTimeout(() => {
+        callback({
+          didTimeout: false,
+          timeRemaining: function() { 
+            return Math.max(0, 50 - (Date.now() - start)); 
+          }
+        });
+      }, options?.timeout || 1) as unknown as number;
+    };
+  }
 
-  window.cancelIdleCallback = window.cancelIdleCallback || function(id: number) {
-    clearTimeout(id);
+  if (!('cancelIdleCallback' in window)) {
+    window.cancelIdleCallback = function(id: number) {
+      clearTimeout(id);
+    };
+  }
+  
+  // Simple LCP marking utility that doesn't rely on requestIdleCallback
+  window.LCP = function markLCP(element: Element) {
+    if (!element) return;
+    
+    // Use PerformanceObserver if available
+    if ('PerformanceObserver' in window) {
+      try {
+        new PerformanceObserver((entryList) => {
+          const entries = entryList.getEntries();
+          if (entries.length > 0) {
+            console.log('LCP recorded:', entries[0].startTime);
+            if (window.gtag) {
+              setTimeout(() => {
+                window.gtag('event', 'web_vitals', {
+                  metric_name: 'LCP',
+                  metric_value: entries[0].startTime,
+                  metric_id: 'LCP'
+                });
+              }, 0);
+            }
+          }
+        }).observe({ type: 'largest-contentful-paint', buffered: true });
+      } catch (e) {
+        console.error('PerformanceObserver error:', e);
+      }
+    }
   };
 }
 
-// Simplified performance monitoring function
-const monitorWebVitals = () => {
-  if (process.env.NODE_ENV === 'production') {
-    // Minimal LCP observer
-    try {
-      const observer = new PerformanceObserver((entryList) => {
-        const entries = entryList.getEntries();
-        if (entries.length > 0) {
-          console.log('LCP measured:', entries[0].startTime);
-          // Defer analytics reporting to not block main thread
-          setTimeout(() => {
-            if (window.gtag) {
-              window.gtag('event', 'web_vitals', {
-                metric_name: 'LCP',
-                metric_value: entries[0].startTime,
-                metric_id: 'LCP'
-              });
-            }
-          }, 1000);
-        }
-      });
-      
-      observer.observe({ type: 'largest-contentful-paint', buffered: true });
-    } catch (e) {
-      console.error('PerformanceObserver not supported', e);
-    }
-  }
-};
-
-// Simplified preload function
+// Simplified preload function for critical resources
 const preloadCriticalResources = () => {
   // Only preconnect to essential domains to save resources
   const preconnects = [
@@ -83,14 +87,16 @@ const preloadCriticalResources = () => {
   preconnects.forEach(link => {
     const linkEl = document.createElement('link');
     Object.entries(link).forEach(([key, value]) => {
-      linkEl.setAttribute(key, value);
+      if (value !== undefined) {
+        linkEl.setAttribute(key, value);
+      }
     });
     document.head.appendChild(linkEl);
   });
-  
-  // Initialize monitoring after critical resources
-  monitorWebVitals();
 };
+
+// Run preload immediately but with low priority
+preloadCriticalResources();
 
 // Optimize image error handling - use passive listeners
 window.addEventListener('error', function(e) {
@@ -109,8 +115,19 @@ if (appRoot) {
   // Initialize the app
   createRoot(appRoot).render(<App />);
   
-  // Preload critical resources soon but don't block initial render
-  setTimeout(preloadCriticalResources, 20);
+  // Simple web vitals monitoring
+  if (process.env.NODE_ENV === 'production') {
+    setTimeout(() => {
+      try {
+        const lcpElement = document.querySelector('.hero-headline');
+        if (lcpElement && window.LCP) {
+          window.LCP(lcpElement);
+        }
+      } catch (e) {
+        console.error('LCP marking error:', e);
+      }
+    }, 0);
+  }
 } else {
   console.error("Root element not found");
 }
