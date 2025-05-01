@@ -49,13 +49,13 @@ export const processSteps: ProcessStep[] = [
   {
     step: "03",
     title: "Eco-Friendly Design",
-    description: "Our designs minimize resource usage while creating beautiful, effective user experiences.",
+    description: "Our designs minimise resource usage while creating beautiful, effective user experiences.",
     icon: Palette
   },
   {
     step: "04",
     title: "Efficient Development",
-    description: "Clean, optimized code ensures your website runs as efficiently as possible.",
+    description: "Clean, optimised code ensures your website runs as efficiently as possible.",
     icon: Code
   },
   {
