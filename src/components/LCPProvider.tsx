@@ -92,15 +92,13 @@ export const LCPElement: React.FC<LCPElementProps> = ({ children, id, className 
   return (
     <div 
       id={id}
-      className={className}
+      className={`lcp-element-wrapper ${className || ''}`}
       data-lcp-element="true"
-      // Remove fetchpriority from JSX and add it using ref
       onLoad={markLCPLoaded}
       ref={(el) => {
         if (el) {
           // Add fetchpriority as a non-standard attribute
           el.setAttribute('fetchpriority', 'high');
-          el.setAttribute('data-lcp-element', 'true');
         }
       }}
     >

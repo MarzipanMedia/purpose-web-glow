@@ -1,20 +1,20 @@
 
 /* Performance-optimized CSS for Alt2 page */
 
-/* Critical CSS for LCP - Only essential styles that affect LCP */
+/* LCP critical styles */
 [data-lcp-element="true"] {
   opacity: 1 !important;
   transform: none !important;
   transition: none !important;
-  content-visibility: visible !important;
 }
 
-/* Base animation states */
+/* Base animation states - optimized for performance */
 .defer-animate {
   opacity: 0;
   transform: translateY(20px);
-  will-change: opacity, transform; /* Hint to browser for GPU acceleration */
+  will-change: opacity, transform; 
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition-delay: 0ms; /* No default delay to prevent waiting */
 }
 
 .animate-visible {
@@ -22,11 +22,18 @@
   transform: translateY(0);
 }
 
-/* Optimize animations by disabling for users who prefer reduced motion */
+/* Remove animations for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .defer-animate {
-    transition: opacity 0.1s ease-out !important;
-    transform: none !important; /* Prevent all transform animations */
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  
+  [data-lcp-element="true"] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
   
   .animate-visible {
@@ -34,14 +41,14 @@
   }
 }
 
-/* Only use minimal animations on mobile to save resources */
+/* Simplified mobile animations */
 @media (max-width: 768px) {
   .defer-animate {
-    transition-duration: 0.3s; /* Faster transitions on mobile */
-    transform: translateY(10px); /* Smaller transform distance on mobile */
+    transition-duration: 0.3s;
+    transform: translateY(10px);
   }
   
-  /* Reduce layout shift by pre-setting dimensions for important elements */
+  /* Reduce layout shift with pre-set dimensions */
   .container-custom {
     width: 100%;
     max-width: 1280px;
@@ -50,20 +57,25 @@
   }
 }
 
-/* Optimize images to prevent layout shift */
+/* Prevent image layout shifts */
 img {
   height: auto;
   max-width: 100%;
 }
 
-/* Create containment boundaries for better rendering performance */
+/* Create containment boundaries with correct LCP handling */
 section {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 500px;
+  contain: layout style paint;
 }
 
-/* Exception for the hero section which contains LCP element */
+/* Ensure LCP section isn't affected by content-visibility */
 section:first-of-type {
-  content-visibility: visible;
+  content-visibility: visible !important;
   contain-intrinsic-size: auto;
+  contain: none;
+}
+
+/* Make sure LCPElement children are rendered immediately */
+.lcp-element-wrapper * {
+  content-visibility: visible !important;
 }

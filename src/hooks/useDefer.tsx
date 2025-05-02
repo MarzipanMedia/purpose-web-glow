@@ -29,11 +29,19 @@ export const useDefer = (
   useEffect(() => {
     if (typeof window === 'undefined') return;
     
+    // Track whether this execution has completed
+    let isExecuted = false;
     let timeoutId: number | ReturnType<typeof setTimeout>;
     let idleCallbackId: number;
     
+    // Ensure we don't miss the callback execution if LCP already completed
+    const lcpState = document.readyState;
+    
     // Function to execute after delay or immediately
     const runCallback = () => {
+      if (isExecuted) return;
+      isExecuted = true;
+      
       if (delay > 0) {
         timeoutId = setTimeout(executeCallback, delay);
       } else {
@@ -41,22 +49,40 @@ export const useDefer = (
       }
     };
     
-    // Wait until after the main content is painted
-    const onLoad = () => {
-      // Use requestIdleCallback with a timeout to ensure execution
-      if ('requestIdleCallback' in window) {
-        idleCallbackId = requestIdleCallback(runCallback, { timeout: 2000 });
-      } else {
-        // Fallback for browsers that don't support requestIdleCallback
-        timeoutId = setTimeout(runCallback, delay || 100);
+    // Use PerformanceObserver to wait for LCP before deferring
+    if ('PerformanceObserver' in window) {
+      try {
+        const lcpObserver = new PerformanceObserver((entryList) => {
+          const entries = entryList.getEntries();
+          if (entries.length > 0) {
+            // LCP has occurred, schedule our task
+            if ('requestIdleCallback' in window) {
+              idleCallbackId = requestIdleCallback(runCallback, { timeout: 2000 });
+            } else {
+              // Fallback for browsers that don't support requestIdleCallback
+              timeoutId = setTimeout(runCallback, delay || 100);
+            }
+            lcpObserver.disconnect();
+          }
+        });
+        
+        lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true });
+        
+        // Set a timeout to ensure we run even if LCP doesn't fire
+        timeoutId = setTimeout(() => {
+          lcpObserver.disconnect();
+          runCallback();
+        }, 3000); // 3 second fallback to ensure callback runs
+      } catch (e) {
+        // If observer fails, fall back to load event
+        window.addEventListener('load', runCallback, { once: true });
       }
-    };
-
-    // Check if document is already loaded
-    if (document.readyState === 'complete') {
-      onLoad();
+    } else if (lcpState === 'complete') {
+      // Document already loaded
+      runCallback();
     } else {
-      window.addEventListener('load', onLoad);
+      // Fallback to load event
+      window.addEventListener('load', runCallback, { once: true });
     }
     
     // Cleanup function
@@ -67,7 +93,7 @@ export const useDefer = (
       if (timeoutId) {
         clearTimeout(timeoutId);
       }
-      window.removeEventListener('load', onLoad);
+      window.removeEventListener('load', runCallback);
     };
   }, dependencies); // Controlled by dependencies array
 };

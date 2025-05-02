@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en-GB">
   <head>
@@ -6,14 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Marzipan Digital - Sustainable Web Design & AI-Driven SEO</title>
     
-    <!-- Critical preconnects for performance -->
+    <!-- Critical preconnects -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!-- Preload critical assets -->
-    <link rel="preload" as="image" href="/marzipan-logo.webp" type="image/webp" fetchpriority="high">
+    <link rel="preload" as="image" href="/marzipan-logo.webp" fetchpriority="high">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700&display=swap" as="style">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&family=Jost:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+    
+    <!-- Immediately load critical font with display=swap -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700&display=swap" media="all">
+    
+    <!-- Defer non-critical fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;500;600&family=Jost:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
     
     <!-- Fallback for no JS -->
     <noscript>
@@ -33,19 +37,30 @@
     <meta name="twitter:site" content="@marzipandigital" />
     <meta name="twitter:image" content="/marzipan-logo.webp" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    
+    <!-- Add modulepreload for main bundle -->
+    <link rel="modulepreload" href="/src/main.tsx">
   </head>
   <body>
     <div id="root"></div>
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
-    <!-- Google tag (gtag.js) - Moved to end of body for better performance -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YEYRTEBNW4"></script>
+    <!-- Google tag (gtag.js) - Keep at end of body with async/defer -->
+    <script async defer src="https://www.googletagmanager.com/gtag/js?id=G-YEYRTEBNW4"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-YEYRTEBNW4');
+      gtag('config', 'G-YEYRTEBNW4', {
+        'send_page_view': false  // Defer page view until after LCP
+      });
+      // Send pageview after critical content loads
+      document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+          gtag('event', 'page_view');
+        }, 1000);
+      });
     </script>
   </body>
 </html>

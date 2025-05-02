@@ -7,20 +7,19 @@ interface OptimizedImageProps {
   width?: number;
   height?: number;
   priority?: boolean;
+  className?: string;
 }
 
 /**
  * Hook to optimize image loading for better web vitals
- * @param src Image source URL
- * @param options Additional options like alt text, dimensions, and priority
- * @returns Image props and loading status
  */
 export const useOptimizedImage = ({ 
   src, 
   alt, 
   width, 
   height, 
-  priority = false
+  priority = false,
+  className = ''
 }: OptimizedImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState<Error | null>(null);
@@ -31,8 +30,8 @@ export const useOptimizedImage = ({
     alt,
     width: width || undefined,
     height: height || undefined,
-    loading: priority ? 'eager' : 'lazy',
-    fetchpriority: priority ? 'high' : 'auto',
+    loading: priority ? undefined : 'lazy', // Don't set loading for priority images
+    className: `${className} ${isLoaded ? 'opacity-100' : 'opacity-0 blur-sm'} transition-opacity duration-300`,
     onLoad: () => setIsLoaded(true),
     onError: (e: any) => setError(e),
     style: {
@@ -44,16 +43,21 @@ export const useOptimizedImage = ({
   // Preload high priority images
   useEffect(() => {
     if (priority && typeof window !== 'undefined') {
+      const img = new Image();
+      img.src = src;
+      
       const preloadLink = document.createElement('link');
       preloadLink.rel = 'preload';
       preloadLink.as = 'image';
       preloadLink.href = src;
-      preloadLink.fetchPriority = 'high';
-      document.head.appendChild(preloadLink);
+      if (typeof document !== 'undefined') {
+        preloadLink.setAttribute('fetchpriority', 'high');
+        document.head.appendChild(preloadLink);
       
-      return () => {
-        document.head.removeChild(preloadLink);
-      };
+        return () => {
+          document.head.removeChild(preloadLink);
+        };
+      }
     }
   }, [src, priority]);
   

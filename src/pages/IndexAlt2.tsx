@@ -1,46 +1,45 @@
-import React, { useRef, useEffect } from 'react';
+
+import React, { Suspense, lazy } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import MetaHead from '@/components/MetaHead';
 import { useDefer } from '@/hooks/useDefer';
 import '../styles/alt2.css';
 
-// Import existing sections
+// Import critical path components directly
 import Services from '../components/Services';
-import Sustainability from '../components/Sustainability';
-import ClientLogos from '../components/ClientLogos';
-import RecentProjects from '../components/RecentProjects';
-import BlogPreview from '../components/BlogPreview';
-
-// Import newly created section components
 import HeroSection from '../components/alt2/HeroSection';
 import StatsSection from '../components/alt2/StatsSection';
 import WebsiteCarbonCTA from '../components/alt2/WebsiteCarbonCTA';
 import TestimonialsSection from '../components/alt2/TestimonialsSection';
 import FinalCTA from '../components/alt2/FinalCTA';
 
-const IndexAlt2 = () => {
-  const mainRef = useRef<HTMLDivElement>(null);
-  
-  // Defer non-critical animations
-  useDefer(() => {
-    const animatedElements = document.querySelectorAll('.defer-animate');
-    animatedElements.forEach((el, index) => {
-      setTimeout(() => {
-        (el as HTMLElement).classList.add('animate-visible');
-      }, index * 100);  // Stagger animations
-    });
-  }, 100, []);
+// Lazy load non-critical components
+const Sustainability = lazy(() => import('../components/Sustainability'));
+const ClientLogos = lazy(() => import('../components/ClientLogos'));
+const RecentProjects = lazy(() => import('../components/RecentProjects'));
+const BlogPreview = lazy(() => import('../components/BlogPreview'));
 
-  // Mark LCP element when component mounts
-  useEffect(() => {
-    // Find and mark the main heading as LCP element for monitoring
-    const mainHeading = document.getElementById('main-heading');
-    if (mainHeading) {
-      mainHeading.setAttribute('fetchpriority', 'high');
-      mainHeading.setAttribute('data-lcp-element', 'true');
-    }
-  }, []);
+const IndexAlt2 = () => {
+  // Use defer for animations only after the main content is loaded
+  useDefer(() => {
+    const animateElements = () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      document.querySelectorAll('.defer-animate').forEach(el => {
+        observer.observe(el);
+      });
+    };
+    
+    animateElements();
+  }, 800);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -50,39 +49,49 @@ const IndexAlt2 = () => {
       />
       <Header />
       
-      <main className="flex-grow" ref={mainRef}>
-        {/* Hero Section - optimized for LCP */}
+      <main className="flex-grow">
+        {/* Critical path - renders immediately */}
         <HeroSection />
-        
-        {/* Stats Section */}
         <StatsSection />
         
-        {/* Services Section */}
+        {/* Services section - important but not LCP */}
         <Services />
         
-        {/* Our Approach Section */}
-        <Sustainability />
+        {/* Deferred content that loads after LCP */}
+        <Suspense fallback={<div className="h-40"></div>}>
+          <div className="defer-animate">
+            <WebsiteCarbonCTA />
+          </div>
+        </Suspense>
         
-        {/* Client Logos Section */}
-        <ClientLogos />
+        <Suspense fallback={<div className="h-40"></div>}>
+          <div className="defer-animate">
+            <Sustainability />
+          </div>
+        </Suspense>
         
-        {/* Website Carbon CTA */}
-        <WebsiteCarbonCTA />
+        <Suspense fallback={<div className="h-40"></div>}>
+          <div className="defer-animate">
+            <ClientLogos />
+          </div>
+        </Suspense>
         
-        {/* Other sections - deferred loading */}
-        <div className="defer-animate">
-          <RecentProjects />
-        </div>
+        <Suspense fallback={<div className="h-40"></div>}>
+          <div className="defer-animate">
+            <RecentProjects />
+          </div>
+        </Suspense>
         
-        <div className="defer-animate">
-          <BlogPreview />
-        </div>
-        
-        {/* Testimonials Section */}
+        {/* Non-critical sections - load last */}
         <TestimonialsSection />
-        
-        {/* CTA Section */}
         <FinalCTA />
+        
+        {/* Load BlogPreview last as it makes API calls */}
+        <Suspense fallback={<div className="h-40 bg-gray-50"></div>}>
+          <div className="defer-animate">
+            <BlogPreview />
+          </div>
+        </Suspense>
       </main>
       
       <Footer />
