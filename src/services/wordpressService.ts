@@ -75,7 +75,7 @@ const API_URL = 'https://blog.marzipan.com.au/wp-json/wp/v2';
 // Replace with your actual endpoint
 const EMAIL_ENDPOINT = 'https://blog.marzipan.com.au/wp-json/marzipan/v1/send-email';
 
-export const useFetchPosts = (page = 1, perPage = 3) => {
+export const useFetchPosts = (page = 1, perPage = 3, enabled = true) => {
   return useQuery({
     queryKey: ['wordpressPosts', page, perPage],
     queryFn: async () => {
@@ -96,6 +96,7 @@ export const useFetchPosts = (page = 1, perPage = 3) => {
     retry: 1,
     networkMode: 'always',
     refetchOnWindowFocus: false,
+    enabled: enabled,
     staleTime: 5 * 60 * 1000, // 5 minutes
     gcTime: 10 * 60 * 1000, // 10 minutes
   });

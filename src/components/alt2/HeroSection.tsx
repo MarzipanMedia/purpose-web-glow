@@ -15,11 +15,9 @@ const HeroSection = () => {
               Sustainable Web Design
             </div>
             
-            <LCPElement>
-              <h1 id="main-heading" className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight">
-                Ensuring your online presence is as powerful as your 
-                <span className="text-brandRed"> purpose</span>
-              </h1>
+            <LCPElement as="h1" id="main-heading" className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight">
+              Ensuring your online presence is as powerful as your 
+              <span className="text-brandRed"> purpose</span>
             </LCPElement>
             
             <p className="text-lg md:text-xl text-foreground/80 max-w-2xl">
@@ -40,7 +38,12 @@ const HeroSection = () => {
             <div className="relative">
               <div 
                 className="bg-gradient-to-br from-yellow-500 via-brandRed to-brandRed/80 rounded-full aspect-square flex items-center justify-center p-12 shadow-lg text-white"
-                style={{width: "100%", height: "auto"}}
+                style={{
+                  width: "100%", 
+                  height: "auto",
+                  maxWidth: "400px",
+                  margin: "0 auto"
+                }}
               >
                 <div className="text-center">
                   <p className="text-xl font-display">Eco-friendly</p>

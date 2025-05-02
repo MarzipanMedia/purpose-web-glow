@@ -81,29 +81,35 @@ interface LCPElementProps {
   children: ReactNode;
   id?: string;
   className?: string;
+  as?: keyof JSX.IntrinsicElements;
 }
 
 /**
  * Component to mark an element as LCP (Largest Contentful Paint)
+ * Now directly applies attributes to the element without unnecessary wrapper div
  */
-export const LCPElement: React.FC<LCPElementProps> = ({ children, id, className }) => {
+export const LCPElement: React.FC<LCPElementProps> = ({ 
+  children, 
+  id, 
+  className,
+  as: Component = 'div' 
+}) => {
   const { markLCPLoaded } = useLCP();
   
-  return (
-    <div 
-      id={id}
-      className={`lcp-element-wrapper ${className || ''}`}
-      data-lcp-element="true"
-      onLoad={markLCPLoaded}
-      ref={(el) => {
-        if (el) {
-          // Add fetchpriority as a non-standard attribute
-          el.setAttribute('fetchpriority', 'high');
-        }
-      }}
-    >
-      {children}
-    </div>
+  return React.createElement(
+    Component,
+    { 
+      id,
+      className: `lcp-element ${className || ''}`,
+      "data-lcp-element": "true",
+      onLoad: markLCPLoaded,
+      fetchpriority: "high",
+      style: { 
+        contentVisibility: 'auto',
+        containIntrinsicSize: 'auto'
+      }
+    },
+    children
   );
 };
 

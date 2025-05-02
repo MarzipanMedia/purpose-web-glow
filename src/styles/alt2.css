@@ -6,6 +6,7 @@
   opacity: 1 !important;
   transform: none !important;
   transition: none !important;
+  content-visibility: auto;
 }
 
 /* Base animation states - optimized for performance */
@@ -76,6 +77,46 @@ section:first-of-type {
 }
 
 /* Make sure LCPElement children are rendered immediately */
-.lcp-element-wrapper * {
+.lcp-element * {
   content-visibility: visible !important;
+}
+
+/* Blog-specific optimizations */
+.blog-animate {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+/* Pre-connect hints for external resources */
+@layer utilities {
+  .img-lazy {
+    loading: lazy;
+  }
+  
+  .img-eager {
+    loading: eager;
+  }
+}
+
+/* Performance-optimized animations that won't affect LCP */
+@keyframes fadeInAfterLCP {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Separate animations from layout/position styles */
+.fade-in-after-lcp {
+  animation: fadeInAfterLCP 0.5s ease-out forwards;
+  animation-play-state: paused;
+}
+
+.lcp-loaded .fade-in-after-lcp {
+  animation-play-state: running;
 }

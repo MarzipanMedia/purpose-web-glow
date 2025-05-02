@@ -51,13 +51,13 @@ export const useDefer = (
     };
     
     // Use PerformanceObserver to wait for LCP before deferring
-    if ('PerformanceObserver' in window) {
+    if (typeof window !== 'undefined' && 'PerformanceObserver' in window) {
       try {
         const lcpObserver = new PerformanceObserver((entryList) => {
           const entries = entryList.getEntries();
           if (entries.length > 0) {
             // LCP has occurred, schedule our task
-            if ('requestIdleCallback' in window) {
+            if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
               idleCallbackId = requestIdleCallback(runCallback, { timeout: 2000 });
             } else {
               // Fallback for browsers that don't support requestIdleCallback
@@ -93,13 +93,12 @@ export const useDefer = (
     // Cleanup function
     return () => {
       if (typeof window !== 'undefined') {
-        if ('cancelIdleCallback' in window && idleCallbackId) {
+        if (typeof window.cancelIdleCallback === 'function' && idleCallbackId) {
           cancelIdleCallback(idleCallbackId);
         }
         if (timeoutId) {
           clearTimeout(timeoutId);
         }
-        // Remove event listener with proper type guard
         window.removeEventListener('load', runCallback);
       }
     };
