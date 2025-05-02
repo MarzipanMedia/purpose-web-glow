@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 
-// Function to add preconnect and preload links
+// Optimized function to add preconnect and preload links
 const addResourceHints = () => {
   // Add preconnect for Google Fonts domain
   const preconnectLinks = [
@@ -11,13 +11,13 @@ const addResourceHints = () => {
     { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: 'anonymous' }
   ];
 
-  // Add preload for critical fonts and styles
+  // Add preload for critical fonts and styles - Optimized order
   const preloadLinks = [
-    { rel: 'preload', href: 'https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700&display=swap', as: 'style' },
-    { rel: 'preload', href: '/marzipan-logo.webp', as: 'image', fetchpriority: 'high' }
+    { rel: 'preload', href: '/marzipan-logo.webp', as: 'image', fetchpriority: 'high' },
+    { rel: 'preload', href: 'https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700&display=swap', as: 'style' }
   ];
 
-  // Add all resource hints to document head
+  // Add all resource hints to document head with priority
   [...preconnectLinks, ...preloadLinks].forEach(link => {
     const linkEl = document.createElement('link');
     Object.entries(link).forEach(([key, value]) => {
@@ -26,7 +26,7 @@ const addResourceHints = () => {
     document.head.appendChild(linkEl);
   });
 
-  // Add display=swap to font links
+  // Add display=swap to font links for faster text rendering
   const existingLinks = document.querySelectorAll('link[href*="fonts.googleapis.com"]');
   existingLinks.forEach(link => {
     const href = link.getAttribute('href');
@@ -35,32 +35,12 @@ const addResourceHints = () => {
     }
   });
   
-  // Mark the main heading as LCP element for monitoring
-  const markLCP = () => {
-    const mainHeading = document.getElementById('main-heading');
-    if (mainHeading) {
-      // Use setAttribute to add fetchpriority
-      mainHeading.setAttribute('fetchpriority', 'high');
-      
-      // Also add a custom data attribute for LCP monitoring
-      mainHeading.setAttribute('data-lcp-element', 'true');
-    }
-  };
-  
-  // Execute when DOM is ready
-  if (document.readyState === 'interactive' || document.readyState === 'complete') {
-    markLCP();
-  } else {
-    document.addEventListener('DOMContentLoaded', markLCP);
-  }
+  // Prioritize initial page render
+  document.documentElement.classList.add('js-loading');
 };
 
-// Execute resource hints immediately
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', addResourceHints);
-} else {
-  addResourceHints();
-}
+// Execute resource hints immediately - don't wait for DOMContentLoaded
+addResourceHints();
 
 // Add event listener to catch image loading errors
 window.addEventListener('error', function(e) {
@@ -80,6 +60,12 @@ if (rootElement) {
   // Use a microtask to ensure critical rendering happens as soon as possible
   queueMicrotask(() => {
     appRoot.render(<App />);
+    
+    // Mark loading complete after initial render
+    requestAnimationFrame(() => {
+      document.documentElement.classList.remove('js-loading');
+      document.documentElement.classList.add('js-loaded');
+    });
   });
 } else {
   console.error("Root element not found");

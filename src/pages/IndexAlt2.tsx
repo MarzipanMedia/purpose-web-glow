@@ -1,8 +1,9 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import MetaHead from '@/components/MetaHead';
 import { useDefer } from '@/hooks/useDefer';
+import '../styles/alt2.css';
 
 // Import existing sections
 import Services from '../components/Services';
@@ -30,6 +31,16 @@ const IndexAlt2 = () => {
       }, index * 100);  // Stagger animations
     });
   }, 100, []);
+
+  // Mark LCP element when component mounts
+  useEffect(() => {
+    // Find and mark the main heading as LCP element for monitoring
+    const mainHeading = document.getElementById('main-heading');
+    if (mainHeading) {
+      mainHeading.setAttribute('fetchpriority', 'high');
+      mainHeading.setAttribute('data-lcp-element', 'true');
+    }
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col">

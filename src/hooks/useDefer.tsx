@@ -1,10 +1,10 @@
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 
 type DeferCallback = () => void;
 
 /**
- * Hook to defer non-critical operations
+ * Hook to defer non-critical operations for better LCP and TBT metrics
  * @param callback Function to run when the browser is idle
  * @param delay Optional delay in ms before running the callback (default: 0)
  * @param dependencies Array of dependencies to re-run the effect when they change
@@ -16,55 +16,55 @@ export const useDefer = (
 ) => {
   const callbackRef = useRef(callback);
   
+  // Update callback ref when callback changes
   useEffect(() => {
     callbackRef.current = callback;
   }, [callback]);
+  
+  // Memoize the execution function to avoid unnecessary re-renders
+  const executeCallback = useCallback(() => {
+    callbackRef.current();
+  }, []);
   
   useEffect(() => {
     // Mark document as JS ready
     document.documentElement.classList.add('js-ready');
     
     let timeoutId: number | ReturnType<typeof setTimeout>;
-    const executeCallback = () => {
-      callbackRef.current();
+    let idleCallbackId: number;
+    
+    // Function to execute after delay or immediately
+    const runCallback = () => {
+      if (delay > 0) {
+        timeoutId = setTimeout(executeCallback, delay);
+      } else {
+        executeCallback();
+      }
     };
     
-    // Check if requestIdleCallback is available in the browser
+    // Use requestIdleCallback with a timeout to ensure execution
     if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
-      const idleCallbackId = requestIdleCallback(() => {
-        if (delay > 0) {
-          timeoutId = setTimeout(executeCallback, delay);
-        } else {
-          executeCallback();
-        }
-      });
-      
-      return () => {
-        if (typeof window !== 'undefined' && 'cancelIdleCallback' in window) {
-          cancelIdleCallback(idleCallbackId);
-        }
-        if (timeoutId) {
-          clearTimeout(timeoutId);
-        }
-      };
+      idleCallbackId = requestIdleCallback(runCallback, { timeout: 2000 });
     } else {
       // Fallback for browsers that don't support requestIdleCallback
-      timeoutId = setTimeout(executeCallback, delay || 100);
-      
-      return () => {
-        clearTimeout(timeoutId);
-      };
+      timeoutId = setTimeout(runCallback, delay || 100);
     }
-  }, dependencies);
+    
+    // Cleanup function
+    return () => {
+      if (typeof window !== 'undefined' && 'cancelIdleCallback' in window && idleCallbackId) {
+        cancelIdleCallback(idleCallbackId);
+      }
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, dependencies); // Controlled by dependencies array
 };
 
-// Use proper type definitions that won't cause TypeScript errors
+// TypeScript interface definitions
 interface IdleRequestOptions {
   timeout: number;
-}
-
-interface IdleRequestCallback {
-  (deadline: IdleDeadline): void;
 }
 
 interface IdleDeadline {
@@ -72,6 +72,4 @@ interface IdleDeadline {
   timeRemaining: () => number;
 }
 
-// No need to augment Window interface, TypeScript already has these types
-// Just provide proper return type for the hook
 export default useDefer;

@@ -16,7 +16,8 @@ const HeroSection = () => {
             <h1 
               id="main-heading" 
               className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight"
-              style={{contentVisibility: "auto"}}
+              data-lcp-element="true"
+              fetchpriority="high"
             >
               Ensuring your online presence is as powerful as your 
               <span className="text-brandRed"> purpose</span>
