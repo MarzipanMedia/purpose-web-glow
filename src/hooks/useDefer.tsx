@@ -27,6 +27,7 @@ export const useDefer = (
   }, []);
   
   useEffect(() => {
+    // Early return if not in browser environment
     if (typeof window === 'undefined') return;
     
     // Track whether this execution has completed
@@ -75,26 +76,30 @@ export const useDefer = (
         }, 3000); // 3 second fallback to ensure callback runs
       } catch (e) {
         // If observer fails, fall back to load event
-        window.addEventListener('load', runCallback, { once: true });
+        if (typeof window !== 'undefined') {
+          window.addEventListener('load', runCallback, { once: true });
+        }
       }
     } else if (lcpState === 'complete') {
       // Document already loaded
       runCallback();
     } else {
-      // Fallback to load event - TypeScript fix here
-      window.addEventListener('load', runCallback, { once: true });
+      // Fallback to load event - TypeScript needs window type guard
+      if (typeof window !== 'undefined') {
+        window.addEventListener('load', runCallback, { once: true });
+      }
     }
     
     // Cleanup function
     return () => {
-      if ('cancelIdleCallback' in window && idleCallbackId) {
-        cancelIdleCallback(idleCallbackId);
-      }
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
-      // Fix the TypeScript error by checking for window before removing event listener
       if (typeof window !== 'undefined') {
+        if ('cancelIdleCallback' in window && idleCallbackId) {
+          cancelIdleCallback(idleCallbackId);
+        }
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+        }
+        // Remove event listener with proper type guard
         window.removeEventListener('load', runCallback);
       }
     };
