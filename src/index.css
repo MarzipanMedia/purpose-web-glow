@@ -35,6 +35,12 @@
     --ring: 196 67% 27%;
 
     --radius: 0.5rem;
+    
+    /* Performance optimized animation values */
+    --animation-duration-fast: 0.2s;
+    --animation-duration-medium: 0.3s;
+    --animation-duration-slow: 0.5s;
+    --animation-timing: cubic-bezier(0.215, 0.61, 0.355, 1);
   }
 
   .dark {
@@ -118,6 +124,14 @@
   .service-process-section .callout-box {
     @apply mt-8 w-full;
   }
+  
+  /* Critical LCP elements - use minimal or no animations */
+  [data-lcp-element="true"] {
+    /* Ensure no transform or opacity changes for LCP elements */
+    opacity: 1 !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
 }
 
 @layer utilities {
@@ -129,17 +143,36 @@
     @apply transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full;
   }
   
-  /* Enhanced scroll animations */
+  /* Enhanced scroll animations with will-change optimization */
   .animate-on-scroll {
-    transition: opacity 0.6s, transform 0.6s;
-    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition: opacity var(--animation-duration-slow), transform var(--animation-duration-slow);
+    transition-timing-function: var(--animation-timing);
     transform: translateY(20px);
     opacity: 0;
+    will-change: opacity, transform; /* Add will-change but use sparingly */
   }
   
   .animate-visible {
     opacity: 1 !important;
     transform: translateY(0) !important;
+  }
+  
+  /* Optimize fade-in animation for non-LCP elements */
+  .optimized-fade {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity var(--animation-duration-medium) var(--animation-timing), 
+                transform var(--animation-duration-medium) var(--animation-timing);
+  }
+  
+  .optimized-fade.loaded {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Make sure any non-critical animations get initiated only when needed */
+  .animation-paused {
+    animation-play-state: paused;
   }
   
   /* Text highlight animation */
@@ -175,6 +208,7 @@
   }
 }
 
+/* Separate non-critical animations so they can be loaded after LCP */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -208,7 +242,7 @@
   }
 }
 
-/* New animations */
+/* New animations - to be loaded after LCP */
 @keyframes textHighlight {
   0% {
     background-size: 0% 100%;
@@ -269,28 +303,28 @@
   animation: appear 0.4s ease-out forwards;
 }
 
-/* New animation classes */
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-float-delay {
-  animation: floatDelay 8s ease-in-out infinite;
-  animation-delay: 1s;
-}
-
-.animate-expand {
-  animation: expand 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-  animation-delay: 1s;
-}
-
-.animate-text-reveal {
-  animation: textReveal 1.2s ease-out forwards;
-  opacity: 0;
-}
-
-/* Delay animation for non-critical elements */
+/* Non-critical animations with reduced motion preference consideration */
 @media (prefers-reduced-motion: no-preference) {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-delay {
+    animation: floatDelay 8s ease-in-out infinite;
+    animation-delay: 1s;
+  }
+
+  .animate-expand {
+    animation: expand 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    animation-delay: 1s;
+  }
+
+  .animate-text-reveal {
+    animation: textReveal 1.2s ease-out forwards;
+    opacity: 0;
+  }
+  
+  /* Delay animation for non-critical elements */
   .stagger-item:nth-child(1) { animation-delay: 0.1s; }
   .stagger-item:nth-child(2) { animation-delay: 0.2s; }
   .stagger-item:nth-child(3) { animation-delay: 0.3s; }
@@ -299,7 +333,7 @@
   .stagger-item:nth-child(6) { animation-delay: 0.6s; }
 }
 
-/* Dark mode specific text classes */
+/* Critical text colors for all modes */
 .dark .text-foreground {
   color: rgba(255, 255, 255, 0.9);
 }

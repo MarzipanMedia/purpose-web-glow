@@ -63,7 +63,13 @@ const HeroAlt = () => {
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight">
               <div ref={headingRef}>
-                {renderHeadingWords()}
+                {/* Mark as LCP element */}
+                <span 
+                  data-lcp-element="true"
+                  className="inline-block"
+                >
+                  Ensuring your online presence is as powerful as your
+                </span>
               </div>
               <span className="text-brandRed block mt-2 opacity-0 animate-text-reveal" style={{ animationDelay: "1s", animationFillMode: "forwards" }}>purpose</span>
             </h1>

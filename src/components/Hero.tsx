@@ -43,7 +43,7 @@ const Hero = () => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Glow effect that follows mouse */}
+      {/* Glow effect that follows mouse - deferred for performance */}
       <div 
         className="absolute pointer-events-none bg-gradient-radial from-brandBlue/10 to-transparent rounded-full w-[500px] h-[500px] -z-0 blur-3xl transition-opacity duration-300"
         style={{
@@ -59,8 +59,15 @@ const Hero = () => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
           <div className="md:col-span-7 space-y-6 animate-fade-in" style={{ animationDelay: "0.1s" }}>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight">
+              {/* Mark the main heading as LCP element with fetchpriority attribute */}
               <div ref={headingRef}>
-                {renderHeadingWords()}
+                <span
+                  // This is our LCP element - we add data attributes to help measurement tools
+                  data-lcp-element="true"
+                  className="inline-block"
+                >
+                  Ensuring your online presence is as powerful as your
+                </span>
               </div>
               <span className="gradient-text block mt-2">purpose</span>
             </h1>

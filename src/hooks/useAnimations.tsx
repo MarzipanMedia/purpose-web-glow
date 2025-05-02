@@ -1,18 +1,24 @@
 
 import { useEffect, useState, useRef, useCallback } from 'react';
+import { useLCP } from './useLCP';
 
 type AnimationOptions = {
   threshold?: number;
   rootMargin?: string;
   triggerOnce?: boolean;
+  respectLCP?: boolean; // New option to respect LCP
 };
 
 export const useScrollAnimation = (options: AnimationOptions = {}) => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLElement>(null);
-  const { threshold = 0.15, rootMargin = "0px", triggerOnce = true } = options;
+  const { threshold = 0.15, rootMargin = "0px", triggerOnce = true, respectLCP = true } = options;
+  const lcpComplete = useLCP();
 
   useEffect(() => {
+    // Don't initialize animations until LCP is complete if respectLCP is true
+    if (respectLCP && !lcpComplete) return;
+    
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -40,15 +46,19 @@ export const useScrollAnimation = (options: AnimationOptions = {}) => {
         observer.unobserve(currentRef);
       }
     };
-  }, [threshold, rootMargin, triggerOnce]);
+  }, [threshold, rootMargin, triggerOnce, lcpComplete, respectLCP]);
 
   return { ref, isVisible };
 };
 
-export const useParallax = () => {
+export const useParallax = (respectLCP = true) => {
   const [offset, setOffset] = useState({ x: 0, y: 0 });
+  const lcpComplete = useLCP();
   
   useEffect(() => {
+    // Don't initialize animations until LCP is complete if respectLCP is true
+    if (respectLCP && !lcpComplete) return;
+    
     const handleScroll = () => {
       const scrollY = window.scrollY;
       setOffset({ x: 0, y: scrollY * 0.1 });
@@ -56,15 +66,18 @@ export const useParallax = () => {
     
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [respectLCP, lcpComplete]);
   
   return offset;
 };
 
-export const useMousePosition = (ref: React.RefObject<HTMLElement>) => {
+export const useMousePosition = (ref: React.RefObject<HTMLElement>, respectLCP = true) => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const lcpComplete = useLCP();
   
   useEffect(() => {
+    // Don't initialize animations until LCP is complete if respectLCP is true
+    if (respectLCP && !lcpComplete) return;
     if (!ref.current) return;
     
     const handleMouseMove = (e: MouseEvent) => {
@@ -86,16 +99,17 @@ export const useMousePosition = (ref: React.RefObject<HTMLElement>) => {
     return () => {
       element.removeEventListener('mousemove', handleMouseMove);
     };
-  }, [ref]);
+  }, [ref, respectLCP, lcpComplete]);
   
   return position;
 };
 
 // Enhanced glow effect for hero sections
-export const useGlowEffect = () => {
+export const useGlowEffect = (respectLCP = true) => {
   const glowRef = useRef<HTMLDivElement>(null);
   const [glowPosition, setGlowPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const lcpComplete = useLCP();
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
     if (!glowRef.current) return;
@@ -108,8 +122,11 @@ export const useGlowEffect = () => {
   }, []);
 
   const handleMouseEnter = useCallback(() => {
-    setIsHovering(true);
-  }, []);
+    // Only enable hover effects if LCP is complete or we're not respecting LCP
+    if (!respectLCP || lcpComplete) {
+      setIsHovering(true);
+    }
+  }, [respectLCP, lcpComplete]);
 
   const handleMouseLeave = useCallback(() => {
     setIsHovering(false);
@@ -126,13 +143,17 @@ export const useGlowEffect = () => {
 };
 
 // Enhanced staggered text animation with better typing for headings
-export const useStaggeredText = (text: string, delay: number = 0.05) => {
+export const useStaggeredText = (text: string, delay: number = 0.05, respectLCP = true) => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLHeadingElement>(null);
+  const lcpComplete = useLCP();
 
   const words = text.split(" ");
   
   useEffect(() => {
+    // Don't initialize animations until LCP is complete if respectLCP is true
+    if (respectLCP && !lcpComplete) return;
+    
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -152,7 +173,7 @@ export const useStaggeredText = (text: string, delay: number = 0.05) => {
         observer.unobserve(ref.current);
       }
     };
-  }, []);
+  }, [respectLCP, lcpComplete]);
 
   const renderWords = () => {
     return words.map((word, index) => (
@@ -176,13 +197,15 @@ export const useStaggeredText = (text: string, delay: number = 0.05) => {
 };
 
 // Generic magnetic button effect for any element type
-export const useMagneticButton = <T extends HTMLElement>(intensity: number = 0.3) => {
+export const useMagneticButton = <T extends HTMLElement>(intensity: number = 0.3, respectLCP = true) => {
   const buttonRef = useRef<T>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const lcpComplete = useLCP();
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    if (!buttonRef.current) return;
+    // Only enable effects if LCP is complete or we're not respecting LCP
+    if (!buttonRef.current || (respectLCP && !lcpComplete)) return;
     
     const rect = buttonRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
@@ -193,7 +216,7 @@ export const useMagneticButton = <T extends HTMLElement>(intensity: number = 0.3
       y: y * intensity
     });
     setIsHovering(true);
-  }, [intensity]);
+  }, [intensity, respectLCP, lcpComplete]);
 
   const handleMouseLeave = useCallback(() => {
     setPosition({ x: 0, y: 0 });
