@@ -64,7 +64,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
         ` : generateSrcSet(src)}
         sizes={sizes}
         loading={isLCP ? "eager" : "lazy"}
-        fetchpriority={isLCP ? "high" : "auto"}
+        fetchPriority={isLCP ? "high" : "auto"}
         onLoad={handleLoad}
         className={`${className} ${isLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}
         {...props}

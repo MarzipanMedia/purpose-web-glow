@@ -97,7 +97,10 @@ export const useDefer = (
         if (timeoutId) {
           clearTimeout(timeoutId);
         }
-        window.removeEventListener('load', runCallback);
+        // Type safety check for window before removing event listener
+        if (typeof window?.removeEventListener === 'function') {
+          window.removeEventListener('load', runCallback);
+        }
       }
     };
   }, dependencies); // Controlled by dependencies array
