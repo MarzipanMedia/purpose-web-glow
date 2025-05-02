@@ -81,7 +81,7 @@ export const useDefer = (
       // Document already loaded
       runCallback();
     } else {
-      // Fallback to load event
+      // Fallback to load event - TypeScript fix here
       window.addEventListener('load', runCallback, { once: true });
     }
     
@@ -93,7 +93,10 @@ export const useDefer = (
       if (timeoutId) {
         clearTimeout(timeoutId);
       }
-      window.removeEventListener('load', runCallback);
+      // Fix the TypeScript error by checking for window before removing event listener
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('load', runCallback);
+      }
     };
   }, dependencies); // Controlled by dependencies array
 };
