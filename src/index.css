@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -63,7 +64,9 @@
 
   /* Preload critical LCP elements */
   [data-lcp-element="true"] {
-    @apply will-change-opacity;
+    /* Replace will-change-opacity with standard properties */
+    will-change: opacity;
+    @apply transition-opacity;
   }
 
   /* Mobile-first media query for reduced motion */
