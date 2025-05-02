@@ -6,14 +6,12 @@ import Services from '../components/Services';
 import Sustainability from '../components/Sustainability';
 import ClientLogos from '../components/ClientLogos';
 import RecentProjects from '../components/RecentProjects';
-import BlogPreview from '../components/BlogPreview';
 import Footer from '../components/Footer';
 import MetaHead from '@/components/MetaHead';
 import StatsSection from '@/components/home/StatsSection';
 import WebsiteCarbonCTA from '@/components/home/WebsiteCarbonCTA';
 import TestimonialsSection from '@/components/home/TestimonialsSection';
 import FinalCTA from '@/components/home/FinalCTA';
-import CarbonShowcase from '@/components/carbon/CarbonShowcase';
 
 const Index = () => {
   // Add scroll animation observer
@@ -94,7 +92,6 @@ const Index = () => {
       <main className="flex-grow">
         <Hero />
         <StatsSection />
-        <CarbonShowcase />
         
         <section className="relative bg-gradient-to-b from-gray-50 to-white">
           <Services />
@@ -107,7 +104,6 @@ const Index = () => {
         <WebsiteCarbonCTA />
         <ClientLogos />
         <RecentProjects />
-        <BlogPreview />
         <TestimonialsSection />
         <FinalCTA />
       </main>
