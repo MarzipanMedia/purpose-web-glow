@@ -76,7 +76,7 @@ export const useDefer = (
         }, 3000); // 3 second fallback to ensure callback runs
       } catch (e) {
         // If observer fails, fall back to load event
-        if (typeof window !== 'undefined' && window.addEventListener) {
+        if (typeof window === 'object' && window.addEventListener) {
           window.addEventListener('load', runCallback, { once: true });
         }
       }
@@ -85,7 +85,7 @@ export const useDefer = (
       runCallback();
     } else {
       // Fallback to load event
-      if (typeof window !== 'undefined' && window.addEventListener) {
+      if (typeof window === 'object' && window.addEventListener) {
         window.addEventListener('load', runCallback, { once: true });
       }
     }
