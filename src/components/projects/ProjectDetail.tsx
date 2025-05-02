@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Check } from 'lucide-react';
@@ -220,7 +221,7 @@ const ProjectDetail = () => {
         {project.videos && project.videos.length > 0 && (
           <VideoSection 
             videos={project.videos} 
-            sectionTitle="Digital Stories" 
+            title="Digital Stories" 
           />
         )}
         

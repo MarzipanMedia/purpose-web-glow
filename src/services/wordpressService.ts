@@ -3,11 +3,7 @@ import { useQuery, useMutation } from '@tanstack/react-query';
 export interface WordPressPost {
   id: number;
   date: string;
-  modified?: string; // Added 'modified' as optional property
   title: {
-    rendered: string;
-  };
-  content: {
     rendered: string;
   };
   excerpt: {
@@ -17,33 +13,13 @@ export interface WordPressPost {
   _embedded?: {
     'wp:featuredmedia'?: Array<{
       source_url: string;
-      alt_text?: string; // Added alt_text
-      media_details?: { // Added media_details
-        width?: number;
-        height?: number;
-      };
     }>;
-    'wp:term'?: Array<Array<{
-      id: number;
-      name: string;
-      slug: string;
-    }>>;
     author?: Array<{
       name: string;
     }>;
   };
   categories?: number[];
   tags?: number[];
-  
-  // Add SEO metadata
-  yoast_head_json?: {
-    title: string;
-    description: string;
-    canonical: string;
-    og_title: string;
-    og_description: string;
-    og_image: string[];
-  };
 }
 
 export interface WordPressCategory {
@@ -74,19 +50,19 @@ export interface CarbonResult {
   timestamp: number;
 }
 
-// Update the API URL to the correct WordPress instance
-const API_URL = 'https://blog.marzipan.com.au/wp-json/wp/v2';
+// Replace with your actual WordPress site URL
+const API_URL = 'https://marzipan.com.au/wp-json/wp/v2/posts';
 
 // If you have WordPress REST API custom endpoints set up for emails
 // Replace with your actual endpoint
-const EMAIL_ENDPOINT = 'https://blog.marzipan.com.au/wp-json/marzipan/v1/send-email';
+const EMAIL_ENDPOINT = 'https://marzipan.com.au/wp-json/marzipan/v1/send-email';
 
 export const useFetchPosts = (page = 1, perPage = 3) => {
   return useQuery({
     queryKey: ['wordpressPosts', page, perPage],
     queryFn: async () => {
-      console.log(`Fetching WordPress posts: ${API_URL}/posts?_embed&page=${page}&per_page=${perPage}`);
-      const response = await fetch(`${API_URL}/posts?_embed&page=${page}&per_page=${perPage}`);
+      console.log(`Fetching WordPress posts: ${API_URL}?_embed&page=${page}&per_page=${perPage}`);
+      const response = await fetch(`${API_URL}?_embed&page=${page}&per_page=${perPage}`);
       
       if (!response.ok) {
         throw new Error(`WordPress API error: ${response.status}`);
@@ -213,24 +189,5 @@ export const useSubscribeToNewsletter = () => {
       
       return await response.json();
     },
-  });
-};
-
-export const useFetchPostWithSeo = (postId: number) => {
-  return useQuery({
-    queryKey: ['wordpressPost', postId],
-    queryFn: async () => {
-      const response = await fetch(`${API_URL}/posts/${postId}?_embed&_fields=id,title,content,excerpt,date,yoast_head_json`);
-      
-      if (!response.ok) {
-        throw new Error(`WordPress API error: ${response.status}`);
-      }
-      
-      return await response.json() as WordPressPost;
-    },
-    retry: 1,
-    refetchOnWindowFocus: false,
-    staleTime: 5 * 60 * 1000, // 5 minutes
-    gcTime: 10 * 60 * 1000, // 10 minutes
   });
 };

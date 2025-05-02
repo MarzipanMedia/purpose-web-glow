@@ -1,11 +1,9 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import ProcessStep from './ProcessStep';
 import { processSteps } from './projectsData';
 
 const ProcessSection = () => {
-  const [activeStep, setActiveStep] = useState<number | null>(null);
-  
   return (
     <section className="py-16 bg-marzipan/30">
       <div className="container-custom">
@@ -29,9 +27,6 @@ const ProcessSection = () => {
                 title={process.title}
                 description={process.description}
                 index={index}
-                isActive={activeStep === index}
-                onClick={() => setActiveStep(activeStep === index ? null : index)}
-                icon={process.icon || undefined}
               />
             ))}
           </div>

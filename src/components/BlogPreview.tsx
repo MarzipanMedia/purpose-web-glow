@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
@@ -7,8 +8,7 @@ import { useFetchPosts } from '@/services/wordpressService';
 import { format } from 'date-fns';
 
 const BlogPreview: React.FC = () => {
-  // Changed from fetching page 3 to page 1 to get the most recent posts
-  const { data: postsData, isLoading, error } = useFetchPosts(1, 3);
+  const { data: postsData, isLoading, error } = useFetchPosts(3);
 
   const getBackgroundColor = (index: number) => {
     const colors = ["#FEF7CD", "#F2FCE2", "#D3E4FD"];
@@ -105,7 +105,7 @@ const BlogPreview: React.FC = () => {
                     to={`/blog/${post.id}`} 
                     className="inline-flex items-center gap-1 text-brandRed font-medium transition-all hover:gap-2"
                   >
-                    Read Article <ArrowRight className="h-4 w-4" />
+                    Read Article <ArrowRight className="h-4 w-4 transition-all" />
                   </Link>
                 </CardContent>
               </Card>

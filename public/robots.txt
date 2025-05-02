@@ -1,28 +1,9 @@
 
-# Marzipan Digital - Sydney Web Design and SEO Agency
-User-agent: *
-Allow: /
-
-# Main site sitemap
-Sitemap: https://marzipan.com.au/sitemap.xml
-
-# Blog sitemap
-Sitemap: https://blog.marzipan.com.au/sitemap.xml
-
-# Sydney local business sitemap
-Sitemap: https://marzipan.com.au/sydney-sitemap.xml
-
-# Allow main domain
-Host: marzipan.com.au
-
-# Common crawl efficiency directives
 User-agent: Googlebot
 Allow: /
-Crawl-delay: 1
 
 User-agent: Bingbot
 Allow: /
-Crawl-delay: 1
 
 User-agent: Twitterbot
 Allow: /
@@ -30,11 +11,7 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
-# Location-specific pages
-Allow: /sydney-projects
-Allow: /services/*-sydney
-Allow: /sydney-seo-resources
+User-agent: *
+Allow: /
 
-# Local SEO image paths
-Allow: /images/sydney/
-
+Sitemap: https://marzipan.com.au/sitemap.xml

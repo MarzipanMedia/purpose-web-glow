@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -89,34 +90,6 @@ export default {
 				'pulse-slow': {
 					'0%, 100%': { transform: 'scale(1)', opacity: '1' },
 					'50%': { transform: 'scale(1.05)', opacity: '0.9' }
-				},
-				'text-highlight': {
-					'0%': { backgroundSize: '0% 100%' },
-					'100%': { backgroundSize: '100% 100%' }
-				},
-				'float': {
-					'0%, 100%': { transform: 'translateY(0)' },
-					'50%': { transform: 'translateY(-10px)' }
-				},
-				'float-delayed': {
-					'0%, 100%': { transform: 'translateY(0)' },
-					'50%': { transform: 'translateY(-15px)' }
-				},
-				'expand': {
-					'0%': { width: '0' },
-					'100%': { width: '4rem' }
-				},
-				'text-reveal': {
-					'0%': { opacity: '0', transform: 'translateY(20px)' },
-					'100%': { opacity: '1', transform: 'translateY(0)' }
-				},
-				'cursor-ping': {
-					'75%, 100%': { transform: 'scale(1.5)', opacity: '0' }
-				},
-				'bg-shift': {
-					'0%': { 'background-position': '0% 50%' },
-					'50%': { 'background-position': '100% 50%' },
-					'100%': { 'background-position': '0% 50%' }
 				}
 			},
 			animation: {
@@ -126,14 +99,7 @@ export default {
 				'slide-up': 'slide-up 0.7s ease-out forwards',
 				'scale-up': 'scale-up 0.5s ease-out forwards',
 				'float': 'float 3s ease-in-out infinite',
-				'pulse-slow': 'pulse-slow 4s ease-in-out infinite',
-				'text-highlight': 'text-highlight 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards',
-				'float': 'float 6s ease-in-out infinite',
-				'float-delayed': 'float-delayed 8s ease-in-out infinite',
-				'expand': 'expand 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards',
-				'text-reveal': 'text-reveal 1.2s ease-out forwards',
-				'cursor-ping': 'cursor-ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite',
-				'bg-shift': 'bg-shift 15s ease infinite'
+				'pulse-slow': 'pulse-slow 4s ease-in-out infinite'
 			},
 			fontFamily: {
 				'body': ['Mulish', 'system-ui', 'sans-serif'],

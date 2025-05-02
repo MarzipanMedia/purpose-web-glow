@@ -35,12 +35,6 @@
     --ring: 196 67% 27%;
 
     --radius: 0.5rem;
-    
-    /* Performance optimized animation values */
-    --animation-duration-fast: 0.2s;
-    --animation-duration-medium: 0.3s;
-    --animation-duration-slow: 0.5s;
-    --animation-timing: cubic-bezier(0.215, 0.61, 0.355, 1);
   }
 
   .dark {
@@ -124,14 +118,6 @@
   .service-process-section .callout-box {
     @apply mt-8 w-full;
   }
-  
-  /* Critical LCP elements - use minimal or no animations */
-  [data-lcp-element="true"] {
-    /* Ensure no transform or opacity changes for LCP elements */
-    opacity: 1 !important;
-    transform: none !important;
-    will-change: auto !important;
-  }
 }
 
 @layer utilities {
@@ -143,72 +129,19 @@
     @apply transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full;
   }
   
-  /* Enhanced scroll animations with will-change optimization */
+  /* Scroll Animation Classes */
   .animate-on-scroll {
-    transition: opacity var(--animation-duration-slow), transform var(--animation-duration-slow);
-    transition-timing-function: var(--animation-timing);
+    transition: opacity 0.6s, transform 0.6s;
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
     transform: translateY(20px);
-    opacity: 0;
-    will-change: opacity, transform; /* Add will-change but use sparingly */
   }
   
   .animate-visible {
     opacity: 1 !important;
     transform: translateY(0) !important;
   }
-  
-  /* Optimize fade-in animation for non-LCP elements */
-  .optimized-fade {
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity var(--animation-duration-medium) var(--animation-timing), 
-                transform var(--animation-duration-medium) var(--animation-timing);
-  }
-  
-  .optimized-fade.loaded {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  /* Make sure any non-critical animations get initiated only when needed */
-  .animation-paused {
-    animation-play-state: paused;
-  }
-  
-  /* Text highlight animation */
-  .highlight-text {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .highlight-text::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 8px;
-    background-color: rgba(174, 32, 18, 0.2);
-    z-index: -1;
-    transition: width 1s cubic-bezier(0.25, 1, 0.5, 1);
-  }
-  
-  .highlight-text:hover::before {
-    width: 100%;
-  }
-  
-  /* Background pattern */
-  .bg-pattern {
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ae2012' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  }
-  
-  /* Magnetic button effect utility */
-  .magnetic-button {
-    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
-  }
 }
 
-/* Separate non-critical animations so they can be loaded after LCP */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -242,54 +175,6 @@
   }
 }
 
-/* New animations - to be loaded after LCP */
-@keyframes textHighlight {
-  0% {
-    background-size: 0% 100%;
-  }
-  100% {
-    background-size: 100% 100%;
-  }
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes floatDelay {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-15px);
-  }
-}
-
-@keyframes expand {
-  0% {
-    width: 0;
-  }
-  100% {
-    width: 4rem;
-  }
-}
-
-@keyframes textReveal {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 /* Critical CSS for above-the-fold content */
 .animate-fade-in {
   animation: fadeIn 0.5s ease forwards;
@@ -303,28 +188,8 @@
   animation: appear 0.4s ease-out forwards;
 }
 
-/* Non-critical animations with reduced motion preference consideration */
+/* Delay animation for non-critical elements */
 @media (prefers-reduced-motion: no-preference) {
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  .animate-float-delay {
-    animation: floatDelay 8s ease-in-out infinite;
-    animation-delay: 1s;
-  }
-
-  .animate-expand {
-    animation: expand 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-    animation-delay: 1s;
-  }
-
-  .animate-text-reveal {
-    animation: textReveal 1.2s ease-out forwards;
-    opacity: 0;
-  }
-  
-  /* Delay animation for non-critical elements */
   .stagger-item:nth-child(1) { animation-delay: 0.1s; }
   .stagger-item:nth-child(2) { animation-delay: 0.2s; }
   .stagger-item:nth-child(3) { animation-delay: 0.3s; }
@@ -333,7 +198,7 @@
   .stagger-item:nth-child(6) { animation-delay: 0.6s; }
 }
 
-/* Critical text colors for all modes */
+/* Dark mode specific text classes */
 .dark .text-foreground {
   color: rgba(255, 255, 255, 0.9);
 }
