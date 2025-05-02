@@ -3,30 +3,33 @@ import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 
-// Critical inline styles for immediate rendering - reduced to essentials only
+// Minimal critical inline styles for immediate rendering
 const inlineStyles = `
   /* Critical rendering styles */
-  html.js-loading .defer-animate { opacity: 0 !important; }
-  [data-lcp-element="true"] { opacity: 1 !important; }
-  .container-custom { width: 100%; max-width: 1280px; margin-left: auto; margin-right: auto; }
   .page-transition { opacity: 0; animation: fadeIn 0.3s forwards; }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 `;
 
-// Add preconnect hints for external resources - simplified
+// Simplified resource hints
 const addResourceHints = () => {
-  // Only preconnect to critical resources
   if (typeof document === 'undefined') return;
   
-  // Preconnect to domain that hosts the WordPress API
-  const preconnectWP = document.createElement('link');
-  preconnectWP.rel = 'preconnect';
-  preconnectWP.href = 'https://blog.marzipan.com.au';
-  preconnectWP.crossOrigin = 'anonymous';
-  document.head.appendChild(preconnectWP);
+  // Only add critical resource hints
+  const resourceHints = [
+    { rel: 'preconnect', href: 'https://fonts.googleapis.com', crossOrigin: 'anonymous' },
+    { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' },
+  ];
+  
+  resourceHints.forEach(hint => {
+    const linkEl = document.createElement('link');
+    linkEl.rel = hint.rel;
+    linkEl.href = hint.href;
+    if (hint.crossOrigin) linkEl.crossOrigin = hint.crossOrigin;
+    document.head.appendChild(linkEl);
+  });
 };
 
-// Apply inline styles immediately - simplified
+// Insert critical CSS
 const insertCriticalCss = () => {
   if (typeof document === 'undefined') return;
   
@@ -35,52 +38,56 @@ const insertCriticalCss = () => {
   document.head.appendChild(styleEl);
 };
 
-// Execute critical CSS insertion first
+// Execute critical-path optimizations
 insertCriticalCss();
-
-// Mark document as loading with JS
-if (typeof document !== 'undefined') {
-  document.documentElement.classList.add('js-loading');
-}
-
-// Add resource hints
 addResourceHints();
+
+// Mark document as JS-enabled
+if (typeof document !== 'undefined') {
+  document.documentElement.classList.add('js-enabled');
+}
 
 // Create root and render App
 const rootElement = document.getElementById("root");
 if (rootElement) {
   const appRoot = createRoot(rootElement);
-  
-  // Render app immediately
   appRoot.render(<App />);
   
-  // Remove loading class after hydration
-  requestAnimationFrame(() => {
-    if (typeof document !== 'undefined') {
-      document.documentElement.classList.remove('js-loading');
-      document.documentElement.classList.add('js-loaded');
-    }
-    
-    // Register performance metrics - simplified
-    if (typeof window !== 'undefined' && window.performance && 'getEntriesByType' in window.performance) {
-      // Wait until all critical content is loaded
-      setTimeout(() => {
-        const lcpEntry = performance.getEntriesByType('paint').find(
-          entry => entry.name === 'largest-contentful-paint'
-        );
+  // Setup simple performance monitoring
+  if (typeof window !== 'undefined') {
+    // Report CLS, LCP and FID/INP when they become available
+    if ('PerformanceObserver' in window) {
+      try {
+        // LCP Observer
+        new PerformanceObserver((entryList) => {
+          const entries = entryList.getEntries();
+          if (entries.length > 0) {
+            console.log('LCP:', entries[0].startTime);
+          }
+        }).observe({ type: 'largest-contentful-paint', buffered: true });
         
-        // Report to analytics if available
-        if (lcpEntry && window.dataLayer) {
-          window.dataLayer.push({
-            event: 'core_web_vitals',
-            metric_name: 'LCP',
-            metric_value: lcpEntry.startTime,
-            metric_rating: lcpEntry.startTime < 2500 ? 'good' : 'needs-improvement'
+        // CLS Observer
+        new PerformanceObserver((entryList) => {
+          const entries = entryList.getEntries();
+          let clsScore = 0;
+          entries.forEach(entry => {
+            clsScore += (entry as any).value;
           });
-        }
-      }, 3000);
+          console.log('CLS:', clsScore);
+        }).observe({ type: 'layout-shift', buffered: true });
+        
+        // FID/INP Observer
+        new PerformanceObserver((entryList) => {
+          const entries = entryList.getEntries();
+          if (entries.length > 0) {
+            console.log('FID/INP:', entries[0].processingStart - entries[0].startTime);
+          }
+        }).observe({ type: 'first-input', buffered: true });
+      } catch (e) {
+        console.error('Performance observer failed:', e);
+      }
     }
-  });
+  }
 } else {
   console.error("Root element not found");
 }

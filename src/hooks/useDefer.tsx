@@ -51,13 +51,13 @@ export const useDefer = (
     };
     
     // Use PerformanceObserver to wait for LCP before deferring
-    if (typeof window !== 'undefined' && 'PerformanceObserver' in window) {
+    if ('PerformanceObserver' in window) {
       try {
         const lcpObserver = new PerformanceObserver((entryList) => {
           const entries = entryList.getEntries();
           if (entries.length > 0) {
             // LCP has occurred, schedule our task
-            if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+            if ('requestIdleCallback' in window) {
               idleCallbackId = requestIdleCallback(runCallback, { timeout: 2000 });
             } else {
               // Fallback for browsers that don't support requestIdleCallback
@@ -76,14 +76,18 @@ export const useDefer = (
         }, 3000); // 3 second fallback to ensure callback runs
       } catch (e) {
         // If observer fails, fall back to load event
-        window.addEventListener('load', runCallback, { once: true });
+        if (typeof window !== 'undefined') {
+          window.addEventListener('load', runCallback, { once: true });
+        }
       }
     } else if (lcpState === 'complete') {
       // Document already loaded
       runCallback();
     } else {
-      // Fallback to load event - Fix the TypeScript error by ensuring window is available
-      window.addEventListener('load', runCallback, { once: true });
+      // Fallback to load event - Fix the TypeScript error
+      if (typeof window !== 'undefined') {
+        window.addEventListener('load', runCallback, { once: true });
+      }
     }
     
     // Cleanup function
@@ -95,7 +99,9 @@ export const useDefer = (
         if (timeoutId) {
           clearTimeout(timeoutId);
         }
-        window.removeEventListener('load', runCallback);
+        if (typeof window !== 'undefined') {
+          window.removeEventListener('load', runCallback);
+        }
       }
     };
   }, dependencies); // Controlled by dependencies array
