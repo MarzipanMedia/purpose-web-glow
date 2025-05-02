@@ -76,16 +76,16 @@ export const useDefer = (
         }, 3000); // 3 second fallback to ensure callback runs
       } catch (e) {
         // If observer fails, fall back to load event
-        if (typeof window !== 'undefined') {
-          window.addEventListener('load', runCallback, { once: true });
-        }
+        window.addEventListener('load', runCallback, { once: true });
       }
     } else if (lcpState === 'complete') {
       // Document already loaded
       runCallback();
     } else {
-      // Fallback to load event - Fix the TypeScript error by using window explicitly
-      window.addEventListener('load', runCallback, { once: true });
+      // Fallback to load event - Use explicit type check for window
+      if (typeof window !== 'undefined') {
+        window.addEventListener('load', runCallback, { once: true });
+      }
     }
     
     // Cleanup function

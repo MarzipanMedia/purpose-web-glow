@@ -1,74 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&family=Jost:wght@400;500;600;700&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* ... keep existing code (font imports and Tailwind directives) */
 
 @layer base {
-  :root {
-    --background: 50 33% 98%;
-    --foreground: 222.2 84% 4.9%;
+  /* ... keep existing code (root variables and dark theme) */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 196 67% 27%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 49 54% 88%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 5 83% 37%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 196 67% 27%;
-
-    --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-
-    --primary: 196 67% 27%;
-    --primary-foreground: 0 0% 98%;
-
-    --secondary: 49 54% 88%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 210 20.2% 80.1%;
-
-    --accent: 5 83% 37%;
-    --accent-foreground: 0 0% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 196 67% 27%;
-  }
-}
-
-@layer base {
   * {
     @apply border-border;
   }
@@ -80,47 +15,68 @@
   h1, h2, h3, h4, h5, h6 {
     @apply font-display font-medium dark:text-white;
   }
+
+  /* Preload critical LCP elements */
+  [data-lcp-element="true"] {
+    @apply will-change-opacity;
+  }
+
+  /* Mobile-first media query for reduced motion */
+  @media (prefers-reduced-motion) {
+    *, ::before, ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }
 
 @layer components {
+  /* ... keep existing code (container and button styles) */
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-brandBlue to-brandRed bg-clip-text text-transparent dark:from-brandBlue/90 dark:to-brandRed/90;
+    background-size: 100% 100%;
+  }
+  
+  /* Mobile-optimized callout boxes */
+  .callout-box {
+    @apply relative w-full my-3 md:my-4;
+  }
+  
+  /* Mobile-first optimized floating elements */
+  .floating-element {
+    @apply relative w-full md:absolute;
+  }
+  
+  /* Mobile-first optimized process callouts */
+  .process-callout {
+    @apply bg-white/80 backdrop-blur-sm p-4 md:p-6 rounded-lg w-full;
+  }
+  
+  /* Mobile-first optimized service process */
+  .service-process-section .callout-box {
+    @apply mt-4 md:mt-8 w-full;
+  }
+
+  /* Mobile-optimized container classes */
   .container-custom {
     @apply container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl;
   }
   
+  /* Mobile-optimized buttons */
   .btn-primary {
-    @apply bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors hover:shadow-md dark:bg-brandBlue dark:hover:bg-brandBlue/90;
+    @apply bg-primary text-white px-4 py-2 md:px-6 md:py-3 rounded-lg hover:bg-primary/90 transition-colors hover:shadow-md dark:bg-brandBlue dark:hover:bg-brandBlue/90 text-sm md:text-base;
   }
   
   .btn-secondary {
-    @apply bg-secondary text-foreground px-6 py-3 rounded-lg hover:bg-secondary/90 transition-colors hover:shadow-md dark:bg-marzipan/80 dark:text-gray-900;
-  }
-  
-  .gradient-text {
-    @apply bg-gradient-to-r from-brandBlue to-brandRed bg-clip-text text-transparent dark:from-brandBlue/90 dark:to-brandRed/90;
-  }
-  
-  /* Improved callout box styling */
-  .callout-box {
-    @apply relative w-full my-4;
-  }
-  
-  /* Prevent floating elements from overlapping */
-  .floating-element {
-    @apply relative w-full;
-  }
-  
-  /* Process section callout box */
-  .process-callout {
-    @apply bg-white/80 backdrop-blur-sm p-6 rounded-lg w-full;
-  }
-  
-  /* Service process section styling */
-  .service-process-section .callout-box {
-    @apply mt-8 w-full;
+    @apply bg-secondary text-foreground px-4 py-2 md:px-6 md:py-3 rounded-lg hover:bg-secondary/90 transition-colors hover:shadow-md dark:bg-marzipan/80 dark:text-gray-900 text-sm md:text-base;
   }
 }
 
 @layer utilities {
+  /* Mobile-optimized page transitions */
   .page-transition {
     @apply opacity-0 animate-fade-in;
   }
@@ -129,11 +85,12 @@
     @apply transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full;
   }
   
-  /* Enhanced scroll animations */
+  /* Mobile-optimized scroll animations - use transform/opacity only */
   .animate-on-scroll {
     transition: opacity 0.6s, transform 0.6s;
+    transition-property: opacity, transform;
     transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-    transform: translateY(20px);
+    transform: translateY(12px);
     opacity: 0;
   }
   
@@ -142,7 +99,7 @@
     transform: translateY(0) !important;
   }
   
-  /* Text highlight animation */
+  /* Mobile-optimized text highlight - use minimal properties */
   .highlight-text {
     position: relative;
     display: inline-block;
@@ -154,27 +111,33 @@
     bottom: 0;
     left: 0;
     width: 0;
-    height: 8px;
+    height: 4px;
     background-color: rgba(174, 32, 18, 0.2);
     z-index: -1;
-    transition: width 1s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
   }
   
   .highlight-text:hover::before {
     width: 100%;
   }
   
-  /* Background pattern */
+  /* Optimized background pattern using lightweight SVG */
   .bg-pattern {
     background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ae2012' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
   
-  /* Magnetic button effect utility */
+  /* Mobile-optimized button effect */
   .magnetic-button {
     transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
   }
+
+  /* Add mobile-first content visibility */
+  .content-visibility-auto {
+    content-visibility: auto;
+  }
 }
 
+/* Mobile-optimized animations with reduced complexity */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -189,7 +152,7 @@
 @keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -208,116 +171,27 @@
   }
 }
 
-/* New animations */
-@keyframes textHighlight {
-  0% {
-    background-size: 0% 100%;
-  }
-  100% {
-    background-size: 100% 100%;
-  }
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes floatDelay {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-15px);
-  }
-}
-
-@keyframes expand {
-  0% {
-    width: 0;
-  }
-  100% {
-    width: 4rem;
-  }
-}
-
-@keyframes textReveal {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Critical CSS for above-the-fold content */
+/* Mobile-optimized animation classes */
 .animate-fade-in {
-  animation: fadeIn 0.5s ease forwards;
+  animation: fadeIn 0.4s ease-out forwards;
 }
 
 .animate-slide-up {
-  animation: slideUp 0.7s ease forwards;
+  animation: slideUp 0.5s ease-out forwards;
 }
 
 .animate-appear {
-  animation: appear 0.4s ease-out forwards;
+  animation: appear 0.3s ease-out forwards;
 }
 
-/* New animation classes */
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-float-delay {
-  animation: floatDelay 8s ease-in-out infinite;
-  animation-delay: 1s;
-}
-
-.animate-expand {
-  animation: expand 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-  animation-delay: 1s;
-}
-
-.animate-text-reveal {
-  animation: textReveal 1.2s ease-out forwards;
-  opacity: 0;
-}
-
-/* Delay animation for non-critical elements */
+/* Stagger animations - simplified for better performance */
 @media (prefers-reduced-motion: no-preference) {
   .stagger-item:nth-child(1) { animation-delay: 0.1s; }
-  .stagger-item:nth-child(2) { animation-delay: 0.2s; }
-  .stagger-item:nth-child(3) { animation-delay: 0.3s; }
-  .stagger-item:nth-child(4) { animation-delay: 0.4s; }
-  .stagger-item:nth-child(5) { animation-delay: 0.5s; }
-  .stagger-item:nth-child(6) { animation-delay: 0.6s; }
-}
-
-/* Dark mode specific text classes */
-.dark .text-foreground {
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.dark .text-foreground\/80 {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.dark .text-foreground\/70 {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.dark .text-foreground\/60 {
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.dark .text-foreground\/40 {
-  color: rgba(255, 255, 255, 0.4);
+  .stagger-item:nth-child(2) { animation-delay: 0.15s; }
+  .stagger-item:nth-child(3) { animation-delay: 0.2s; }
+  .stagger-item:nth-child(4) { animation-delay: 0.25s; }
+  .stagger-item:nth-child(5) { animation-delay: 0.3s; }
+  .stagger-item:nth-child(6) { animation-delay: 0.35s; }
 }
 
 /* Mobile-specific optimizations */
@@ -325,7 +199,7 @@
   /* Critical elements in mobile view */
   .floating-element {
     position: relative !important;
-    margin-top: 1.5rem !important;
+    margin-top: 1rem !important;
     width: 100% !important;
     transform: none !important;
   }
@@ -340,35 +214,81 @@
   
   /* Improve spacing in mobile view */
   .grid.gap-12, .grid.gap-8 {
-    gap: 1.5rem;
+    gap: 1rem;
   }
   
   .py-20 {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-  }
-  
-  .py-16 {
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
   }
   
+  .py-16 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
   /* Better padding for mobile callout boxes */
   .callout-box > div {
-    padding: 1.25rem !important;
+    padding: 1rem !important;
+  }
+
+  /* Optimize text sizes for mobile */
+  h1, .text-4xl, .text-5xl, .text-6xl {
+    font-size: calc(1.5rem + 1.5vw) !important;
+    line-height: 1.2 !important;
+  }
+
+  h2, .text-3xl {
+    font-size: calc(1.25rem + 0.5vw) !important;
+  }
+
+  p, .text-lg {
+    font-size: 1rem !important;
+  }
+
+  /* Optimize button sizes for mobile taps */
+  .btn-primary, .btn-secondary {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Optimize images for mobile */
+  img {
+    max-width: 100%;
+    height: auto;
   }
 }
 
 /* Desktop process sections */
 @media (min-width: 1024px) {
-  .process-section-callout {
-    position: relative;
-    margin-left: 0;
-    width: 100%;
-  }
-  
-  /* Create proper grid spacing */
-  .grid.grid-cols-1.lg\:grid-cols-2 {
-    align-items: flex-start;
-  }
+  /* ... keep existing code (desktop process sections) */
+}
+
+/* Add LCP-triggered sequential animations */
+.lcp-loaded .animate-on-scroll {
+  transition-delay: 0.1s;
+}
+
+/* Add optimized image loading styles */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+img[loading="lazy"] {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+img[loading="lazy"].loaded {
+  opacity: 1;
+}
+
+/* Add content-visibility optimization for offscreen content */
+.optimize-visibility {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
 }
