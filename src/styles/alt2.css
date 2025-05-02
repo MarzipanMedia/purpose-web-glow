@@ -2,11 +2,6 @@
 /* Performance-optimized CSS for Alt2 page */
 
 /* Critical CSS for LCP - Only essential styles that affect LCP */
-html.js-loading .defer-animate {
-  opacity: 0; /* Hide initially */
-}
-
-/* Make sure LCP element is visible immediately */
 [data-lcp-element="true"] {
   opacity: 1 !important;
   transform: none !important;
@@ -14,6 +9,7 @@ html.js-loading .defer-animate {
   content-visibility: visible !important;
 }
 
+/* Base animation states */
 .defer-animate {
   opacity: 0;
   transform: translateY(20px);
@@ -38,20 +34,11 @@ html.js-loading .defer-animate {
   }
 }
 
-/* JS loading state classes */
-html.js-loaded .defer-animate {
-  opacity: 0; /* Initial state controlled by JS */
-}
-
-html.js-ready .defer-animate.animate-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 /* Only use minimal animations on mobile to save resources */
 @media (max-width: 768px) {
   .defer-animate {
     transition-duration: 0.3s; /* Faster transitions on mobile */
+    transform: translateY(10px); /* Smaller transform distance on mobile */
   }
   
   /* Reduce layout shift by pre-setting dimensions for important elements */
@@ -61,22 +48,16 @@ html.js-ready .defer-animate.animate-visible {
     margin-left: auto;
     margin-right: auto;
   }
-  
-  /* Minimize animations on mobile for performance */
-  .defer-animate:not([data-lcp-element="true"]) {
-    transform: translateY(10px); /* Smaller transform distance on mobile */
-  }
 }
 
 /* Optimize images to prevent layout shift */
-.defer-animate img {
+img {
   height: auto;
   max-width: 100%;
-  aspect-ratio: attr(width) / attr(height);
 }
 
 /* Create containment boundaries for better rendering performance */
-section, .container-custom {
+section {
   content-visibility: auto;
   contain-intrinsic-size: auto 500px;
 }
@@ -85,9 +66,4 @@ section, .container-custom {
 section:first-of-type {
   content-visibility: visible;
   contain-intrinsic-size: auto;
-}
-
-/* Prioritize LCP-related styles */
-#main-heading {
-  content-visibility: visible !important;
 }

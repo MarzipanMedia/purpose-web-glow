@@ -1,7 +1,8 @@
 
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
+import { LCPElement } from '../LCPProvider';
 
 const HeroSection = () => {
   return (
@@ -13,20 +14,12 @@ const HeroSection = () => {
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4"><path d="M15.5 9l-6 6"></path><circle cx="17" cy="11" r="2"></circle><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M3 7h18"></path></svg>
               Sustainable Web Design
             </div>
-            <h1 
-              id="main-heading" 
-              className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight"
-              data-lcp-element="true"
-              ref={(el) => {
-                if (el) {
-                  // Add fetchpriority as a non-standard attribute
-                  el.setAttribute('fetchpriority', 'high');
-                }
-              }}
-            >
+            
+            <LCPElement id="main-heading" className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight">
               Ensuring your online presence is as powerful as your 
               <span className="text-brandRed"> purpose</span>
-            </h1>
+            </LCPElement>
+            
             <p className="text-lg md:text-xl text-foreground/80 max-w-2xl">
               Sustainable Web Design & AI-Driven SEO for Purpose-Driven Brands. 
               We help purpose-led businesses thrive online without costing the earth.

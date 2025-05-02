@@ -3,6 +3,20 @@ import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 
+// Critical inline styles for immediate rendering
+const inlineStyles = `
+  /* Critical rendering styles */
+  html.js-loading .defer-animate { opacity: 0; }
+  [data-lcp-element="true"] { opacity: 1 !important; transform: none !important; }
+  .page-transition { opacity: 0; animation: fadeIn 0.3s forwards; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+`;
+
+// Apply inline styles immediately
+const styleEl = document.createElement('style');
+styleEl.textContent = inlineStyles;
+document.head.appendChild(styleEl);
+
 // Optimized function to add preconnect and preload links
 const addResourceHints = () => {
   // Add preconnect for Google Fonts domain
@@ -57,6 +71,7 @@ window.addEventListener('error', function(e) {
 const rootElement = document.getElementById("root");
 if (rootElement) {
   const appRoot = createRoot(rootElement);
+  
   // Use a microtask to ensure critical rendering happens as soon as possible
   queueMicrotask(() => {
     appRoot.render(<App />);

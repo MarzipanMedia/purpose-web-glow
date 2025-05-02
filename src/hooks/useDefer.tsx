@@ -27,8 +27,7 @@ export const useDefer = (
   }, []);
   
   useEffect(() => {
-    // Mark document as JS ready
-    document.documentElement.classList.add('js-ready');
+    if (typeof window === 'undefined') return;
     
     let timeoutId: number | ReturnType<typeof setTimeout>;
     let idleCallbackId: number;
@@ -42,34 +41,35 @@ export const useDefer = (
       }
     };
     
-    // Use requestIdleCallback with a timeout to ensure execution
-    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
-      idleCallbackId = requestIdleCallback(runCallback, { timeout: 2000 });
+    // Wait until after the main content is painted
+    const onLoad = () => {
+      // Use requestIdleCallback with a timeout to ensure execution
+      if ('requestIdleCallback' in window) {
+        idleCallbackId = requestIdleCallback(runCallback, { timeout: 2000 });
+      } else {
+        // Fallback for browsers that don't support requestIdleCallback
+        timeoutId = setTimeout(runCallback, delay || 100);
+      }
+    };
+
+    // Check if document is already loaded
+    if (document.readyState === 'complete') {
+      onLoad();
     } else {
-      // Fallback for browsers that don't support requestIdleCallback
-      timeoutId = setTimeout(runCallback, delay || 100);
+      window.addEventListener('load', onLoad);
     }
     
     // Cleanup function
     return () => {
-      if (typeof window !== 'undefined' && 'cancelIdleCallback' in window && idleCallbackId) {
+      if ('cancelIdleCallback' in window && idleCallbackId) {
         cancelIdleCallback(idleCallbackId);
       }
       if (timeoutId) {
         clearTimeout(timeoutId);
       }
+      window.removeEventListener('load', onLoad);
     };
   }, dependencies); // Controlled by dependencies array
 };
-
-// TypeScript interface definitions
-interface IdleRequestOptions {
-  timeout: number;
-}
-
-interface IdleDeadline {
-  didTimeout: boolean;
-  timeRemaining: () => number;
-}
 
 export default useDefer;

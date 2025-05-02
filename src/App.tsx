@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { useEffect } from "react";
 import { ThemeProvider } from "./components/ThemeProvider";
+import { LCPProvider } from "./components/LCPProvider";
 import Index from "./pages/Index";
 import IndexAlt from "./pages/IndexAlt";
 import IndexAlt2 from "./pages/IndexAlt2";
@@ -52,36 +53,38 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <HelmetProvider>
       <ThemeProvider defaultTheme="system">
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<PageTransition><Index /></PageTransition>} />
-              <Route path="/alt" element={<PageTransition><IndexAlt /></PageTransition>} />
-              <Route path="/alt2" element={<PageTransition><IndexAlt2 /></PageTransition>} />
-              <Route path="/services" element={<PageTransition><Services /></PageTransition>} />
-              <Route path="/services/sustainable-web-design" element={<PageTransition><SustainableWebDesign /></PageTransition>} />
-              <Route path="/services/ai-seo" element={<PageTransition><AiSeo /></PageTransition>} />
-              <Route path="/services/content-creation" element={<PageTransition><ContentCreation /></PageTransition>} />
-              <Route path="/services/digital-marketing" element={<PageTransition><DigitalMarketing /></PageTransition>} />
-              <Route path="/services/digital-content-creation" element={<PageTransition><DigitalContentCreation /></PageTransition>} />
-              <Route path="/projects" element={<PageTransition><Projects /></PageTransition>} />
-              <Route path="/projects/:slug" element={<PageTransition><ProjectDetail /></PageTransition>} />
-              <Route path="/about" element={<PageTransition><About /></PageTransition>} />
-              <Route path="/blog" element={<PageTransition><BlogWithWordPress /></PageTransition>} />
-              <Route path="/blog/:id" element={<PageTransition><BlogPost /></PageTransition>} />
-              <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
-              <Route path="/website-carbon" element={<PageTransition><WebsiteCarbon /></PageTransition>} />
-              <Route path="/resources" element={<PageTransition><Resources /></PageTransition>} />
-              <Route path="/privacy" element={<PageTransition><Privacy /></PageTransition>} />
-              <Route path="/terms" element={<PageTransition><Terms /></PageTransition>} />
-              <Route path="/benadams" element={<PageTransition><BenAdams /></PageTransition>} />
-              <Route path="/alwayswas" element={<PageTransition><AlwaysWas /></PageTransition>} />
-              <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
-            </Routes>
-          </BrowserRouter>
-        </TooltipProvider>
+        <LCPProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Sonner />
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<PageTransition><Index /></PageTransition>} />
+                <Route path="/alt" element={<PageTransition><IndexAlt /></PageTransition>} />
+                <Route path="/alt2" element={<PageTransition><IndexAlt2 /></PageTransition>} />
+                <Route path="/services" element={<PageTransition><Services /></PageTransition>} />
+                <Route path="/services/sustainable-web-design" element={<PageTransition><SustainableWebDesign /></PageTransition>} />
+                <Route path="/services/ai-seo" element={<PageTransition><AiSeo /></PageTransition>} />
+                <Route path="/services/content-creation" element={<PageTransition><ContentCreation /></PageTransition>} />
+                <Route path="/services/digital-marketing" element={<PageTransition><DigitalMarketing /></PageTransition>} />
+                <Route path="/services/digital-content-creation" element={<PageTransition><DigitalContentCreation /></PageTransition>} />
+                <Route path="/projects" element={<PageTransition><Projects /></PageTransition>} />
+                <Route path="/projects/:slug" element={<PageTransition><ProjectDetail /></PageTransition>} />
+                <Route path="/about" element={<PageTransition><About /></PageTransition>} />
+                <Route path="/blog" element={<PageTransition><BlogWithWordPress /></PageTransition>} />
+                <Route path="/blog/:id" element={<PageTransition><BlogPost /></PageTransition>} />
+                <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
+                <Route path="/website-carbon" element={<PageTransition><WebsiteCarbon /></PageTransition>} />
+                <Route path="/resources" element={<PageTransition><Resources /></PageTransition>} />
+                <Route path="/privacy" element={<PageTransition><Privacy /></PageTransition>} />
+                <Route path="/terms" element={<PageTransition><Terms /></PageTransition>} />
+                <Route path="/benadams" element={<PageTransition><BenAdams /></PageTransition>} />
+                <Route path="/alwayswas" element={<PageTransition><AlwaysWas /></PageTransition>} />
+                <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
+              </Routes>
+            </BrowserRouter>
+          </TooltipProvider>
+        </LCPProvider>
       </ThemeProvider>
     </HelmetProvider>
   </QueryClientProvider>
