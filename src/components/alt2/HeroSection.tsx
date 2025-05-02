@@ -17,7 +17,12 @@ const HeroSection = () => {
               id="main-heading" 
               className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight"
               data-lcp-element="true"
-              fetchpriority="high"
+              ref={(el) => {
+                if (el) {
+                  // Add fetchpriority as a non-standard attribute
+                  el.setAttribute('fetchpriority', 'high');
+                }
+              }}
             >
               Ensuring your online presence is as powerful as your 
               <span className="text-brandRed"> purpose</span>

@@ -29,7 +29,7 @@ export const LCPProvider: React.FC<LCPProviderProps> = ({ children }) => {
       setLCPLoaded(true);
       
       // Report to analytics if needed
-      if (window.dataLayer) {
+      if (typeof window !== 'undefined' && window.dataLayer) {
         window.dataLayer.push({
           event: 'lcp_loaded',
           lcp_time: performance.now()
@@ -77,14 +77,16 @@ export const LCPProvider: React.FC<LCPProviderProps> = ({ children }) => {
   );
 };
 
-/**
- * Component to mark an element as LCP (Largest Contentful Paint)
- */
-export const LCPElement: React.FC<{
+interface LCPElementProps {
   children: ReactNode;
   id?: string;
   className?: string;
-}> = ({ children, id, className }) => {
+}
+
+/**
+ * Component to mark an element as LCP (Largest Contentful Paint)
+ */
+export const LCPElement: React.FC<LCPElementProps> = ({ children, id, className }) => {
   const { markLCPLoaded } = useLCP();
   
   return (
@@ -92,10 +94,11 @@ export const LCPElement: React.FC<{
       id={id}
       className={className}
       data-lcp-element="true"
-      fetchpriority="high"
+      // Remove fetchpriority from JSX and add it using ref
       onLoad={markLCPLoaded}
       ref={(el) => {
         if (el) {
+          // Add fetchpriority as a non-standard attribute
           el.setAttribute('fetchpriority', 'high');
           el.setAttribute('data-lcp-element', 'true');
         }
