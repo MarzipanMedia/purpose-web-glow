@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -6,6 +5,8 @@ import ClientLogos from '../components/ClientLogos';
 import RecentProjects from '../components/RecentProjects';
 import BlogPreview from '../components/BlogPreview';
 import MetaHead from '@/components/MetaHead';
+import Sustainability from '../components/Sustainability';
+import Services from '../components/Services';
 import { ArrowRight, BarChart3, Award, Users, Laptop } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useDefer } from '@/hooks/useDefer';
@@ -122,6 +123,15 @@ const IndexAlt2 = () => {
           </div>
         </section>
         
+        {/* Services Section - Added from IndexAlt */}
+        <Services />
+        
+        {/* Our Approach Section - Added from IndexAlt */}
+        <Sustainability />
+        
+        {/* Client Logos Section - Added from IndexAlt */}
+        <ClientLogos />
+        
         {/* Website Carbon CTA */}
         <section className="py-16 bg-marzipan/20">
           <div className="container-custom">
@@ -176,9 +186,6 @@ const IndexAlt2 = () => {
             </div>
           </div>
         </section>
-        
-        {/* Client Logos Section - Minimized animations */}
-        <ClientLogos />
         
         {/* Other sections - deferred loading */}
         <div className="defer-animate">

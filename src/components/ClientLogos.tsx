@@ -11,7 +11,7 @@ interface ClientLogo {
 const ClientLogos: React.FC = () => {
   // Array of client logos
   const logos: ClientLogo[] = [
-    { id: 1, name: "FINSIA", imageUrl: "/client-logos/Finsia-SEO-logo.png", alt: "FINSIA  content creation" },
+    { id: 1, name: "FINSIA", imageUrl: "/client-logos/Finsia-SEO-logo.png", alt: "FINSIA content creation" },
     { id: 2, name: "Australian Georgraphic", imageUrl: "/client-logos/ag-webdesign-logo.png", alt: "AusGeo Web Design" },
     { id: 3, name: "Willow", imageUrl: "/client-logos/willow-webdesign-logo.png", alt: "Sustainable Web Design" },
     { id: 4, name: "National Art School", imageUrl: "/client-logos/nas-adwords-logo.png", alt: "National Art School Adwords" },
@@ -21,14 +21,14 @@ const ClientLogos: React.FC = () => {
     { id: 8, name: "LA Gum", imageUrl: "/client-logos/lagum-seo-logo.png", alt: "LA Gum SEO SEM Socials" },
     { id: 9, name: "NSW GOv", imageUrl: "/client-logos/nsw-scm2701-logo.png", alt: "NSW SCM2701 qualified" },
     { id: 10, name: "NipCo SEO", imageUrl: "/client-logos/nipco-seo-logo.png", alt: "NipCo SEO" },
-{ id: 11, name: "Birchal", imageUrl: "/client-logos/birchal-sem-logo.png", alt: "Birchal Approved" },
-{ id: 12, name: "Focus", imageUrl: "/client-logos/focus.png", alt: "Focus SEO" },
+    { id: 11, name: "Birchal", imageUrl: "/client-logos/birchal-sem-logo.png", alt: "Birchal Approved" },
+    { id: 12, name: "Focus", imageUrl: "/client-logos/focus.png", alt: "Focus SEO" },
   ];
 
   return (
     <section className="py-16 bg-brandBlue/10 dark:bg-gray-800/30">
       <div className="container-custom">
-        <div className="text-center max-w-3xl mx-auto mb-10 animate-on-scroll opacity-0">
+        <div className="text-center max-w-3xl mx-auto mb-10 defer-animate">
           <div className="inline-block bg-brandBlue/10 text-brandBlue px-4 py-1 rounded-full mb-4 dark:bg-brandBlue/30 dark:text-white">
             Trusted Partners
           </div>
@@ -44,13 +44,16 @@ const ClientLogos: React.FC = () => {
           {logos.slice(0, 6).map((logo) => (
             <div 
               key={logo.id}
-              className="flex items-center justify-center p-4 bg-white rounded-lg shadow-sm border border-marzipan/30 h-24 animate-on-scroll opacity-0 hover:shadow-md transition-all duration-300 dark:bg-gray-800 dark:border-gray-700"
-              style={{ transitionDelay: `${0.1 + (logo.id - 1) * 0.05}s` }}
+              className="flex items-center justify-center p-4 bg-white rounded-lg shadow-sm border border-marzipan/30 h-24 defer-animate hover:shadow-md transition-all duration-300 dark:bg-gray-800 dark:border-gray-700"
+              style={{ width: "100%", height: "96px" }}
             >
               <img 
                 src={logo.imageUrl} 
                 alt={logo.alt} 
                 className="max-h-16 max-w-full object-contain"
+                width="64"
+                height="64"
+                loading="lazy"
                 onError={(e) => {
                   // Fallback if the image fails to load
                   const target = e.target as HTMLImageElement;
@@ -66,13 +69,16 @@ const ClientLogos: React.FC = () => {
           {logos.slice(6, 12).map((logo) => (
             <div 
               key={logo.id}
-              className="flex items-center justify-center p-4 bg-white rounded-lg shadow-sm border border-marzipan/30 h-24 animate-on-scroll opacity-0 hover:shadow-md transition-all duration-300 dark:bg-gray-800 dark:border-gray-700"
-              style={{ transitionDelay: `${0.1 + (logo.id - 7) * 0.05}s` }}
+              className="flex items-center justify-center p-4 bg-white rounded-lg shadow-sm border border-marzipan/30 h-24 defer-animate hover:shadow-md transition-all duration-300 dark:bg-gray-800 dark:border-gray-700"
+              style={{ width: "100%", height: "96px" }}
             >
               <img 
                 src={logo.imageUrl} 
                 alt={logo.alt} 
                 className="max-h-16 max-w-full object-contain"
+                width="64"
+                height="64"
+                loading="lazy"
                 onError={(e) => {
                   // Fallback if the image fails to load
                   const target = e.target as HTMLImageElement;

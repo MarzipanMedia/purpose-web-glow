@@ -50,3 +50,15 @@ html.js-ready .defer-animate {
     transition-duration: 0.3s; /* Faster transitions on mobile */
   }
 }
+
+/* Ensure images in cards have consistent dimensions */
+.defer-animate img {
+  height: auto;
+  max-width: 100%;
+}
+
+/* Optimize layout shifts by pre-setting dimensions */
+.client-logo-container {
+  width: 100%;
+  height: 96px; /* Fixed height to prevent layout shift */
+}

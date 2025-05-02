@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Leaf, Zap, Recycle } from 'lucide-react';
 import { useIsMobile } from '../hooks/use-mobile';
@@ -28,7 +29,7 @@ const Sustainability = () => {
     <section className="py-20 bg-gradient-to-b from-white to-marzipan/30 dark:from-gray-900 dark:to-gray-800">
       <div className="container-custom">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          <div className="space-y-6 animate-fade-in">
+          <div className="space-y-6 defer-animate">
             <div className="inline-block bg-brandBlue/10 text-brandBlue px-4 py-1 rounded-full dark:bg-brandBlue/30">
               Our Approach
             </div>
@@ -42,7 +43,7 @@ const Sustainability = () => {
             
             <div className="grid grid-cols-1 gap-6 mt-8">
               {principles.map((principle, index) => (
-                <div key={index} className="flex gap-4 items-start animate-fade-in" style={{ animationDelay: `${0.2 + index * 0.1}s` }}>
+                <div key={index} className="flex gap-4 items-start defer-animate">
                   <div className="bg-marzipan rounded-full p-2 mt-1 text-brandBlue dark:bg-marzipan/80 flex-shrink-0">
                     {principle.icon}
                   </div>
@@ -61,7 +62,7 @@ const Sustainability = () => {
             </div>
           </div>
           
-          <div className="w-full animate-fade-in mt-8 lg:mt-0" style={{ animationDelay: "0.4s" }}>
+          <div className="w-full defer-animate mt-8 lg:mt-0">
             <div className="bg-gradient-to-br from-brandBlue to-brandBlue/70 rounded-lg p-8 text-white">
               <h3 className="text-2xl font-display mb-4">The Internet's Dirty Lil' Secret</h3>
               <p className="mb-6">If the internet were a country, it would be the 7th largest polluter.</p>
