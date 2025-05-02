@@ -1,44 +1,21 @@
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Gauge, Leaf } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
+import { useWebsiteCarbon } from '../../hooks/useWebsiteCarbon';
 
 const CarbonShowcase = () => {
   const [carbonSaved, setCarbonSaved] = useState(0);
   const [pageViews, setPageViews] = useState(0);
-  const intervalRef = useRef<number | null>(null);
   
   useEffect(() => {
-    // Use requestIdleCallback for non-critical updates
-    const updateStats = () => {
+    // Simulate increasing page views and carbon savings
+    const interval = setInterval(() => {
       setPageViews(prev => prev + Math.floor(Math.random() * 3));
       setCarbonSaved(prev => prev + (Math.random() * 0.5));
-    };
+    }, 3000);
 
-    // Initial update
-    updateStats();
-    
-    // Setup interval using requestIdleCallback when browser is idle
-    const startInterval = () => {
-      if (typeof window.requestIdleCallback !== 'undefined') {
-        window.requestIdleCallback(() => {
-          intervalRef.current = window.setInterval(updateStats, 5000);
-        });
-      } else {
-        // Fallback for browsers that don't support requestIdleCallback
-        setTimeout(() => {
-          intervalRef.current = window.setInterval(updateStats, 5000);
-        }, 3000);
-      }
-    };
-    
-    startInterval();
-
-    return () => {
-      if (intervalRef.current !== null) {
-        clearInterval(intervalRef.current);
-      }
-    };
+    return () => clearInterval(interval);
   }, []);
 
   return (

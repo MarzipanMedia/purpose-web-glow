@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -7,11 +6,8 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { useEffect } from "react";
 import { ThemeProvider } from "./components/ThemeProvider";
-import { LCPProvider } from "./components/LCPProvider";
 import Index from "./pages/Index";
 import IndexAlt from "./pages/IndexAlt";
-import IndexAlt2 from "./pages/IndexAlt2";
-import IndexAlt3 from "./pages/IndexAlt3";
 import Services from "./pages/Services";
 import Projects from "./pages/Projects";
 import About from "./pages/About";
@@ -32,10 +28,6 @@ import Terms from "./pages/Terms";
 import BenAdams from "./pages/BenAdams";
 import AlwaysWas from "./pages/AlwaysWas";
 import BlogPost from "./components/blog/BlogPost";
-
-// Import the styles
-import "./styles/alt2.css";
-import "./styles/alt3.css";
 
 const queryClient = new QueryClient();
 
@@ -62,8 +54,6 @@ const App = () => (
             <Routes>
               <Route path="/" element={<PageTransition><Index /></PageTransition>} />
               <Route path="/alt" element={<PageTransition><IndexAlt /></PageTransition>} />
-              <Route path="/alt2" element={<PageTransition><IndexAlt2 /></PageTransition>} />
-              <Route path="/alt3" element={<PageTransition><IndexAlt3 /></PageTransition>} />
               <Route path="/services" element={<PageTransition><Services /></PageTransition>} />
               <Route path="/services/sustainable-web-design" element={<PageTransition><SustainableWebDesign /></PageTransition>} />
               <Route path="/services/ai-seo" element={<PageTransition><AiSeo /></PageTransition>} />

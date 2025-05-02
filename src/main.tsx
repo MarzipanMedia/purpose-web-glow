@@ -3,123 +3,93 @@ import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 
-// Enhanced critical inline styles for immediate rendering
-const inlineStyles = `
-  /* Critical rendering styles */
-  body { margin: 0; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-  .page-transition { opacity: 0; animation: fadeIn 0.3s forwards; }
-  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-  
-  /* Pre-sized content to prevent layout shifts */
-  #hero-section { min-height: 60vh; }
-  [data-lcp-element="true"] { display: block; }
-`;
+// Add gtag type declaration
+declare global {
+  interface Window {
+    gtag: (
+      command: string, 
+      action: string, 
+      params?: Record<string, any>
+    ) => void;
+    dataLayer: any[];
+  }
+}
 
-// Enhanced resource hints
-const addResourceHints = () => {
-  if (typeof document === 'undefined') return;
-  
-  // More comprehensive resource hints
-  const resourceHints = [
-    // Preconnect to critical domains
-    { rel: 'preconnect', href: 'https://fonts.googleapis.com', crossOrigin: 'anonymous' },
-    { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' },
-    // Preload critical assets
-    { rel: 'preload', href: '/marzipan-logo.webp', as: 'image', fetchpriority: 'high' }
+// Preload critical resources
+document.addEventListener('DOMContentLoaded', () => {
+  // Add preload links for critical fonts
+  const preloadLinks = [
+    { rel: 'preload', href: 'https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap', as: 'style' },
+    { rel: 'preload', href: 'https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap', as: 'style' }
   ];
-  
-  resourceHints.forEach(hint => {
+
+  preloadLinks.forEach(link => {
     const linkEl = document.createElement('link');
-    linkEl.rel = hint.rel;
-    linkEl.href = hint.href;
-    
-    if (hint.crossOrigin) {
-      linkEl.crossOrigin = hint.crossOrigin;
-    }
-    
-    if (hint.as) {
-      linkEl.setAttribute('as', hint.as);
-    }
-    
-    if (hint.fetchpriority) {
-      linkEl.setAttribute('fetchpriority', hint.fetchpriority);
-    }
-    
+    Object.entries(link).forEach(([key, value]) => {
+      linkEl.setAttribute(key, value);
+    });
     document.head.appendChild(linkEl);
   });
-};
-
-// Insert critical CSS
-const insertCriticalCss = () => {
-  if (typeof document === 'undefined') return;
   
-  const styleEl = document.createElement('style');
-  styleEl.textContent = inlineStyles;
-  document.head.appendChild(styleEl);
-};
-
-// Execute critical-path optimizations before any rendering
-insertCriticalCss();
-addResourceHints();
-
-// Mark document as JS-enabled immediately
-if (typeof document !== 'undefined') {
-  document.documentElement.classList.add('js-enabled');
-}
-
-// Create root and render App with minimal initial JS execution
-const rootElement = document.getElementById("root");
-if (rootElement) {
-  const appRoot = createRoot(rootElement);
-  appRoot.render(<App />);
-  
-  // Setup simple performance monitoring - deferred to not block main thread
-  if (typeof window !== 'undefined') {
-    // Use requestIdleCallback to defer non-critical performance monitoring
-    const setupPerformanceMonitoring = () => {
-      // Report CLS, LCP and FID/INP when they become available
-      if ('PerformanceObserver' in window) {
-        try {
-          // LCP Observer
-          new PerformanceObserver((entryList) => {
-            const entries = entryList.getEntries();
-            if (entries.length > 0) {
-              console.log('LCP:', entries[0].startTime);
-            }
-          }).observe({ type: 'largest-contentful-paint', buffered: true });
-          
-          // CLS Observer
-          new PerformanceObserver((entryList) => {
-            const entries = entryList.getEntries();
-            let clsScore = 0;
-            entries.forEach(entry => {
-              clsScore += (entry as any).value;
-            });
-            console.log('CLS:', clsScore);
-          }).observe({ type: 'layout-shift', buffered: true });
-          
-          // FID/INP Observer
-          new PerformanceObserver((entryList) => {
-            const entries = entryList.getEntries();
-            if (entries.length > 0) {
-              // Fix TypeScript error by using type assertion
-              const fidEntry = entries[0] as any;
-              console.log('FID/INP:', fidEntry.processingStart - fidEntry.startTime);
-            }
-          }).observe({ type: 'first-input', buffered: true });
-        } catch (e) {
-          console.error('Performance observer failed:', e);
-        }
+  // Add Sydney location breadcrumb data for Google
+  const locationScript = document.createElement('script');
+  locationScript.type = 'application/ld+json';
+  locationScript.text = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Australia",
+        "item": "https://marzipan.com.au/australia"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "New South Wales",
+        "item": "https://marzipan.com.au/australia/nsw"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Sydney",
+        "item": "https://marzipan.com.au/australia/nsw/sydney"
       }
-    };
+    ]
+  });
+  document.head.appendChild(locationScript);
+});
+
+// Add event listener to catch image loading errors
+window.addEventListener('error', function(e) {
+  if (e.target && (e.target as HTMLElement).tagName === 'IMG') {
+    console.error('Image loading error:', (e.target as HTMLImageElement).src);
     
-    // Defer performance monitoring setup
-    if ('requestIdleCallback' in window) {
-      (window as any).requestIdleCallback(setupPerformanceMonitoring);
-    } else {
-      setTimeout(setupPerformanceMonitoring, 1000);
+    // Replace broken images with a placeholder
+    const img = e.target as HTMLImageElement;
+    if (img.src.includes('project.jpg')) {
+      img.src = '/placeholder.svg';
+      img.alt = 'Project placeholder image';
     }
   }
-} else {
-  console.error("Root element not found");
-}
+}, true);
+
+// Track and report Sydney location visits for analytics
+const trackSydneyVisits = () => {
+  // Check if URL contains Sydney-related paths
+  const isSydneyPage = window.location.pathname.toLowerCase().includes('sydney');
+  
+  if (isSydneyPage && window.gtag) {
+    window.gtag('event', 'sydney_page_visit', {
+      'event_category': 'local_pages',
+      'event_label': window.location.pathname
+    });
+  }
+};
+
+// Set up history change listener
+window.addEventListener('popstate', trackSydneyVisits);
+
+// Optimize component mounting
+createRoot(document.getElementById("root")!).render(<App />);

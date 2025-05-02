@@ -1,66 +1,49 @@
+
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en-AU">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Marzipan Digital - Sustainable Web Design & AI-Driven SEO</title>
+    <title>Marzipan Digital - Sustainable Web Design & AI-Driven SEO in Sydney</title>
     
-    <!-- Critical preconnects -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Preload logo image -->
+    <link rel="preload" as="image" href="/marzipan-logo.webp" type="image/webp">
     
-    <!-- Preload critical assets -->
-    <link rel="preload" as="image" href="/marzipan-logo.webp" fetchpriority="high">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700&display=swap" as="style">
-    
-    <!-- Immediately load critical font with display=swap -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700&display=swap" media="all">
-    
-    <!-- Defer non-critical fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;500;600&family=Jost:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
-    
-    <!-- Fallback for no JS -->
-    <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&family=Jost:wght@400;500;600;700&display=swap">
-    </noscript>
-    
-    <meta name="description" content="Sustainable Web Design & AI-Driven SEO for Purpose-Driven Brands. Ensuring your online presence is as powerful as your purpose." />
+    <meta name="description" content="Sustainable Web Design & AI-Driven SEO for Purpose-Driven Brands in Sydney. Ensuring your online presence is as powerful as your purpose." />
     <meta name="author" content="Marzipan Digital" />
-    <meta name="keywords" content="sustainable web design Sydney, digital agency Sydney, affordable SEO services, purpose-driven marketing, Marzipan Media">
+    <meta name="keywords" content="sustainable web design Sydney, digital agency Sydney, affordable SEO services, purpose-driven marketing, Marzipan Media, eco-friendly websites Sydney">
 
-    <meta property="og:title" content="Marzipan Digital - Sustainable Web Design & AI-Driven SEO" />
-    <meta property="og:description" content="Sustainable Web Design & AI-Driven SEO for Purpose-Driven Brands. Ensuring your online presence is as powerful as your purpose." />
+    <!-- Geo meta tags for local SEO -->
+    <meta name="geo.region" content="AU-NSW" />
+    <meta name="geo.placename" content="Sydney" />
+    <meta name="geo.position" content="-33.880836;151.199997" />
+    <meta name="ICBM" content="-33.880836, 151.199997" />
+
+    <meta property="og:title" content="Marzipan Digital - Sustainable Web Design & AI-Driven SEO in Sydney" />
+    <meta property="og:description" content="Sustainable Web Design & AI-Driven SEO for Purpose-Driven Brands in Sydney. Ensuring your online presence is as powerful as your purpose." />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="/marzipan-logo.webp" />
+    <meta property="og:locale" content="en_AU" />
+    <meta property="og:site_name" content="Marzipan Digital Sydney" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@marzipandigital" />
     <meta name="twitter:image" content="/marzipan-logo.webp" />
+    <link href="https://fonts.googleapis.com/css2?family=Questrial&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    
-    <!-- Add modulepreload for main bundle -->
-    <link rel="modulepreload" href="/src/main.tsx">
+      <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YEYRTEBNW4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YEYRTEBNW4');
+</script>
   </head>
   <body>
     <div id="root"></div>
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
-    <!-- Google tag (gtag.js) - Keep at end of body with async/defer -->
-    <script async defer src="https://www.googletagmanager.com/gtag/js?id=G-YEYRTEBNW4"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-YEYRTEBNW4', {
-        'send_page_view': false  // Defer page view until after LCP
-      });
-      // Send pageview after critical content loads
-      document.addEventListener('DOMContentLoaded', function() {
-        setTimeout(function() {
-          gtag('event', 'page_view');
-        }, 1000);
-      });
-    </script>
   </body>
 </html>

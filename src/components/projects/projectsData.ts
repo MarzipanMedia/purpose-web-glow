@@ -49,13 +49,13 @@ export const processSteps: ProcessStep[] = [
   {
     step: "03",
     title: "Eco-Friendly Design",
-    description: "Our designs minimise resource usage while creating beautiful, effective user experiences.",
+    description: "Our designs minimize resource usage while creating beautiful, effective user experiences.",
     icon: Palette
   },
   {
     step: "04",
     title: "Efficient Development",
-    description: "Clean, optimised code ensures your website runs as efficiently as possible.",
+    description: "Clean, optimized code ensures your website runs as efficiently as possible.",
     icon: Code
   },
   {
@@ -130,12 +130,14 @@ export const projects: ProjectData[] = [
       "Accessibility Design",
       "Digital Strategy"
     ],
+    websiteUrl: "https://willow.org.au",
     longDescription: "Willow.org.au is one of Marzipan Media's most meaningful digital projects — a mobile-first microsite designed to provide legal information for women escaping violence or facing crisis.\n\nThe Challenge\n\nWomen facing crisis situations often need quick, discreet access to legal resources. Many have limited digital access, low literacy levels, or restricted internet freedom. The challenge was to create a website that would be both accessible and secure for users in vulnerable situations.\n\nOur Solution\n\nCommissioned by Women's Legal Service NSW and funded through state grants and community partnerships, we developed Willow as a discreet and accessible WordPress site.\n\nKey Features:\n\n• Safe Exit buttons for covert browsing\n• Automatic browser clearing to protect user history\n• Ultra-lightweight design to prioritise speed and safety\n• Mobile-first architecture for accessibility\n• Low-bandwidth optimization for 3G connections\n\nDesign Approach\n\nCollaboratively designed by women, the site's visual language draws inspiration from the resilience and flexibility of the willow tree. This brings a balance of softness and strength to difficult content, creating an interface that is both calming and clear.\n\nTechnical Implementation\n\nFrom the beginning, Willow was engineered for real-world conditions:\n\n• Optimized for slow networks and shared devices\n• Built for urgent, time-sensitive access\n• Designed with privacy and security in mind\n• Developed for maximum compatibility\n\nEnvironmental Impact\n\nWillow is not only a lifeline — it's a model of Sustainable Web Design:\n\n• Emits just 0.46g of CO₂ per page view\n• Cleaner than 50% of global websites\n• Uses lightweight design principles\n• Minimizes script usage\n• Implements optimized assets\n\nThis makes it an ethical choice in both form and function, serving its social mission while minimizing environmental impact.",
     videos: []
   },
   {
-  "title": "Popology – A Bold Website That Balances Beauty, Speed, and Sustainability",
-  "category": "Creative Agency",
+  "title": "Popology – A Bold Website That Pops with Speed and Sustainability",
+  "imageUrl": "/popology-sustainable-web.webp",
+    "category": "Creative Agency",
   "description": "High-performance website build for experiential agency Popology, blending stunning design with low carbon impact.",
   "features": [
     "Ultra-Fast Load Speeds",
@@ -144,7 +146,7 @@ export const projects: ProjectData[] = [
     "Sustainable Development",
     "Interactive Page Transitions"
   ],
-  "color": "bg-[#AE2012]",
+  "color": "bg-[#4569E6]",
   "textColor": "text-white",
   "slug": "popology",
   "client": "Popology",
@@ -154,6 +156,7 @@ export const projects: ProjectData[] = [
     "Sustainable Web Design",
     "Technical Consulting"
   ],
+    websiteUrl: "https://popology.com.au",
   "longDescription": "When experiential agency Popology needed a high-impact website to match their creative edge, they turned to longtime collaborators Marzipan Media to bring the vision to life — merging stunning design with world-class performance.\n\nTogether, we created popology.com.au — a website that loads fast, looks phenomenal, and reflects both agencies’ shared values of innovation and sustainability.\n\nPopology led the creative direction — crafting a playful, immersive design that captures the energy of their brand experiences. Marzipan took that concept and brought it to life through a modern, ultra-lightweight build designed for speed and user engagement.\n\nFrom page transitions to dynamic project showcases, the result is an interactive site that invites exploration — with lightning-fast load times and near-invisible code.\n\nThis project wasn’t just about performance — it was about impact. The site was built using sustainable web development practices that reduce carbon emissions with every visit. It proves you don’t have to sacrifice creativity to be climate-conscious.\n\nBuilt on cutting-edge tech, optimised for mobile, and incredibly lightweight, it’s a model for how sustainable sites should be built — beautiful, efficient, and future-ready.",
   "videos": []
 },
@@ -211,29 +214,5 @@ export const projects: ProjectData[] = [
         description: "Meet the passionate staff preserving our botanical heritage"
       }
     ]
-  },
-  {
-    title: "Jarli – Reach for the stars",
-    imageUrl: "/jarli-reach-stars-marzipana.png",
-    category: "Indigenous Animation",
-    description: "Social media strategy and content creation for an award-winning animated film inspiring Indigenous children to explore STEM and space science.",
-    features: ["Social Media Assets", "Digital Content Creation", "Interactive AR Backgrounds", "Campaign Strategy", "Animated GIFs"],
-    color: "bg-[#27548E]",
-    textColor: "text-white",
-    slug: "jarli",
-    client: "House of Kitch / Royal Australian Air Force",
-    services: ["Social Media Marketing", "Content Creation", "Digital Animation"],
-    longDescription: "It's not every day you get help on projects that lift you higher, but that's exactly what happened when the House of Kitch invited us to create social media assets for Jarli, an award-winning short film to inspire Indigenous school children to reach for the stars.\n\nTogether we created digital content assets for Instagram, Facebook and Twitter for the launch of this beautiful animated film. Jarli is a proud Aboriginal girl with a knack for building things, especially things that fly. Created by the Royal Australian Air Force and UTS_ALA to inspire our kids to study STEM subjects and perhaps one day join the RAAF.\n\n'Jarli' is another animation gem that weaves visual and oral story elements to explore the dream of flight, indigenous astronomy, and the future of our planet and its people. Jarli, 16, lives with her family in a remote community in Australia. She might look small, but she asks big questions and has big ideas. She also has a knack for building things – especially things that fly – and wants to fly herself one day… maybe even into outer space. Jarli dreams of being the first person to travel to other worlds in our solar system.\n\nDirected by Simon Rippingale, the inspirational animated short is a collaboration with First Nations storytellers, the UTS Animal Logic Academy in collaboration with the Royal Australian Air Force and Like a Photon Creative. The goal was to inspire young people (particularly girls, especially indigenous kids) to reach for the stars and widen their eyes to possibilities opened up by STEM.\n\nThe Challenge\n\nA critical element for Australia to achieve its sovereign space ambitions is the development of a workforce with the necessary STEM skills. With the space industry tripling in size by 2030, engagement with school kids, and encouraging them to study STEM, needs to start now.\n\nOur Approach\n\nA talented team of Indigenous creatives included co-director: Chantelle Murray, writers: Jonathan Bell & Andrew Dillon and voice actors: Madeleine Madden, Wayne Blair, Mark Coles Smith and Rahmah Bin Buyong. Simon Rippingale co-directed Jarli as part of his PHD thesis under Professor Andrew Johnston.\n\nWhile the Jarli film premiered at the Sydney Film Festival, Jarli was pre-screened to a very special audience of Aboriginal children from the Katherine community in outback Northern Territory on RAAF Base Tindal. Audience members were treated to a unique pop-up cinema experience in an open aircraft hangar and a view of the night-flying activity at Tindal.\n\nPersonal Connection\n\nProject timings are always a curious thing, and this one landed just after a short stint of fostering by Marzipan cofounder and digital guy, Ben Adams who looked after two young aboriginal children. These kids had seen some of the worst things imaginable and yet were able to still see the joy and wonder of the world, without bitterness or judgement. There are so many systemic barriers in the way of closing the gap but we're certain projects born out of love, such as this one, may help pave the way. They loved watched Jarli and enjoyed our social media games, assets and creative that was created for the film.\n\nMarzipan have created a range of social media tiles for its full release, including animated gifs, interactive AR backgrounds for Instagram and more.\n\nGlobal Impact\n\nNot ready to stay on the ground too long, Jarli hitched a ride to the International Space Station on the NASA SpaceX Falcon 9 CRS-24 mission during National Science Week 2022. Chief Defence Scientist, Professor Tanya Monro AC said Jarli struck a chord with all of us because of her resilience, creativity and ingenuity – the qualities the next generation of Australians need to harness to achieve extraordinary things.\n\n\"It is so inspiring for Australian children, particularly First Nations children, to see clever Australian inventions driving collaboration with the US Space Force and NASA… We can't confirm this but are certain the NASA folks would have loved playing with our Instagram AR tiles ; )\"",
-    videos: [
-      {
-        url: "https://youtu.be/YoiijfjK-J8",
-        title: "Jarli - Reach for the Stars",
-        description: "Award-winning animation inspiring Indigenous youth to explore STEM and space science",
-        orientation: 'landscape'
-      }
-    ],
-    date: "2022-08-15",
-    tags: ["Digital Content", "Indigenous", "Animation", "Space", "STEM"],
-    featured: true
   }
 ];

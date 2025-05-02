@@ -3,6 +3,7 @@ import { useQuery, useMutation } from '@tanstack/react-query';
 export interface WordPressPost {
   id: number;
   date: string;
+  modified?: string; // Added 'modified' as optional property
   title: {
     rendered: string;
   };
@@ -16,6 +17,11 @@ export interface WordPressPost {
   _embedded?: {
     'wp:featuredmedia'?: Array<{
       source_url: string;
+      alt_text?: string; // Added alt_text
+      media_details?: { // Added media_details
+        width?: number;
+        height?: number;
+      };
     }>;
     'wp:term'?: Array<Array<{
       id: number;
@@ -75,7 +81,7 @@ const API_URL = 'https://blog.marzipan.com.au/wp-json/wp/v2';
 // Replace with your actual endpoint
 const EMAIL_ENDPOINT = 'https://blog.marzipan.com.au/wp-json/marzipan/v1/send-email';
 
-export const useFetchPosts = (page = 1, perPage = 3, enabled = true) => {
+export const useFetchPosts = (page = 1, perPage = 3) => {
   return useQuery({
     queryKey: ['wordpressPosts', page, perPage],
     queryFn: async () => {
@@ -96,7 +102,6 @@ export const useFetchPosts = (page = 1, perPage = 3, enabled = true) => {
     retry: 1,
     networkMode: 'always',
     refetchOnWindowFocus: false,
-    enabled: enabled,
     staleTime: 5 * 60 * 1000, // 5 minutes
     gcTime: 10 * 60 * 1000, // 10 minutes
   });
