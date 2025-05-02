@@ -12,10 +12,12 @@ const HeroAlt3 = () => {
       heroRef.current.setAttribute('fetchpriority', 'high');
       
       // Add to browser's LCP monitoring if available
-      if (typeof window !== 'undefined' && 'LargestContentfulPaint' in window) {
+      if (typeof window !== 'undefined' && 'PerformanceObserver' in window) {
         const observer = new PerformanceObserver((entryList) => {
           for (const entry of entryList.getEntries()) {
-            if (entry.element === heroRef.current) {
+            // TypeScript fix: Check if the entry is LargestContentfulPaint and has element property
+            const lcpEntry = entry as any;
+            if (lcpEntry.element === heroRef.current) {
               // We can report this to analytics if needed
               console.log('LCP element rendered:', entry.startTime);
             }

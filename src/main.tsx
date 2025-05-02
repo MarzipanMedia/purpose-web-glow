@@ -80,7 +80,9 @@ if (rootElement) {
         new PerformanceObserver((entryList) => {
           const entries = entryList.getEntries();
           if (entries.length > 0) {
-            console.log('FID/INP:', entries[0].processingStart - entries[0].startTime);
+            // Fix TypeScript error by using type assertion
+            const fidEntry = entries[0] as any;
+            console.log('FID/INP:', fidEntry.processingStart - fidEntry.startTime);
           }
         }).observe({ type: 'first-input', buffered: true });
       } catch (e) {

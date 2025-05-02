@@ -84,10 +84,8 @@ export const useDefer = (
       // Document already loaded
       runCallback();
     } else {
-      // Fallback to load event - Fix the TypeScript error
-      if (typeof window !== 'undefined') {
-        window.addEventListener('load', runCallback, { once: true });
-      }
+      // Fallback to load event - Fix the TypeScript error by using window explicitly
+      window.addEventListener('load', runCallback, { once: true });
     }
     
     // Cleanup function
@@ -99,9 +97,7 @@ export const useDefer = (
         if (timeoutId) {
           clearTimeout(timeoutId);
         }
-        if (typeof window !== 'undefined') {
-          window.removeEventListener('load', runCallback);
-        }
+        window.removeEventListener('load', runCallback);
       }
     };
   }, dependencies); // Controlled by dependencies array
