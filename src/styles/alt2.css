@@ -89,14 +89,12 @@ section:first-of-type {
 }
 
 /* Pre-connect hints for external resources */
-@layer utilities {
-  .img-lazy {
-    loading: lazy;
-  }
-  
-  .img-eager {
-    loading: eager;
-  }
+.img-lazy {
+  loading: lazy;
+}
+
+.img-eager {
+  loading: eager;
 }
 
 /* Performance-optimized animations that won't affect LCP */

@@ -1,5 +1,5 @@
 
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import MetaHead from '@/components/MetaHead';
@@ -7,11 +7,11 @@ import { useDefer } from '@/hooks/useDefer';
 import '../styles/alt2.css';
 
 // Import critical path components directly
-import Services from '../components/Services';
 import HeroSection from '../components/alt2/HeroSection';
 import StatsSection from '../components/alt2/StatsSection';
 
 // Lazy load non-critical components
+const Services = lazy(() => import('../components/Services'));
 const WebsiteCarbonCTA = lazy(() => import('../components/alt2/WebsiteCarbonCTA'));
 const TestimonialsSection = lazy(() => import('../components/alt2/TestimonialsSection'));
 const FinalCTA = lazy(() => import('../components/alt2/FinalCTA'));
@@ -21,27 +21,33 @@ const RecentProjects = lazy(() => import('../components/RecentProjects'));
 const BlogPreview = lazy(() => import('../components/BlogPreview'));
 
 const IndexAlt2 = () => {
-  // Use defer for animations only after the main content is loaded
+  // Set page ready state
+  useEffect(() => {
+    // Mark document as ready for animations
+    if (typeof document !== 'undefined') {
+      document.documentElement.classList.add('page-ready');
+    }
+  }, []);
+
+  // Set up intersection observer for animations after main content is loaded
   useDefer(() => {
-    const animateElements = () => {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.1, rootMargin: '100px' });
-      
-      document.querySelectorAll('.defer-animate').forEach(el => {
-        observer.observe(el);
-      });
-      
-      // Mark document as having LCP loaded
-      document.documentElement.classList.add('lcp-loaded');
-    };
+    if (typeof IntersectionObserver === 'undefined') return;
     
-    animateElements();
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { 
+      threshold: 0.1, 
+      rootMargin: '100px' 
+    });
+    
+    document.querySelectorAll('.defer-animate').forEach(el => {
+      observer.observe(el);
+    });
   }, 1000); // Delay animations until after LCP
 
   return (
@@ -57,50 +63,55 @@ const IndexAlt2 = () => {
         <HeroSection />
         <StatsSection />
         
-        {/* Services section - important but not LCP */}
-        <Services />
+        {/* Non-critical sections - lazy loaded */}
+        <Suspense fallback={<div className="h-40"></div>}>
+          <Services />
+        </Suspense>
         
-        {/* Deferred content that loads after LCP */}
-        <Suspense fallback={<div className="h-40 bg-gray-50"></div>}>
+        <Suspense fallback={<div className="h-40"></div>}>
           <div className="defer-animate">
             <WebsiteCarbonCTA />
           </div>
         </Suspense>
         
-        <Suspense fallback={<div className="h-40 bg-gray-50"></div>}>
+        <Suspense fallback={<div className="h-40"></div>}>
           <div className="defer-animate">
             <Sustainability />
           </div>
         </Suspense>
         
-        <Suspense fallback={<div className="h-40 bg-gray-50"></div>}>
+        <Suspense fallback={<div className="h-40"></div>}>
           <div className="defer-animate">
             <ClientLogos />
           </div>
         </Suspense>
         
-        <Suspense fallback={<div className="h-40 bg-gray-50"></div>}>
+        <Suspense fallback={<div className="h-40"></div>}>
           <div className="defer-animate">
             <RecentProjects />
           </div>
         </Suspense>
         
-        {/* Non-critical sections - load last */}
-        <Suspense fallback={<div className="h-40 bg-gray-50"></div>}>
+        <Suspense fallback={<div className="h-40"></div>}>
           <div className="defer-animate">
             <TestimonialsSection />
           </div>
         </Suspense>
         
-        <Suspense fallback={<div className="h-40 bg-gray-50"></div>}>
+        <Suspense fallback={<div className="h-40"></div>}>
           <div className="defer-animate">
             <FinalCTA />
           </div>
         </Suspense>
         
         {/* Load BlogPreview last as it makes API calls */}
-        <Suspense fallback={<div className="h-40 bg-gray-50"></div>}>
-          <div className="defer-animate">
+        <Suspense fallback={<div className="h-40 relative overflow-hidden">
+          <div className="container-custom text-center py-10">
+            <div className="h-6 bg-gray-200 rounded w-1/2 mx-auto mb-4"></div>
+            <div className="h-4 bg-gray-200 rounded w-1/3 mx-auto"></div>
+          </div>
+        </div>}>
+          <div className="defer-animate" id="blog-section">
             <BlogPreview />
           </div>
         </Suspense>

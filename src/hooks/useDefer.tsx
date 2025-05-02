@@ -32,7 +32,7 @@ export const useDefer = (
     
     // Track whether this execution has completed
     let isExecuted = false;
-    let timeoutId: number | ReturnType<typeof setTimeout>;
+    let timeoutId: number | NodeJS.Timeout;
     let idleCallbackId: number;
     
     // Ensure we don't miss the callback execution if LCP already completed
@@ -77,7 +77,8 @@ export const useDefer = (
       } catch (e) {
         // If observer fails, fall back to load event
         if (typeof window !== 'undefined') {
-          window.addEventListener('load', runCallback, { once: true });
+          const windowObj = window;
+          windowObj.addEventListener('load', runCallback, { once: true });
         }
       }
     } else if (lcpState === 'complete') {
@@ -86,7 +87,8 @@ export const useDefer = (
     } else {
       // Fallback to load event - TypeScript needs window type guard
       if (typeof window !== 'undefined') {
-        window.addEventListener('load', runCallback, { once: true });
+        const windowObj = window;
+        windowObj.addEventListener('load', runCallback, { once: true });
       }
     }
     
@@ -99,7 +101,9 @@ export const useDefer = (
         if (timeoutId) {
           clearTimeout(timeoutId);
         }
-        window.removeEventListener('load', runCallback);
+        if (typeof window !== 'undefined') {
+          window.removeEventListener('load', runCallback);
+        }
       }
     };
   }, dependencies); // Controlled by dependencies array

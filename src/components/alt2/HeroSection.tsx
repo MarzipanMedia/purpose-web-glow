@@ -15,7 +15,12 @@ const HeroSection = () => {
               Sustainable Web Design
             </div>
             
-            <LCPElement as="h1" id="main-heading" className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight">
+            {/* Direct LCP application to h1 for better performance */}
+            <LCPElement 
+              as="h1" 
+              id="main-heading" 
+              className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight"
+            >
               Ensuring your online presence is as powerful as your 
               <span className="text-brandRed"> purpose</span>
             </LCPElement>

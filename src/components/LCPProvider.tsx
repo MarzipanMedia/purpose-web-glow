@@ -35,6 +35,11 @@ export const LCPProvider: React.FC<LCPProviderProps> = ({ children }) => {
           lcp_time: performance.now()
         });
       }
+      
+      // Add a class to the document for CSS animations to start
+      if (typeof document !== 'undefined') {
+        document.documentElement.classList.add('lcp-loaded');
+      }
     }
   };
   
@@ -86,7 +91,7 @@ interface LCPElementProps {
 
 /**
  * Component to mark an element as LCP (Largest Contentful Paint)
- * Now directly applies attributes to the element without unnecessary wrapper div
+ * Optimized to directly apply attributes without an extra wrapper div
  */
 export const LCPElement: React.FC<LCPElementProps> = ({ 
   children, 
@@ -96,6 +101,13 @@ export const LCPElement: React.FC<LCPElementProps> = ({
 }) => {
   const { markLCPLoaded } = useLCP();
   
+  useEffect(() => {
+    // Mark as loaded once the component is mounted
+    // This ensures we don't miss the LCP event
+    const timer = setTimeout(markLCPLoaded, 100);
+    return () => clearTimeout(timer);
+  }, [markLCPLoaded]);
+  
   return React.createElement(
     Component,
     { 
@@ -104,10 +116,6 @@ export const LCPElement: React.FC<LCPElementProps> = ({
       "data-lcp-element": "true",
       onLoad: markLCPLoaded,
       fetchpriority: "high",
-      style: { 
-        contentVisibility: 'auto',
-        containIntrinsicSize: 'auto'
-      }
     },
     children
   );

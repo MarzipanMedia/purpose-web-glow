@@ -34,7 +34,7 @@ export const useOptimizedImage = ({
     height: height || undefined,
     loading: priority || lcpImage ? 'eager' : 'lazy', // Don't set loading for priority images
     fetchpriority: priority || lcpImage ? 'high' : 'auto',
-    className: `${className} ${isLoaded ? 'opacity-100' : 'opacity-0 blur-sm'} transition-opacity duration-300`,
+    className: `${className} ${isLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`,
     onLoad: () => setIsLoaded(true),
     onError: (e: any) => setError(e),
     'data-lcp-image': lcpImage ? 'true' : undefined,
@@ -46,24 +46,31 @@ export const useOptimizedImage = ({
   
   // Preload high priority images
   useEffect(() => {
-    if ((priority || lcpImage) && typeof window !== 'undefined') {
-      const img = new Image();
-      img.src = src;
-      
-      const preloadLink = document.createElement('link');
-      preloadLink.rel = 'preload';
-      preloadLink.as = 'image';
-      preloadLink.href = src;
-      if (typeof document !== 'undefined') {
-        preloadLink.setAttribute('fetchpriority', 'high');
-        document.head.appendChild(preloadLink);
-      
-        return () => {
-          if (document.head.contains(preloadLink)) {
-            document.head.removeChild(preloadLink);
-          }
-        };
-      }
+    // Skip preloading if we're not in a browser or the image isn't high priority
+    if (!(priority || lcpImage) || typeof window === 'undefined') {
+      return;
+    }
+    
+    // Create image element to preload
+    const img = new Image();
+    img.src = src;
+    
+    // Add preload link for high priority images
+    const preloadLink = document.createElement('link');
+    preloadLink.rel = 'preload';
+    preloadLink.as = 'image';
+    preloadLink.href = src;
+    
+    if (document.head) {
+      preloadLink.setAttribute('fetchpriority', 'high');
+      document.head.appendChild(preloadLink);
+    
+      // Clean up preload link when component unmounts
+      return () => {
+        if (document.head.contains(preloadLink)) {
+          document.head.removeChild(preloadLink);
+        }
+      };
     }
   }, [src, priority, lcpImage]);
   
