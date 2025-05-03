@@ -3,7 +3,7 @@ import React from 'react';
 
 const HeroSection = () => {
   return (
-    <section className="py-20 bg-gradient-subtle">
+    <section className="py-20 bg-gradient-to-br from-marzipan/20 to-brandBlue/10">
       <div className="container-custom">
         <div className="max-w-3xl animate-fade-in">
           <div className="inline-block bg-brandBlue/10 text-brandBlue px-4 py-1 rounded-full mb-4">

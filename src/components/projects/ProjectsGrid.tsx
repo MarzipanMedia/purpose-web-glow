@@ -24,6 +24,7 @@ const ProjectsGrid = ({ projects }: ProjectsGridProps) => {
               textColor={project.textColor}
               slug={project.slug}
               websiteUrl={project.websiteUrl}
+              imageUrl={project.imageUrl}
             />
           ))}
         </div>

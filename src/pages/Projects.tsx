@@ -13,8 +13,9 @@ const Projects = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <MetaHead 
-        title="Our Projects"
-        description="Explore our portfolio of purpose-driven brands we've helped thrive online with sustainable web design and ethical SEO strategies."
+        title="Our Projects | Sustainable Web Design Case Studies"
+        description="Explore our portfolio of purpose-driven brands we've helped thrive online with sustainable web design, ethical SEO strategies, and digital marketing."
+        type="website"
       />
       
       <Header />

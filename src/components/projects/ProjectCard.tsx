@@ -2,6 +2,7 @@
 import React from 'react';
 import { ArrowRight, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 export interface ProjectCardProps {
   title: string;
@@ -13,6 +14,7 @@ export interface ProjectCardProps {
   index: number;
   slug: string;
   websiteUrl?: string;
+  imageUrl?: string;
 }
 
 const ProjectCard = ({ 
@@ -24,13 +26,26 @@ const ProjectCard = ({
   textColor, 
   index, 
   slug,
-  websiteUrl 
+  websiteUrl,
+  imageUrl
 }: ProjectCardProps) => {
   return (
     <div 
-      className={`rounded-lg overflow-hidden animate-fade-in ${color}`}
+      className={`rounded-lg overflow-hidden animate-fade-in shadow-sm hover:shadow-md transition-all ${color}`}
       style={{ animationDelay: `${0.1 + index * 0.1}s` }}
     >
+      {imageUrl && (
+        <Link to={`/projects/${slug}`}>
+          <AspectRatio ratio={16/9}>
+            <img 
+              src={imageUrl || '/placeholder.svg'} 
+              alt={title}
+              className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+            />
+          </AspectRatio>
+        </Link>
+      )}
+      
       <div className={`p-8 ${textColor}`}>
         <div className="mb-2 text-sm font-medium opacity-80">{category}</div>
         <h3 className="text-2xl font-display font-semibold mb-4">{title}</h3>
