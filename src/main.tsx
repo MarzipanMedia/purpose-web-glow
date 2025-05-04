@@ -1,6 +1,49 @@
+
 import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
+
+// Move font preloading to happen immediately
+// Preload critical resources
+const preloadFonts = () => {
+  // Add preload links for critical fonts with higher priority
+  const preloadLinks = [
+    { rel: 'preload', href: 'https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap', as: 'style', importance: 'high' },
+    { rel: 'preload', href: 'https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap', as: 'style', importance: 'high' }
+  ];
+
+  preloadLinks.forEach(link => {
+    const linkEl = document.createElement('link');
+    Object.entries(link).forEach(([key, value]) => {
+      linkEl.setAttribute(key, value);
+    });
+    document.head.appendChild(linkEl);
+  });
+  
+  // Actually load and apply the fonts after preloading
+  preloadLinks.forEach(link => {
+    const linkEl = document.createElement('link');
+    linkEl.rel = 'stylesheet';
+    linkEl.href = link.href;
+    document.head.appendChild(linkEl);
+  });
+};
+
+// Execute preloading immediately
+preloadFonts();
+
+// Preload logo image
+const preloadLogo = () => {
+  const logoLink = document.createElement('link');
+  logoLink.rel = 'preload';
+  logoLink.as = 'image';
+  logoLink.href = '/marzipan-sydney-webdesign.avif';
+  logoLink.type = 'image/avif';
+  document.head.appendChild(logoLink);
+};
+
+// Execute logo preloading
+preloadLogo();
 
 // Enhanced LCP monitoring for debugging
 const measureLCP = () => {
@@ -20,35 +63,25 @@ const measureLCP = () => {
         console.log(`LCP candidate ${i+1}:`, el);
       });
     } else {
-      console.info('Found LCP element:', lcpElements[0]);
+      console.log('Found LCP element:', lcpElements[0]);
     }
 
-    // Observe LCP more robustly
+    // Observe LCP
     const lcpObserver = new PerformanceObserver((entryList) => {
       const entries = entryList.getEntries();
       const lcpEntry = entries[entries.length - 1];
-      console.info('LCP detected:', lcpEntry);
-      console.info('LCP time:', lcpEntry.startTime);
+      console.log('LCP detected:', lcpEntry);
+      console.log('LCP time:', lcpEntry.startTime);
       
+      // Type assertion for LargestContentfulPaint entry which has the element property
       if (lcpEntry && 'element' in lcpEntry) {
-        // Proper type assertions to avoid TypeScript errors
-        const lcpElement = lcpEntry.element as HTMLElement;
-        console.info('LCP element:', lcpElement);
-        console.info('LCP element HTML:', lcpElement.outerHTML);
+        const lcpElement = lcpEntry.element as HTMLElement; // Properly type-cast the element
+        console.log('LCP element:', lcpElement);
+        console.log('LCP element HTML:', lcpElement.outerHTML);
         
         // Check if the LCP element is the one we marked with data-lcp="true"
         const isMarkedAsLCP = lcpElement.hasAttribute('data-lcp');
-        console.info('Is this element marked as LCP?', isMarkedAsLCP);
-        
-        // If it's not the element we expected, log additional info
-        if (!isMarkedAsLCP) {
-          console.warn('Browser chose a different element as LCP than what we marked');
-          console.info('Browser-selected LCP element:', lcpElement);
-          const markedElements = document.querySelectorAll('[data-lcp="true"]');
-          if (markedElements.length > 0) {
-            console.info('Our marked LCP element:', markedElements[0]);
-          }
-        }
+        console.log('Is this element marked as LCP?', isMarkedAsLCP);
       }
     });
     
@@ -61,33 +94,24 @@ const measureLCP = () => {
   }
 };
 
-// Add more robust image error handling
+// Add event listener to catch image loading errors
 window.addEventListener('error', function(e) {
   if (e.target && (e.target as HTMLElement).tagName === 'IMG') {
     console.error('Image loading error:', (e.target as HTMLImageElement).src);
     
     // Replace broken images with a placeholder
     const img = e.target as HTMLImageElement;
-    // Save original alt text as it contains important context
-    const originalAlt = img.alt;
-    
-    // Replace with placeholder but keep the original alt text for accessibility
-    img.src = '/placeholder.svg';
-    img.alt = originalAlt ? `${originalAlt} (placeholder image)` : 'Placeholder image';
-    
-    // Add a CSS class to style the placeholder
-    img.classList.add('image-placeholder');
+    if (img.src.includes('project.jpg')) {
+      img.src = '/placeholder.svg';
+      img.alt = 'Project placeholder image';
+    }
   }
 }, true);
 
-// Optimize component mounting and LCP measurement
-const renderApp = () => {
-  const root = createRoot(document.getElementById("root")!);
-  root.render(<App />);
-  
-  // Measure LCP after the initial render but with a slight delay to ensure content has loaded
-  setTimeout(measureLCP, 500);
-};
+// Execute LCP measurement after initial render
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(measureLCP, 500); // Give some time for content to load
+});
 
-// Start rendering as soon as possible
-renderApp();
+// Optimize component mounting
+createRoot(document.getElementById("root")!).render(<App />);

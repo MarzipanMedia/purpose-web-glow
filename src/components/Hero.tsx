@@ -8,22 +8,22 @@ const Hero = () => {
     <section className="relative overflow-hidden py-20 md:py-28 bg-gradient-subtle">
       <div className="container-custom">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-          <div className="md:col-span-7 space-y-6">
-            {/* LCP heading optimized for faster rendering - no animation classes */}
+          <div className="md:col-span-7 space-y-6 animate-fade-in" style={{ animationDelay: "0.1s" }}>
+            {/* Ensure this heading is marked as the LCP element */}
             <h1 
               className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight"
               id="main-heading"
               data-lcp="true"
-              aria-label="Main page heading"
+              fetchpriority="high"
             >
               Ensuring your online presence is as powerful as your 
               <span className="gradient-text"> purpose</span>
             </h1>
-            <p className="text-lg md:text-xl text-foreground/80 max-w-2xl animate-fade-in" style={{ animationDelay: "0.3s" }}>
+            <p className="text-lg md:text-xl text-foreground/80 max-w-2xl">
               Your website should do more than just exist—it should drive traffic, increase conversions, and align with your values. We offer sustainable Web Design & AI-Driven SEO for Purpose-Driven Brands. 
               We help businesses shine brighter online without costing the earth.
             </p>
-            <div className="flex flex-wrap gap-4 pt-2 animate-fade-in" style={{ animationDelay: "0.5s" }}>
+            <div className="flex flex-wrap gap-4 pt-2">
               <Link to="/services" className="btn-primary flex items-center gap-2">
                 Digital Services <ArrowRight className="h-4 w-4" />
               </Link>
@@ -33,7 +33,7 @@ const Hero = () => {
             </div>
           </div>
           
-          <div className="md:col-span-5 animate-fade-in" style={{ animationDelay: "0.7s" }}>
+          <div className="md:col-span-5 animate-fade-in" style={{ animationDelay: "0.3s" }}>
             <div className="relative">
               {/* Add multiple pulse rings */}
               {[...Array(3)].map((_, i) => (

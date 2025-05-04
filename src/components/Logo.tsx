@@ -11,19 +11,6 @@ const Logo = ({ variant = 'default', className = '' }: LogoProps) => {
   const logoSrc = variant === 'default' 
     ? '/marzipan-sydney-webdesign.avif' 
     : '/Marzipan-Logo-Rev.png';
-    
-  // Add onError handler for logo image with improved error handling
-  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    const img = e.target as HTMLImageElement;
-    console.warn('Logo image failed to load:', img.src);
-    
-    // Fallback to PNG version if AVIF fails
-    if (img.src.includes('.avif')) {
-      img.src = '/Marzipan-Logo.png';
-    } else if (img.src.includes('-Rev.png') && img.src !== '/Marzipan-Logo.png') {
-      img.src = '/Marzipan-Logo.png';
-    }
-  };
   
   return (
     <Link to="/" className={`flex items-center ${className}`}>
@@ -35,8 +22,6 @@ const Logo = ({ variant = 'default', className = '' }: LogoProps) => {
         height="48"
         loading="eager"
         decoding="async"
-        fetchpriority="high"
-        onError={handleImageError}
       />
     </Link>
   );

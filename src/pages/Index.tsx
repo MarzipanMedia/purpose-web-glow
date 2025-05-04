@@ -16,37 +16,23 @@ import FinalCTA from '@/components/home/FinalCTA';
 import CarbonShowcase from '@/components/carbon/CarbonShowcase';
 
 const Index = () => {
-  // Add scroll animation observer - only initialize after LCP has occurred
+  // Add scroll animation observer
   useEffect(() => {
-    // First, mark that content is now interactive
-    const markInteractive = () => {
-      const lcpElement = document.querySelector('[data-lcp="true"]');
-      if (lcpElement) {
-        lcpElement.classList.add('lcp-loaded');
-      }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    animatedElements.forEach(el => observer.observe(el));
+
+    return () => {
+      animatedElements.forEach(el => observer.unobserve(el));
     };
-    
-    // Wait a moment before initializing non-critical animations
-    setTimeout(markInteractive, 100);
-    
-    // Initialize scroll animations with a delay to not interfere with LCP
-    setTimeout(() => {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.1 });
-
-      const animatedElements = document.querySelectorAll('.animate-on-scroll');
-      animatedElements.forEach(el => observer.observe(el));
-
-      return () => {
-        animatedElements.forEach(el => observer.unobserve(el));
-      };
-    }, 800); // Delay scroll animations to prioritize LCP
   }, []);
 
   return (
@@ -54,14 +40,12 @@ const Index = () => {
       <MetaHead 
         title="Sustainable Web Design & Affordable SEO" 
         description="Sustainable Web Design & AI-Driven SEO for Purpose-Driven Brands. Ensuring your online presence is as powerful as your purpose."
-        canonicalUrl="https://marzipan.com.au/"
+        canonicalUrl="https://marzipan.com.au/" // Add canonical URL
       />
-      
-      {/* Render critical elements first */}
       <Header />
-      <Hero />
       
       <main className="flex-grow">
+        <Hero />
         <StatsSection />
         <CarbonShowcase />
         

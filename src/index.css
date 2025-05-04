@@ -66,56 +66,19 @@
     --input: 240 3.7% 15.9%;
     --ring: 196 67% 27%;
   }
+}
 
+@layer base {
   * {
     @apply border-border;
   }
   
   body {
     @apply bg-background text-foreground font-body;
-    font-display: swap;
   }
   
   h1, h2, h3, h4, h5, h6 {
     @apply font-display font-medium dark:text-white;
-    font-display: swap;
-  }
-  
-  /* Optimize images */
-  img {
-    max-width: 100%;
-    height: auto;
-    object-fit: contain;
-    will-change: transform;
-  }
-
-  /* Better image error handling */
-  img.image-placeholder {
-    background-color: #f0f0f0;
-    border: 1px dashed #ccc;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100px;
-  }
-}
-
-/* Critical CSS for above-the-fold content - moved to top */
-@layer utilities {
-  /* Move critical utilities to the top */
-  .font-display {
-    font-family: 'Jost', 'Public Sans', sans-serif;
-    font-display: swap;
-  }
-
-  .font-body {
-    font-family: 'Public Sans', 'Mulish', sans-serif;
-    font-display: swap;
-  }
-  
-  /* Animation utilities - delayed to prevent LCP interference */
-  .animate-fade-in {
-    animation: fadeIn 0.5s ease-out forwards;
   }
 }
 
@@ -166,9 +129,8 @@
     @apply transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full;
   }
   
-  /* Scroll Animation Classes - ensure they don't interfere with LCP */
+  /* Scroll Animation Classes */
   .animate-on-scroll {
-    opacity: 0;
     transition: opacity 0.6s, transform 0.6s;
     transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
     transform: translateY(20px);
@@ -180,7 +142,6 @@
   }
 }
 
-/* Animation keyframes - moved lower in the CSS */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -212,6 +173,19 @@
     opacity: 1;
     transform: scale(1);
   }
+}
+
+/* Critical CSS for above-the-fold content */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.7s ease forwards;
+}
+
+.animate-appear {
+  animation: appear 0.4s ease-out forwards;
 }
 
 /* Delay animation for non-critical elements */
@@ -296,17 +270,4 @@
   .grid.grid-cols-1.lg\:grid-cols-2 {
     align-items: flex-start;
   }
-}
-
-/* Critical LCP styling - ensure the LCP element is prioritized */
-[data-lcp="true"] {
-  /* Remove content-visibility as it can delay LCP */
-  display: block;
-}
-
-/* Ensure proper rendering of placeholder images */
-.image-placeholder::before {
-  content: "Image not available";
-  font-size: 14px;
-  color: #666;
 }
