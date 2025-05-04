@@ -18,6 +18,11 @@ const Logo = ({ variant = 'default', className = '' }: LogoProps) => {
         src={logoSrc} 
         alt="Marzipan Sydney" 
         className="h-auto max-h-10 md:max-h-12 w-auto transition-transform hover:scale-[1.02]"
+        width="180"
+        height="48"
+        fetchpriority="high"
+        loading="eager"
+        decoding="async"
       />
     </Link>
   );

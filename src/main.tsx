@@ -32,6 +32,20 @@ const preloadFonts = () => {
 // Execute preloading immediately
 preloadFonts();
 
+// Preload logo image
+const preloadLogo = () => {
+  const logoLink = document.createElement('link');
+  logoLink.rel = 'preload';
+  logoLink.as = 'image';
+  logoLink.href = '/marzipan-sydney-webdesign.avif';
+  logoLink.type = 'image/avif';
+  logoLink.setAttribute('fetchpriority', 'high');
+  document.head.appendChild(logoLink);
+};
+
+// Execute logo preloading
+preloadLogo();
+
 // Monitor and report LCP for debugging
 const measureLCP = () => {
   if (!('PerformanceObserver' in window)) return;
