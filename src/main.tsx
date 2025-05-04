@@ -39,25 +39,48 @@ const preloadLogo = () => {
   logoLink.as = 'image';
   logoLink.href = '/marzipan-sydney-webdesign.avif';
   logoLink.type = 'image/avif';
-  logoLink.setAttribute('fetchpriority', 'high');
   document.head.appendChild(logoLink);
 };
 
 // Execute logo preloading
 preloadLogo();
 
-// Monitor and report LCP for debugging
+// Enhanced LCP monitoring for debugging
 const measureLCP = () => {
-  if (!('PerformanceObserver' in window)) return;
+  if (!('PerformanceObserver' in window)) {
+    console.warn('PerformanceObserver not supported in this browser');
+    return;
+  }
 
   try {
+    // Find elements marked as LCP
+    const lcpElements = document.querySelectorAll('[data-lcp="true"]');
+    if (lcpElements.length === 0) {
+      console.warn('No elements marked as LCP found on page');
+    } else if (lcpElements.length > 1) {
+      console.warn(`Found ${lcpElements.length} elements marked as LCP. Should only have one.`);
+      lcpElements.forEach((el, i) => {
+        console.log(`LCP candidate ${i+1}:`, el);
+      });
+    } else {
+      console.log('Found LCP element:', lcpElements[0]);
+    }
+
+    // Observe LCP
     const lcpObserver = new PerformanceObserver((entryList) => {
       const entries = entryList.getEntries();
       const lcpEntry = entries[entries.length - 1];
-      console.log('LCP:', lcpEntry.startTime);
+      console.log('LCP detected:', lcpEntry);
+      console.log('LCP time:', lcpEntry.startTime);
+      
       // Type assertion for LargestContentfulPaint entry which has the element property
       if (lcpEntry && 'element' in lcpEntry) {
         console.log('LCP element:', lcpEntry.element);
+        console.log('LCP element HTML:', lcpEntry.element.outerHTML);
+        
+        // Check if the LCP element is the one we marked with data-lcp="true"
+        const isMarkedAsLCP = lcpEntry.element.hasAttribute('data-lcp');
+        console.log('Is this element marked as LCP?', isMarkedAsLCP);
       }
     });
     
@@ -84,8 +107,10 @@ window.addEventListener('error', function(e) {
   }
 }, true);
 
-// Execute LCP measurement
-measureLCP();
+// Execute LCP measurement after initial render
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(measureLCP, 500); // Give some time for content to load
+});
 
 // Optimize component mounting
 createRoot(document.getElementById("root")!).render(<App />);
