@@ -13,7 +13,7 @@ import IndexAlt from "./pages/IndexAlt";
 import Services from "./pages/Services";
 import Projects from "./pages/Projects";
 import About from "./pages/About";
-import Blog from "./pages/Blog";
+// import Blog from "./pages/Blog"; // Commented out static blog
 import BlogWithWordPress from "./pages/BlogWithWordPress";
 import NotFound from "./pages/NotFound";
 import Contact from "./pages/Contact";
@@ -30,7 +30,17 @@ import Terms from "./pages/Terms";
 import BenAdams from "./pages/BenAdams";
 import AlwaysWas from "./pages/AlwaysWas";
 
-const queryClient = new QueryClient();
+// Create a cache-optimized query client with proper settings for WordPress API
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 60 * 1000, // 5 minutes
+      gcTime: 10 * 60 * 1000, // 10 minutes
+      refetchOnWindowFocus: false,
+      retry: 1,
+    },
+  },
+});
 
 // Mobile-optimized page transition wrapper component
 const PageTransition = ({ children }: { children: React.ReactNode }) => {
@@ -77,8 +87,9 @@ const App = () => (
               <Route path="/projects" element={<PageTransition><Projects /></PageTransition>} />
               <Route path="/projects/:slug" element={<PageTransition><ProjectDetail /></PageTransition>} />
               <Route path="/about" element={<PageTransition><About /></PageTransition>} />
-              <Route path="/blog" element={<PageTransition><Blog /></PageTransition>} />
-              <Route path="/wordpress-blog" element={<PageTransition><BlogWithWordPress /></PageTransition>} />
+              {/* Changed default blog route to use WordPress version */}
+              <Route path="/blog" element={<PageTransition><BlogWithWordPress /></PageTransition>} />
+              <Route path="/static-blog" element={<PageTransition><BlogWithWordPress /></PageTransition>} />
               <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
               <Route path="/website-carbon" element={<PageTransition><WebsiteCarbon /></PageTransition>} />
               <Route path="/resources" element={<PageTransition><Resources /></PageTransition>} />

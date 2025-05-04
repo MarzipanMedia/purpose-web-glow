@@ -6,9 +6,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useFetchPosts } from '@/services/wordpressService';
 import { format } from 'date-fns';
+import { Skeleton } from "@/components/ui/skeleton";
 
 const BlogPreview: React.FC = () => {
-  const { data: postsData, isLoading, error } = useFetchPosts(3);
+  // Changed to page 1 to get the most recent posts
+  const { data: postsData, isLoading, error } = useFetchPosts(1, 3);
 
   const getBackgroundColor = (index: number) => {
     const colors = ["#FEF7CD", "#F2FCE2", "#D3E4FD"];
@@ -34,7 +36,7 @@ const BlogPreview: React.FC = () => {
           </div>
           <h2 className="text-3xl md:text-4xl font-display font-semibold opacity-0 animate-fade-in"
               style={{ animationDelay: "0.2s", animationFillMode: "forwards" }}>
-            From The Marzipan Blog
+            From Our WordPress Blog
           </h2>
           <p className="mt-4 text-foreground/80 opacity-0 animate-fade-in"
              style={{ animationDelay: "0.3s", animationFillMode: "forwards" }}>
@@ -45,20 +47,25 @@ const BlogPreview: React.FC = () => {
         {isLoading ? (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[1, 2, 3].map((_, index) => (
-              <Card key={index} className="h-[350px] animate-pulse">
-                <div className="aspect-[16/9] bg-gray-200" />
+              <Card key={index} className="h-[350px]">
+                <div className="aspect-[16/9] w-full">
+                  <Skeleton className="h-full w-full" />
+                </div>
                 <CardContent className="p-6">
-                  <div className="h-4 bg-gray-200 rounded w-1/4 mb-3" />
-                  <div className="h-6 bg-gray-200 rounded w-3/4 mb-3" />
-                  <div className="h-4 bg-gray-200 rounded w-full mb-4" />
-                  <div className="h-4 bg-gray-200 rounded w-1/3" />
+                  <Skeleton className="h-4 w-1/4 mb-3" />
+                  <Skeleton className="h-6 w-3/4 mb-3" />
+                  <Skeleton className="h-4 w-full mb-4" />
+                  <Skeleton className="h-4 w-1/3" />
                 </CardContent>
               </Card>
             ))}
           </div>
         ) : error ? (
-          <div className="text-center text-red-500">
-            Unable to load blog posts. Please try again later.
+          <div className="text-center p-8 border border-marzipan/30 rounded-lg">
+            <p className="text-foreground/80 mb-4">We couldn't load the latest blog posts right now.</p>
+            <Link to="/blog" className="btn-secondary flex items-center gap-2 mx-auto w-fit">
+              Visit Our Blog <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -80,10 +87,11 @@ const BlogPreview: React.FC = () => {
                       loading={index === 0 ? "eager" : "lazy"}
                       width="400"
                       height="225"
+                      fetchpriority={index === 0 ? "high" : "low"}
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-foreground/30 group-hover:scale-105 transition-transform duration-500">
-                      <span className="text-sm font-medium">Featured Image</span>
+                      <span className="text-sm font-medium">Marzipan Blog</span>
                     </div>
                   )}
                 </div>
@@ -101,12 +109,14 @@ const BlogPreview: React.FC = () => {
                   <p className="text-foreground/80 mb-4 line-clamp-2">
                     {stripHtmlTags(post.excerpt.rendered)}
                   </p>
-                  <Link 
-                    to={`/blog/${post.id}`} 
+                  <a 
+                    href={post.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 text-brandRed font-medium transition-all hover:gap-2"
                   >
                     Read Article <ArrowRight className="h-4 w-4 transition-all" />
-                  </Link>
+                  </a>
                 </CardContent>
               </Card>
             ))}

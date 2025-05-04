@@ -1,3 +1,4 @@
+
 import { useQuery, useMutation } from '@tanstack/react-query';
 
 export interface WordPressPost {
@@ -9,13 +10,34 @@ export interface WordPressPost {
   excerpt: {
     rendered: string;
   };
+  content?: {
+    rendered: string;
+  };
   link: string;
   _embedded?: {
     'wp:featuredmedia'?: Array<{
       source_url: string;
+      media_details?: {
+        sizes?: {
+          medium?: {
+            source_url: string;
+          };
+          thumbnail?: {
+            source_url: string;
+          };
+        };
+      };
     }>;
+    'wp:term'?: Array<Array<{
+      id: number;
+      name: string;
+      slug: string;
+    }>>;
     author?: Array<{
       name: string;
+      avatar_urls?: {
+        [key: string]: string;
+      };
     }>;
   };
   categories?: number[];
@@ -51,31 +73,56 @@ export interface CarbonResult {
 }
 
 // Replace with your actual WordPress site URL
-const API_URL = 'https://marzipan.com.au/wp-json/wp/v2/posts';
+const API_URL = 'https://marzipan.com.au/wp-json/wp/v2';
 
 // If you have WordPress REST API custom endpoints set up for emails
 // Replace with your actual endpoint
 const EMAIL_ENDPOINT = 'https://marzipan.com.au/wp-json/marzipan/v1/send-email';
 
+// Pre-connect to WordPress domain to improve performance
+if (typeof document !== 'undefined') {
+  const link = document.createElement('link');
+  link.rel = 'preconnect';
+  link.href = 'https://marzipan.com.au';
+  link.crossOrigin = 'anonymous';
+  document.head.appendChild(link);
+}
+
 export const useFetchPosts = (page = 1, perPage = 3) => {
   return useQuery({
     queryKey: ['wordpressPosts', page, perPage],
     queryFn: async () => {
-      console.log(`Fetching WordPress posts: ${API_URL}?_embed&page=${page}&per_page=${perPage}`);
-      const response = await fetch(`${API_URL}?_embed&page=${page}&per_page=${perPage}`);
+      console.log(`Fetching WordPress posts: ${API_URL}/posts?_embed&page=${page}&per_page=${perPage}`);
       
-      if (!response.ok) {
-        throw new Error(`WordPress API error: ${response.status}`);
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 8000); // 8-second timeout
+        
+        const response = await fetch(`${API_URL}/posts?_embed&page=${page}&per_page=${perPage}`, {
+          signal: controller.signal
+        });
+        
+        clearTimeout(timeoutId);
+        
+        if (!response.ok) {
+          throw new Error(`WordPress API error: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        return {
+          posts: data as WordPressPost[],
+          totalPages: parseInt(response.headers.get('X-WP-TotalPages') || '1'),
+          total: parseInt(response.headers.get('X-WP-Total') || '0')
+        };
+      } catch (error) {
+        if ((error as Error).name === 'AbortError') {
+          throw new Error('WordPress API request timed out');
+        }
+        throw error;
       }
-      
-      const data = await response.json();
-      return {
-        posts: data as WordPressPost[],
-        totalPages: parseInt(response.headers.get('X-WP-TotalPages') || '1'),
-        total: parseInt(response.headers.get('X-WP-Total') || '0')
-      };
     },
     retry: 1,
+    retryDelay: 1000,
     networkMode: 'always',
     refetchOnWindowFocus: false,
     staleTime: 5 * 60 * 1000, // 5 minutes
