@@ -40,12 +40,14 @@ const Index = () => {
       <MetaHead 
         title="Sustainable Web Design & Affordable SEO" 
         description="Sustainable Web Design & AI-Driven SEO for Purpose-Driven Brands. Ensuring your online presence is as powerful as your purpose."
-        canonicalUrl="https://marzipan.com.au/" // Add canonical URL
+        canonicalUrl="https://marzipan.com.au/"
       />
+      
+      {/* Render critical elements first */}
       <Header />
+      <Hero />
       
       <main className="flex-grow">
-        <Hero />
         <StatsSection />
         <CarbonShowcase />
         

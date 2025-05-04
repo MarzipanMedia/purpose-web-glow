@@ -9,12 +9,11 @@ const Hero = () => {
       <div className="container-custom">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
           <div className="md:col-span-7 space-y-6 animate-fade-in" style={{ animationDelay: "0.1s" }}>
-            {/* Ensure this heading is marked as the LCP element */}
+            {/* LCP heading moved to beginning of section for faster rendering */}
             <h1 
               className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight"
               id="main-heading"
               data-lcp="true"
-              fetchpriority="high"
             >
               Ensuring your online presence is as powerful as your 
               <span className="gradient-text"> purpose</span>

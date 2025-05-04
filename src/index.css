@@ -75,10 +75,48 @@
   
   body {
     @apply bg-background text-foreground font-body;
+    font-display: swap;
   }
   
   h1, h2, h3, h4, h5, h6 {
     @apply font-display font-medium dark:text-white;
+    font-display: swap;
+  }
+  
+  /* Optimize images */
+  img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    will-change: transform;
+  }
+
+  /* Better image error handling */
+  img.image-placeholder {
+    background-color: #f0f0f0;
+    border: 1px dashed #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100px;
+  }
+}
+
+/* Critical CSS for above-the-fold content */
+@layer utilities {
+  /* Move critical utilities to the top */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease forwards;
+  }
+
+  .font-display {
+    font-family: 'Jost', 'Public Sans', sans-serif;
+    font-display: swap;
+  }
+
+  .font-body {
+    font-family: 'Public Sans', 'Mulish', sans-serif;
+    font-display: swap;
   }
 }
 
@@ -175,19 +213,6 @@
   }
 }
 
-/* Critical CSS for above-the-fold content */
-.animate-fade-in {
-  animation: fadeIn 0.5s ease forwards;
-}
-
-.animate-slide-up {
-  animation: slideUp 0.7s ease forwards;
-}
-
-.animate-appear {
-  animation: appear 0.4s ease-out forwards;
-}
-
 /* Delay animation for non-critical elements */
 @media (prefers-reduced-motion: no-preference) {
   .stagger-item:nth-child(1) { animation-delay: 0.1s; }
@@ -270,4 +295,17 @@
   .grid.grid-cols-1.lg\:grid-cols-2 {
     align-items: flex-start;
   }
+}
+
+/* Critical image loading */
+[data-lcp="true"] {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
+}
+
+/* Ensure proper rendering of placeholder images */
+.image-placeholder::before {
+  content: "Image not available";
+  font-size: 14px;
+  color: #666;
 }
