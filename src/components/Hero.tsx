@@ -8,7 +8,7 @@ const Hero = () => {
   const isMobile = useIsMobile();
   
   return (
-    <section className="relative overflow-hidden py-16 md:py-28 bg-gradient-subtle">
+    <section className="relative overflow-hidden py-16 md:py-28 bg-gradient-to-br from-white via-brandRed/5 to-brandRed/10">
       <div className="container-custom">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center">
           <div className="md:col-span-7 space-y-4 md:space-y-6">
