@@ -9,7 +9,11 @@ const HeroSection = () => {
           <div className="inline-block bg-brandBlue/10 text-brandBlue px-4 py-1 rounded-full mb-4">
             Our Work
           </div>
-          <h1 className="text-4xl md:text-5xl font-display font-bold mb-6">
+          <h1 
+            className="text-4xl md:text-5xl font-display font-bold mb-6"
+            fetchpriority="high"
+            id="projects-heading"
+          >
             Sustainable Digital Success Stories
           </h1>
           <p className="text-lg text-foreground/80">
