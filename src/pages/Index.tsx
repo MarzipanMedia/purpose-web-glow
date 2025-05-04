@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
@@ -40,7 +39,6 @@ const Index = () => {
       <MetaHead 
         title="Sustainable Web Design & Affordable SEO" 
         description="Sustainable Web Design & AI-Driven SEO for Purpose-Driven Brands. Ensuring your online presence is as powerful as your purpose."
-        canonicalUrl="https://marzipan.com.au/" // Add canonical URL
       />
       <Header />
       

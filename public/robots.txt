@@ -1,11 +1,9 @@
 
 User-agent: Googlebot
 Allow: /
-Crawl-delay: 1
 
 User-agent: Bingbot
 Allow: /
-Crawl-delay: 2
 
 User-agent: Twitterbot
 Allow: /
@@ -15,15 +13,5 @@ Allow: /
 
 User-agent: *
 Allow: /
-Crawl-delay: 10
 
-# Sitemaps
 Sitemap: https://marzipan.com.au/sitemap.xml
-Sitemap: https://marzipan.com.au/sitemap-main.xml
-Sitemap: https://marzipan.com.au/wp-sitemap.xml
-
-# Disallow specific paths
-Disallow: /wp-admin/
-Disallow: /wp-includes/
-Disallow: /wp-content/plugins/
-Disallow: /wp-json/

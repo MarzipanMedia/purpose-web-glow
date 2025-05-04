@@ -8,7 +8,6 @@ interface MetaHeadProps {
   image?: string;
   type?: 'website' | 'article' | 'blog';
   url?: string;
-  canonicalUrl?: string; // New prop for canonical URLs
 }
 
 const MetaHead = ({
@@ -17,16 +16,12 @@ const MetaHead = ({
   image = '/Marzipan-Logo.png',
   type = 'website',
   url,
-  canonicalUrl,
 }: MetaHeadProps) => {
   // Construct full title with brand name
   const fullTitle = `${title} | Marzipan Digital`;
   
   // Get current URL if not provided
   const currentUrl = url || window.location.href;
-  
-  // Use canonicalUrl if provided, otherwise use currentUrl
-  const canonical = canonicalUrl || currentUrl;
 
   // Organization Schema
   const organizationSchema = {
@@ -56,9 +51,6 @@ const MetaHead = ({
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
       
-      {/* Canonical URL */}
-      <link rel="canonical" href={canonical} />
-      
       {/* Open Graph meta tags */}
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
@@ -84,3 +76,4 @@ const MetaHead = ({
 };
 
 export default MetaHead;
+
