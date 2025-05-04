@@ -31,7 +31,8 @@ const measureLCP = () => {
       console.info('LCP time:', lcpEntry.startTime);
       
       if (lcpEntry && 'element' in lcpEntry) {
-        const lcpElement = lcpEntry.element;
+        // Type assertion to HTMLElement since we know it's a DOM element
+        const lcpElement = lcpEntry.element as HTMLElement;
         console.info('LCP element:', lcpElement);
         console.info('LCP element HTML:', lcpElement.outerHTML);
         
