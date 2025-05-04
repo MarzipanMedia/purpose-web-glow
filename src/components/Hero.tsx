@@ -9,7 +9,7 @@ const Hero = () => {
       <div className="container-custom">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
           <div className="md:col-span-7 space-y-6">
-            {/* Mark as LCP element with no animation delay */}
+            {/* Optimized LCP element with no animation delays and proper attributes */}
             <h1 
               className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight"
               id="main-heading"
@@ -35,11 +35,11 @@ const Hero = () => {
           
           <div className="md:col-span-5">
             <div className="relative">
-              {/* Add multiple pulse rings */}
+              {/* More subtle pulse rings with reduced animation impact */}
               {[...Array(3)].map((_, i) => (
                 <div
                   key={i}
-                  className="absolute inset-0 bg-gradient-radial from-brandBlue/20 to-transparent opacity-70 rounded-full animate-pulse-slow"
+                  className="absolute inset-0 bg-gradient-radial from-brandBlue/20 to-transparent opacity-70 rounded-full"
                   style={{ 
                     transform: `scale(${1 + i * 0.05})` 
                   }}

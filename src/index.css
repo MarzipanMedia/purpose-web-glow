@@ -1,6 +1,5 @@
-
-/* Keep only Questrial & Mulish fonts */
-@import url('https://fonts.googleapis.com/css2?family=Questrial&family=Mulish:wght@300;400;500;600;700&display=swap');
+/* We're removing the Google Fonts import as it's now handled in index.html */
+/* This ensures we don't have conflicting font loading strategies */
 
 @tailwind base;
 @tailwind components;
@@ -177,7 +176,7 @@
   }
 }
 
-/* Critical CSS for above-the-fold content - simplified */
+/* Critical CSS for above-the-fold content - no delays */
 .animate-fade-in {
   animation: fadeIn 0.5s ease forwards;
   animation-delay: 0s !important; /* Override any animation delays */

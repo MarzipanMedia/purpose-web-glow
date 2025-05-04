@@ -22,6 +22,7 @@ const Logo = ({ variant = 'default', className = '' }: LogoProps) => {
         height="48"
         loading="eager"
         decoding="async"
+        // Remove fetchpriority="high" to not compete with the main LCP element
       />
     </Link>
   );
