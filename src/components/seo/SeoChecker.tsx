@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Search, Link, FileSearch, BarChart, AlertTriangle, Check } from 'lucide-react';
 import { useForm } from 'react-hook-form';
@@ -29,11 +28,11 @@ const SeoChecker: React.FC = () => {
       const seoResults = {
         url: data.websiteUrl,
         score: 68,
-        title: "Your website could be optimized better",
+        title: "Your website could be optimised better",
         overview: {
-          title: data.websiteUrl.includes("marzipan") ? "Marzipan Digital | Sustainable Web Design" : "Website Title Needs Optimization",
+          title: data.websiteUrl.includes("marzipan") ? "Marzipan Digital | Sustainable Web Design" : "Website Title Needs Optimisation",
           titleScore: data.websiteUrl.includes("marzipan") ? 85 : 60,
-          metaDescription: "Your meta description needs optimization for better click-through rates.",
+          metaDescription: "Your meta description needs optimisation for better click-through rates.",
           metaScore: 50,
           headings: "Some heading structure issues were found.",
           headingsScore: 70,
@@ -97,7 +96,7 @@ const SeoChecker: React.FC = () => {
                   })}
                 />
                 <Button type="submit" disabled={isAnalyzing} className="bg-brandRed hover:bg-brandRed/90">
-                  {isAnalyzing ? "Analyzing..." : "Check SEO"}
+                  {isAnalyzing ? "Analysing..." : "Check SEO"}
                 </Button>
               </div>
               {errors.websiteUrl && (
@@ -106,19 +105,20 @@ const SeoChecker: React.FC = () => {
             </div>
             
             <div className="text-sm text-center text-muted-foreground">
-              We'll analyze your website and provide personalized SEO recommendations
+              We'll analyse your website and provide personalised SEO recommendations
             </div>
           </form>
 
           {isAnalyzing && (
             <div className="mt-8 space-y-4 text-center">
-              <h3 className="text-xl font-display">Analyzing your website...</h3>
+              <h3 className="text-xl font-display">Analysing your website...</h3>
               <Progress value={65} className="w-full" />
               <p className="text-sm text-muted-foreground">This may take a few moments</p>
             </div>
           )}
         </div>
       ) : (
+        
         <div className="space-y-6">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <div>
@@ -158,7 +158,7 @@ const SeoChecker: React.FC = () => {
                   <p className="text-xs text-muted-foreground mt-1">
                     {results.overview.titleScore > 70 
                       ? "Good title length and keyword placement" 
-                      : "Consider optimizing your page title with relevant keywords"}
+                      : "Consider optimising your page title with relevant keywords"}
                   </p>
                 </CardContent>
               </Card>

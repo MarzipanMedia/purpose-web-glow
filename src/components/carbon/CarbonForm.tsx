@@ -36,7 +36,7 @@ const CarbonForm: React.FC<CarbonFormProps> = ({ isLoading, onSubmit }) => {
       <CardHeader>
         <CardTitle className="text-xl dark:text-white">Check your website's carbon footprint</CardTitle>
         <CardDescription className="dark:text-gray-400">
-          Enter a URL to analyze its environmental impact
+          Enter a URL to analyse its environmental impact
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -105,7 +105,7 @@ const CarbonForm: React.FC<CarbonFormProps> = ({ isLoading, onSubmit }) => {
               {isLoading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Analyzing...
+                  Analysing...
                 </>
               ) : "Check Carbon Footprint"}
             </Button>

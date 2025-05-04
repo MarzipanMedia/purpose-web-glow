@@ -37,7 +37,7 @@ const ProjectDetailSidebar: React.FC<ProjectDetailSidebarProps> = ({ project }) 
                     Sustainable Web Design
                   </span>
                   <span className="text-xs px-2 py-1 bg-brandBlue/10 text-brandBlue rounded-full">
-                    SEO Optimization
+                    SEO Optimisation
                   </span>
                 </>
               )}

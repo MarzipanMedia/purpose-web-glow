@@ -1,3 +1,4 @@
+
 export interface VideoData {
   url: string;
   title: string;
@@ -214,7 +215,7 @@ export const processSteps: ProcessStep[] = [
   {
     step: "04",
     title: "Efficient Development",
-    description: "Clean, optimized code ensures your website runs as efficiently as possible."
+    description: "Clean, optimised code ensures your website runs as efficiently as possible."
   },
   {
     step: "05",
@@ -223,7 +224,7 @@ export const processSteps: ProcessStep[] = [
   },
   {
     step: "06",
-    title: "Continuous Optimization",
+    title: "Continuous Optimisation",
     description: "Regular audits and improvements to maintain and enhance sustainability over time."
   }
 ];
