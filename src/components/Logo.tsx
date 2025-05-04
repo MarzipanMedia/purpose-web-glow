@@ -20,6 +20,7 @@ const Logo = ({ variant = 'default', className = '' }: LogoProps) => {
         className="h-auto max-h-10 md:max-h-12 w-auto transition-transform hover:scale-[1.02]"
         width="180"
         height="48"
+        fetchpriority="high"
         loading="eager"
         decoding="async"
       />

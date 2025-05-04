@@ -21,8 +21,8 @@ const ClientLogos: React.FC = () => {
     { id: 8, name: "LA Gum", imageUrl: "/client-logos/lagum-seo-logo.png", alt: "LA Gum SEO SEM Socials" },
     { id: 9, name: "NSW GOv", imageUrl: "/client-logos/nsw-scm2701-logo.png", alt: "NSW SCM2701 qualified" },
     { id: 10, name: "NipCo SEO", imageUrl: "/client-logos/nipco-seo-logo.png", alt: "NipCo SEO" },
-    { id: 11, name: "Birchal", imageUrl: "/client-logos/birchal-sem-logo.png", alt: "Birchal Approved" },
-    { id: 12, name: "Focus", imageUrl: "/client-logos/focus.png", alt: "Focus SEO" },
+{ id: 11, name: "Birchal", imageUrl: "/client-logos/birchal-sem-logo.png", alt: "Birchal Approved" },
+{ id: 12, name: "Focus", imageUrl: "/client-logos/focus.png", alt: "Focus SEO" },
   ];
 
   return (
@@ -51,15 +51,11 @@ const ClientLogos: React.FC = () => {
                 src={logo.imageUrl} 
                 alt={logo.alt} 
                 className="max-h-16 max-w-full object-contain"
-                loading="lazy"
                 onError={(e) => {
-                  console.log(`Image failed to load: ${logo.imageUrl}`);
+                  // Fallback if the image fails to load
                   const target = e.target as HTMLImageElement;
                   target.style.display = 'none';
-                  const parent = target.parentElement;
-                  if (parent) {
-                    parent.innerHTML = `<div class="text-foreground/40 font-medium dark:text-gray-300">${logo.name}</div>`;
-                  }
+                  target.parentElement!.innerHTML = `<div class="text-foreground/40 font-medium dark:text-gray-300">${logo.name}</div>`;
                 }}
               />
             </div>
@@ -77,15 +73,11 @@ const ClientLogos: React.FC = () => {
                 src={logo.imageUrl} 
                 alt={logo.alt} 
                 className="max-h-16 max-w-full object-contain"
-                loading="lazy"
                 onError={(e) => {
-                  console.log(`Image failed to load: ${logo.imageUrl}`);
+                  // Fallback if the image fails to load
                   const target = e.target as HTMLImageElement;
                   target.style.display = 'none';
-                  const parent = target.parentElement;
-                  if (parent) {
-                    parent.innerHTML = `<div class="text-foreground/40 font-medium dark:text-gray-300">${logo.name}</div>`;
-                  }
+                  target.parentElement!.innerHTML = `<div class="text-foreground/40 font-medium dark:text-gray-300">${logo.name}</div>`;
                 }}
               />
             </div>
