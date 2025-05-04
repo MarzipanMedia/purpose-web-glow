@@ -40,12 +40,12 @@ const Hero = () => {
           {/* Only render decorative content when not mobile or after a delay */}
           <div className="md:col-span-5 mt-6 md:mt-0">
             <div className="relative">
-              {/* Removed animation for better performance */}
-              <div className="bg-marzipan/80 rounded-full aspect-square flex items-center justify-center p-8 md:p-12 relative z-10">
+              {/* Updated with gradient styling */}
+              <div className="bg-gradient-to-br from-yellow-500 via-brandRed to-brandRed/80 rounded-full aspect-square flex items-center justify-center p-8 md:p-12 relative z-10 text-white shadow-lg transition-all duration-700">
                 <div className="text-center">
                   <p className="text-lg md:text-xl font-display">Eco-friendly</p>
                   <h2 className="text-2xl md:text-3xl font-display font-semibold">Web Design</h2>
-                  <p className="mt-2 text-foreground/80">For purpose-driven brands</p>
+                  <p className="mt-2 text-white/80">For purpose-driven brands</p>
                 </div>
               </div>
             </div>
