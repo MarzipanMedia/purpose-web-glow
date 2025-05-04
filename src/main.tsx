@@ -31,7 +31,7 @@ const measureLCP = () => {
       console.info('LCP time:', lcpEntry.startTime);
       
       if (lcpEntry && 'element' in lcpEntry) {
-        // Type assertion to HTMLElement since we know it's a DOM element
+        // Proper type assertions to avoid TypeScript errors
         const lcpElement = lcpEntry.element as HTMLElement;
         console.info('LCP element:', lcpElement);
         console.info('LCP element HTML:', lcpElement.outerHTML);
@@ -44,7 +44,10 @@ const measureLCP = () => {
         if (!isMarkedAsLCP) {
           console.warn('Browser chose a different element as LCP than what we marked');
           console.info('Browser-selected LCP element:', lcpElement);
-          console.info('Our marked LCP element:', lcpElements[0]);
+          const markedElements = document.querySelectorAll('[data-lcp="true"]');
+          if (markedElements.length > 0) {
+            console.info('Our marked LCP element:', markedElements[0]);
+          }
         }
       }
     });
@@ -77,10 +80,14 @@ window.addEventListener('error', function(e) {
   }
 }, true);
 
-// Execute LCP measurement after initial render
-document.addEventListener('DOMContentLoaded', () => {
-  setTimeout(measureLCP, 300); // Give some time for content to load
-});
+// Optimize component mounting and LCP measurement
+const renderApp = () => {
+  const root = createRoot(document.getElementById("root")!);
+  root.render(<App />);
+  
+  // Measure LCP after the initial render but with a slight delay to ensure content has loaded
+  setTimeout(measureLCP, 500);
+};
 
-// Optimize component mounting
-createRoot(document.getElementById("root")!).render(<App />);
+// Start rendering as soon as possible
+renderApp();

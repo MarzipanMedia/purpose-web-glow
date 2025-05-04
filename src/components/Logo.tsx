@@ -12,7 +12,7 @@ const Logo = ({ variant = 'default', className = '' }: LogoProps) => {
     ? '/marzipan-sydney-webdesign.avif' 
     : '/Marzipan-Logo-Rev.png';
     
-  // Add onError handler for logo image
+  // Add onError handler for logo image with improved error handling
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
     const img = e.target as HTMLImageElement;
     console.warn('Logo image failed to load:', img.src);
@@ -35,6 +35,7 @@ const Logo = ({ variant = 'default', className = '' }: LogoProps) => {
         height="48"
         loading="eager"
         decoding="async"
+        fetchpriority="high"
         onError={handleImageError}
       />
     </Link>
