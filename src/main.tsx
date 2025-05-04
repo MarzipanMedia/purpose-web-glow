@@ -75,12 +75,11 @@ const measureLCP = () => {
       
       // Type assertion for LargestContentfulPaint entry which has the element property
       if (lcpEntry && 'element' in lcpEntry) {
-        const lcpElement = lcpEntry.element as HTMLElement; // Properly type-cast the element
-        console.log('LCP element:', lcpElement);
-        console.log('LCP element HTML:', lcpElement.outerHTML);
+        console.log('LCP element:', lcpEntry.element);
+        console.log('LCP element HTML:', lcpEntry.element.outerHTML);
         
         // Check if the LCP element is the one we marked with data-lcp="true"
-        const isMarkedAsLCP = lcpElement.hasAttribute('data-lcp');
+        const isMarkedAsLCP = lcpEntry.element.hasAttribute('data-lcp');
         console.log('Is this element marked as LCP?', isMarkedAsLCP);
       }
     });

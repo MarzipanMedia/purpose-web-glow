@@ -10,11 +10,10 @@ import CTASection from '../components/projects/CTASection';
 import ClientLogos from '../components/ClientLogos';
 import { Link } from 'react-router-dom';
 import BookGrid from '../components/books/BookGrid';
-import { ProjectData } from '../components/projects/projectsData';
 
 const BenAdams = () => {
   // Featured projects data
-  const featuredProjects: ProjectData[] = [
+  const featuredProjects = [
      {
     title: "Sydney Jewish Museum",
     imageUrl: "/jewish-museum-seo.png",
