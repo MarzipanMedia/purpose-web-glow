@@ -40,26 +40,9 @@ const Hero = () => {
           {/* Only render decorative content when not mobile or after a delay */}
           <div className="md:col-span-5 mt-6 md:mt-0">
             <div className="relative">
-              {/* Add radial gradient overlay for the glow effect */}
-              <div className="absolute inset-0 bg-gradient-radial from-yellow-500/30 via-brandRed/20 to-transparent opacity-70 rounded-full"></div>
-              
-              {/* Add subtle radial lines for additional visual effect (similar to HeroAlt) */}
-              <div className="absolute inset-0 w-full h-full">
-                {!isMobile && [...Array(8)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="absolute top-1/2 left-1/2 h-[120%] w-2 bg-gradient-to-t from-brandRed/0 via-brandRed/20 to-brandRed/0 rounded-full origin-bottom"
-                    style={{
-                      transform: `translate(-50%, -50%) rotate(${i * 45}deg)`,
-                      opacity: 0.6
-                    }}
-                  />
-                ))}
-              </div>
-              
-              {/* Updated with glow effect and pulse animation */}
+              {/* Updated with static gradient styling and shadow */}
               <div 
-                className="bg-gradient-to-br from-yellow-500 via-brandRed to-brandRed/80 rounded-full aspect-square flex items-center justify-center p-8 md:p-12 relative z-10 text-white shadow-lg transition-all duration-700 animate-pulse-slow"
+                className="bg-gradient-to-br from-yellow-500 via-brandRed to-brandRed/80 rounded-full aspect-square flex items-center justify-center p-8 md:p-12 relative z-10 text-white shadow-lg transition-all duration-700"
                 style={{ boxShadow: '0 0 25px rgba(174, 32, 18, 0.4), 0 0 10px rgba(251, 191, 36, 0.3)' }}
               >
                 <div className="text-center">
