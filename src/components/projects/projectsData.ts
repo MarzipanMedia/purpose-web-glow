@@ -48,7 +48,7 @@ export const projects: ProjectData[] = [
         url: "https://vimeo.com/577042403",
         title: "Holocaust Survivor Stories",
         description: "Personal testimonies that preserve history for future generations",
-        orientation: "portrait"
+        orientation: "landscape"
       },
       {
         url: "https://vimeo.com/609540655",
