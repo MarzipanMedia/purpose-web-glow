@@ -8,8 +8,8 @@ const Hero = () => {
     <section className="relative overflow-hidden py-20 md:py-28 bg-gradient-subtle">
       <div className="container-custom">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-          <div className="md:col-span-7 space-y-6 animate-fade-in" style={{ animationDelay: "0.1s" }}>
-            {/* Ensure this heading is marked as the LCP element */}
+          <div className="md:col-span-7 space-y-6">
+            {/* Mark as LCP element with no animation delay */}
             <h1 
               className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight"
               id="main-heading"
@@ -33,7 +33,7 @@ const Hero = () => {
             </div>
           </div>
           
-          <div className="md:col-span-5 animate-fade-in" style={{ animationDelay: "0.3s" }}>
+          <div className="md:col-span-5">
             <div className="relative">
               {/* Add multiple pulse rings */}
               {[...Array(3)].map((_, i) => (
@@ -41,7 +41,6 @@ const Hero = () => {
                   key={i}
                   className="absolute inset-0 bg-gradient-radial from-brandBlue/20 to-transparent opacity-70 rounded-full animate-pulse-slow"
                   style={{ 
-                    animationDelay: `${i * 1.3}s`,
                     transform: `scale(${1 + i * 0.05})` 
                   }}
                 />

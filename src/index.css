@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&family=Jost:wght@400;500;600;700&display=swap');
+
+/* Keep only Questrial & Mulish fonts */
+@import url('https://fonts.googleapis.com/css2?family=Questrial&family=Mulish:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -175,9 +177,10 @@
   }
 }
 
-/* Critical CSS for above-the-fold content */
+/* Critical CSS for above-the-fold content - simplified */
 .animate-fade-in {
   animation: fadeIn 0.5s ease forwards;
+  animation-delay: 0s !important; /* Override any animation delays */
 }
 
 .animate-slide-up {

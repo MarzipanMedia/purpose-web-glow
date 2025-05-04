@@ -3,13 +3,11 @@ import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 
-// Move font preloading to happen immediately
-// Preload critical resources
+// Preload only Questrial and Mulish fonts
 const preloadFonts = () => {
   // Add preload links for critical fonts with higher priority
   const preloadLinks = [
-    { rel: 'preload', href: 'https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap', as: 'style', importance: 'high' },
-    { rel: 'preload', href: 'https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap', as: 'style', importance: 'high' }
+    { rel: 'preload', href: 'https://fonts.googleapis.com/css2?family=Questrial&family=Mulish:wght@300;400;500;600;700&display=swap', as: 'style', importance: 'high' }
   ];
 
   preloadLinks.forEach(link => {
@@ -45,7 +43,7 @@ const preloadLogo = () => {
 // Execute logo preloading
 preloadLogo();
 
-// Enhanced LCP monitoring for debugging
+// Enhanced LCP monitoring with proper TypeScript typing
 const measureLCP = () => {
   if (!('PerformanceObserver' in window)) {
     console.warn('PerformanceObserver not supported in this browser');
@@ -66,22 +64,26 @@ const measureLCP = () => {
       console.log('Found LCP element:', lcpElements[0]);
     }
 
-    // Observe LCP
+    // Observe LCP with proper TypeScript typing
     const lcpObserver = new PerformanceObserver((entryList) => {
       const entries = entryList.getEntries();
       const lcpEntry = entries[entries.length - 1];
       console.log('LCP detected:', lcpEntry);
       console.log('LCP time:', lcpEntry.startTime);
       
-      // Type assertion for LargestContentfulPaint entry which has the element property
+      // Use type assertion and proper checking for LargestContentfulPaint entries
       if (lcpEntry && 'element' in lcpEntry) {
-        const lcpElement = lcpEntry.element as HTMLElement; // Properly type-cast the element
+        // Properly type the LCP element
+        const lcpElement = lcpEntry.element as HTMLElement;
         console.log('LCP element:', lcpElement);
-        console.log('LCP element HTML:', lcpElement.outerHTML);
         
-        // Check if the LCP element is the one we marked with data-lcp="true"
-        const isMarkedAsLCP = lcpElement.hasAttribute('data-lcp');
-        console.log('Is this element marked as LCP?', isMarkedAsLCP);
+        if (lcpElement && lcpElement instanceof HTMLElement) {
+          console.log('LCP element HTML:', lcpElement.outerHTML);
+          
+          // Check if the LCP element is the one we marked with data-lcp="true"
+          const isMarkedAsLCP = lcpElement.hasAttribute('data-lcp');
+          console.log('Is this element marked as LCP?', isMarkedAsLCP);
+        }
       }
     });
     
