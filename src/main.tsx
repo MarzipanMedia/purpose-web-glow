@@ -19,8 +19,8 @@ const measureLCP = () => {
         const lcpElement = lcpEntry.element;
         
         // Check if we hit our intended LCP target
-        // Fix: Add type guard to ensure lcpElement has an id property
-        if (lcpElement && 'id' in lcpElement && lcpElement.id === 'main-heading') {
+        // Fix: Use proper type guard to check if lcpElement is an object and has id property
+        if (lcpElement && typeof lcpElement === 'object' && lcpElement !== null && 'id' in lcpElement && lcpElement.id === 'main-heading') {
           console.log('LCP is targeting the intended element');
         }
       }
