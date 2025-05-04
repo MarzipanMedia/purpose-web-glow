@@ -14,7 +14,7 @@ const Hero = () => {
           <div className="md:col-span-7 space-y-4 md:space-y-6">
             {/* Mobile-optimized LCP heading - preloaded with priority */}
             <h1 
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight"
+              className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight"
               id="main-heading"
               data-lcp="true"
               fetchpriority="high"
