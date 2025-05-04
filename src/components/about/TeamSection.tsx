@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Linkedin, Mail, Twitter } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -38,6 +39,16 @@ const TeamSection = () => {
       }
     },
     {
+      name: "Tran Nguyen",
+      role: "Lead Developer",
+      bio: "Tran brings extensive expertise in creating performant, accessible web applications with a focus on sustainability and minimal environmental impact.",
+      image: "/placeholder.svg",
+      social: {
+        linkedin: "https://linkedin.com/in/trannguyen",
+        email: "tran@marzipan.com.au"
+      }
+    },
+    {
       name: "Sarah Chen",
       role: "Head of Sustainable Web Design",
       bio: "Sarah specialises in creating beautiful, lightweight websites that minimize carbon footprint without compromising on user experience.",
@@ -70,7 +81,7 @@ const TeamSection = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {teamMembers.map((member, index) => (
             <div 
               key={index} 
