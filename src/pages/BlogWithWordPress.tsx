@@ -1,23 +1,19 @@
-
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { ArrowRight, Calendar, Clock, Tag, AlertCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useFetchPosts, useFetchCategories } from '../services/wordpressService';
+import { useFetchPosts, useFetchCategories, extractPlainText } from '../services/wordpressService';
 import { Pagination, PaginationContent, PaginationItem, PaginationLink } from "@/components/ui/pagination";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import MetaHead from '@/components/MetaHead';
+import SEOWordPressHead from '@/components/SEOWordPressHead';
 
 const BlogWithWordPress = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const { data, isLoading, isError, error } = useFetchPosts(currentPage, 6);
   const { data: categories, isLoading: categoriesLoading } = useFetchCategories();
-
-  const extractPlainText = (html: string) => {
-    const doc = new DOMParser().parseFromString(html, 'text/html');
-    return doc.body.textContent || '';
-  };
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -36,10 +32,26 @@ const BlogWithWordPress = () => {
     return `${readTime} min read`;
   };
 
+  // Check if we have Yoast SEO data from the first post
+  const firstPostWithSEO = data?.posts?.find(post => post.yoast_head_json);
+
   return (
     <div className="min-h-screen flex flex-col">
+      {/* SEO - Use Yoast data if available, otherwise use default */}
+      {firstPostWithSEO?.yoast_head_json ? (
+        <SEOWordPressHead yoastData={firstPostWithSEO.yoast_head_json} />
+      ) : (
+        <MetaHead 
+          title="WordPress Blog" 
+          description="Read our latest articles and insights on sustainable web design, SEO, and digital marketing."
+          type="blog"
+          canonicalUrl="https://marzipan.com.au/wordpress-blog"
+        />
+      )}
+      
       <Header />
       
+      {/* Rest of the component remains unchanged */}
       <main className="flex-grow">
         {/* Hero Section */}
         <section className="py-16 bg-gradient-subtle">

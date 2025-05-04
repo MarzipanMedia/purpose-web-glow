@@ -1,3 +1,4 @@
+
 import { useQuery, useMutation } from '@tanstack/react-query';
 
 export interface WordPressPost {
@@ -20,6 +21,35 @@ export interface WordPressPost {
   };
   categories?: number[];
   tags?: number[];
+  yoast_head_json?: YoastSEOData; // Added Yoast SEO data
+}
+
+// New interface for Yoast SEO data
+export interface YoastSEOData {
+  title: string;
+  description: string;
+  canonical: string;
+  og_locale: string;
+  og_type: string;
+  og_title: string;
+  og_description: string;
+  og_url: string;
+  og_site_name: string;
+  article_published_time?: string;
+  og_image?: Array<{
+    url: string;
+    width: number;
+    height: number;
+    type: string;
+  }>;
+  twitter_card: string;
+  twitter_title: string;
+  twitter_description: string;
+  twitter_image?: string;
+  schema: {
+    '@context': string;
+    '@graph': Array<Record<string, any>>;
+  };
 }
 
 export interface WordPressCategory {
@@ -128,6 +158,37 @@ export const useFetchPostsByCategory = (categoryId: number, page = 1, perPage = 
     staleTime: 5 * 60 * 1000, // 5 minutes
     gcTime: 10 * 60 * 1000, // 10 minutes
   });
+};
+
+// Extract SEO metadata from WordPress post
+export const extractSEOMetadata = (post: WordPressPost) => {
+  if (!post.yoast_head_json) {
+    // Default SEO metadata if Yoast data is not available
+    return {
+      title: post.title.rendered,
+      description: extractPlainText(post.excerpt.rendered).substring(0, 160),
+      canonical: post.link,
+      ogImage: post._embedded?.['wp:featuredmedia']?.[0]?.source_url || null
+    };
+  }
+  
+  // Use Yoast SEO data
+  const yoast = post.yoast_head_json;
+  return {
+    title: yoast.title,
+    description: yoast.description,
+    canonical: yoast.canonical,
+    ogImage: yoast.og_image?.[0]?.url || null,
+    ogType: yoast.og_type,
+    twitterCard: yoast.twitter_card,
+    schema: yoast.schema
+  };
+};
+
+// Helper function to extract plain text from HTML
+export const extractPlainText = (html: string) => {
+  const doc = new DOMParser().parseFromString(html, 'text/html');
+  return doc.body.textContent || '';
 };
 
 // New function to send carbon results via WordPress API
