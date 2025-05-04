@@ -78,6 +78,7 @@
     @apply bg-background text-foreground font-body;
   }
   
+  /* Apply system fonts first, then custom fonts when loaded */
   h1, h2, h3, h4, h5, h6 {
     @apply font-display font-medium dark:text-white;
   }
@@ -119,6 +120,13 @@
   .service-process-section .callout-box {
     @apply mt-8 w-full;
   }
+  
+  /* Mobile-optimized transitions */
+  .mobile-transition {
+    animation-duration: 0.2s !important;
+    animation-delay: 0s !important;
+    will-change: opacity, transform;
+  }
 }
 
 @layer utilities {
@@ -143,10 +151,11 @@
   }
 }
 
+/* Mobile-optimized animations - faster with no delays */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(5px);
   }
   to {
     opacity: 1;
@@ -157,7 +166,7 @@
 @keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
@@ -168,7 +177,7 @@
 @keyframes appear {
   from {
     opacity: 0;
-    transform: scale(0.98);
+    transform: scale(0.99);
   }
   to {
     opacity: 1;
@@ -178,26 +187,31 @@
 
 /* Critical CSS for above-the-fold content - no delays */
 .animate-fade-in {
-  animation: fadeIn 0.5s ease forwards;
-  animation-delay: 0s !important; /* Override any animation delays */
+  animation: fadeIn 0.4s ease forwards;
+  animation-delay: 0s !important;
 }
 
-.animate-slide-up {
-  animation: slideUp 0.7s ease forwards;
+/* Mobile-specific animation classes */
+@media (max-width: 768px) {
+  .animate-fade-in,
+  .animate-slide-up,
+  .animate-appear {
+    animation-duration: 0.2s !important; /* Faster animations on mobile */
+    animation-delay: 0s !important; /* No delays on mobile */
+  }
+  
+  /* Reduced scale changes on mobile for better performance */
+  @keyframes appear {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
 }
 
-.animate-appear {
-  animation: appear 0.4s ease-out forwards;
-}
-
-/* Delay animation for non-critical elements */
-@media (prefers-reduced-motion: no-preference) {
-  .stagger-item:nth-child(1) { animation-delay: 0.1s; }
-  .stagger-item:nth-child(2) { animation-delay: 0.2s; }
-  .stagger-item:nth-child(3) { animation-delay: 0.3s; }
-  .stagger-item:nth-child(4) { animation-delay: 0.4s; }
-  .stagger-item:nth-child(5) { animation-delay: 0.5s; }
-  .stagger-item:nth-child(6) { animation-delay: 0.6s; }
+/* Completely disable staggered animations on mobile */
+@media (max-width: 768px) {
+  .stagger-item:nth-child(n) { 
+    animation-delay: 0s !important;
+  }
 }
 
 /* Dark mode specific text classes */
@@ -219,6 +233,32 @@
 
 .dark .text-foreground\/40 {
   color: rgba(255, 255, 255, 0.4);
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 768px) {
+  /* Optimize critical content in mobile view */
+  #main-heading {
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Simplify floating elements for better mobile performance */
+  .floating-element {
+    transform: none !important;
+    animation: none !important;
+  }
+  
+  /* Reduce animation complexity on mobile */
+  .animate-on-scroll {
+    transform: none !important;
+    transition: opacity 0.3s !important;
+  }
+  
+  /* Optimize spacing in mobile view */
+  .py-20, .py-16, .py-12 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
 }
 
 /* Mobile-specific optimizations */

@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -6,6 +7,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { useEffect } from "react";
 import { ThemeProvider } from "./components/ThemeProvider";
+import { useIsMobile } from "./hooks/use-mobile";
 import Index from "./pages/Index";
 import IndexAlt from "./pages/IndexAlt";
 import Services from "./pages/Services";
@@ -30,16 +32,29 @@ import AlwaysWas from "./pages/AlwaysWas";
 
 const queryClient = new QueryClient();
 
-// Page transition wrapper component
+// Mobile-optimized page transition wrapper component
 const PageTransition = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
+  const isMobile = useIsMobile();
 
   useEffect(() => {
-    // Scroll to top on page change
-    window.scrollTo(0, 0);
-  }, [location.pathname]);
+    // Scroll to top on page change - but defer on mobile
+    if (isMobile) {
+      // Use requestAnimationFrame for smoother scrolling on mobile
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, behavior: 'auto' });
+      });
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname, isMobile]);
 
-  return <div className="page-transition">{children}</div>;
+  // On mobile, use a simpler transition with no animation delay
+  const transitionClass = isMobile ? 
+    "page-transition mobile-transition" : 
+    "page-transition";
+
+  return <div className={transitionClass}>{children}</div>;
 };
 
 const App = () => (

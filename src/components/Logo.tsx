@@ -17,12 +17,11 @@ const Logo = ({ variant = 'default', className = '' }: LogoProps) => {
       <img 
         src={logoSrc} 
         alt="Marzipan Sydney" 
-        className="h-auto max-h-10 md:max-h-12 w-auto transition-transform hover:scale-[1.02]"
+        className="h-auto max-h-8 md:max-h-12 w-auto transition-transform hover:scale-[1.02]"
         width="180"
         height="48"
         loading="eager"
         decoding="async"
-        // Remove fetchpriority="high" to not compete with the main LCP element
       />
     </Link>
   );

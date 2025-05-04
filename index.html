@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en-GB">
   <head>
@@ -6,43 +5,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Marzipan Digital - Sustainable Web Design & AI-Driven SEO</title>
     <meta name="description" content="Sustainable Web Design & AI-Driven SEO for Purpose-Driven Brands. Ensuring your online presence is as powerful as your purpose." />
-    <meta name="author" content="Marzipan Digital" />
-    <meta name="keywords" content="sustainable web design Sydney, digital agency Sydney, affordable SEO services, purpose-driven marketing, Marzipan Media">
-
-    <!-- Preload Questrial & Mulish fonts with display swap -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Questrial&family=Mulish:wght@300;400;500;600;700&display=swap" as="style" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Questrial&family=Mulish:wght@300;400;500;600;700&display=swap" />
     
-    <!-- Enhanced critical CSS for immediate hero heading visibility -->
+    <!-- Preconnect to Google Fonts domain to reduce connection time -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Preload the most critical font file first with display swap -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" />
+    
+    <!-- Load the secondary font after -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'" />
+    
+    <!-- Enhanced critical CSS for immediate hero heading visibility with mobile-first approach -->
     <style>
-      /* Critical CSS for hero heading and base styles */
+      /* Critical CSS for hero heading and base styles with mobile-first approach */
       body {
-        font-family: 'Mulish', sans-serif;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         margin: 0;
         padding: 0;
       }
+      
+      /* System font fallback first, then load custom fonts */
       #main-heading {
-        font-family: 'Questrial', sans-serif;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         font-weight: 700;
         opacity: 1;
         transform: translateY(0);
         color: #333;
-        font-display: swap;
+        font-size: 2rem; /* Mobile-first size */
       }
+      
+      /* Once fonts are loaded, they'll take over */
+      .fonts-loaded #main-heading {
+        font-family: 'Questrial', sans-serif;
+      }
+      
       .gradient-text {
         background-image: linear-gradient(to right, #186074, #ae2012);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
       }
+      
       .container-custom {
         width: 100%;
         max-width: 1280px;
         margin: 0 auto;
         padding: 0 1rem;
       }
+      
+      /* Specific mobile optimization */
+      @media (max-width: 640px) {
+        .page-transition {
+          animation-duration: 0.2s !important; /* Faster animations on mobile */
+        }
+        
+        #main-heading {
+          margin-top: 0.25rem;
+          line-height: 1.2;
+        }
+      }
+      
+      /* Font loading detection script */
+      .wf-loading {
+        visibility: hidden;
+      }
+      
+      .wf-active, .wf-inactive {
+        visibility: visible;
+      }
     </style>
 
+    <meta name="author" content="Marzipan Digital" />
+    <meta name="keywords" content="sustainable web design Sydney, digital agency Sydney, affordable SEO services, purpose-driven marketing, Marzipan Media">
+
+    <!-- Other meta tags -->
     <meta property="og:title" content="Marzipan Digital - Sustainable Web Design & AI-Driven SEO" />
     <meta property="og:description" content="Sustainable Web Design & AI-Driven SEO for Purpose-Driven Brands. Ensuring your online presence is as powerful as your purpose." />
     <meta property="og:type" content="website" />
@@ -66,5 +104,19 @@
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
+    <!-- Font loading detection -->
+    <script>
+      if ("fonts" in document) {
+        Promise.all([
+          document.fonts.load("1em Questrial"),
+          document.fonts.load("1em Mulish")
+        ]).then(() => {
+          document.documentElement.classList.add('fonts-loaded');
+        });
+      } else {
+        // Fallback for browsers that don't support the Font Loading API
+        document.documentElement.classList.add('fonts-loaded');
+      }
+    </script>
   </body>
 </html>
