@@ -41,7 +41,10 @@ const measureLCP = () => {
       const entries = entryList.getEntries();
       const lcpEntry = entries[entries.length - 1];
       console.log('LCP:', lcpEntry.startTime);
-      console.log('LCP element:', lcpEntry.element);
+      // Type assertion for LargestContentfulPaint entry which has the element property
+      if (lcpEntry && 'element' in lcpEntry) {
+        console.log('LCP element:', lcpEntry.element);
+      }
     });
     
     lcpObserver.observe({
