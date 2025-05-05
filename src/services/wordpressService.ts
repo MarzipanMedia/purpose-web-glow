@@ -1,9 +1,9 @@
-
 import { useQuery, useMutation } from '@tanstack/react-query';
 
 export interface WordPressPost {
   id: number;
   date: string;
+  modified: string;
   title: {
     rendered: string;
   };
@@ -35,6 +35,7 @@ export interface WordPressPost {
     }>>;
     author?: Array<{
       name: string;
+      url: string;
       avatar_urls?: {
         [key: string]: string;
       };

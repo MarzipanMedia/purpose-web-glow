@@ -14,11 +14,10 @@ const Hero = () => {
           <div className="md:col-span-7 space-y-4 md:space-y-6">
             {/* Critical text rendering with optimized attributes */}
             <h1 
-              className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight"
+              className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight font-display-swap"
               id="main-heading"
               data-lcp="true"
               fetchpriority="high"
-              style={{ fontDisplay: 'swap' as any }}
             >
               Ensuring your online presence is as powerful as your 
               <span className="gradient-text"> purpose</span>
