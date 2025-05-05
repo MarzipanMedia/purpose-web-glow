@@ -11,6 +11,11 @@ const measureLCP = () => {
   }
 
   try {
+    // Record start time for more accurate measurement
+    if (performance && performance.mark) {
+      performance.mark('lcp-measurement-start');
+    }
+    
     // Improved LCP observer with more detailed logging
     const lcpObserver = new PerformanceObserver((entryList) => {
       const entries = entryList.getEntries();
@@ -32,6 +37,11 @@ const measureLCP = () => {
           } else {
             console.log('❌ LCP is NOT targeting the intended heading element');
           }
+          
+          // Record performance mark for LCP element identified
+          if (performance && performance.mark) {
+            performance.mark('lcp-element-identified');
+          }
         }
       }
     });
@@ -45,8 +55,12 @@ const measureLCP = () => {
   }
 };
 
-// Execute LCP measurement
-setTimeout(measureLCP, 0);
+// Execute LCP measurement using requestIdleCallback if available or fallback to setTimeout
+if ('requestIdleCallback' in window) {
+  window.requestIdleCallback(() => measureLCP(), { timeout: 2000 });
+} else {
+  setTimeout(measureLCP, 0);
+}
 
 // Add event listener for font loading events to debug font issues
 if ('fonts' in document) {
@@ -75,5 +89,13 @@ window.addEventListener('error', function(e) {
   }
 }, true);
 
-// Create root immediately - no delay
-createRoot(document.getElementById("root")!).render(<App />);
+// Use createRoot with minimal delay to speed up hydration
+const root = document.getElementById("root");
+if (root) {
+  const startRender = performance.now();
+  createRoot(root).render(<App />);
+  const renderTime = performance.now() - startRender;
+  console.log(`Initial render completed in ${renderTime.toFixed(2)}ms`);
+} else {
+  console.error("Root element not found");
+}
