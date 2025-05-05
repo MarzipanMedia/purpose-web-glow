@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -9,6 +8,8 @@ import { Pagination, PaginationContent, PaginationItem, PaginationLink } from "@
 import { Skeleton } from "@/components/ui/skeleton";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import MetaHead from '@/components/MetaHead';
+import BreadcrumbNav from '@/components/navigation/BreadcrumbNav';
+import { BlogPostSchema } from '@/components/seo/SchemaComponents';
 
 const BlogWithWordPress = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -18,7 +19,6 @@ const BlogWithWordPress = () => {
 
   // Set isPageLoaded to true after the component mounts to ensure LCP is not affected
   useEffect(() => {
-    // Use requestIdleCallback if available, otherwise use setTimeout
     if ('requestIdleCallback' in window) {
       const idleId = requestIdleCallback(() => {
         setIsPageLoaded(true);
@@ -66,6 +66,7 @@ const BlogWithWordPress = () => {
         {/* Hero Section */}
         <section className="py-16 bg-gradient-subtle">
           <div className="container-custom">
+            <BreadcrumbNav />
             <div className="max-w-3xl animate-fade-in">
               <div className="inline-block bg-brandBlue/10 text-brandBlue px-4 py-1 rounded-full mb-4">
                 WordPress Blog
@@ -104,7 +105,6 @@ const BlogWithWordPress = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {isLoading ? (
-                    // Skeleton loaders while loading
                     Array(6).fill(0).map((_, index) => (
                       <div key={index} className="border border-marzipan/20 rounded-lg overflow-hidden">
                         <div className="h-2 bg-gradient-to-r from-brandBlue to-brandRed"></div>
@@ -126,49 +126,69 @@ const BlogWithWordPress = () => {
                       </div>
                     ))
                   ) : data?.posts && data.posts.length > 0 ? (
-                    data.posts.map((post, index) => (
-                      <div 
-                        key={post.id}
-                        className="border border-marzipan/20 rounded-lg overflow-hidden hover:shadow-md transition-shadow animate-fade-in"
-                        style={{ animationDelay: `${0.1 + index * 0.05}s` }}
-                      >
-                        <div className="h-2 bg-gradient-to-r from-brandBlue to-brandRed"></div>
-                        <div className="p-6">
-                          <div className="flex items-center gap-4 text-sm text-foreground/60 mb-3">
-                            <div className="flex items-center gap-1">
-                              <Calendar className="h-3.5 w-3.5" />
-                              <span>{formatDate(post.date)}</span>
-                            </div>
-                            <div className="flex items-center gap-1">
-                              <Clock className="h-3.5 w-3.5" />
-                              <span>{calculateReadTime(post.excerpt.rendered)}</span>
+                    data.posts.map((post, index) => {
+                      // Generate BlogPostSchema for each post
+                      const authorName = post._embedded?.author?.[0]?.name || 'Marzipan Team';
+                      const authorUrl = post._embedded?.author?.[0]?.url || '';
+                      const featuredImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/Marzipan-Logo.png';
+                      
+                      return (
+                        <React.Fragment key={post.id}>
+                          {/* Add schema for each blog post */}
+                          <BlogPostSchema 
+                            headline={post.title.rendered}
+                            description={extractPlainText(post.excerpt.rendered)}
+                            image={featuredImage}
+                            datePublished={post.date}
+                            dateModified={post.modified}
+                            authorName={authorName}
+                            authorUrl={authorUrl}
+                            articleUrl={post.link}
+                          />
+                          
+                          <div 
+                            className="border border-marzipan/20 rounded-lg overflow-hidden hover:shadow-md transition-shadow animate-fade-in"
+                            style={{ animationDelay: `${0.1 + index * 0.05}s` }}
+                          >
+                            <div className="h-2 bg-gradient-to-r from-brandBlue to-brandRed"></div>
+                            <div className="p-6">
+                              <div className="flex items-center gap-4 text-sm text-foreground/60 mb-3">
+                                <div className="flex items-center gap-1">
+                                  <Calendar className="h-3.5 w-3.5" />
+                                  <span>{formatDate(post.date)}</span>
+                                </div>
+                                <div className="flex items-center gap-1">
+                                  <Clock className="h-3.5 w-3.5" />
+                                  <span>{calculateReadTime(post.excerpt.rendered)}</span>
+                                </div>
+                              </div>
+                              
+                              <h3 className="text-xl font-display font-medium mb-3 line-clamp-2">
+                                <a href={post.link} target="_blank" rel="noopener noreferrer" className="hover:text-brandBlue transition-colors">
+                                  {post.title.rendered}
+                                </a>
+                              </h3>
+                              
+                              <div className="text-foreground/70 mb-4 line-clamp-3" 
+                                   dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }} />
+                              
+                              <div className="flex justify-between items-center">
+                                <div className="flex items-center gap-1 text-sm">
+                                  <Tag className="h-3.5 w-3.5 text-brandBlue" />
+                                  <span className="text-brandBlue">
+                                    {post._embedded?.['wp:term']?.[0]?.[0]?.name || 'Article'}
+                                  </span>
+                                </div>
+                                
+                                <a href={post.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm font-medium text-brandBlue hover:text-brandBlue/80 transition-colors">
+                                  Read More <ArrowRight className="h-3.5 w-3.5" />
+                                </a>
+                              </div>
                             </div>
                           </div>
-                          
-                          <h3 className="text-xl font-display font-medium mb-3 line-clamp-2">
-                            <a href={post.link} target="_blank" rel="noopener noreferrer" className="hover:text-brandBlue transition-colors">
-                              {post.title.rendered}
-                            </a>
-                          </h3>
-                          
-                          <div className="text-foreground/70 mb-4 line-clamp-3" 
-                               dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }} />
-                          
-                          <div className="flex justify-between items-center">
-                            <div className="flex items-center gap-1 text-sm">
-                              <Tag className="h-3.5 w-3.5 text-brandBlue" />
-                              <span className="text-brandBlue">
-                                {post._embedded?.['wp:term']?.[0]?.[0]?.name || 'Article'}
-                              </span>
-                            </div>
-                            
-                            <a href={post.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm font-medium text-brandBlue hover:text-brandBlue/80 transition-colors">
-                              Read More <ArrowRight className="h-3.5 w-3.5" />
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    ))
+                        </React.Fragment>
+                      );
+                    })
                   ) : (
                     <div className="col-span-2 text-center py-12">
                       <p className="text-foreground/70 mb-4">No posts found. Our WordPress connection might be experiencing issues.</p>
@@ -183,7 +203,6 @@ const BlogWithWordPress = () => {
                   )}
                 </div>
                 
-                {/* Pagination */}
                 {data && data.totalPages > 1 && (
                   <div className="flex justify-center mt-12 animate-fade-in" style={{ animationDelay: "0.5s" }}>
                     <Pagination>
@@ -301,7 +320,6 @@ const BlogWithWordPress = () => {
                     </div>
                   </>
                 ) : (
-                  // Show skeletons for sidebar while deferring load
                   <>
                     <div className="bg-marzipan/20 p-6 rounded-lg mb-6">
                       <Skeleton className="h-7 w-24 mb-4" />
@@ -333,7 +351,6 @@ const BlogWithWordPress = () => {
           </div>
         </section>
         
-        {/* Newsletter */}
         <section className="py-16 bg-marzipan/30">
           <div className="container-custom max-w-3xl mx-auto text-center animate-fade-in">
             <h2 className="text-2xl md:text-3xl font-display font-semibold mb-4">

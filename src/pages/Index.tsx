@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
@@ -13,6 +14,7 @@ import WebsiteCarbonCTA from '@/components/home/WebsiteCarbonCTA';
 import TestimonialsSection from '@/components/home/TestimonialsSection';
 import FinalCTA from '@/components/home/FinalCTA';
 import CarbonShowcase from '@/components/carbon/CarbonShowcase';
+import { LocalBusinessSchema } from '@/components/seo/SchemaComponents';
 
 const Index = () => {
   // Add scroll animation observer
@@ -40,6 +42,9 @@ const Index = () => {
         title="Sustainable Web Design & Affordable SEO" 
         description="Sustainable Web Design & AI-Driven SEO for Purpose-Driven Brands. Ensuring your online presence is as powerful as your purpose."
       />
+      {/* Add LocalBusinessSchema for homepage */}
+      <LocalBusinessSchema />
+      
       <Header />
       
       <main className="flex-grow">

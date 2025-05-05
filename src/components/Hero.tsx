@@ -18,7 +18,7 @@ const Hero = () => {
               id="main-heading"
               data-lcp="true"
               fetchpriority="high"
-              style={{ fontDisplay: 'swap' }}
+              style={{ fontDisplay: 'swap' as any }}
             >
               Ensuring your online presence is as powerful as your 
               <span className="gradient-text"> purpose</span>
@@ -43,7 +43,6 @@ const Hero = () => {
               <div className="relative">
                 <div 
                   className="bg-gradient-to-br from-yellow-500 via-brandRed to-brandRed/80 rounded-full aspect-square flex items-center justify-center p-8 md:p-12 relative z-10 text-white shadow-lg"
-                  loading="lazy"
                 >
                   <div className="text-center">
                     <p className="text-lg md:text-xl">Eco-friendly</p>

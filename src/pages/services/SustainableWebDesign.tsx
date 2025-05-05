@@ -1,180 +1,339 @@
 import React from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import { Link } from 'react-router-dom';
-import { ArrowRight, Globe, Check, Zap, BarChart } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Textarea } from '@/components/ui/textarea';
-import { Form, FormField, FormItem, FormLabel, FormControl } from '@/components/ui/form';
-import { useForm } from 'react-hook-form';
-import FAQSection from '../../components/services/FAQSection';
 import MetaHead from '@/components/MetaHead';
-import { useIsMobile } from '@/hooks/use-mobile';
+import { ServiceSchema } from '@/components/seo/SchemaComponents';
+import BreadcrumbNav from '@/components/navigation/BreadcrumbNav';
+import { ArrowRight, CheckCircle2, Leaf, Zap, BarChart3, Palette } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const SustainableWebDesign = () => {
-  const form = useForm();
-  const isMobile = useIsMobile();
-
-  const onSubmit = (data: any) => {
-    console.log(data);
-    // Form submission logic would go here
-  };
-
-  const clientLogos = [
-    { name: 'EcoLiving Collective', initial: 'E' },
-    { name: 'Sustainable Solutions Co.', initial: 'S' },
-    { name: 'Green Growth Partners', initial: 'G' },
-    { name: 'Terra Friendly', initial: 'T' },
-  ];
-
-  const faqItems = [
-    {
-      question: "Why should I choose a sustainable website?",
-      answer: (
-        <div className="space-y-3">
-          <p>
-            A sustainable website significantly reduces your digital carbon footprint while enhancing user experience through faster loading times. By choosing a sustainable website, you're not only expressing your brand's commitment to environmental responsibility but also improving key performance metrics like bounce rates, SEO rankings, and conversion rates.
-          </p>
-          <p>
-            Sustainable websites consume up to 90% less energy than conventionally designed sites, which means less CO2 emissions from servers and user devices. This reduction becomes significant at scale and helps contribute to a greener internet.
-          </p>
-        </div>
-      )
-    },
-    {
-      question: "Will you charge me more for going green with my web design?",
-      answer: (
-        <div className="space-y-3">
-          <p>
-            No, we don't charge a premium for sustainable web design practices. Our sustainable approach is integrated into our standard design process because we believe it's the right way to build websites today.
-          </p>
-          <p>
-            In fact, sustainable web design often leads to cost savings in the long term through reduced hosting resources, improved performance, and better user retention. It's a win-win for both your business and the environment.
-          </p>
-        </div>
-      )
-    },
-    {
-      question: "What makes Marzipan different from other web design agencies?",
-      answer: (
-        <div className="space-y-3">
-          <p>
-            Marzipan specialises in creating websites that align with your ethical values while delivering exceptional performance. Unlike traditional agencies, sustainability is at the core of everything we do—not just an add-on service or afterthought.
-          </p>
-          <p>
-            We combine deep expertise in low-carbon web practices with strategic design thinking specifically for purpose-driven brands. Our proven methodology includes measuring and reporting on your website's environmental impact, providing concrete metrics for your sustainability efforts.
-          </p>
-        </div>
-      )
-    },
-    {
-      question: "Can Marzipan help improve our website's performance and SEO?",
-      answer: (
-        <div className="space-y-3">
-          <p>
-            Absolutely. Our sustainable websites are inherently optimised for performance, which is a key factor in both user experience and search engine rankings. By focusing on efficient code, optimised assets, and streamlined design, we create websites that load faster and consume less resources.
-          </p>
-          <p>
-            Our approach to SEO is both ethical and effective, prioritising valuable content and technical excellence over short-term tactics. The speed improvements from our sustainable approach directly contribute to better search rankings, as page speed is a confirmed Google ranking factor.
-          </p>
-        </div>
-      )
-    },
-    {
-      question: "What ongoing support does Marzipan offer after our website goes live?",
-      answer: (
-        <div className="space-y-3">
-          <p>
-            We offer comprehensive maintenance packages that include regular sustainability audits, performance monitoring, security updates, and content management support. Our team remains available to ensure your website stays fast, secure, and environmentally friendly.
-          </p>
-          <p>
-            We also provide ongoing carbon footprint tracking, so you can continue to measure and report on your website's environmental impact as part of your broader sustainability initiatives.
-          </p>
-        </div>
-      )
-    },
-    {
-      question: "Is Your Website Truly Reflecting Your Business?",
-      answer: (
-        <div className="space-y-3">
-          <p>
-            Your website should be more than just an online brochure—it should authentically represent your brand's values, mission, and commitment to sustainability. If your current website doesn't align with your ethical stance, it could be creating a disconnect with your audience.
-          </p>
-          <p>
-            We help purpose-driven brands ensure their digital presence authentically reflects their commitment to sustainability, creating coherence between your values and online presence. This alignment builds trust and resonates with conscious consumers who care about supporting environmentally responsible businesses.
-          </p>
-        </div>
-      )
-    },
-  ];
-
   return (
     <div className="min-h-screen flex flex-col">
       <MetaHead 
-        title="Sustainable Web Design for Purpose-Driven Brands"
-        description="Beautiful, eco-friendly websites that minimise environmental impact while maximising user experience and conversion rates."
+        title="Sustainable Web Design Services" 
+        description="Eco-friendly web design services that reduce your carbon footprint while creating beautiful, high-performing websites."
+      />
+      
+      {/* Add service schema */}
+      <ServiceSchema 
+        serviceName="Sustainable Web Design"
+        serviceDescription="Eco-friendly web design services that reduce your carbon footprint while creating beautiful, high-performing websites."
+        serviceUrl="https://marzipan.com.au/services/sustainable-web-design"
       />
       
       <Header />
       
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="py-20 bg-gradient-subtle">
+        <section className="py-16 md:py-24 bg-gradient-to-br from-white via-green-50 to-green-100">
           <div className="container-custom">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <div className="animate-fade-in">
-                <div className="inline-block bg-brandBlue/10 text-brandBlue px-4 py-1 rounded-full mb-4">
-                  Eco-Friendly Web Solutions
+            <BreadcrumbNav />
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className="space-y-6">
+                <div className="inline-block bg-green-100 text-green-800 px-4 py-1 rounded-full text-sm font-medium">
+                  Sustainable Web Design
                 </div>
-                <h1 className="text-4xl md:text-5xl font-display font-bold mb-6">
-                  Sustainable Web Design for Purpose-Driven Brands
+                <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+                  Beautiful websites with a <span className="text-green-700">smaller footprint</span>
                 </h1>
-                <p className="text-lg text-foreground/80 mb-8">
-                  Beautiful, eco-friendly websites that minimise environmental impact while maximising user experience and conversion rates.
+                <p className="text-lg text-gray-700 max-w-lg">
+                  We create stunning, high-performance websites that minimize environmental impact while maximizing your online presence and conversion rates.
                 </p>
-                <div className="flex flex-wrap gap-4">
-                  <Link to="#contact" className="btn-primary flex items-center gap-2">
+                <div className="flex flex-wrap gap-4 pt-2">
+                  <Link to="/contact" className="btn-primary bg-green-700 hover:bg-green-800 flex items-center gap-2">
                     Get Started <ArrowRight className="h-4 w-4" />
                   </Link>
-                  <Link to="/projects" className="btn-secondary flex items-center gap-2">
-                    View Our Work <ArrowRight className="h-4 w-4" />
+                  <Link to="/website-carbon" className="btn-secondary border-green-700 text-green-700 hover:bg-green-50 flex items-center gap-2">
+                    Learn More <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>
               </div>
               
-              <div className="animate-fade-in" style={{ animationDelay: "0.2s" }}>
-                <div className="bg-brandBlue rounded-lg p-8 text-white">
-                  <div className="flex items-center mb-6">
-                    <Globe className="h-10 w-10 mr-4" />
-                    <h2 className="text-2xl font-display">Why Choose Sustainable Web Design?</h2>
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-green-200 to-green-300 rounded-full blur-3xl opacity-20 transform -rotate-12"></div>
+                <div className="relative bg-white p-6 rounded-xl shadow-xl border border-green-100">
+                  <div className="aspect-video bg-green-50 rounded-lg overflow-hidden flex items-center justify-center mb-6">
+                    <img 
+                      src="/images/sustainable-web-design.jpg" 
+                      alt="Sustainable Web Design Example" 
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
                   </div>
-                  <ul className="space-y-4">
-                    <li className="flex items-start">
-                      <div className="mt-1 mr-3 bg-white/20 p-1 rounded-full">
-                        <Check className="h-4 w-4" />
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="bg-green-50 p-4 rounded-lg">
+                      <div className="flex items-center gap-2 text-green-800 font-medium mb-1">
+                        <Leaf className="h-4 w-4" />
+                        <span>Eco-Friendly</span>
                       </div>
-                      <span>90% reduction in carbon emissions compared to average websites</span>
-                    </li>
-                    <li className="flex items-start">
-                      <div className="mt-1 mr-3 bg-white/20 p-1 rounded-full">
-                        <Check className="h-4 w-4" />
+                      <p className="text-sm text-gray-600">Reduced carbon footprint with optimized assets</p>
+                    </div>
+                    <div className="bg-green-50 p-4 rounded-lg">
+                      <div className="flex items-center gap-2 text-green-800 font-medium mb-1">
+                        <Zap className="h-4 w-4" />
+                        <span>Performance</span>
                       </div>
-                      <span>Up to 2x faster page load speeds improving SEO and user experience</span>
-                    </li>
-                    <li className="flex items-start">
-                      <div className="mt-1 mr-3 bg-white/20 p-1 rounded-full">
-                        <Check className="h-4 w-4" />
+                      <p className="text-sm text-gray-600">Lightning-fast load times and smooth UX</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        {/* Benefits Section */}
+        <section className="py-16 bg-white">
+          <div className="container-custom">
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Sustainable Web Design?</h2>
+              <p className="text-lg text-gray-700">
+                Beyond reducing environmental impact, sustainable web design offers numerous benefits for your business and users.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="bg-green-50 p-6 rounded-xl border border-green-100 hover:shadow-md transition-shadow">
+                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-700 mb-4">
+                  <Zap className="h-6 w-6" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Faster Performance</h3>
+                <p className="text-gray-700">
+                  Optimized code and assets mean your site loads quickly, reducing bounce rates and improving user experience.
+                </p>
+              </div>
+              
+              <div className="bg-green-50 p-6 rounded-xl border border-green-100 hover:shadow-md transition-shadow">
+                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-700 mb-4">
+                  <BarChart3 className="h-6 w-6" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Better SEO Rankings</h3>
+                <p className="text-gray-700">
+                  Search engines favor fast, efficient websites. Sustainable design principles naturally improve your SEO performance.
+                </p>
+              </div>
+              
+              <div className="bg-green-50 p-6 rounded-xl border border-green-100 hover:shadow-md transition-shadow">
+                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-700 mb-4">
+                  <Leaf className="h-6 w-6" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Reduced Carbon Footprint</h3>
+                <p className="text-gray-700">
+                  Minimize your environmental impact with efficient hosting, optimized images, and streamlined code.
+                </p>
+              </div>
+              
+              <div className="bg-green-50 p-6 rounded-xl border border-green-100 hover:shadow-md transition-shadow">
+                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-700 mb-4">
+                  <Palette className="h-6 w-6" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Beautiful Design</h3>
+                <p className="text-gray-700">
+                  Sustainability doesn't mean sacrificing aesthetics. Our designs are both beautiful and environmentally responsible.
+                </p>
+              </div>
+              
+              <div className="bg-green-50 p-6 rounded-xl border border-green-100 hover:shadow-md transition-shadow">
+                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-700 mb-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
+                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Cost Efficiency</h3>
+                <p className="text-gray-700">
+                  Efficient websites require less bandwidth and server resources, reducing your hosting costs over time.
+                </p>
+              </div>
+              
+              <div className="bg-green-50 p-6 rounded-xl border border-green-100 hover:shadow-md transition-shadow">
+                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-700 mb-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Brand Reputation</h3>
+                <p className="text-gray-700">
+                  Demonstrate your commitment to sustainability and attract environmentally conscious customers.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        {/* Our Process Section */}
+        <section className="py-16 bg-green-50">
+          <div className="container-custom">
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Sustainable Design Process</h2>
+              <p className="text-lg text-gray-700">
+                We follow a comprehensive approach to ensure your website is both beautiful and environmentally responsible.
+              </p>
+            </div>
+            
+            <div className="relative">
+              <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-green-200 transform -translate-x-1/2"></div>
+              
+              <div className="space-y-12">
+                <div className="relative">
+                  <div className="md:grid md:grid-cols-2 gap-8 items-center">
+                    <div className="md:text-right">
+                      <div className="bg-white p-6 rounded-xl shadow-sm border border-green-100">
+                        <h3 className="text-xl font-semibold mb-2">1. Discovery & Planning</h3>
+                        <p className="text-gray-700 mb-4">
+                          We begin by understanding your business goals, target audience, and sustainability objectives to create a strategic plan.
+                        </p>
+                        <ul className="space-y-2">
+                          <li className="flex items-center justify-end gap-2">
+                            <span>Stakeholder interviews</span>
+                            <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                          </li>
+                          <li className="flex items-center justify-end gap-2">
+                            <span>Competitor analysis</span>
+                            <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                          </li>
+                          <li className="flex items-center justify-end gap-2">
+                            <span>Sustainability benchmarking</span>
+                            <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                          </li>
+                        </ul>
                       </div>
-                      <span>Aligned with your brand's environmental values and commitments</span>
-                    </li>
-                    <li className="flex items-start">
-                      <div className="mt-1 mr-3 bg-white/20 p-1 rounded-full">
-                        <Check className="h-4 w-4" />
+                    </div>
+                    <div className="hidden md:block"></div>
+                    <div className="absolute left-1/2 top-6 w-12 h-12 bg-green-100 rounded-full border-4 border-white flex items-center justify-center text-green-700 transform -translate-x-1/2 md:block hidden">
+                      <span className="font-bold">1</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="relative">
+                  <div className="md:grid md:grid-cols-2 gap-8 items-center">
+                    <div className="hidden md:block"></div>
+                    <div>
+                      <div className="bg-white p-6 rounded-xl shadow-sm border border-green-100">
+                        <h3 className="text-xl font-semibold mb-2">2. Sustainable Design</h3>
+                        <p className="text-gray-700 mb-4">
+                          We create beautiful, efficient designs that minimize resource usage while maximizing user experience.
+                        </p>
+                        <ul className="space-y-2">
+                          <li className="flex items-center gap-2">
+                            <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                            <span>Efficient color palettes</span>
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                            <span>System font optimization</span>
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                            <span>Minimalist, purposeful UI</span>
+                          </li>
+                        </ul>
                       </div>
-                      <span>Enhanced performance on all devices for better user engagement</span>
-                    </li>
-                  </ul>
+                    </div>
+                    <div className="absolute left-1/2 top-6 w-12 h-12 bg-green-100 rounded-full border-4 border-white flex items-center justify-center text-green-700 transform -translate-x-1/2 md:block hidden">
+                      <span className="font-bold">2</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="relative">
+                  <div className="md:grid md:grid-cols-2 gap-8 items-center">
+                    <div className="md:text-right">
+                      <div className="bg-white p-6 rounded-xl shadow-sm border border-green-100">
+                        <h3 className="text-xl font-semibold mb-2">3. Eco-Friendly Development</h3>
+                        <p className="text-gray-700 mb-4">
+                          We build your site with clean, efficient code and optimize all assets for minimal environmental impact.
+                        </p>
+                        <ul className="space-y-2">
+                          <li className="flex items-center justify-end gap-2">
+                            <span>Optimized code architecture</span>
+                            <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                          </li>
+                          <li className="flex items-center justify-end gap-2">
+                            <span>Compressed images & assets</span>
+                            <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                          </li>
+                          <li className="flex items-center justify-end gap-2">
+                            <span>Efficient caching strategies</span>
+                            <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div className="hidden md:block"></div>
+                    <div className="absolute left-1/2 top-6 w-12 h-12 bg-green-100 rounded-full border-4 border-white flex items-center justify-center text-green-700 transform -translate-x-1/2 md:block hidden">
+                      <span className="font-bold">3</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="relative">
+                  <div className="md:grid md:grid-cols-2 gap-8 items-center">
+                    <div className="hidden md:block"></div>
+                    <div>
+                      <div className="bg-white p-6 rounded-xl shadow-sm border border-green-100">
+                        <h3 className="text-xl font-semibold mb-2">4. Testing & Optimization</h3>
+                        <p className="text-gray-700 mb-4">
+                          We rigorously test and optimize your site for performance, accessibility, and environmental impact.
+                        </p>
+                        <ul className="space-y-2">
+                          <li className="flex items-center gap-2">
+                            <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                            <span>Performance benchmarking</span>
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                            <span>Carbon footprint measurement</span>
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                            <span>Accessibility compliance</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div className="absolute left-1/2 top-6 w-12 h-12 bg-green-100 rounded-full border-4 border-white flex items-center justify-center text-green-700 transform -translate-x-1/2 md:block hidden">
+                      <span className="font-bold">4</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="relative">
+                  <div className="md:grid md:grid-cols-2 gap-8 items-center">
+                    <div className="md:text-right">
+                      <div className="bg-white p-6 rounded-xl shadow-sm border border-green-100">
+                        <h3 className="text-xl font-semibold mb-2">5. Launch & Monitoring</h3>
+                        <p className="text-gray-700 mb-4">
+                          We deploy your site on green hosting and provide ongoing monitoring to maintain optimal performance.
+                        </p>
+                        <ul className="space-y-2">
+                          <li className="flex items-center justify-end gap-2">
+                            <span>Green hosting setup</span>
+                            <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                          </li>
+                          <li className="flex items-center justify-end gap-2">
+                            <span>Performance monitoring</span>
+                            <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                          </li>
+                          <li className="flex items-center justify-end gap-2">
+                            <span>Carbon reduction reporting</span>
+                            <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div className="hidden md:block"></div>
+                    <div className="absolute left-1/2 top-6 w-12 h-12 bg-green-100 rounded-full border-4 border-white flex items-center justify-center text-green-700 transform -translate-x-1/2 md:block hidden">
+                      <span className="font-bold">5</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -184,327 +343,273 @@ const SustainableWebDesign = () => {
         {/* Features Section */}
         <section className="py-16 bg-white">
           <div className="container-custom">
-            <div className="text-center max-w-3xl mx-auto mb-12 animate-fade-in">
-              <h2 className="text-3xl font-display font-semibold mb-4">
-                Our Sustainable Design Approach
-              </h2>
-              <p className="text-foreground/80">
-                We combine aesthetic excellence with environmental responsibility to create stunning, efficient websites.
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Sustainable Web Design Features</h2>
+              <p className="text-lg text-gray-700">
+                Our sustainable websites include these eco-friendly features without compromising on quality or performance.
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <Card className="border-marzipan/30 animate-fade-in hover:shadow-md transition-all" style={{ animationDelay: "0.1s" }}>
-                <CardContent className="p-6">
-                  <div className="bg-brandBlue/10 text-brandBlue rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                    <Zap className="h-6 w-6" />
-                  </div>
-                  <h3 className="text-xl font-display font-medium mb-3">Energy-Efficient Code</h3>
-                  <p className="text-foreground/70">
-                    Streamlined, efficient code that reduces server loads and minimises power consumption while ensuring optimal performance.
-                  </p>
-                </CardContent>
-              </Card>
+            <Tabs defaultValue="performance" className="w-full max-w-4xl mx-auto">
+              <TabsList className="grid grid-cols-3 mb-8">
+                <TabsTrigger value="performance">Performance</TabsTrigger>
+                <TabsTrigger value="design">Design</TabsTrigger>
+                <TabsTrigger value="hosting">Hosting</TabsTrigger>
+              </TabsList>
               
-              <Card className="border-marzipan/30 animate-fade-in hover:shadow-md transition-all" style={{ animationDelay: "0.2s" }}>
-                <CardContent className="p-6">
-                  <div className="bg-brandBlue/10 text-brandBlue rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                    <Globe className="h-6 w-6" />
-                  </div>
-                  <h3 className="text-xl font-display font-medium mb-3">Green Hosting</h3>
-                  <p className="text-foreground/70">
-                    Recommendations for renewable-powered hosting options that align with your sustainability commitments.
-                  </p>
-                </CardContent>
-              </Card>
-              
-              <Card className="border-marzipan/30 animate-fade-in hover:shadow-md transition-all" style={{ animationDelay: "0.3s" }}>
-                <CardContent className="p-6">
-                  <div className="bg-brandBlue/10 text-brandBlue rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                    <BarChart className="h-6 w-6" />
-                  </div>
-                  <h3 className="text-xl font-display font-medium mb-3">Carbon Footprint Tracking</h3>
-                  <p className="text-foreground/70">
-                    Monitor and optimise your website's environmental impact with our specialised tracking tools.
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
-        
-        {/* Process Section - Modified to fix overlapping */}
-        <section className="py-16 bg-marzipan/20">
-          <div className="container-custom">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="space-y-6 animate-fade-in">
-                <h2 className="text-3xl md:text-4xl font-display font-semibold">
-                  Our Sustainable Design Process
-                </h2>
-                <p className="text-lg text-foreground/80">
-                  Every website we build follows our proven methodology for creating beautiful, efficient, and eco-friendly digital experiences.
-                </p>
-                
-                <div className="space-y-6 mt-8">
-                  <div className="flex gap-4 items-start">
-                    <span className="inline-flex items-center justify-center h-8 w-8 rounded-full bg-brandBlue text-white font-medium">1</span>
-                    <div>
-                      <h4 className="text-xl font-medium mb-1">Discovery & Strategy</h4>
-                      <p className="text-foreground/70">Understanding your brand values, goals, and target audience to create a tailored strategy.</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex gap-4 items-start">
-                    <span className="inline-flex items-center justify-center h-8 w-8 rounded-full bg-brandBlue text-white font-medium">2</span>
-                    <div>
-                      <h4 className="text-xl font-medium mb-1">Sustainable Design</h4>
-                      <p className="text-foreground/70">Creating eco-friendly wireframes and designs that minimise resource usage while maximising impact.</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex gap-4 items-start">
-                    <span className="inline-flex items-center justify-center h-8 w-8 rounded-full bg-brandBlue text-white font-medium">3</span>
-                    <div>
-                      <h4 className="text-xl font-medium mb-1">Efficient Development</h4>
-                      <p className="text-foreground/70">Building your site with clean code and optimised assets to reduce energy consumption.</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex gap-4 items-start">
-                    <span className="inline-flex items-center justify-center h-8 w-8 rounded-full bg-brandBlue text-white font-medium">4</span>
-                    <div>
-                      <h4 className="text-xl font-medium mb-1">Testing & Optimisation</h4>
-                      <p className="text-foreground/70">Rigorous performance and emissions testing to ensure optimal efficiency and user experience.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="bg-gradient-to-br from-secondary to-secondary/40 p-8 rounded-lg animate-fade-in relative" style={{ animationDelay: "0.2s" }}>
-                <div className="bg-white/80 backdrop-blur-sm p-6 rounded-lg">
-                  <h3 className="text-2xl font-display font-semibold mb-4 text-center">
-                    Sustainable Website Health Check
-                  </h3>
-                  <div className="space-y-6">
-                    <p className="text-foreground/80">
-                      We offer free website sustainability audits to help you understand your current environmental impact.
+              <TabsContent value="performance" className="bg-green-50 p-6 rounded-xl border border-green-100">
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4">Lightning-Fast Performance</h3>
+                    <p className="text-gray-700 mb-6">
+                      Our sustainable websites are built for speed, reducing energy consumption and improving user experience.
                     </p>
-                    <div className="space-y-3">
-                      <div className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-green-500" />
-                        <span>Page speed analysis</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-green-500" />
-                        <span>Carbon footprint measurement</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-green-500" />
-                        <span>User experience assessment</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-green-500" />
-                        <span>Sustainability recommendations</span>
-                      </div>
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <span className="font-medium">Optimized Code Structure</span>
+                          <p className="text-sm text-gray-600">Clean, efficient code that minimizes processing requirements</p>
+                        </div>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <span className="font-medium">Advanced Caching</span>
+                          <p className="text-sm text-gray-600">Intelligent caching strategies to reduce server requests</p>
+                        </div>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <span className="font-medium">Lazy Loading</span>
+                          <p className="text-sm text-gray-600">Load resources only when needed to reduce initial page weight</p>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="bg-white p-4 rounded-lg">
+                    <div className="aspect-video bg-gray-100 rounded flex items-center justify-center mb-4">
+                      <img 
+                        src="/images/performance-optimization.jpg" 
+                        alt="Website Performance Optimization" 
+                        className="w-full h-full object-cover rounded"
+                        loading="lazy"
+                      />
                     </div>
-                    {/* Fix positioning of the button so it doesn't overlap */}
-                    <div className={`${isMobile ? 'relative mt-6' : 'relative mt-6'}`}>
-                      <Link 
-                        to="#contact" 
-                        className="btn-primary w-full justify-center inline-block"
-                      >
-                        Get Your Free Audit
-                      </Link>
+                    <div className="flex items-center justify-between p-3 bg-green-50 rounded">
+                      <span className="text-sm font-medium">Average Page Speed</span>
+                      <span className="text-green-700 font-bold">Under 2 seconds</span>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        
-        {/* Client Logos Section */}
-        <section className="py-14 bg-white">
-          <div className="container-custom">
-            <div className="text-center mb-10 animate-fade-in">
-              <h2 className="text-2xl md:text-3xl font-display font-semibold mb-2">
-                Trusted By Purpose-Driven Brands
-              </h2>
-              <p className="text-foreground/70">
-                Join these forward-thinking organizations who've chosen our sustainable approach
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {clientLogos.map((client, index) => (
-                <div 
-                  key={index} 
-                  className="flex flex-col items-center justify-center p-6 rounded-lg border border-marzipan/30 bg-marzipan/5 animate-fade-in hover:bg-marzipan/20 transition-all duration-300"
-                  style={{ animationDelay: `${0.1 + index * 0.1}s` }}
-                >
-                  <div className="h-16 w-16 rounded-full bg-brandBlue/10 flex items-center justify-center text-2xl font-display text-brandBlue font-semibold mb-3">
-                    {client.initial}
+              </TabsContent>
+              
+              <TabsContent value="design" className="bg-green-50 p-6 rounded-xl border border-green-100">
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4">Eco-Friendly Design Principles</h3>
+                    <p className="text-gray-700 mb-6">
+                      Our design approach balances aesthetics with environmental responsibility.
+                    </p>
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <span className="font-medium">Optimized Image Strategy</span>
+                          <p className="text-sm text-gray-600">Properly sized, compressed images with next-gen formats</p>
+                        </div>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <span className="font-medium">System Font Usage</span>
+                          <p className="text-sm text-gray-600">Prioritizing system fonts to reduce resource loading</p>
+                        </div>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <span className="font-medium">Efficient Color Palettes</span>
+                          <p className="text-sm text-gray-600">Colors that require less energy to display on screens</p>
+                        </div>
+                      </li>
+                    </ul>
                   </div>
-                  <p className="text-center font-medium">{client.name}</p>
+                  <div className="bg-white p-4 rounded-lg">
+                    <div className="aspect-video bg-gray-100 rounded flex items-center justify-center mb-4">
+                      <img 
+                        src="/images/eco-design-principles.jpg" 
+                        alt="Eco-Friendly Design Principles" 
+                        className="w-full h-full object-cover rounded"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="flex items-center justify-between p-3 bg-green-50 rounded">
+                      <span className="text-sm font-medium">Average Page Weight</span>
+                      <span className="text-green-700 font-bold">Under 1MB</span>
+                    </div>
+                  </div>
                 </div>
-              ))}
-            </div>
+              </TabsContent>
+              
+              <TabsContent value="hosting" className="bg-green-50 p-6 rounded-xl border border-green-100">
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4">Green Hosting Solutions</h3>
+                    <p className="text-gray-700 mb-6">
+                      We deploy your website on servers powered by renewable energy to minimize environmental impact.
+                    </p>
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <span className="font-medium">Renewable Energy Servers</span>
+                          <p className="text-sm text-gray-600">Hosting powered by wind, solar, or other renewable sources</p>
+                        </div>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <span className="font-medium">Energy-Efficient Data Centers</span>
+                          <p className="text-sm text-gray-600">Servers with optimized cooling and power management</p>
+                        </div>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <span className="font-medium">Carbon Offset Programs</span>
+                          <p className="text-sm text-gray-600">Additional carbon offsets to achieve carbon neutrality</p>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="bg-white p-4 rounded-lg">
+                    <div className="aspect-video bg-gray-100 rounded flex items-center justify-center mb-4">
+                      <img 
+                        src="/images/green-hosting.jpg" 
+                        alt="Green Hosting Solutions" 
+                        className="w-full h-full object-cover rounded"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="flex items-center justify-between p-3 bg-green-50 rounded">
+                      <span className="text-sm font-medium">CO2 Reduction</span>
+                      <span className="text-green-700 font-bold">Up to 90%</span>
+                    </div>
+                  </div>
+                </div>
+              </TabsContent>
+            </Tabs>
           </div>
         </section>
         
         {/* FAQ Section */}
-        <FAQSection 
-          title="Frequently Asked Questions" 
-          description="Common questions about sustainable web design and our services"
-          faqs={faqItems}
-        />
-        
-        {/* CTA and Contact Form Section */}
-        <section id="contact" className="py-20 bg-gradient-to-br from-brandBlue to-brandBlue/80 text-white">
+        <section className="py-16 bg-green-50">
           <div className="container-custom">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              <div className="space-y-6 animate-fade-in">
-                <h2 className="text-3xl md:text-4xl font-display font-semibold">
-                  Ready to create a sustainable digital presence?
-                </h2>
-                <p className="text-xl text-white/90">
-                  Get in touch to discuss how we can help your purpose-driven brand thrive online while supporting a more sustainable internet.
-                </p>
-                
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 mt-8">
-                  <h3 className="text-2xl font-display mb-4">Why Choose Us?</h3>
-                  <ul className="space-y-4">
-                    <li className="flex items-start">
-                      <div className="mt-1 mr-3 bg-white/20 p-1 rounded-full">
-                        <Check className="h-4 w-4" />
-                      </div>
-                      <span>Specialized in sustainable web design principles</span>
-                    </li>
-                    <li className="flex items-start">
-                      <div className="mt-1 mr-3 bg-white/20 p-1 rounded-full">
-                        <Check className="h-4 w-4" />
-                      </div>
-                      <span>Proven track record with purpose-driven brands</span>
-                    </li>
-                    <li className="flex items-start">
-                      <div className="mt-1 mr-3 bg-white/20 p-1 rounded-full">
-                        <Check className="h-4 w-4" />
-                      </div>
-                      <span>Measurable reduction in digital carbon footprint</span>
-                    </li>
-                    <li className="flex items-start">
-                      <div className="mt-1 mr-3 bg-white/20 p-1 rounded-full">
-                        <Check className="h-4 w-4" />
-                      </div>
-                      <span>Focus on both sustainability AND performance</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              
-              <div className="bg-white text-foreground rounded-lg p-6 shadow-lg animate-fade-in" style={{ animationDelay: "0.2s" }}>
-                <h3 className="text-2xl font-display font-semibold mb-6 text-center">
-                  Let's Start the Conversation
-                </h3>
-                
-                <Form {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                      <FormField
-                        control={form.control}
-                        name="firstName"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>First Name</FormLabel>
-                            <FormControl>
-                              <input
-                                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                                placeholder="John"
-                                {...field}
-                              />
-                            </FormControl>
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={form.control}
-                        name="lastName"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Last Name</FormLabel>
-                            <FormControl>
-                              <input
-                                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                                placeholder="Doe"
-                                {...field}
-                              />
-                            </FormControl>
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-                    
-                    <FormField
-                      control={form.control}
-                      name="email"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Email Address</FormLabel>
-                          <FormControl>
-                            <input
-                              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                              placeholder="john@example.com"
-                              type="email"
-                              {...field}
-                            />
-                          </FormControl>
-                        </FormItem>
-                      )}
-                    />
-                    
-                    <FormField
-                      control={form.control}
-                      name="company"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Company/Organization</FormLabel>
-                          <FormControl>
-                            <input
-                              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                              placeholder="Your Organization"
-                              {...field}
-                            />
-                          </FormControl>
-                        </FormItem>
-                      )}
-                    />
-                    
-                    <FormField
-                      control={form.control}
-                      name="message"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Your Message</FormLabel>
-                          <FormControl>
-                            <Textarea
-                              placeholder="Tell us about your project needs..."
-                              className="resize-none min-h-[120px]"
-                              {...field}
-                            />
-                          </FormControl>
-                        </FormItem>
-                      )}
-                    />
-                    
-                    <Button type="submit" className="w-full bg-brandBlue hover:bg-brandBlue/90">
-                      Send Message
-                    </Button>
-                    
-                    <p className="text-xs text-center text-muted-foreground mt-3">
-                      Your information will never be shared with third parties.
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Frequently Asked Questions</h2>
+              <p className="text-lg text-gray-700">
+                Common questions about sustainable web design and our approach.
+              </p>
+            </div>
+            
+            <div className="max-w-3xl mx-auto">
+              <Accordion type="single" collapsible className="bg-white rounded-xl overflow-hidden shadow-sm">
+                <AccordionItem value="item-1">
+                  <AccordionTrigger className="px-6 py-4 hover:bg-green-50 transition-colors">
+                    What makes a website "sustainable"?
+                  </AccordionTrigger>
+                  <AccordionContent className="px-6 pb-4">
+                    <p className="text-gray-700">
+                      A sustainable website minimizes environmental impact through efficient code, optimized assets, reduced data transfer, and green hosting. It's designed to use fewer resources while maintaining excellent performance and user experience. This includes optimized images, efficient coding practices, minimal use of third-party scripts, and deployment on servers powered by renewable energy.
                     </p>
-                  </form>
-                </Form>
+                  </AccordionContent>
+                </AccordionItem>
+                
+                <AccordionItem value="item-2">
+                  <AccordionTrigger className="px-6 py-4 hover:bg-green-50 transition-colors">
+                    Does sustainable design affect website performance?
+                  </AccordionTrigger>
+                  <AccordionContent className="px-6 pb-4">
+                    <p className="text-gray-700">
+                      Actually, sustainable web design typically improves performance! The same practices that reduce environmental impact—like code optimization, asset compression, and efficient loading strategies—also make websites faster and more responsive. Our sustainable websites often outperform conventional sites in speed tests and user experience metrics.
+                    </p>
+                  </AccordionContent>
+                </AccordionItem>
+                
+                <AccordionItem value="item-3">
+                  <AccordionTrigger className="px-6 py-4 hover:bg-green-50 transition-colors">
+                    How do you measure a website's environmental impact?
+                  </AccordionTrigger>
+                  <AccordionContent className="px-6 pb-4">
+                    <p className="text-gray-700">
+                      We use several tools and metrics to measure environmental impact, including:
+                    </p>
+                    <ul className="list-disc pl-5 mt-2 space-y-1 text-gray-700">
+                      <li>Page weight (total KB transferred)</li>
+                      <li>Number of HTTP requests</li>
+                      <li>Carbon emissions per page view</li>
+                      <li>Energy efficiency score</li>
+                      <li>Server energy sources</li>
+                    </ul>
+                    <p className="text-gray-700 mt-2">
+                      We provide a detailed sustainability report with your website that tracks these metrics and suggests ongoing improvements.
+                    </p>
+                  </AccordionContent>
+                </AccordionItem>
+                
+                <AccordionItem value="item-4">
+                  <AccordionTrigger className="px-6 py-4 hover:bg-green-50 transition-colors">
+                    Will a sustainable website cost more to develop?
+                  </AccordionTrigger>
+                  <AccordionContent className="px-6 pb-4">
+                    <p className="text-gray-700">
+                      While sustainable web design may require more planning and expertise initially, the long-term benefits often result in cost savings. Efficient websites require less bandwidth and server resources, reducing hosting costs. They also typically perform better in search rankings, potentially reducing your need for paid advertising. Our pricing is competitive with traditional web design services, with the added value of environmental responsibility and performance benefits.
+                    </p>
+                  </AccordionContent>
+                </AccordionItem>
+                
+                <AccordionItem value="item-5">
+                  <AccordionTrigger className="px-6 py-4 hover:bg-green-50 transition-colors">
+                    Can my existing website be made more sustainable?
+                  </AccordionTrigger>
+                  <AccordionContent className="px-6 pb-4">
+                    <p className="text-gray-700">
+                      Absolutely! We offer sustainability audits and optimization services for existing websites. Common improvements include:
+                    </p>
+                    <ul className="list-disc pl-5 mt-2 space-y-1 text-gray-700">
+                      <li>Image optimization and compression</li>
+                      <li>Code minification and cleanup</li>
+                      <li>Implementing efficient caching strategies</li>
+                      <li>Reducing third-party scripts and plugins</li>
+                      <li>Migration to green hosting providers</li>
+                    </ul>
+                    <p className="text-gray-700 mt-2">
+                      These improvements can significantly reduce your website's carbon footprint while improving performance.
+                    </p>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
+          </div>
+        </section>
+        
+        {/* CTA Section */}
+        <section className="py-16 bg-gradient-to-br from-green-700 to-green-900 text-white">
+          <div className="container-custom">
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready for a Sustainable Website?</h2>
+              <p className="text-xl text-white/90 mb-8">
+                Let's create a beautiful, high-performing website that aligns with your values and reduces your environmental impact.
+              </p>
+              <div className="flex flex-wrap gap-4 justify-center">
+                <Link to="/contact" className="btn-primary bg-white text-green-800 hover:bg-green-100 flex items-center gap-2">
+                  Get Started <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link to="/website-carbon" className="btn-secondary border-white text-white hover:bg-white/10 flex items-center gap-2">
+                  Learn More <ArrowRight className="h-4 w-4" />
+                </Link>
               </div>
             </div>
           </div>
