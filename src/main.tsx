@@ -22,8 +22,8 @@ const measureLCP = () => {
         
         console.log(`LCP detected in ${lcpTime.toFixed(2)}s`);
         
-        // Check if we hit our intended LCP target
-        if (lcpElement && typeof lcpElement === 'object' && lcpElement !== null && 'id' in lcpElement) {
+        // Check if we hit our intended LCP target - fixed type checking
+        if (lcpElement && lcpElement instanceof Element) {
           console.log(`LCP element: ${lcpElement.id || 'unnamed element'}`);
           console.log(`LCP element type: ${lcpElement.tagName}`);
           
@@ -54,12 +54,15 @@ if ('fonts' in document) {
     console.log('All fonts loaded and rendered!');
   });
   
+  // Fix type checking for font events
   document.fonts.addEventListener('loadingdone', (event) => {
-    console.log(`Font loaded: ${event.fontfaces.length} fontfaces`);
+    const fontFaceEvent = event as FontFaceSetLoadEvent;
+    console.log(`Font loaded: ${fontFaceEvent.fontfaces?.length || 0} fontfaces`);
   });
   
   document.fonts.addEventListener('loadingerror', (event) => {
-    console.error(`Font loading error: ${event.fontfaces.length} fontfaces failed`);
+    const fontFaceEvent = event as FontFaceSetLoadEvent;
+    console.error(`Font loading error: ${fontFaceEvent.fontfaces?.length || 0} fontfaces failed`);
   });
 }
 
