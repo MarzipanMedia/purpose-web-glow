@@ -3,25 +3,35 @@ import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 
-// Simplified LCP monitoring for better performance
+// Enhanced LCP monitoring with more detailed reporting
 const measureLCP = () => {
   if (!('PerformanceObserver' in window)) {
-    return; // Silently exit if not supported
+    console.warn('PerformanceObserver not supported in this browser');
+    return;
   }
 
   try {
-    // Lightweight LCP observer with minimal operations
+    // Improved LCP observer with more detailed logging
     const lcpObserver = new PerformanceObserver((entryList) => {
       const entries = entryList.getEntries();
       const lcpEntry = entries[entries.length - 1];
       
       if (lcpEntry && 'element' in lcpEntry) {
         const lcpElement = lcpEntry.element;
+        const lcpTime = lcpEntry.startTime / 1000;
+        
+        console.log(`LCP detected in ${lcpTime.toFixed(2)}s`);
         
         // Check if we hit our intended LCP target
-        // Fix: Use proper type guard to check if lcpElement is an object and has id property
-        if (lcpElement && typeof lcpElement === 'object' && lcpElement !== null && 'id' in lcpElement && lcpElement.id === 'main-heading') {
-          console.log('LCP is targeting the intended element');
+        if (lcpElement && typeof lcpElement === 'object' && lcpElement !== null && 'id' in lcpElement) {
+          console.log(`LCP element: ${lcpElement.id || 'unnamed element'}`);
+          console.log(`LCP element type: ${lcpElement.tagName}`);
+          
+          if (lcpElement.id === 'main-heading') {
+            console.log('✅ LCP is targeting the intended heading element');
+          } else {
+            console.log('❌ LCP is NOT targeting the intended heading element');
+          }
         }
       }
     });
@@ -31,23 +41,29 @@ const measureLCP = () => {
       buffered: true
     });
   } catch (e) {
-    // Silent error - don't impact page performance with error handling
+    console.error('Error during LCP measurement:', e);
   }
 };
 
-// Execute LCP measurement only if not a mobile device with slow connection
-// This helps prioritize rendering over measurement on slower devices
-if (!('connection' in navigator) || 
-    (navigator.connection && 
-     !(navigator.connection as any).saveData && 
-     (navigator.connection as any).effectiveType !== 'slow-2g' && 
-     (navigator.connection as any).effectiveType !== '2g')) {
+// Execute LCP measurement
+setTimeout(measureLCP, 0);
+
+// Add event listener for font loading events to debug font issues
+if ('fonts' in document) {
+  document.fonts.ready.then(() => {
+    console.log('All fonts loaded and rendered!');
+  });
   
-  // Delay LCP measurement until after initial render
-  setTimeout(measureLCP, 100); 
+  document.fonts.addEventListener('loadingdone', (event) => {
+    console.log(`Font loaded: ${event.fontfaces.length} fontfaces`);
+  });
+  
+  document.fonts.addEventListener('loadingerror', (event) => {
+    console.error(`Font loading error: ${event.fontfaces.length} fontfaces failed`);
+  });
 }
 
-// Add event listener for only critical image loading errors
+// Add event listener for critical image loading errors
 window.addEventListener('error', function(e) {
   if (e.target && 
       (e.target as HTMLElement).tagName === 'IMG' && 

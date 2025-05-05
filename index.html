@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en-GB">
   <head>
@@ -7,35 +6,39 @@
     <title>Marzipan Digital - Sustainable Web Design & AI-Driven SEO</title>
     <meta name="description" content="Sustainable Web Design & AI-Driven SEO for Purpose-Driven Brands. Ensuring your online presence is as powerful as your purpose." />
     
-    <!-- Preconnect to domains for better performance -->
+    <!-- Preconnect to domains for better performance with crossorigin -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://marzipan.com.au" crossorigin />
     
-    <!-- Preload the most critical font file first with display swap -->
+    <!-- Preload critical fonts with display swap for faster rendering -->
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" />
     
-    <!-- Load the secondary font after -->
+    <!-- Load secondary font with display swap for better performance -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'" />
     
-    <!-- Enhanced critical CSS for immediate hero heading visibility with mobile-first approach -->
+    <!-- Inline critical CSS for immediate hero heading visibility -->
     <style>
-      /* Critical CSS for hero heading and base styles with mobile-first approach */
+      /* Critical CSS for hero heading and base styles */
       body {
         font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         margin: 0;
         padding: 0;
       }
       
-      /* System font fallback first, then load custom fonts */
+      /* System font fallback for immediate text display */
       #main-heading {
         font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         font-weight: 700;
         opacity: 1;
         transform: translateY(0);
         color: #333;
-        font-size: 3rem; /* Mobile-first size increased */
+        font-size: 3rem;
+        line-height: 1.2;
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        visibility: visible;
       }
       
       /* Once fonts are loaded, they'll take over */
@@ -57,19 +60,7 @@
         padding: 0 1rem;
       }
       
-      /* Specific mobile optimization */
-      @media (max-width: 640px) {
-        .page-transition {
-          animation-duration: 0.2s !important; /* Faster animations on mobile */
-        }
-        
-        #main-heading {
-          margin-top: 0.25rem;
-          line-height: 1.2;
-        }
-      }
-      
-      /* Font loading detection script */
+      /* Font loading detection */
       .wf-loading {
         visibility: hidden;
       }
@@ -77,22 +68,13 @@
       .wf-active, .wf-inactive {
         visibility: visible;
       }
-      
-      /* Skeleton loaders for blog content while loading */
-      @keyframes pulse {
-        0% { opacity: 0.6; }
-        50% { opacity: 0.8; }
-        100% { opacity: 0.6; }
-      }
-      .animate-pulse {
-        animation: pulse 1.5s ease-in-out infinite;
-      }
     </style>
 
+    <!-- Other meta tags -->
     <meta name="author" content="Marzipan Digital" />
     <meta name="keywords" content="sustainable web design Sydney, digital agency Sydney, affordable SEO services, purpose-driven marketing, Marzipan Media">
 
-    <!-- Other meta tags -->
+    <!-- Open Graph tags -->
     <meta property="og:title" content="Marzipan Digital - Sustainable Web Design & AI-Driven SEO" />
     <meta property="og:description" content="Sustainable Web Design & AI-Driven SEO for Purpose-Driven Brands. Ensuring your online presence is as powerful as your purpose." />
     <meta property="og:type" content="website" />
@@ -116,18 +98,31 @@
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
-    <!-- Font loading detection -->
+    <!-- Enhanced font loading detection -->
     <script>
+      // Immediately set body class to show content with system fonts
+      document.body.classList.add('fonts-loading');
+      
+      // Font loading detection with better error handling
       if ("fonts" in document) {
         Promise.all([
           document.fonts.load("1em Questrial"),
           document.fonts.load("1em Mulish")
         ]).then(() => {
           document.documentElement.classList.add('fonts-loaded');
+          document.body.classList.remove('fonts-loading');
+          document.body.classList.add('fonts-loaded');
+          console.log("Custom fonts loaded successfully");
+        }).catch(err => {
+          console.warn("Error loading custom fonts:", err);
+          // Fallback to system fonts
+          document.documentElement.classList.add('fonts-inactive');
+          document.body.classList.remove('fonts-loading');
         });
       } else {
         // Fallback for browsers that don't support the Font Loading API
-        document.documentElement.classList.add('fonts-loaded');
+        document.documentElement.classList.add('fonts-inactive');
+        document.body.classList.remove('fonts-loading');
       }
     </script>
   </body>

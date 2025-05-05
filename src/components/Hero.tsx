@@ -12,13 +12,12 @@ const Hero = () => {
       <div className="container-custom">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center">
           <div className="md:col-span-7 space-y-4 md:space-y-6">
-            {/* Mobile-optimized LCP heading - preloaded with priority */}
+            {/* Optimized LCP heading with improved loading attributes */}
             <h1 
-              className="text-5xl md:text-6xl lg:text-7xl font-display font-bold leading-tight"
+              className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight"
               id="main-heading"
               data-lcp="true"
               fetchpriority="high"
-              style={{ fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}
             >
               Ensuring your online presence is as powerful as your 
               <span className="gradient-text"> purpose</span>
@@ -37,21 +36,21 @@ const Hero = () => {
             </div>
           </div>
           
-          {/* Only render decorative content when not mobile or after a delay */}
+          {/* Only render decorative content when not mobile - use React.lazy pattern */}
           <div className="md:col-span-5 mt-6 md:mt-0">
-            <div className="relative">
-              {/* Updated with static gradient styling and shadow */}
-              <div 
-                className="bg-gradient-to-br from-yellow-500 via-brandRed to-brandRed/80 rounded-full aspect-square flex items-center justify-center p-8 md:p-12 relative z-10 text-white shadow-lg transition-all duration-700"
-                style={{ boxShadow: '0 0 25px rgba(174, 32, 18, 0.4), 0 0 10px rgba(251, 191, 36, 0.3)' }}
-              >
-                <div className="text-center">
-                  <p className="text-lg md:text-xl font-display">Eco-friendly</p>
-                  <h2 className="text-2xl md:text-3xl font-display font-semibold">Web Design</h2>
-                  <p className="mt-2 text-white/80">For purpose-driven brands</p>
+            {!isMobile && (
+              <div className="relative">
+                <div 
+                  className="bg-gradient-to-br from-yellow-500 via-brandRed to-brandRed/80 rounded-full aspect-square flex items-center justify-center p-8 md:p-12 relative z-10 text-white shadow-lg"
+                >
+                  <div className="text-center">
+                    <p className="text-lg md:text-xl">Eco-friendly</p>
+                    <h2 className="text-2xl md:text-3xl font-semibold">Web Design</h2>
+                    <p className="mt-2 text-white/80">For purpose-driven brands</p>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
