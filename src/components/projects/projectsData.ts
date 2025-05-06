@@ -43,19 +43,19 @@ export const projects: ProjectData[] = [
         url: "https://vimeo.com/609537392",
         title: "Be a Mensch Campaign",
         description: "Social media campaign highlighting acts of kindness and encouraging community engagement",
-        orientation: "landscape"
+        orientation: "portrait"
       },
       {
         url: "https://vimeo.com/577042403",
         title: "Holocaust Survivor Stories",
         description: "Personal testimonies that preserve history for future generations",
-        orientation: "landscape"
+        orientation: "portrait"
       },
       {
         url: "https://vimeo.com/609540655",
         title: "Museum Virtual Tour",
         description: "A guided walkthrough of key exhibits and artifacts",
-        orientation: "landscape"
+        orientation: "portrait"
       }
     ]
   },
@@ -82,7 +82,7 @@ export const projects: ProjectData[] = [
   },
   {
     title: "Royal Botanic Garden – A Living Digital Archive",
-    imageUrl: "/jarli-reach-stars-marzipana.png", 
+    imageUrl: "/video-content-sydney-rbg-marzipan.png", 
     category: "Cultural Institution",
     description: "Website, video, and app creation for Australia's oldest scientific institution and public garden.",
     features: [
