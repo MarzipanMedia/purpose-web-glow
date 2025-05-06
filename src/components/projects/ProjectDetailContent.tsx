@@ -9,6 +9,37 @@ interface ProjectDetailContentProps {
 }
 
 const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({ project }) => {
+  // Function to process and render the long description with proper HTML headings
+  const renderDescription = () => {
+    if (!project.longDescription) {
+      return (
+        <p className="mb-4">
+          {`This is a template for the ${project.title} case study. This section would include a detailed description of the project, including the client's needs, the challenges faced, and the solutions implemented.`}
+        </p>
+      );
+    }
+    
+    // Replace Markdown headers with proper HTML heading elements
+    const formattedText = project.longDescription
+      // Replace ## Headers with proper styling
+      .replace(/## (.*?)(?:\n|$)/g, '<h2 class="text-2xl font-display font-semibold mb-4">$1</h2>')
+      // Replace ### Headers with proper styling
+      .replace(/### (.*?)(?:\n|$)/g, '<h3 class="text-xl font-display font-semibold mb-3">$1</h3>')
+      // Handle paragraphs
+      .split('\n\n')
+      .map(paragraph => {
+        // Skip already processed headers
+        if (paragraph.startsWith('<h')) {
+          return paragraph;
+        }
+        // Regular paragraphs
+        return `<p class="mb-4">${paragraph}</p>`;
+      })
+      .join('');
+    
+    return <div dangerouslySetInnerHTML={{ __html: formattedText }} />;
+  };
+
   return (
     <div className="lg:col-span-2 space-y-8">
       <div className="bg-marzipan/10 border border-marzipan/20 rounded-lg overflow-hidden">
@@ -23,9 +54,14 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({ project }) 
       
       <div>
         <h2 className="text-2xl font-display font-semibold mb-4">Project Overview</h2>
-        <p className="mb-4 whitespace-pre-line">
-          {project.longDescription || `This is a template for the ${project.title} case study. This section would include a detailed description of the project, including the client's needs, the challenges faced, and the solutions implemented.`}
-        </p>
+        {/* Use the rendering function for the description */}
+        {project.longDescription ? (
+          renderDescription()
+        ) : (
+          <p className="mb-4 whitespace-pre-line">
+            {`This is a template for the ${project.title} case study. This section would include a detailed description of the project, including the client's needs, the challenges faced, and the solutions implemented.`}
+          </p>
+        )}
       </div>
       
       <div>
