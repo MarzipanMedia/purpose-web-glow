@@ -9,7 +9,7 @@ interface ProjectDetailContentProps {
 }
 
 const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({ project }) => {
-  // Function to process and render the long description with proper HTML headings
+  // Function to process and render the long description with proper HTML formatting
   const renderDescription = () => {
     if (!project.longDescription) {
       return (
@@ -19,25 +19,57 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({ project }) 
       );
     }
     
+    // Process the longDescription text with enhanced formatting
+    let formattedText = project.longDescription;
+    
     // Replace Markdown headers with proper HTML heading elements
-    const formattedText = project.longDescription
+    formattedText = formattedText
       // Replace ## Headers with proper styling
       .replace(/## (.*?)(?:\n|$)/g, '<h2 class="text-2xl font-display font-semibold mb-4">$1</h2>')
       // Replace ### Headers with proper styling
-      .replace(/### (.*?)(?:\n|$)/g, '<h3 class="text-xl font-display font-semibold mb-3">$1</h3>')
-      // Handle paragraphs
-      .split('\n\n')
-      .map(paragraph => {
-        // Skip already processed headers
-        if (paragraph.startsWith('<h')) {
-          return paragraph;
-        }
-        // Regular paragraphs
-        return `<p class="mb-4">${paragraph}</p>`;
-      })
-      .join('');
+      .replace(/### (.*?)(?:\n|$)/g, '<h3 class="text-xl font-display font-semibold mb-3">$1</h3>');
     
-    return <div dangerouslySetInnerHTML={{ __html: formattedText }} />;
+    // Process bold text (both ** and __ formats)
+    formattedText = formattedText
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/__(.*?)__/g, '<strong>$1</strong>');
+    
+    // Split text into paragraphs
+    const paragraphs = formattedText.split('\n\n');
+    
+    // Process each paragraph, handling bullet points
+    const processedParagraphs = paragraphs.map(paragraph => {
+      // Skip already processed headers
+      if (paragraph.startsWith('<h')) {
+        return paragraph;
+      }
+      
+      // Check if this paragraph contains bullet points (lines starting with "- ")
+      if (paragraph.trim().split('\n').some(line => line.trim().startsWith('- '))) {
+        // This is a list - parse it properly
+        const listItems = paragraph.trim().split('\n')
+          .map(line => {
+            // Handle bullet points
+            if (line.trim().startsWith('- ')) {
+              return `<li class="ml-6 mb-2">${line.trim().substring(2)}</li>`;
+            }
+            // Non-bullet lines within a list paragraph
+            return `<p class="mb-2">${line}</p>`;
+          })
+          .join('');
+          
+        // If we have any list items, wrap them in a ul
+        if (listItems.includes('<li')) {
+          return `<ul class="list-disc mb-6">${listItems}</ul>`;
+        }
+        return `<div class="mb-4">${listItems}</div>`;
+      }
+      
+      // Regular paragraphs
+      return `<p class="mb-4">${paragraph}</p>`;
+    });
+    
+    return <div className="prose prose-gray dark:prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: processedParagraphs.join('') }} />;
   };
 
   // Check if the longDescription already contains a "## Project Overview" heading
