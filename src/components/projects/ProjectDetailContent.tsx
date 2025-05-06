@@ -40,6 +40,10 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({ project }) 
     return <div dangerouslySetInnerHTML={{ __html: formattedText }} />;
   };
 
+  // Check if the longDescription already contains a "## Project Overview" heading
+  const hasProjectOverviewHeading = project.longDescription && 
+    project.longDescription.includes('## Project Overview');
+
   return (
     <div className="lg:col-span-2 space-y-8">
       <div className="bg-marzipan/10 border border-marzipan/20 rounded-lg overflow-hidden">
@@ -53,7 +57,10 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({ project }) 
       </div>
       
       <div>
-        <h2 className="text-2xl font-display font-semibold mb-4">Project Overview</h2>
+        {/* Only show the Project Overview heading if it's not already in the content */}
+        {!hasProjectOverviewHeading && (
+          <h2 className="text-2xl font-display font-semibold mb-4">Project Overview</h2>
+        )}
         {/* Use the rendering function for the description */}
         {project.longDescription ? (
           renderDescription()
