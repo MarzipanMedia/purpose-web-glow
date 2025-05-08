@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { BarChart3, Award, Users } from 'lucide-react';
+import { BarChart3, Award, Users, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const StatsSection = () => {

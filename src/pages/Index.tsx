@@ -16,6 +16,7 @@ import FinalCTA from '@/components/home/FinalCTA';
 import CarbonShowcase from '@/components/carbon/CarbonShowcase';
 import { LocalBusinessSchema } from '@/components/seo/SchemaComponents';
 import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 
 const Index = () => {
   // Add scroll animation observer

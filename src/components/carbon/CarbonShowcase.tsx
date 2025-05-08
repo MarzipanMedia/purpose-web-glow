@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { Gauge, Leaf } from 'lucide-react';
+import { Gauge, Leaf, ArrowRight } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
 import { useWebsiteCarbon } from '../../hooks/useWebsiteCarbon';
 import { Link } from 'react-router-dom';
