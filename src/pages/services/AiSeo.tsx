@@ -54,7 +54,7 @@ const aiSeoFaqs = [
   {
     question: "An SEO agency in Bondi? Do you actually do any work?",
     answer:
-      "Absolutely! We're a results-driven team based in Bondi, working with clients across Australia to deliver measurable SEO outcomes."
+      "Absolutely! It's not all smoothies and sunshine. We're a results-driven team based in Bondi, working with clients across Australia to deliver measurable SEO outcomes. Bondi is full of content creators and creatives all hustling along together. But we've been here since 2014 and we're happy to call Sydney home"
   },
 ];
 
