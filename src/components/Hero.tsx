@@ -44,7 +44,7 @@ const Hero = () => {
                   className="bg-gradient-to-br from-yellow-500 via-brandRed to-brandRed/80 rounded-full aspect-square flex items-center justify-center p-8 md:p-12 relative z-10 text-white shadow-lg"
                 >
                   <div className="text-center">
-                    <p className="text-lg md:text-xl">Eco-friendly</p>
+                    <p className="text-lg md:text-xl">Shine Brighter Online</p>
                     <h2 className="text-2xl md:text-3xl font-semibold">Web Design</h2>
                     <p className="mt-2 text-white/80">For purpose-driven brands</p>
                   </div>
