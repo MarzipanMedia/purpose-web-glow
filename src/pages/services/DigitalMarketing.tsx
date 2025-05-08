@@ -38,7 +38,7 @@ const DigitalMarketing = () => {
                   Social & AdWords
                 </div>
                 <h1 className="text-4xl md:text-5xl font-display font-bold mb-6">
-                  Digital Marketing That Makes a Difference
+                  Strategic Digital Marketing That Makes a Difference
                 </h1>
                 <p className="text-lg text-foreground/80 mb-8">
                   Purpose-driven digital marketing strategies that amplify your message and connect with the right audience across social media and search platforms.
@@ -123,7 +123,7 @@ const DigitalMarketing = () => {
                   </div>
                   <h3 className="text-xl font-display font-medium mb-3">Google Ads & PPC</h3>
                   <p className="text-foreground/70">
-                    Targeted pay-per-click campaigns that maximize your budget and connect with users actively searching for your solutions.
+                    Targeted pay-per-click campaigns that maximise your budget and connect with users actively searching for your solutions.
                   </p>
                 </CardContent>
               </Card>
@@ -133,7 +133,7 @@ const DigitalMarketing = () => {
                   <div className="bg-brandBlue/10 text-brandBlue rounded-full w-12 h-12 flex items-center justify-center mb-4">
                     <BarChart3 className="h-6 w-6" />
                   </div>
-                  <h3 className="text-xl font-display font-medium mb-3">Analytics & Optimization</h3>
+                  <h3 className="text-xl font-display font-medium mb-3">Analytics & Optimisation</h3>
                   <p className="text-foreground/70">
                     Comprehensive tracking and continuous refinement to ensure your campaigns deliver measurable impact and ROI.
                   </p>
