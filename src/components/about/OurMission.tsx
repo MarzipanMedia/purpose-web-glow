@@ -20,7 +20,7 @@ const OurMission = () => {
             {
               icon: <Globe className="h-10 w-10 text-brandBlue" />,
               title: "Sustainable Digital Presence",
-              description: "We create lightweight, high-speed, and environmentally responsible websites that minimize digital carbon footprints.",
+              description: "We create lightweight, high-speed, and environmentally responsible websites that minimise digital carbon footprints.",
               link: "/services/sustainable-web-design"
             },
             {
