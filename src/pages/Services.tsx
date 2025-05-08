@@ -7,6 +7,7 @@ import MainServices from '../components/services/MainServices';
 import AdditionalServices from '../components/services/AdditionalServices';
 import ServiceCTA from '../components/services/ServiceCTA';
 import MetaHead from '../components/MetaHead';
+import ServiceClientLogos from '../components/services/ServiceClientLogos';
 
 const Services = () => {
   return (
@@ -22,6 +23,11 @@ const Services = () => {
         <ServicesHero />
         <MainServices />
         <AdditionalServices />
+        <ServiceClientLogos 
+          heading="Our Trusted Clients"
+          subheading="Purpose-driven brands we've helped achieve digital success"
+          backgroundColor="bg-marzipan/10"
+        />
         <ServiceCTA />
       </main>
       

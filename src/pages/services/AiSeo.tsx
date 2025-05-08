@@ -5,9 +5,9 @@ import Footer from '../../components/Footer';
 import AiSeoHero from '../../components/ai-seo/AiSeoHero';
 import AiSeoServices from '../../components/ai-seo/AiSeoServices';
 import AiSeoProcess from '../../components/ai-seo/AiSeoProcess';
-import AiSeoClientLogos from '../../components/ai-seo/AiSeoClientLogos';
 import AiSeoContactForm from '../../components/ai-seo/AiSeoContactForm';
 import FAQSection from '../../components/services/FAQSection';
+import ServiceClientLogos from '../../components/services/ServiceClientLogos';
 
 // FAQ data (British English, placeholder answers)
 const aiSeoFaqs = [
@@ -66,7 +66,11 @@ const AiSeo = () => {
         <AiSeoHero />
         <AiSeoServices />
         <AiSeoProcess />
-        <AiSeoClientLogos />
+        <ServiceClientLogos 
+          heading="Trusted By SEO Clients"
+          subheading="Join these forward-thinking organizations who've chosen our AI SEO expertise" 
+          backgroundColor="bg-white"
+        />
         <AiSeoContactForm />
         <FAQSection
           title="Frequently Asked Questions about AI SEO"
