@@ -1,5 +1,5 @@
 
-import { ProjectData } from '../projectsData';
+import { ProjectData } from './types';
 
 export const sydneyJewishMuseum: ProjectData = {
   title: "Sydney Jewish Museum",

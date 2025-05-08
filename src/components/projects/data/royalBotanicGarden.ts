@@ -1,5 +1,5 @@
 
-import { ProjectData } from '../projectsData';
+import { ProjectData } from './types';
 
 export const royalBotanicGarden: ProjectData = {
   title: "Royal Botanic Garden – A Living Digital Archive",

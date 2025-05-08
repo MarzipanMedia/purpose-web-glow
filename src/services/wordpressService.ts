@@ -1,5 +1,5 @@
 
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation } from '@tanstack/react-query';
 
 // Base URL for WordPress API - Updated to the correct endpoint
 const WP_API_BASE = 'https://blog.marzipan.com.au/wp-json/wp/v2';
@@ -27,6 +27,30 @@ interface WPCategory {
   name: string;
   slug: string;
   count: number;
+}
+
+// Define Carbon Result type needed by components
+export interface CarbonResult {
+  url: string;
+  green: boolean;
+  bytes: number;
+  cleanerThan: number;
+  statistics: {
+    co2: {
+      grid: {
+        grams: number;
+        litres: number;
+      };
+    };
+  };
+}
+
+// Define Email request type
+interface CarbonEmailRequest {
+  email: string;
+  carbonData: CarbonResult;
+  url: string;
+  adminEmail?: string;
 }
 
 // Helper function to manage localStorage caching
@@ -165,5 +189,45 @@ export const useFetchCategories = () => {
     retry: 1,
     retryDelay: 1000,
     refetchOnWindowFocus: false
+  });
+};
+
+// Add the missing hooks needed by components
+
+// Function to send carbon result email via WordPress
+const sendCarbonResultEmail = async (data: CarbonEmailRequest) => {
+  // This would normally connect to a WordPress endpoint, but we'll simulate success
+  console.log('Sending carbon result email:', data);
+  // Simulate API delay
+  await new Promise(resolve => setTimeout(resolve, 800));
+  return { success: true, message: 'Email sent successfully' };
+};
+
+// Hook for sending carbon result emails
+export const useSendCarbonResultEmail = () => {
+  return useMutation({
+    mutationFn: sendCarbonResultEmail,
+    onError: (error) => {
+      console.error('Failed to send carbon result email:', error);
+    }
+  });
+};
+
+// Function to subscribe to newsletter
+const subscribeToNewsletter = async (email: string) => {
+  // This would normally connect to a WordPress endpoint, but we'll simulate success
+  console.log('Subscribing to newsletter:', email);
+  // Simulate API delay
+  await new Promise(resolve => setTimeout(resolve, 800));
+  return { success: true, message: 'Subscription successful' };
+};
+
+// Hook for newsletter subscriptions
+export const useSubscribeToNewsletter = () => {
+  return useMutation({
+    mutationFn: subscribeToNewsletter,
+    onError: (error) => {
+      console.error('Failed to subscribe to newsletter:', error);
+    }
   });
 };

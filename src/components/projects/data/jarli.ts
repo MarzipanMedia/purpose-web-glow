@@ -1,5 +1,5 @@
 
-import { ProjectData } from '../projectsData';
+import { ProjectData } from './types';
 
 export const jarli: ProjectData = {
   title: "Jarli – Reach for the stars",

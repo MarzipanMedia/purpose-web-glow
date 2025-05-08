@@ -3,7 +3,8 @@
 
 export interface VideoData {
   title: string;
-  videoUrl: string; // Changed from url to videoUrl to match usage
+  videoUrl?: string; // Optional legacy property
+  url: string; // Added url property to fix type errors
   thumbnailUrl?: string;
   description?: string;
   orientation?: 'landscape' | 'portrait'; // Added orientation property
@@ -23,6 +24,8 @@ export interface ProjectData {
   client?: string;
   services?: string[];
   videos?: VideoData[];
+  date?: string; // Added date property to fix type error
+  tags?: string[]; // Optional tags property
 }
 
 export interface ProcessStep {
