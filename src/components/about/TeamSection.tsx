@@ -20,7 +20,7 @@ const TeamSection = () => {
       name: "Ben Adams",
       role: "Co-Founder & Technical Director",
       bio: "A seasoned technologist with expertise in sustainable web development, Ben drives our technical innovation whilst ensuring our solutions remain environmentally conscious.",
-      image: "/placeholder.svg",
+      image: "/marzipan-ben.webp",
       social: {
         linkedin: "https://linkedin.com/in/benadams",
         email: "benadams@marzipan.com.au"
@@ -30,7 +30,7 @@ const TeamSection = () => {
       name: "Tran N",
       role: "Web Developer & Technician",
       bio: "Tran brings extensive expertise in creating performant, accessible web applications with a focus on sustainability and minimal environmental impact.",
-      image: "/team-member-2.jpg",
+      image: "/tran-wp-web-developer.png",
       social: {
         email: "ben@marzipan.com.au"
       }
