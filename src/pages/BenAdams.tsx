@@ -190,7 +190,7 @@ const BenAdams = () => {
             <div className="max-w-4xl mx-auto">
               <div className="aspect-square w-full max-w-xl mx-auto mb-8 rounded-2xl overflow-hidden bg-marzipan/20">
                 <img 
-                  src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b"
+                  src="/marzipan-ben.webp"
                   alt="Ben Adams" 
                   className="w-full h-full object-cover"
                 />
