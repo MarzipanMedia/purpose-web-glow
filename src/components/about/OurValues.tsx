@@ -17,7 +17,7 @@ const OurValues = () => {
     },
     {
       title: "Purpose-Driven",
-      description: "We prioritize working with brands that are making a positive impact on the world.",
+      description: "We prioritise working with brands that are making a positive impact on the world.",
       color: "bg-purple-100 dark:bg-purple-900",
       textColor: "text-purple-800 dark:text-purple-100"
     },
