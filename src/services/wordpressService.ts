@@ -1,8 +1,8 @@
 
 import { useQuery } from '@tanstack/react-query';
 
-// Base URL for WordPress API
-const WP_API_BASE = 'https://marzipan.com.au/wp-json/wp/v2';
+// Base URL for WordPress API - Updated to the correct endpoint
+const WP_API_BASE = 'https://blog.marzipan.com.au/wp-json/wp/v2';
 
 // Add caching to improve performance and reduce API calls
 const CACHE_TTL = 1000 * 60 * 15; // 15 minutes
