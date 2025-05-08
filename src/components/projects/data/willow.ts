@@ -1,5 +1,5 @@
 
-import { ProjectData } from '../projectsData';
+import { ProjectData } from './types';
 
 export const willow: ProjectData = {
   title: "Willow – A Safe, Fast, and Sustainable Website for Women in Crisis",

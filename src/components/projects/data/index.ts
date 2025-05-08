@@ -6,10 +6,9 @@ import { willow } from './willow';
 import { popology } from './popology';
 import { toasty } from './toasty';
 import { museumsOfHistoryNSW } from './museumsOfHistoryNSW';
-import { ProcessStep } from '../projectsData';
+import { ProjectData, VideoData, ProcessStep } from './types';
 
 export * from './types';
-export { ProjectData, VideoData } from '../projectsData';
 
 // Export the combined projects array
 export const projects = [

@@ -1,5 +1,5 @@
 
-import { ProjectData } from '../projectsData';
+import { ProjectData } from './types';
 
 export const popology: ProjectData = {
   title: "Popology – A Bold Website That Balances Beauty, Speed, and Sustainability",

@@ -1,5 +1,5 @@
 
-import { ProjectData } from '../projectsData';
+import { ProjectData } from './types';
 
 export const museumsOfHistoryNSW: ProjectData = {
   title: "Museums of History NSW – Social Media Strategy",
