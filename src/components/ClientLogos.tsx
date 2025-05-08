@@ -1,28 +1,31 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 
 interface ClientLogo {
   id: number;
   name: string;
   imageUrl: string;
   alt: string;
+  projectLink?: string;
 }
 
 const ClientLogos: React.FC = () => {
   // Array of client logos
   const logos: ClientLogo[] = [
-    { id: 1, name: "FINSIA", imageUrl: "/client-logos/Finsia-SEO-logo.png", alt: "FINSIA  content creation" },
-    { id: 2, name: "Australian Georgraphic", imageUrl: "/client-logos/ag-webdesign-logo.png", alt: "AusGeo Web Design" },
-    { id: 3, name: "Willow", imageUrl: "/client-logos/willow-webdesign-logo.png", alt: "Sustainable Web Design" },
-    { id: 4, name: "National Art School", imageUrl: "/client-logos/nas-adwords-logo.png", alt: "National Art School Adwords" },
-    { id: 5, name: "Museums of History NSW", imageUrl: "/client-logos/mhnsw-content-logo.png", alt: "Museums of History NSW" },
-    { id: 6, name: "Prime", imageUrl: "/client-logos/prime-seo-logo.png", alt: "Prime SEO" },
-    { id: 7, name: "Toasty", imageUrl: "/client-logos/toasty-seo-logo.png", alt: "Toasty SEO + FB ads" },
-    { id: 8, name: "LA Gum", imageUrl: "/client-logos/lagum-seo-logo.png", alt: "LA Gum SEO SEM Socials" },
-    { id: 9, name: "NSW GOv", imageUrl: "/client-logos/nsw-scm2701-logo.png", alt: "NSW SCM2701 qualified" },
-    { id: 10, name: "NipCo SEO", imageUrl: "/client-logos/nipco-seo-logo.png", alt: "NipCo SEO" },
-    { id: 11, name: "Birchal", imageUrl: "/client-logos/birchal-sem-logo.png", alt: "Birchal Approved" },
-    { id: 12, name: "Focus", imageUrl: "/client-logos/focus.png", alt: "Focus SEO" },
+    { id: 1, name: "FINSIA", imageUrl: "/client-logos/Finsia-SEO-logo.png", alt: "FINSIA  content creation", projectLink: "/projects" },
+    { id: 2, name: "Australian Georgraphic", imageUrl: "/client-logos/ag-webdesign-logo.png", alt: "AusGeo Web Design", projectLink: "/projects" },
+    { id: 3, name: "Willow", imageUrl: "/client-logos/willow-webdesign-logo.png", alt: "Sustainable Web Design", projectLink: "/projects" },
+    { id: 4, name: "National Art School", imageUrl: "/client-logos/nas-adwords-logo.png", alt: "National Art School Adwords", projectLink: "/projects" },
+    { id: 5, name: "Museums of History NSW", imageUrl: "/client-logos/mhnsw-content-logo.png", alt: "Museums of History NSW", projectLink: "/projects" },
+    { id: 6, name: "Prime", imageUrl: "/client-logos/prime-seo-logo.png", alt: "Prime SEO", projectLink: "/projects" },
+    { id: 7, name: "Toasty", imageUrl: "/client-logos/toasty-seo-logo.png", alt: "Toasty SEO + FB ads", projectLink: "/projects" },
+    { id: 8, name: "LA Gum", imageUrl: "/client-logos/lagum-seo-logo.png", alt: "LA Gum SEO SEM Socials", projectLink: "/projects" },
+    { id: 9, name: "NSW GOv", imageUrl: "/client-logos/nsw-scm2701-logo.png", alt: "NSW SCM2701 qualified", projectLink: "/projects" },
+    { id: 10, name: "NipCo SEO", imageUrl: "/client-logos/nipco-seo-logo.png", alt: "NipCo SEO", projectLink: "/projects" },
+    { id: 11, name: "Birchal", imageUrl: "/client-logos/birchal-sem-logo.png", alt: "Birchal Approved", projectLink: "/projects" },
+    { id: 12, name: "Focus", imageUrl: "/client-logos/focus.png", alt: "Focus SEO", projectLink: "/projects" },
   ];
 
   return (
@@ -42,8 +45,9 @@ const ClientLogos: React.FC = () => {
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-8">
           {logos.slice(0, 6).map((logo) => (
-            <div 
+            <Link 
               key={logo.id}
+              to={logo.projectLink || '/projects'}
               className="flex items-center justify-center p-4 bg-white rounded-lg shadow-sm border border-marzipan/30 h-24 animate-on-scroll opacity-0 hover:shadow-md transition-all duration-300 dark:bg-gray-800 dark:border-gray-700"
               style={{ transitionDelay: `${0.1 + (logo.id - 1) * 0.05}s` }}
             >
@@ -62,14 +66,15 @@ const ClientLogos: React.FC = () => {
                   }
                 }}
               />
-            </div>
+            </Link>
           ))}
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
           {logos.slice(6, 12).map((logo) => (
-            <div 
+            <Link 
               key={logo.id}
+              to={logo.projectLink || '/projects'}
               className="flex items-center justify-center p-4 bg-white rounded-lg shadow-sm border border-marzipan/30 h-24 animate-on-scroll opacity-0 hover:shadow-md transition-all duration-300 dark:bg-gray-800 dark:border-gray-700"
               style={{ transitionDelay: `${0.1 + (logo.id - 7) * 0.05}s` }}
             >
@@ -88,8 +93,14 @@ const ClientLogos: React.FC = () => {
                   }
                 }}
               />
-            </div>
+            </Link>
           ))}
+        </div>
+
+        <div className="text-center mt-8">
+          <Link to="/projects" className="inline-flex items-center gap-2 text-brandBlue hover:underline">
+            View our client projects <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </div>
     </section>

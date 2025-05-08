@@ -1,6 +1,8 @@
+
 import React from 'react';
 import { Leaf, Zap, Recycle } from 'lucide-react';
 import { useIsMobile } from '../hooks/use-mobile';
+import { Link } from 'react-router-dom';
 
 const Sustainability = () => {
   const isMobile = useIsMobile();
@@ -9,18 +11,21 @@ const Sustainability = () => {
     {
       title: "Low Carbon Footprint",
       description: "Our websites are designed to consume minimal energy, reducing CO2 emissions with every page load.",
-      icon: <Leaf className="h-6 w-6" />
+      icon: <Leaf className="h-6 w-6" />,
+      link: "/services/sustainable-web-design"
     },
     {
       title: "Optimised Performance",
       description: "Fast-loading pages that improve user experience while requiring fewer server resources.",
-      icon: <Zap className="h-6 w-6" />
+      icon: <Zap className="h-6 w-6" />,
+      link: "/services/ai-seo"
     },
     {
       title: "Sustainable Practices",
       description: "From eco-hosting to lean code, we incorporate sustainability at every level of web development.",
       additionalText: "We're proud to be a new kind of digital agency, born out of Bondi. We're focused on one thing, helping you <strong>shine brighter online.</strong>",
-      icon: <Recycle className="h-6 w-6" />
+      icon: <Recycle className="h-6 w-6" />,
+      link: "/about"
     }
   ];
 
@@ -42,21 +47,23 @@ const Sustainability = () => {
             
             <div className="grid grid-cols-1 gap-6 mt-8">
               {principles.map((principle, index) => (
-                <div key={index} className="flex gap-4 items-start animate-fade-in" style={{ animationDelay: `${0.2 + index * 0.1}s` }}>
-                  <div className="bg-marzipan rounded-full p-2 mt-1 text-brandBlue dark:bg-marzipan/80 flex-shrink-0">
-                    {principle.icon}
+                <Link key={index} to={principle.link} className="block">
+                  <div className="flex gap-4 items-start animate-fade-in group hover:bg-white/50 p-4 rounded-lg transition-all" style={{ animationDelay: `${0.2 + index * 0.1}s` }}>
+                    <div className="bg-marzipan rounded-full p-2 mt-1 text-brandBlue dark:bg-marzipan/80 flex-shrink-0 group-hover:bg-brandBlue group-hover:text-white transition-colors">
+                      {principle.icon}
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-display font-medium dark:text-white group-hover:text-brandBlue transition-colors">{principle.title}</h3>
+                      <p className="text-foreground/70 dark:text-gray-400">{principle.description}</p>
+                      {principle.additionalText && (
+                        <p 
+                          className="text-lg text-foreground/80 dark:text-gray-300 mt-2" 
+                          dangerouslySetInnerHTML={{ __html: principle.additionalText }}
+                        />
+                      )}
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-lg font-display font-medium dark:text-white">{principle.title}</h3>
-                    <p className="text-foreground/70 dark:text-gray-400">{principle.description}</p>
-                    {principle.additionalText && (
-                      <p 
-                        className="text-lg text-foreground/80 dark:text-gray-300 mt-2" 
-                        dangerouslySetInnerHTML={{ __html: principle.additionalText }}
-                      />
-                    )}
-                  </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
@@ -78,7 +85,7 @@ const Sustainability = () => {
               </div>
               
               <div className="mt-6 text-sm">
-                Source: Website Carbon Calculator
+                Source: <Link to="/website-carbon" className="underline hover:text-marzipan">Website Carbon Calculator</Link>
               </div>
             </div>
           </div>

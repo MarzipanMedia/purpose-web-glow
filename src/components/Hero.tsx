@@ -23,7 +23,7 @@ const Hero = () => {
               <span className="gradient-text"> purpose</span>
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-foreground/80 max-w-2xl">
-              Your website should do more than just exist—it should drive traffic, increase conversions, and align with your values. We offer sustainable Web Design & AI-Driven SEO for Purpose-Driven Brands. 
+              Your website should do more than just exist—it should drive traffic, increase conversions, and align with your values. We offer <Link to="/services/sustainable-web-design" className="text-brandRed hover:underline">sustainable Web Design</Link> & <Link to="/services/ai-seo" className="text-brandRed hover:underline">AI-Driven SEO</Link> for Purpose-Driven Brands. 
               We help businesses shine brighter online without costing the earth.
             </p>
             <div className="flex flex-wrap gap-4 pt-2">
@@ -33,6 +33,11 @@ const Hero = () => {
               <Link to="/projects" className="btn-secondary flex items-center gap-2">
                 View Our Work <ArrowRight className="h-4 w-4" />
               </Link>
+              {!isMobile && (
+                <Link to="/website-carbon" className="text-brandRed hover:underline flex items-center gap-1">
+                  Free Carbon Calculator <ArrowRight className="h-3 w-3" />
+                </Link>
+              )}
             </div>
           </div>
           
@@ -40,15 +45,17 @@ const Hero = () => {
           <div className="md:col-span-5 mt-6 md:mt-0">
             {!isMobile && (
               <div className="relative">
-                <div 
-                  className="bg-gradient-to-br from-yellow-500 via-brandRed to-brandRed/80 rounded-full aspect-square flex items-center justify-center p-8 md:p-12 relative z-10 text-white shadow-lg"
-                >
-                  <div className="text-center">
-                    <p className="text-lg md:text-xl">Shine Brighter Online</p>
-                    <h2 className="text-2xl md:text-3xl font-semibold">Web Design</h2>
-                    <p className="mt-2 text-white/80">For purpose-driven brands</p>
+                <Link to="/services/sustainable-web-design" className="block">
+                  <div 
+                    className="bg-gradient-to-br from-yellow-500 via-brandRed to-brandRed/80 rounded-full aspect-square flex items-center justify-center p-8 md:p-12 relative z-10 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
+                  >
+                    <div className="text-center">
+                      <p className="text-lg md:text-xl">Shine Brighter Online</p>
+                      <h2 className="text-2xl md:text-3xl font-semibold">Web Design</h2>
+                      <p className="mt-2 text-white/80">For purpose-driven brands</p>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </div>
             )}
           </div>

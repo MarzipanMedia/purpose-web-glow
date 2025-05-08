@@ -18,13 +18,22 @@ const WebsiteCarbonCTA = () => {
             <p className="text-lg text-foreground/80">
               Discover your website's carbon footprint and how it impacts the environment. 
               Our free tool helps you assess your site's sustainability and provides actionable recommendations.
+              See how <Link to="/services/sustainable-web-design" className="text-brandBlue hover:underline">sustainable web design</Link> can benefit your business.
             </p>
-            <Link 
-              to="/website-carbon" 
-              className="bg-brandBlue text-white px-6 py-3 rounded-lg inline-flex items-center gap-2 hover:bg-brandBlue/90 transition-all hover:shadow-md hover:scale-[1.02] hover:translate-y-[-2px] duration-300"
-            >
-              Check Your Website <ArrowRight className="h-4 w-4" />
-            </Link>
+            <div className="flex flex-wrap gap-4">
+              <Link 
+                to="/website-carbon" 
+                className="bg-brandBlue text-white px-6 py-3 rounded-lg inline-flex items-center gap-2 hover:bg-brandBlue/90 transition-all hover:shadow-md hover:scale-[1.02] hover:translate-y-[-2px] duration-300"
+              >
+                Check Your Website <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                to="/projects"
+                className="text-brandBlue hover:underline inline-flex items-center gap-2"
+              >
+                View case studies <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
           </div>
           
           <div className="relative animate-on-scroll opacity-0" style={{ transitionDelay: "0.2s" }}>

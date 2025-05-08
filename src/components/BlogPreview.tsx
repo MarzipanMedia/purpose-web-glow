@@ -26,6 +26,16 @@ const BlogPreview: React.FC = () => {
     return doc.body.textContent || '';
   };
 
+  // Service links mapping for categories
+  const categoryServiceLinks = {
+    'SEO': '/services/ai-seo',
+    'Web Design': '/services/sustainable-web-design',
+    'Digital Marketing': '/services/digital-marketing',
+    'Content': '/services/content-creation',
+    'Blog': '/blog',
+    'Sustainability': '/services/sustainable-web-design',
+  };
+
   return (
     <section className="py-20 bg-gradient-to-b from-white to-gray-50">
       <div className="container-custom">
@@ -40,7 +50,9 @@ const BlogPreview: React.FC = () => {
           </h2>
           <p className="mt-4 text-foreground/80 opacity-0 animate-fade-in"
              style={{ animationDelay: "0.3s", animationFillMode: "forwards" }}>
-            Raise your game online with the latest digital marketing insights and tips. We share our thoughts, ideas, and strategies for a sustainable digital presence.
+            Raise your game online with the latest <Link to="/services/ai-seo" className="text-brandRed hover:underline">digital marketing</Link> insights and tips. 
+            We share our thoughts on <Link to="/services/sustainable-web-design" className="text-brandRed hover:underline">sustainable web design</Link> and 
+            strategies for a powerful digital presence.
           </p>
         </div>
 
@@ -97,15 +109,22 @@ const BlogPreview: React.FC = () => {
                 </div>
                 <CardContent className="p-6">
                   <div className="flex justify-between items-center mb-3">
-                    <span className="text-xs font-medium text-brandRed px-2 py-1 bg-brandRed/10 rounded-full">
-                      {post._embedded?.['wp:term']?.[0]?.[0]?.name || 'Blog'}
-                    </span>
+                    {post._embedded?.['wp:term']?.[0]?.[0]?.name && (
+                      <Link 
+                        to={categoryServiceLinks[post._embedded['wp:term'][0][0].name as keyof typeof categoryServiceLinks] || '/blog'}
+                        className="text-xs font-medium text-brandRed px-2 py-1 bg-brandRed/10 rounded-full hover:bg-brandRed/20 transition-colors"
+                      >
+                        {post._embedded['wp:term'][0][0].name}
+                      </Link>
+                    )}
                     <span className="text-xs text-foreground/60">{formatDate(post.date)}</span>
                   </div>
-                  <h3 
-                    className="text-xl font-display font-semibold mb-3 line-clamp-2 group-hover:text-brandRed transition-colors"
-                    dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-                  />
+                  <Link to={post.link} target="_blank" rel="noopener noreferrer">
+                    <h3 
+                      className="text-xl font-display font-semibold mb-3 line-clamp-2 group-hover:text-brandRed transition-colors"
+                      dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+                    />
+                  </Link>
                   <p className="text-foreground/80 mb-4 line-clamp-2">
                     {stripHtmlTags(post.excerpt.rendered)}
                   </p>

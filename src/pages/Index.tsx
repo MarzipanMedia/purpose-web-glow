@@ -15,6 +15,7 @@ import TestimonialsSection from '@/components/home/TestimonialsSection';
 import FinalCTA from '@/components/home/FinalCTA';
 import CarbonShowcase from '@/components/carbon/CarbonShowcase';
 import { LocalBusinessSchema } from '@/components/seo/SchemaComponents';
+import { Link } from 'react-router-dom';
 
 const Index = () => {
   // Add scroll animation observer
@@ -66,6 +67,20 @@ const Index = () => {
         <BlogPreview />
         <TestimonialsSection />
         <FinalCTA />
+        
+        {/* Resources Banner */}
+        <div className="py-8 bg-marzipan/30">
+          <div className="container-custom text-center">
+            <h3 className="text-xl font-display font-semibold mb-3">Looking for digital marketing resources?</h3>
+            <p className="mb-4">Check out our free guides, tools and templates to help your business grow online.</p>
+            <Link 
+              to="/resources" 
+              className="inline-flex items-center gap-2 bg-brandBlue text-white px-6 py-2 rounded-lg transition-all hover:bg-brandBlue/90"
+            >
+              Explore Resources <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
       </main>
       
       <Footer />

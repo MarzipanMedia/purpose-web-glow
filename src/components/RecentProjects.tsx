@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
@@ -12,6 +13,16 @@ const RecentProjects = () => {
   };
 
   const featuredProjects = getRandomProjects();
+  
+  // Define service links for each category
+  const categoryLinks = {
+    "Web Design": "/services/sustainable-web-design",
+    "SEO": "/services/ai-seo",
+    "Content": "/services/digital-content-creation",
+    "Digital Marketing": "/services/digital-marketing",
+    "Branding": "/services",
+    "UX Design": "/services/sustainable-web-design",
+  };
 
   return (
     <section className="py-20 bg-white">
@@ -24,7 +35,9 @@ const RecentProjects = () => {
             Recent Campaigns & Creations
           </h2>
           <p className="mt-4 text-foreground/80">
-            By combining ethical AI, sustainable web design, and performance-driven SEO strategies, we create websites that don’t just grow traffic—they grow impact.
+            By combining <Link to="/services/ai-seo" className="text-brandBlue hover:underline">ethical AI</Link>, 
+            <Link to="/services/sustainable-web-design" className="text-brandBlue hover:underline"> sustainable web design</Link>, 
+            and performance-driven SEO strategies, we create websites that don't just grow traffic—they grow impact.
           </p>
         </div>
 
@@ -45,9 +58,16 @@ const RecentProjects = () => {
                 </AspectRatio>
               </div>
               <div className="p-6">
-                <div className="text-sm text-brandBlue mb-2">{project.category}</div>
+                <Link 
+                  to={categoryLinks[project.category as keyof typeof categoryLinks] || "/services"}
+                  className="inline-block text-sm text-brandBlue mb-2 hover:underline"
+                >
+                  {project.category}
+                </Link>
                 <h3 className="text-xl font-display font-semibold mb-3 transition-colors group-hover:text-brandBlue">
-                  {project.title}
+                  <Link to={`/projects/${project.slug}`}>
+                    {project.title}
+                  </Link>
                 </h3>
                 <p className="text-foreground/80 mb-4 line-clamp-2">
                   {project.description}
