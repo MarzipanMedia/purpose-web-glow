@@ -2,7 +2,7 @@
 import React from 'react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Check } from 'lucide-react';
-import { ProjectData } from './projectsData';
+import { ProjectData } from './data';
 
 interface ProjectDetailContentProps {
   project: ProjectData;

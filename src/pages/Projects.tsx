@@ -6,7 +6,7 @@ import HeroSection from '../components/projects/HeroSection';
 import ProjectsGrid from '../components/projects/ProjectsGrid';
 import ProcessSection from '../components/projects/ProcessSection';
 import CTASection from '../components/projects/CTASection';
-import { projects } from '../components/projects/projectsData';
+import { projects } from '../components/projects/data';
 import MetaHead from '../components/MetaHead';
 
 const Projects = () => {

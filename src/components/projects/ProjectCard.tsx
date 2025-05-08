@@ -3,6 +3,7 @@ import React from 'react';
 import { ArrowRight, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
+import { ProjectData } from './data';
 
 export interface ProjectCardProps {
   title: string;

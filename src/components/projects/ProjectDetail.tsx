@@ -3,7 +3,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import Header from '../Header';
 import Footer from '../Footer';
-import { projects } from './projectsData';
+import { projects } from './data';
 import MetaHead from '../MetaHead';
 import VideoSection from './VideoSection';
 import ProjectDetailHero from './ProjectDetailHero';

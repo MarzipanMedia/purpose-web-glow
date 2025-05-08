@@ -1,9 +1,8 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { projects } from './projects/projectsData';
+import { projects } from './projects/data';
 
 const RecentProjects = () => {
   // Randomly select 3 projects

@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Check } from 'lucide-react';
-import { ProjectData } from './projectsData';
+import { ProjectData } from './data';
 
 interface ProjectDetailHeroProps {
   project: ProjectData;

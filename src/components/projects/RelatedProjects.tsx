@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ProjectData } from './projectsData';
+import { ProjectData } from './data';
 
 interface RelatedProjectsProps {
   currentSlug: string;

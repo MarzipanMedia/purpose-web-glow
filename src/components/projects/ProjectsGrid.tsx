@@ -1,7 +1,7 @@
 
 import React from 'react';
 import ProjectCard from './ProjectCard';
-import { ProjectData } from './projectsData';
+import { ProjectData } from './data';
 import { 
   Pagination, 
   PaginationContent, 
