@@ -1,241 +1,169 @@
-import { useQuery, useMutation } from '@tanstack/react-query';
 
-export interface WordPressPost {
+import { useQuery } from '@tanstack/react-query';
+
+// Base URL for WordPress API
+const WP_API_BASE = 'https://marzipan.com.au/wp-json/wp/v2';
+
+// Add caching to improve performance and reduce API calls
+const CACHE_TTL = 1000 * 60 * 15; // 15 minutes
+
+// Define proper types for WordPress data
+interface WPPost {
   id: number;
   date: string;
-  modified: string;
   title: {
     rendered: string;
   };
   excerpt: {
     rendered: string;
   };
-  content?: {
-    rendered: string;
-  };
   link: string;
-  _embedded?: {
-    'wp:featuredmedia'?: Array<{
-      source_url: string;
-      media_details?: {
-        sizes?: {
-          medium?: {
-            source_url: string;
-          };
-          thumbnail?: {
-            source_url: string;
-          };
-        };
-      };
-    }>;
-    'wp:term'?: Array<Array<{
-      id: number;
-      name: string;
-      slug: string;
-    }>>;
-    author?: Array<{
-      name: string;
-      url: string;
-      avatar_urls?: {
-        [key: string]: string;
-      };
-    }>;
-  };
-  categories?: number[];
-  tags?: number[];
+  slug: string;
+  _embedded?: any;
 }
 
-export interface WordPressCategory {
+interface WPCategory {
   id: number;
   name: string;
+  slug: string;
   count: number;
 }
 
-export interface CarbonResult {
-  url: string;
-  green: boolean;
-  bytes: number;
-  cleanerThan: number;
-  statistics: {
-    adjustedBytes: number;
-    energy: number;
-    co2: {
-      grid: {
-        grams: number;
-        litres: number;
-      },
-      renewable: {
-        grams: number;
-        litres: number;
-      }
-    }
-  };
-  timestamp: number;
-}
-
-// Replace with your actual WordPress site URL
-const API_URL = 'https://marzipan.com.au/wp-json/wp/v2';
-
-// If you have WordPress REST API custom endpoints set up for emails
-// Replace with your actual endpoint
-const EMAIL_ENDPOINT = 'https://marzipan.com.au/wp-json/marzipan/v1/send-email';
-
-// Pre-connect to WordPress domain to improve performance
-if (typeof document !== 'undefined') {
-  const link = document.createElement('link');
-  link.rel = 'preconnect';
-  link.href = 'https://marzipan.com.au';
-  link.crossOrigin = 'anonymous';
-  document.head.appendChild(link);
-}
-
-export const useFetchPosts = (page = 1, perPage = 3) => {
-  return useQuery({
-    queryKey: ['wordpressPosts', page, perPage],
-    queryFn: async () => {
-      console.log(`Fetching WordPress posts: ${API_URL}/posts?_embed&page=${page}&per_page=${perPage}`);
+// Helper function to manage localStorage caching
+const cache = {
+  get: (key: string) => {
+    try {
+      const item = localStorage.getItem(key);
+      if (!item) return null;
       
-      try {
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 8000); // 8-second timeout
-        
-        const response = await fetch(`${API_URL}/posts?_embed&page=${page}&per_page=${perPage}`, {
-          signal: controller.signal
-        });
-        
-        clearTimeout(timeoutId);
-        
-        if (!response.ok) {
-          throw new Error(`WordPress API error: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        return {
-          posts: data as WordPressPost[],
-          totalPages: parseInt(response.headers.get('X-WP-TotalPages') || '1'),
-          total: parseInt(response.headers.get('X-WP-Total') || '0')
-        };
-      } catch (error) {
-        if ((error as Error).name === 'AbortError') {
-          throw new Error('WordPress API request timed out');
-        }
-        throw error;
+      const { value, expiry } = JSON.parse(item);
+      if (expiry && Date.now() > expiry) {
+        localStorage.removeItem(key);
+        return null;
       }
-    },
-    retry: 1,
-    retryDelay: 1000,
-    networkMode: 'always',
-    refetchOnWindowFocus: false,
-    staleTime: 5 * 60 * 1000, // 5 minutes
-    gcTime: 10 * 60 * 1000, // 10 minutes
+      
+      return value;
+    } catch (err) {
+      console.error('Error retrieving from cache:', err);
+      return null;
+    }
+  },
+  
+  set: (key: string, value: any, ttl = CACHE_TTL) => {
+    try {
+      const item = {
+        value,
+        expiry: Date.now() + ttl
+      };
+      localStorage.setItem(key, JSON.stringify(item));
+    } catch (err) {
+      console.error('Error setting cache:', err);
+    }
+  }
+};
+
+// Function to fetch WordPress posts
+const fetchPosts = async (page = 1, per_page = 6) => {
+  console.info(`Fetching WordPress posts: ${WP_API_BASE}/posts?_embed&page=${page}&per_page=${per_page}`);
+  
+  try {
+    // Try to get from cache first
+    const cacheKey = `wp_posts_${page}_${per_page}`;
+    const cachedData = cache.get(cacheKey);
+    
+    if (cachedData) {
+      console.info('Using cached posts data');
+      return cachedData;
+    }
+    
+    // If no cache, fetch from API
+    const response = await fetch(`${WP_API_BASE}/posts?_embed&page=${page}&per_page=${per_page}`, {
+      headers: {
+        'Accept': 'application/json'
+      },
+      // Add a timeout to the fetch request
+      signal: AbortSignal.timeout(5000) // 5 second timeout
+    });
+    
+    if (!response.ok) {
+      throw new Error(`WordPress API error: ${response.status}`);
+    }
+    
+    const posts = await response.json();
+    
+    // Get total pages from headers
+    const totalPages = parseInt(response.headers.get('X-WP-TotalPages') || '1', 10);
+    const totalPosts = parseInt(response.headers.get('X-WP-Total') || '0', 10);
+    
+    const result = { posts, totalPages, totalPosts };
+    
+    // Cache the result
+    cache.set(cacheKey, result);
+    
+    return result;
+  } catch (error) {
+    console.error('Error fetching WordPress posts:', error);
+    throw error;
+  }
+};
+
+// Function to fetch WordPress categories
+const fetchCategories = async () => {
+  try {
+    // Try to get from cache first
+    const cacheKey = 'wp_categories';
+    const cachedData = cache.get(cacheKey);
+    
+    if (cachedData) {
+      console.info('Using cached categories data');
+      return cachedData;
+    }
+    
+    // If no cache, fetch from API
+    const response = await fetch(`${WP_API_BASE}/categories?per_page=20`, {
+      headers: {
+        'Accept': 'application/json'
+      },
+      // Add a timeout to the fetch request
+      signal: AbortSignal.timeout(5000) // 5 second timeout
+    });
+    
+    if (!response.ok) {
+      throw new Error(`WordPress API error: ${response.status}`);
+    }
+    
+    const categories = await response.json();
+    
+    // Cache the result
+    cache.set(cacheKey, categories);
+    
+    return categories;
+  } catch (error) {
+    console.error('Error fetching WordPress categories:', error);
+    throw error;
+  }
+};
+
+// Custom hook for fetching posts
+export const useFetchPosts = (page = 1, per_page = 6) => {
+  return useQuery({
+    queryKey: ['wp-posts', page, per_page],
+    queryFn: () => fetchPosts(page, per_page),
+    staleTime: CACHE_TTL, // Use the cache TTL for stale time
+    retry: 1, // Only retry once
+    retryDelay: 1000, // Wait 1 second before retrying
+    refetchOnWindowFocus: false // Don't refetch when window gets focus
   });
 };
 
+// Custom hook for fetching categories
 export const useFetchCategories = () => {
   return useQuery({
-    queryKey: ['wordpressCategories'],
-    queryFn: async () => {
-      const response = await fetch(`${API_URL}/categories?per_page=20`);
-      
-      if (!response.ok) {
-        throw new Error(`WordPress API error: ${response.status}`);
-      }
-      
-      return await response.json() as WordPressCategory[];
-    },
+    queryKey: ['wp-categories'],
+    queryFn: fetchCategories,
+    staleTime: CACHE_TTL * 2, // Categories change less frequently
     retry: 1,
-    refetchOnWindowFocus: false,
-    staleTime: 10 * 60 * 1000, // 10 minutes
-    gcTime: 30 * 60 * 1000, // 30 minutes
-  });
-};
-
-export const useFetchPostsByCategory = (categoryId: number, page = 1, perPage = 6) => {
-  return useQuery({
-    queryKey: ['wordpressPosts', 'category', categoryId, page, perPage],
-    queryFn: async () => {
-      const response = await fetch(
-        `${API_URL}/posts?_embed&categories=${categoryId}&page=${page}&per_page=${perPage}`
-      );
-      
-      if (!response.ok) {
-        throw new Error(`WordPress API error: ${response.status}`);
-      }
-      
-      const data = await response.json();
-      return {
-        posts: data as WordPressPost[],
-        totalPages: parseInt(response.headers.get('X-WP-TotalPages') || '1'),
-        total: parseInt(response.headers.get('X-WP-Total') || '0')
-      };
-    },
-    retry: 1,
-    enabled: !!categoryId,
-    networkMode: 'always',
-    refetchOnWindowFocus: false,
-    staleTime: 5 * 60 * 1000, // 5 minutes
-    gcTime: 10 * 60 * 1000, // 10 minutes
-  });
-};
-
-// New function to send carbon results via WordPress API
-export const useSendCarbonResultEmail = () => {
-  return useMutation({
-    mutationFn: async (data: {
-      email: string;
-      carbonData: CarbonResult;
-      url: string;
-      adminEmail?: string;
-    }) => {
-      console.log('Sending carbon result email via WordPress:', data);
-      
-      const response = await fetch(EMAIL_ENDPOINT, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          recipient_email: data.email,
-          admin_email: data.adminEmail || '',
-          subject: 'Your Website Carbon Footprint Results',
-          carbon_data: data.carbonData,
-          website_url: data.url
-        }),
-      });
-      
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to send email');
-      }
-      
-      return await response.json();
-    },
-  });
-};
-
-// Newsletter subscription via WordPress API
-export const useSubscribeToNewsletter = () => {
-  return useMutation({
-    mutationFn: async (email: string) => {
-      console.log('Subscribing to newsletter via WordPress:', email);
-      
-      const response = await fetch(`${API_URL}/newsletter-subscribe`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email,
-          interests: ['sustainable-web-tips']
-        }),
-      });
-      
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to subscribe to newsletter');
-      }
-      
-      return await response.json();
-    },
+    retryDelay: 1000,
+    refetchOnWindowFocus: false
   });
 };

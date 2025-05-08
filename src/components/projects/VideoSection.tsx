@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Card, CardContent } from "@/components/ui/card";
-import { VideoData } from './projectsData';
+import { VideoData } from './data';
 import { RotateCw } from 'lucide-react';
 
 interface VideoSectionProps {
@@ -50,7 +50,7 @@ const VideoSection: React.FC<VideoSectionProps> = ({
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {videos.map((video, index) => {
-            const { platform, id } = getVideoId(video.url);
+            const { platform, id } = getVideoId(video.videoUrl); // Updated to use videoUrl
             const embedUrl = platform === 'vimeo' 
               ? `https://player.vimeo.com/video/${id}?title=0&byline=0&portrait=0` 
               : `https://www.youtube.com/embed/${id}?rel=0`;

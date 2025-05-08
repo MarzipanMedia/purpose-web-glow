@@ -3,9 +3,10 @@
 
 export interface VideoData {
   title: string;
-  videoUrl: string;
+  videoUrl: string; // Changed from url to videoUrl to match usage
   thumbnailUrl?: string;
   description?: string;
+  orientation?: 'landscape' | 'portrait'; // Added orientation property
 }
 
 export interface ProjectData {
