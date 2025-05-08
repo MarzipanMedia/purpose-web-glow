@@ -50,6 +50,8 @@
         margin-top: 0;
         margin-bottom: 0.5rem;
         visibility: visible;
+        content-visibility: visible;
+        contain: layout style paint;
       }
       
       /* Once fonts are loaded, they'll take over */
@@ -78,6 +80,11 @@
       
       .wf-active, .wf-inactive {
         visibility: visible;
+      }
+      
+      /* Additional LCP optimizations */
+      .lcp-detected .hero-content {
+        content-visibility: auto;
       }
     </style>
 
@@ -114,31 +121,51 @@
       // Immediately set body class to show content with system fonts
       document.body.classList.add('fonts-loading');
       
-      // Font loading detection with better error handling and performance
+      // Font loading detection with better error handling and prioritization
       if ("fonts" in document) {
-        Promise.all([
-          document.fonts.load("1em Questrial"),
-          document.fonts.load("1em Mulish")
-        ])
-        .then(() => {
-          requestAnimationFrame(() => {
-            document.documentElement.classList.add('fonts-loaded');
-            document.body.classList.remove('fonts-loading');
-            document.body.classList.add('fonts-loaded');
-            console.log("Custom fonts loaded successfully");
+        // Create prioritized font loading promise
+        const loadFonts = async () => {
+          try {
+            // First load the primary font needed for LCP
+            await document.fonts.load("1em Questrial");
+            console.log("Primary font loaded");
             
-            // Record font loading performance
-            if (performance && performance.mark) {
-              performance.mark('fonts-loaded');
-            }
-          });
-        })
-        .catch(err => {
-          console.warn("Error loading custom fonts:", err);
-          // Fallback to system fonts
-          document.documentElement.classList.add('fonts-inactive');
-          document.body.classList.remove('fonts-loading');
-        });
+            // Mark LCP font as loaded 
+            document.documentElement.classList.add('primary-font-loaded');
+            
+            // Then load secondary fonts
+            await document.fonts.load("1em Mulish");
+            console.log("All custom fonts loaded successfully");
+            
+            requestAnimationFrame(() => {
+              document.documentElement.classList.add('fonts-loaded');
+              document.body.classList.remove('fonts-loading');
+              document.body.classList.add('fonts-loaded');
+              
+              // Record font loading performance
+              if (performance && performance.mark) {
+                performance.mark('fonts-loaded');
+              }
+              
+              // Force reflow of the main heading for better rendering
+              const mainHeading = document.getElementById('main-heading');
+              if (mainHeading) {
+                mainHeading.style.opacity = '0.99';
+                setTimeout(() => {
+                  mainHeading.style.opacity = '1';
+                }, 10);
+              }
+            });
+          } catch (err) {
+            console.warn("Error loading custom fonts:", err);
+            // Fallback to system fonts but still remove loading class
+            document.documentElement.classList.add('fonts-inactive');
+            document.body.classList.remove('fonts-loading');
+          }
+        };
+        
+        // Start font loading immediately
+        loadFonts();
       } else {
         // Fallback for browsers that don't support the Font Loading API
         document.documentElement.classList.add('fonts-inactive');

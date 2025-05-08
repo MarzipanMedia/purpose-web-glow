@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 
-// Enhanced LCP monitoring with more detailed reporting
+// Enhanced LCP monitoring with more detailed reporting and improved error handling
 const measureLCP = () => {
   if (!('PerformanceObserver' in window)) {
     console.warn('PerformanceObserver not supported in this browser');
@@ -11,12 +11,12 @@ const measureLCP = () => {
   }
 
   try {
-    // Record start time for more accurate measurement
+    // Mark the start time for LCP measurement
     if (performance && performance.mark) {
       performance.mark('lcp-measurement-start');
     }
     
-    // Improved LCP observer with more detailed logging
+    // Create improved LCP observer with more reliable detection
     const lcpObserver = new PerformanceObserver((entryList) => {
       const entries = entryList.getEntries();
       const lcpEntry = entries[entries.length - 1];
@@ -27,15 +27,26 @@ const measureLCP = () => {
         
         console.log(`LCP detected in ${lcpTime.toFixed(2)}s`);
         
-        // Check if we hit our intended LCP target - fixed type checking
+        // Check if we hit our intended LCP target
         if (lcpElement && lcpElement instanceof Element) {
           console.log(`LCP element: ${lcpElement.id || 'unnamed element'}`);
           console.log(`LCP element type: ${lcpElement.tagName}`);
           
           if (lcpElement.id === 'main-heading') {
             console.log('✅ LCP is targeting the intended heading element');
+            document.documentElement.classList.add('lcp-detected');
           } else {
             console.log('❌ LCP is NOT targeting the intended heading element');
+            // Try to force LCP to the right element
+            setTimeout(() => {
+              const mainHeading = document.getElementById('main-heading');
+              if (mainHeading) {
+                mainHeading.style.display = 'block';
+                mainHeading.style.contentVisibility = 'visible';
+                mainHeading.style.contain = 'none';
+                console.log('Applied forced visibility to main heading');
+              }
+            }, 0);
           }
           
           // Record performance mark for LCP element identified
@@ -46,19 +57,36 @@ const measureLCP = () => {
       }
     });
     
+    // Observe LCP events with buffering to catch early events
     lcpObserver.observe({
       type: 'largest-contentful-paint',
       buffered: true
     });
+    
+    // Additional observer for layout shifts that might affect LCP
+    const clsObserver = new PerformanceObserver((entryList) => {
+      const entries = entryList.getEntries();
+      if (entries.length > 0) {
+        console.log(`Layout shift detected: ${entries.length} shifts`);
+      }
+    });
+    
+    try {
+      clsObserver.observe({ type: 'layout-shift', buffered: true });
+    } catch (e) {
+      console.log('CLS observation not supported');
+    }
+    
   } catch (e) {
     console.error('Error during LCP measurement:', e);
   }
 };
 
-// Execute LCP measurement using requestIdleCallback if available or fallback to setTimeout
+// Execute LCP measurement with priority scheduling
 if ('requestIdleCallback' in window) {
-  window.requestIdleCallback(() => measureLCP(), { timeout: 2000 });
+  window.requestIdleCallback(() => measureLCP(), { timeout: 1000 });
 } else {
+  // Immediate fallback for browsers without requestIdleCallback
   setTimeout(measureLCP, 0);
 }
 
@@ -66,9 +94,16 @@ if ('requestIdleCallback' in window) {
 if ('fonts' in document) {
   document.fonts.ready.then(() => {
     console.log('All fonts loaded and rendered!');
+    // Force re-evaluation of LCP after fonts are loaded
+    const mainHeading = document.getElementById('main-heading');
+    if (mainHeading) {
+      mainHeading.style.opacity = '0.99';
+      setTimeout(() => {
+        mainHeading.style.opacity = '1';
+      }, 0);
+    }
   });
   
-  // Fix type checking for font events
   document.fonts.addEventListener('loadingdone', (event) => {
     const fontFaceEvent = event as FontFaceSetLoadEvent;
     console.log(`Font loaded: ${fontFaceEvent.fontfaces?.length || 0} fontfaces`);

@@ -16,8 +16,9 @@ const Hero = () => {
             <h1 
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight font-display"
               id="main-heading"
-              // Fixed: Changed to lowercase fetchpriority to match HTML standard
+              // Using lowercase fetchpriority attribute for HTML compliance
               fetchpriority="high"
+              style={{ contentVisibility: 'auto' }}
             >
               Ensuring your online presence is as powerful as your 
               <span className="gradient-text"> purpose</span>
@@ -48,7 +49,6 @@ const Hero = () => {
                 <Link to="/services/sustainable-web-design" className="block">
                   <div 
                     className="bg-gradient-to-br from-yellow-500 via-brandRed to-brandRed/80 rounded-full aspect-square flex items-center justify-center p-8 md:p-12 relative z-10 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
-                    // Fixed: Removed loading attribute as it's not valid on a div
                   >
                     <div className="text-center">
                       <p className="text-lg md:text-xl">Shine Brighter Online</p>
