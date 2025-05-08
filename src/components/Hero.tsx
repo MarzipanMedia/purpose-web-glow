@@ -16,8 +16,8 @@ const Hero = () => {
             <h1 
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight font-display"
               id="main-heading"
-              // Fixed: Changed loading attribute to fetchpriority to be standards-compliant
-              fetchPriority="high"
+              // Fixed: Changed to lowercase fetchpriority to match HTML standard
+              fetchpriority="high"
             >
               Ensuring your online presence is as powerful as your 
               <span className="gradient-text"> purpose</span>
