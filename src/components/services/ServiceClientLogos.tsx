@@ -16,7 +16,7 @@ interface ServiceClientLogosProps {
 
 const ServiceClientLogos: React.FC<ServiceClientLogosProps> = ({
   heading = "Trusted By Purpose-Driven Brands",
-  subheading = "Join these forward-thinking organizations who've chosen our expertise",
+  subheading = "Join these forward-thinking organisations who've chosen to Shine Brighter Online",
   backgroundColor = "bg-white"
 }) => {
   // Using the same logo data from the main ClientLogos component
