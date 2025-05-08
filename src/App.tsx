@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { useEffect } from "react";
 import { ThemeProvider } from "./components/ThemeProvider";
@@ -67,6 +67,17 @@ const PageTransition = ({ children }: { children: React.ReactNode }) => {
   return <div className={transitionClass}>{children}</div>;
 };
 
+// Route not found handler component 
+const RouteNotFound = () => {
+  const location = useLocation();
+  
+  useEffect(() => {
+    console.log(`Route not found: ${location.pathname}`);
+  }, [location.pathname]);
+  
+  return <NotFound />;
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <HelmetProvider>
@@ -97,7 +108,8 @@ const App = () => (
               <Route path="/terms" element={<PageTransition><Terms /></PageTransition>} />
               <Route path="/benadams" element={<PageTransition><BenAdams /></PageTransition>} />
               <Route path="/alwayswas" element={<PageTransition><AlwaysWas /></PageTransition>} />
-              <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
+              <Route path="/404" element={<PageTransition><NotFound /></PageTransition>} />
+              <Route path="*" element={<PageTransition><RouteNotFound /></PageTransition>} />
             </Routes>
           </BrowserRouter>
         </TooltipProvider>
