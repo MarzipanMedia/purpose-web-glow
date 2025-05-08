@@ -60,8 +60,8 @@ const SustainableWebDesign = () => {
                 <div className="relative bg-white p-6 rounded-xl shadow-xl border border-marzipan/30">
                   <div className="aspect-video bg-marzipan/20 rounded-lg overflow-hidden flex items-center justify-center mb-6">
                     <img 
-                      src="/images/sustainable-web-design.jpg" 
-                      alt="Sustainable Web Design Example" 
+                      src="/webdesign-agency-min.webp" 
+                      alt="Sustainable Web Design Sydney" 
                       className="w-full h-full object-cover"
                       loading="lazy"
                     />
