@@ -1,5 +1,6 @@
+
 import React from 'react';
-import { Linkedin, Mail, Twitter } from 'lucide-react';
+import { Linkedin, Mail, Twitter, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface TeamMember {
@@ -7,6 +8,7 @@ interface TeamMember {
   role: string;
   bio: string;
   image: string;
+  profilePage?: string;
   social: {
     linkedin?: string;
     twitter?: string;
@@ -21,6 +23,7 @@ const TeamSection = () => {
       role: "Co-Founder & Technical Director",
       bio: "A seasoned technologist with expertise in sustainable web development, Ben drives our technical innovation whilst ensuring our solutions remain environmentally conscious.",
       image: "/marzipan-ben.webp",
+      profilePage: "/benadams",
       social: {
         linkedin: "https://linkedin.com/in/benadams",
         email: "benadams@marzipan.com.au"
@@ -54,13 +57,13 @@ const TeamSection = () => {
               className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 animate-fade-in"
               style={{ animationDelay: `${0.1 + index * 0.1}s` }}
             >
-              {member.name === "Ben Adams" ? (
-                <Link to="/benadams" className="block">
+              {member.profilePage ? (
+                <Link to={member.profilePage} className="block">
                   <div className="aspect-square relative">
                     <img 
                       src={member.image} 
                       alt={member.name}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                       onError={(e) => {
                         (e.target as HTMLImageElement).src = '/placeholder.svg';
                       }}
@@ -81,9 +84,9 @@ const TeamSection = () => {
               )}
               
               <div className="p-6">
-                {member.name === "Ben Adams" ? (
-                  <Link to="/benadams">
-                    <h3 className="text-xl font-semibold mb-1 hover:text-brandBlue dark:hover:text-marzipan transition-colors">{member.name}</h3>
+                {member.profilePage ? (
+                  <Link to={member.profilePage} className="block group">
+                    <h3 className="text-xl font-semibold mb-1 group-hover:text-brandBlue dark:group-hover:text-marzipan transition-colors">{member.name}</h3>
                   </Link>
                 ) : (
                   <h3 className="text-xl font-semibold mb-1">{member.name}</h3>
@@ -126,6 +129,15 @@ const TeamSection = () => {
                     </a>
                   )}
                 </div>
+                
+                {member.profilePage && (
+                  <Link 
+                    to={member.profilePage} 
+                    className="mt-4 inline-flex items-center text-sm text-brandBlue hover:underline"
+                  >
+                    Learn more about {member.name.split(' ')[0]} <ArrowRight className="ml-1 h-4 w-4" />
+                  </Link>
+                )}
               </div>
             </div>
           ))}

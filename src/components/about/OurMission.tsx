@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Award, Globe, Users } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const OurMission = () => {
   return (
@@ -19,28 +20,32 @@ const OurMission = () => {
             {
               icon: <Globe className="h-10 w-10 text-brandBlue" />,
               title: "Sustainable Digital Presence",
-              description: "We create lightweight, high-speed, and environmentally responsible websites that minimize digital carbon footprints."
+              description: "We create lightweight, high-speed, and environmentally responsible websites that minimize digital carbon footprints.",
+              link: "/services/sustainable-web-design"
             },
             {
               icon: <Award className="h-10 w-10 text-brandRed" />,
               title: "Ethical AI-Driven SEO",
-              description: "Our AI-driven SEO strategies help purpose-driven brands rank higher on Google while maintaining ethical standards."
+              description: "Our AI-driven SEO strategies help purpose-driven brands rank higher on Google while maintaining ethical standards.",
+              link: "/services/ai-seo"
             },
             {
               icon: <Users className="h-10 w-10 text-brandBlue" />,
               title: "Meaningful Engagement",
-              description: "We build digital experiences that don't just attract visitors—they create meaningful connections with your audience."
+              description: "We build digital experiences that don't just attract visitors—they create meaningful connections with your audience.",
+              link: "/services/digital-content-creation"
             }
           ].map((item, index) => (
-            <div 
+            <Link 
               key={index} 
-              className="p-8 rounded-lg bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 hover:shadow-md transition-all duration-300 animate-fade-in"
+              to={item.link}
+              className="p-8 rounded-lg bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 hover:shadow-md transition-all duration-300 animate-fade-in group"
               style={{ animationDelay: `${0.1 + index * 0.1}s` }}
             >
               <div className="mb-4">{item.icon}</div>
-              <h3 className="text-xl font-semibold mb-3">{item.title}</h3>
+              <h3 className="text-xl font-semibold mb-3 group-hover:text-brandBlue dark:group-hover:text-marzipan transition-colors">{item.title}</h3>
               <p className="text-foreground/70">{item.description}</p>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

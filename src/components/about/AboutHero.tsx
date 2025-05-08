@@ -39,12 +39,16 @@ const AboutHero = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
             </div>
-            <div className="absolute -bottom-6 -left-6 bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg max-w-xs animate-fade-in" style={{ animationDelay: '0.3s' }}>
-              <h3 className="text-lg font-semibold mb-2">Sustainable Digital Solutions</h3>
+            <Link 
+              to="/website-carbon"
+              className="absolute -bottom-6 -left-6 bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg max-w-xs animate-fade-in hover:shadow-xl transition-all duration-300 group" 
+              style={{ animationDelay: '0.3s' }}
+            >
+              <h3 className="text-lg font-semibold mb-2 group-hover:text-brandBlue transition-colors">Sustainable Digital Solutions</h3>
               <p className="text-foreground/70 text-sm">
                 Creating websites, videos and digital marketing campaigns that scale, convert, and respect our planet.
               </p>
-            </div>
+            </Link>
           </div>
         </div>
       </div>

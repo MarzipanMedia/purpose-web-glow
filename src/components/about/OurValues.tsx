@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const OurValues = () => {
   const values = [
@@ -7,37 +8,43 @@ const OurValues = () => {
       title: "Sustainability",
       description: "We believe digital innovation and environmental responsibility can go hand in hand.",
       color: "bg-green-100 dark:bg-green-900",
-      textColor: "text-green-800 dark:text-green-100"
+      textColor: "text-green-800 dark:text-green-100",
+      link: "/website-carbon"
     },
     {
       title: "Ethical Technology",
       description: "We implement AI and digital solutions with clear ethical guidelines and transparency.",
       color: "bg-blue-100 dark:bg-blue-900",
-      textColor: "text-blue-800 dark:text-blue-100"
+      textColor: "text-blue-800 dark:text-blue-100",
+      link: "/services/ai-seo"
     },
     {
       title: "Purpose-Driven",
       description: "We prioritise working with brands that are making a positive impact on the world.",
       color: "bg-purple-100 dark:bg-purple-900",
-      textColor: "text-purple-800 dark:text-purple-100"
+      textColor: "text-purple-800 dark:text-purple-100",
+      link: "/projects"
     },
     {
       title: "Performance",
       description: "We believe in delivering measurable results that contribute to your business goals.",
       color: "bg-amber-100 dark:bg-amber-900",
-      textColor: "text-amber-800 dark:text-amber-100"
+      textColor: "text-amber-800 dark:text-amber-100",
+      link: "/services"
     },
     {
       title: "Collaboration",
       description: "We work as an extension of your team, ensuring transparency and communication.",
       color: "bg-rose-100 dark:bg-rose-900",
-      textColor: "text-rose-800 dark:text-rose-100"
+      textColor: "text-rose-800 dark:text-rose-100",
+      link: "/contact"
     },
     {
       title: "Innovation",
       description: "We continuously explore new technologies and approaches to deliver better results.",
       color: "bg-indigo-100 dark:bg-indigo-900",
-      textColor: "text-indigo-800 dark:text-indigo-100"
+      textColor: "text-indigo-800 dark:text-indigo-100",
+      link: "/blog"
     }
   ];
 
@@ -53,14 +60,15 @@ const OurValues = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {values.map((value, index) => (
-            <div 
+            <Link 
               key={index} 
-              className={`p-6 rounded-lg ${value.color} animate-fade-in`}
+              to={value.link}
+              className={`p-6 rounded-lg ${value.color} animate-fade-in hover:shadow-md transition-all duration-300 group`}
               style={{ animationDelay: `${0.1 + index * 0.1}s` }}
             >
-              <h3 className={`text-xl font-semibold mb-3 ${value.textColor}`}>{value.title}</h3>
+              <h3 className={`text-xl font-semibold mb-3 ${value.textColor} group-hover:text-opacity-80 transition-colors`}>{value.title}</h3>
               <p className="text-foreground/80 dark:text-gray-200">{value.description}</p>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
