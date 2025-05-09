@@ -25,24 +25,40 @@ const Logo = ({ variant = 'default', className = '' }: LogoProps) => {
     setImageError(true);
   };
 
+  // Track if even the fallback image failed
+  const [fallbackFailed, setFallbackFailed] = useState(false);
+  
+  const handleFallbackError = () => {
+    console.error("Even fallback logo failed to load");
+    setFallbackFailed(true);
+  };
+
   return (
     <Link to="/" className={`flex items-center ${className}`}>
       {imageError ? (
-        // Fallback display when image fails to load
-        <img 
-          src={fallbackLogoSrc}
-          alt="Marzipan Sydney" 
-          className="h-auto max-h-8 md:max-h-12 w-auto transition-transform hover:scale-[1.02]"
-          width="180"
-          height="48"
-          loading="eager"
-          decoding="async"
-          onError={() => {
-            console.error("Even fallback logo failed to load");
-            // If even fallback fails, show text logo
-          }}
-        />
+        // Fallback display when primary image fails to load
+        fallbackFailed ? (
+          // Text fallback when both images fail
+          variant === 'default' ? (
+            <span className="text-brandBlue font-bold text-xl">Marzipan</span>
+          ) : (
+            <span className="text-white font-bold text-xl">Marzipan</span>
+          )
+        ) : (
+          // Fallback image
+          <img 
+            src={fallbackLogoSrc}
+            alt="Marzipan Sydney" 
+            className="h-auto max-h-8 md:max-h-12 w-auto transition-transform hover:scale-[1.02]"
+            width="180"
+            height="48"
+            loading="eager"
+            decoding="async"
+            onError={handleFallbackError}
+          />
+        )
       ) : (
+        // Primary image
         <img 
           src={primaryLogoSrc} 
           alt="Marzipan Sydney" 
@@ -53,14 +69,6 @@ const Logo = ({ variant = 'default', className = '' }: LogoProps) => {
           decoding="async"
           onError={handleImageError}
         />
-      )}
-      
-      {/* Final text fallback that will display if both images fail */}
-      {imageError && fallbackLogoSrc === '/Marzipan-Logo-Rev.png' && (
-        <span className="text-white font-bold text-xl ml-2">Marzipan</span>
-      )}
-      {imageError && fallbackLogoSrc !== '/Marzipan-Logo-Rev.png' && (
-        <span className="text-brandBlue font-bold text-xl ml-2">Marzipan</span>
       )}
     </Link>
   );
