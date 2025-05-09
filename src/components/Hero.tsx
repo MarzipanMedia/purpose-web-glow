@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
@@ -18,7 +17,7 @@ const Hero = () => {
               id="main-heading"
               // Using lowercase fetchpriority attribute for HTML compliance
               fetchpriority="high"
-              style={{ contentVisibility: 'auto' }}
+              style={{ contentVisibility: 'auto', contain: 'layout style paint' }}
             >
               Ensuring your online presence is as powerful as your 
               <span className="gradient-text"> purpose</span>

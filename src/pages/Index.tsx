@@ -17,6 +17,7 @@ import CarbonShowcase from '@/components/carbon/CarbonShowcase';
 import { LocalBusinessSchema } from '@/components/seo/SchemaComponents';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import LogoDebug from '@/components/LogoDebug';
 
 const Index = () => {
   // Add scroll animation observer
@@ -46,6 +47,9 @@ const Index = () => {
       />
       {/* Add LocalBusinessSchema for homepage */}
       <LocalBusinessSchema />
+      
+      {/* Add logo debug component */}
+      <LogoDebug />
       
       <Header />
       
