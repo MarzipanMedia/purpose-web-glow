@@ -440,7 +440,7 @@ const SustainableWebDesign = () => {
                   <div className="bg-white p-4 rounded-lg">
                     <div className="aspect-video bg-gray-100 rounded flex items-center justify-center mb-4">
                       <img 
-                        src="/images/eco-design-principles.jpg" 
+                        src="//marzipan-web-design-syd-min.webp" 
                         alt="Eco-Friendly Design Principles" 
                         className="w-full h-full object-cover rounded"
                         loading="lazy"
