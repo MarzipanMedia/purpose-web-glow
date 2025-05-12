@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -305,18 +306,18 @@ const BlogWithWordPress = () => {
                       )}
                     </div>
                     
-                    {/* WordPress Info */}
+                    {/* Content Collaboration CTA - Replacing WordPress Info */}
                     <div className="bg-brandBlue text-white p-6 rounded-lg">
-                      <div className="text-sm text-white/70 uppercase font-medium mb-2">WordPress Connection</div>
+                      <div className="text-sm text-white/70 uppercase font-medium mb-2">Content Collaboration</div>
                       <h3 className="text-xl font-display font-medium mb-3">
-                        Using WordPress REST API
+                        Share Your Expertise
                       </h3>
                       <p className="text-white/80 mb-4">
-                        This page fetches blog posts directly from our WordPress site using the REST API, providing you with our latest content.
+                        Have insights on sustainable web design or digital marketing? We welcome guest posts and content collaborations from industry experts.
                       </p>
-                      <a href="https://marzipan.com.au" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm font-medium text-white hover:text-white/80 transition-colors">
-                        Visit Main Site <ArrowRight className="h-3.5 w-3.5" />
-                      </a>
+                      <Link to="/contact" className="inline-flex items-center gap-1 text-sm font-medium text-white hover:text-white/80 transition-colors">
+                        Get in Touch <ArrowRight className="h-3.5 w-3.5" />
+                      </Link>
                     </div>
                   </>
                 ) : (
