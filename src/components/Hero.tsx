@@ -33,11 +33,6 @@ const Hero = () => {
               <Link to="/projects" className="btn-secondary flex items-center gap-2">
                 View Our Work <ArrowRight className="h-4 w-4" />
               </Link>
-              {!isMobile && (
-                <Link to="/website-carbon" className="text-brandRed hover:underline flex items-center gap-1">
-                  Free Carbon Calculator <ArrowRight className="h-3 w-3" />
-                </Link>
-              )}
             </div>
           </div>
           
