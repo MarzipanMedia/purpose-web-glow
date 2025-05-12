@@ -8,22 +8,26 @@ const Services = () => {
     {
       title: "Sustainable Web Design",
       description: "Beautiful, eco-friendly websites that minimise environmental impact.",
-      link: "/services/sustainable-web-design"
+      link: "/services/sustainable-web-design",
+      bgColor: "bg-[#F2FCE2]" // Soft green
     },
     {
       title: "AI-Driven SEO",
       description: "Ethical optimisation strategies for purpose-driven brands.",
-      link: "/services/ai-seo"
+      link: "/services/ai-seo",
+      bgColor: "bg-[#D3E4FD]" // Soft blue
     },
     {
       title: "Content Creation",
       description: "Compelling storytelling that connects with your audience.",
-      link: "/services/content-creation"
+      link: "/services/content-creation",
+      bgColor: "bg-[#FDE1D3]" // Soft peach
     },
     {
       title: "Digital Marketing",
       description: "Sustainable marketing strategies that drive meaningful growth.",
-      link: "/services/digital-marketing"
+      link: "/services/digital-marketing",
+      bgColor: "bg-[#E5DEFF]" // Soft purple
     }
   ];
 
@@ -44,7 +48,7 @@ const Services = () => {
             <Link 
               key={index}
               to={service.link}
-              className="group p-6 bg-background rounded-lg border border-border/50 hover:border-border transition-colors dark:bg-gray-800 dark:border-gray-700 dark:hover:border-gray-600"
+              className={`group p-6 rounded-lg border border-border/50 hover:border-border transition-colors dark:border-gray-700 dark:hover:border-gray-600 ${service.bgColor} hover:shadow-md`}
             >
               <h2 className="text-xl font-display font-semibold mb-2 dark:text-white">
                 {service.title}
