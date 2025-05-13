@@ -393,7 +393,7 @@ const SustainableWebDesign = () => {
                     <div className="aspect-video bg-gray-100 rounded flex items-center justify-center mb-4">
                       <img 
                         src="/webdesign-sydney-bondi.png" 
-                        alt="Website Performance Optimisation" 
+                        alt="Web Design Sydney & SEO" 
                         className="w-full h-full object-cover rounded"
                         loading="lazy"
                       />
@@ -441,7 +441,7 @@ const SustainableWebDesign = () => {
                     <div className="aspect-video bg-gray-100 rounded flex items-center justify-center mb-4">
                       <img 
                         src="/Ai-SEO.avif" 
-                        alt="Eco-Friendly Design Principles" 
+                        alt="Sustainable Web Design Principles" 
                         className="w-full h-full object-cover rounded"
                         loading="lazy"
                       />
