@@ -9,10 +9,25 @@ const NotFound = () => {
   const location = useLocation();
 
   useEffect(() => {
+    // Log the 404 error
     console.error(
       "404 Error: User attempted to access non-existent route:",
       location.pathname
     );
+    
+    // Set the HTTP status code to 404 for search engines
+    const metaStatusElement = document.createElement('meta');
+    metaStatusElement.httpEquiv = 'status';
+    metaStatusElement.content = '404';
+    document.head.appendChild(metaStatusElement);
+
+    // Clean up when component unmounts
+    return () => {
+      const existingMeta = document.querySelector('meta[http-equiv="status"]');
+      if (existingMeta) {
+        existingMeta.remove();
+      }
+    };
   }, [location.pathname]);
 
   return (
@@ -20,6 +35,7 @@ const NotFound = () => {
       <Helmet>
         <title>Page Not Found | Marzipan Media</title>
         <meta name="robots" content="noindex" />
+        <meta httpEquiv="status" content="404" />
       </Helmet>
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-marzipan/20 to-brandBlue/10">
         <div className="container-custom">
