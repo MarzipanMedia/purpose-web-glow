@@ -11,6 +11,9 @@
     { "src": "/our-services", "dest": "/services", "status": 301 },
     { "src": "/case-studies", "dest": "/projects", "status": 301 },
     { "src": "/seo-services", "dest": "/services/ai-seo", "status": 301 },
+    { "src": "/content-creation/sustainable-web-design", "dest": "/services/sustainable-web-design", "status": 301 },
+    { "src": "/content-creation/affordable-seo", "dest": "/services/ai-seo", "status": 301 },
+    { "src": "/content-creation/video-production", "dest": "/services/digital-content-creation", "status": 301 },
     { "handle": "filesystem" },
     { "src": "/.*", "dest": "/index.html" }
   ]
