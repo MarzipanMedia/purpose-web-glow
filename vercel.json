@@ -1,6 +1,11 @@
 
 {
   "routes": [
+    { "src": "/old-page", "dest": "/services", "status": 301 },
+    { "src": "/blog-old", "dest": "/blog", "status": 301 },
+    { "src": "/services/seo", "dest": "/services/ai-seo", "status": 301 },
+    { "src": "/web-design", "dest": "/services/sustainable-web-design", "status": 301 },
+    { "src": "/portfolio", "dest": "/projects", "status": 301 },
     { "handle": "filesystem" },
     { "src": "/.*", "dest": "/index.html" }
   ]
