@@ -29,6 +29,7 @@ import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import BenAdams from "./pages/BenAdams";
 import AlwaysWas from "./pages/AlwaysWas";
+import LinkInBio from "./pages/LinkInBio";
 
 // Create a cache-optimized query client with proper settings for WordPress API
 const queryClient = new QueryClient({
@@ -108,6 +109,7 @@ const App = () => (
               <Route path="/terms" element={<PageTransition><Terms /></PageTransition>} />
               <Route path="/benadams" element={<PageTransition><BenAdams /></PageTransition>} />
               <Route path="/alwayswas" element={<PageTransition><AlwaysWas /></PageTransition>} />
+              <Route path="/link" element={<LinkInBio />} />
               <Route path="/404" element={<PageTransition><NotFound /></PageTransition>} />
               <Route path="*" element={<PageTransition><RouteNotFound /></PageTransition>} />
             </Routes>

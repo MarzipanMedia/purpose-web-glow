@@ -1,39 +1,62 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 
 const FinalCTA = () => {
   return (
-    <section className="py-16 bg-brandBlue text-white">
-      <div className="container-custom text-center">
-        <h2 className="text-3xl md:text-4xl font-display font-semibold mb-4 animate-on-scroll opacity-0">
-          Ready to make an impact with your online presence?
-        </h2>
-        <p className="text-lg text-white/90 max-w-2xl mx-auto mb-8 animate-on-scroll opacity-0" style={{ transitionDelay: "0.1s" }}>
-          Let's create a sustainable website that aligns with your values and helps you reach your goals.
-        </p>
-        <div className="flex flex-wrap justify-center gap-4 items-center">
-          <Link 
-            to="/contact" 
-            className="inline-flex items-center gap-2 bg-white text-brandBlue px-8 py-4 rounded-lg font-medium hover:bg-marzipan transition-all animate-on-scroll opacity-0 shadow-md"
-            style={{ transitionDelay: "0.2s" }}
-          >
-            Get Started <ArrowRight className="h-4 w-4" />
-          </Link>
-          
-          <div className="animate-on-scroll opacity-0" style={{ transitionDelay: "0.3s" }}>
-            <Link to="/services/sustainable-web-design" className="text-white/90 hover:text-white mx-2 hover:underline">
-              Sustainable Web Design
-            </Link>
-            <span className="text-white/50">•</span>
-            <Link to="/services/ai-seo" className="text-white/90 hover:text-white mx-2 hover:underline">
-              AI-Driven SEO
-            </Link>
-            <span className="text-white/50">•</span>
-            <Link to="/website-carbon" className="text-white/90 hover:text-white mx-2 hover:underline">
-              Carbon Calculator
-            </Link>
+    <section className="relative py-16 md:py-24 bg-gradient-to-b from-brandBlue to-brandBlue/90 text-white">
+      <div className="container-custom">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="animate-on-scroll">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-6">
+              Ready to work with our team?
+            </h2>
+            <p className="text-lg opacity-90 mb-8 max-w-xl">
+              We're passionate about creating sustainable, effective, and beautiful digital experiences for purpose-driven brands.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button 
+                size="lg"
+                className="bg-white text-brandBlue hover:bg-white/90 px-8 text-base"
+                asChild
+              >
+                <Link to="/contact">
+                  Get in touch <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+              <Button 
+                variant="outline" 
+                size="lg"
+                className="border-white text-white hover:bg-white/10 px-8 text-base"
+                asChild
+              >
+                <Link to="/link">
+                  Link in Bio <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+            </div>
+          </div>
+          <div className="lg:block hidden">
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 md:p-10 shadow-lg">
+              <h3 className="text-2xl font-semibold mb-4">Our "No Waste" Promise</h3>
+              <p className="mb-4">
+                We don't believe in throwaway work. We create sustainable solutions that grow with your business—reducing waste, lowering costs, and minimizing environmental impact.
+              </p>
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                <span>Carbon-conscious development</span>
+              </div>
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                <span>Sustainable hosting options</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                <span>Future-proof technologies</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
