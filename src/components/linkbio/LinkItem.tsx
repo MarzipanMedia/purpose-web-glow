@@ -2,12 +2,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
-import * as LucideIcons from 'lucide-react';
+import * as Icons from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 // Define the props for LinkItem component
 interface LinkItemProps {
-  icon: keyof typeof LucideIcons;
+  icon: keyof typeof Icons;
   title: string;
   url: string;
   description?: string;
@@ -32,7 +32,7 @@ export const LinkItem: React.FC<LinkItemProps> = ({
   internal = false 
 }) => {
   // Dynamically get the icon from Lucide
-  const IconComponent = LucideIcons[icon];
+  const IconComponent = Icons[icon];
   
   const content = (
     <Card className="hover:scale-[1.02] transition-all duration-200 border border-gray-200 dark:border-gray-700 shadow-sm hover:border-brandBlue dark:hover:border-brandBlue">

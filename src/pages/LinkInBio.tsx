@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { Avatar } from '@/components/ui/avatar';
@@ -10,16 +10,8 @@ import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 
 const LinkInBio = () => {
-  // Use effect to ensure this doesn't interfere with LCP measurements on other pages
-  useEffect(() => {
-    // Defer non-critical operations to after page load
-    const timer = setTimeout(() => {
-      console.log('LinkInBio page loaded');
-    }, 0);
-    
-    return () => clearTimeout(timer);
-  }, []);
-
+  // Removed the useEffect that was causing issues with LCP measurements
+  
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
       <Helmet>

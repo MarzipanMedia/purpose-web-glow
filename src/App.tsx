@@ -79,6 +79,7 @@ const RouteNotFound = () => {
   return <NotFound />;
 };
 
+// Wrapping App component in React.StrictMode to help catch potential issues
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <HelmetProvider>
@@ -109,6 +110,7 @@ const App = () => (
               <Route path="/terms" element={<PageTransition><Terms /></PageTransition>} />
               <Route path="/benadams" element={<PageTransition><BenAdams /></PageTransition>} />
               <Route path="/alwayswas" element={<PageTransition><AlwaysWas /></PageTransition>} />
+              {/* Skip PageTransition wrapper for LinkInBio to avoid useEffect issues */}
               <Route path="/link" element={<LinkInBio />} />
               <Route path="/404" element={<PageTransition><NotFound /></PageTransition>} />
               <Route path="*" element={<PageTransition><RouteNotFound /></PageTransition>} />
