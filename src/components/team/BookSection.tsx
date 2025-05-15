@@ -27,9 +27,9 @@ const BookSection = () => {
       blurb: "Helm's straight-talking, expert vision for cutting carbon emissions in Britain and beyond.",
     },
     {
-      title: "Digital Minimalism",
-      author: "Cal Newport",
-      image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7",
+      title: "Sustainable Web Design",
+      author: "Tom Greenwood",
+      image: "https://m.media-amazon.com/images/I/51X4fstQ4XL._SY522_.jpg",
       link: "https://amzn.to/43kdGM8",
       blurb: "A practical path to faster, more carbon-efficient websites that are not only better for the planet, but better for our users.",
     },
