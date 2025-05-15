@@ -30,8 +30,8 @@ const BookSection = () => {
       title: "Digital Minimalism",
       author: "Cal Newport",
       image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7",
-      link: "https://www.amazon.co.uk/Digital-Minimalism-Choosing-Focused-Noisy/dp/024145357X?tag=youraffiliatetag-21",
-      blurb: "How to reclaim your attention and create a more intentional, sustainable relationship with technology.",
+      link: "https://amzn.to/43kdGM8",
+      blurb: "A practical path to faster, more carbon-efficient websites that are not only better for the planet, but better for our users.",
     },
     {
       title: "Designing for Sustainability",
