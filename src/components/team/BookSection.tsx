@@ -8,8 +8,8 @@ const BookSection = () => {
     {
       title: "How Bad Are Bananas?",
       author: "Mike Berners-Lee",
-      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
-      link: "https://www.amazon.co.uk/How-Bad-Are-Bananas-Carbon/dp/1788163816?tag=youraffiliatetag-21",
+      image: "https://m.media-amazon.com/images/I/51RedUjuGcL._SY466_.jpg",
+      link: "https://amzn.to/44F0Gmz",
       blurb: "A practical, witty guide to the real carbon footprints of everything from emails to bananas—essential reading for the eco-conscious.",
     },
     {
