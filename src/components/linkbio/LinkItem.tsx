@@ -6,6 +6,10 @@ import * as Icons from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 // Define the props for LinkItem component
+interface IconComponentProps {
+  [key: string]: React.ComponentType<any>;
+}
+
 interface LinkItemProps {
   icon: keyof typeof Icons;
   title: string;
@@ -32,7 +36,7 @@ export const LinkItem: React.FC<LinkItemProps> = ({
   internal = false 
 }) => {
   // Dynamically get the icon from Lucide
-  const IconComponent = Icons[icon];
+  const IconComponent = Icons[icon] as React.FC<React.SVGProps<SVGSVGElement>>;
   
   const content = (
     <Card className="hover:scale-[1.02] transition-all duration-200 border border-gray-200 dark:border-gray-700 shadow-sm hover:border-brandBlue dark:hover:border-brandBlue">
