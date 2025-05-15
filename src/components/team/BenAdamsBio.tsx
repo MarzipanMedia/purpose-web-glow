@@ -16,7 +16,7 @@ const BenAdamsBio = () => {
             </p>
 
             <p className="text-lg leading-relaxed">
-              Working alongside co-founder Ben Thompson, Ben Adams helps drive Marzipan's mission to revolutionise digital marketing through sustainable practices and innovative technical solutions. His leadership in implementing eco-friendly web development practices has established Marzipan as a pioneer in sustainable digital solutions.
+              Ben helps drive Marzipan's mission to revolutionise digital marketing through sustainable practices and innovative technical solutions. His leadership in implementing eco-friendly web development practices has established Marzipan as a pioneer in sustainable digital solutions. When he's not behind a laptop you'll find him at the beach. A keen supporter of Men's Mental Health he runs a community meditation group every Saturday morning at Bondi Beach. Come say hi! 
             </p>
           </div>
         </div>
