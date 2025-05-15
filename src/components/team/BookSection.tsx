@@ -69,7 +69,8 @@ const BookSection = () => {
       ></div>
       <div className="container-custom relative z-10">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-display font-semibold mb-8 text-center gradient-text">Books I'm Currently Reading</h2>
+          <h2 className="text-3xl font-display font-semibold mb-8 text-center gradient-text">Books Every Digital Agency Should Be Reading</h2>
+          <h4 className="text-3xl font-display font-semibold mb-8 text-center gradient-text">But probably isn't ...and books we just love</h4>
           <BookGrid books={books} />
         </div>
       </div>
