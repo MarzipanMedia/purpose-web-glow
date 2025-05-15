@@ -36,16 +36,16 @@ const BookSection = () => {
     {
       title: "Designing for Sustainability",
       author: "Tim Frick",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
-      link: "https://www.amazon.co.uk/Designing-Sustainability-Intentional-Technology-Ecology/dp/1491920172?tag=youraffiliatetag-21",
+      image: "https://m.media-amazon.com/images/I/91cKUbsUkmL._SY425_.jpg",
+      link: "https://amzn.to/4dfmDKY",
       blurb: "The definitive book for sustainable web practitioners—eco-friendly design and digital best practices.",
     },
     {
-      title: "The Day the World Stops Shopping",
-      author: "JB MacKinnon",
-      image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
-      link: "https://www.amazon.co.uk/Day-World-Stops-Shopping-Possibilities/dp/178816510X?tag=youraffiliatetag-21",
-      blurb: "A thought experiment on conscious consumption—what would really happen if we all bought less?",
+      title: "How to Hold a Cockroach",
+      author: "Matthew Maxwell",
+      image: "https://m.media-amazon.com/images/I/81cRvQcOcGL._SY425_.jpg",
+      link: "https://amzn.to/3Zn2gWu",
+      blurb: "How to Hold a Cockroach is about discovering and freeing ourselves from the beliefs that cause us to suffer.",
     },
   ];
 
