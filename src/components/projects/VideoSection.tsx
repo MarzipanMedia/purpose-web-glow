@@ -50,7 +50,9 @@ const VideoSection: React.FC<VideoSectionProps> = ({
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {videos.map((video, index) => {
-            const { platform, id } = getVideoId(video.videoUrl); // Updated to use videoUrl
+            // Fix the URL property usage - use video.url instead of videoUrl
+            const videoUrl = video.url;
+            const { platform, id } = getVideoId(videoUrl);
             const embedUrl = platform === 'vimeo' 
               ? `https://player.vimeo.com/video/${id}?title=0&byline=0&portrait=0` 
               : `https://www.youtube.com/embed/${id}?rel=0`;
