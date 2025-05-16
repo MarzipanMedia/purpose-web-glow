@@ -40,12 +40,19 @@ const CertificationLogos = () => {
               key={index} 
               className="flex justify-center items-center"
             >
-              <img 
-                src={logo.src} 
-                alt={logo.alt} 
-                className="max-h-16 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" 
-                loading="lazy"
-              />
+              <a 
+                href={logo.link} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:opacity-100 transition-all duration-300"
+              >
+                <img 
+                  src={logo.src} 
+                  alt={logo.alt} 
+                  className="max-h-16 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" 
+                  loading="lazy"
+                />
+              </a>
             </div>
           ))}
         </div>
