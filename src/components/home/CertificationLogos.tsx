@@ -9,19 +9,19 @@ interface LogoProps {
 const CertificationLogos = () => {
   const logos: LogoProps[] = [
     {
-      src: "/google.webp", // 
+      src: "/certification-logos/google.webp", 
       alt: "Google Ads Search Certified"
     },
     {
-      src: "/path-to-dan-logo.png", // 
+      src: "/certification-logos/DAN-member-badge-dark-h.webp", 
       alt: "Digital Agency Network Verified Agency"
     },
     {
-      src: "/Top-WEB-DESIGN-Agencies.png", // 
-      alt: "Top Digital Perdie"
+      src: "/certification-logos/Top-WEB-DESIGN-Agencies.png", 
+      alt: "Top Web Design Agencies"
     },
     {
-      src: "/SEO04.webp", // 
+      src: "/certification-logos/SEO04.webp", 
       alt: "Top Web Design Agencies Sydney"
     }
   ];
