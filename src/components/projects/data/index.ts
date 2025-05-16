@@ -6,6 +6,7 @@ import { willow } from './willow';
 import { popology } from './popology';
 import { toasty } from './toasty';
 import { museumsOfHistoryNSW } from './museumsOfHistoryNSW';
+import { barangaroo } from './barangaroo';
 import { ProjectData, VideoData, ProcessStep } from './types';
 
 export * from './types';
@@ -18,7 +19,8 @@ export const projects = [
   willow,
   popology,
   toasty,
-  museumsOfHistoryNSW
+  museumsOfHistoryNSW,
+  barangaroo
 ];
 
 // Re-export the process steps
