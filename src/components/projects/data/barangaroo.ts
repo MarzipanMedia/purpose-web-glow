@@ -2,7 +2,7 @@ import { ProjectData } from './types';
 
 export const barangaroo: ProjectData = {
   title: "Barangaroo – Launching Wulugul Walk with Video Content that Connects",
-  imageUrl: "/a-video-production-agency-sydney.webp",
+  imageUrl: "/barangaroo_video_production.avif",
   category: "Cultural Event Video",
   description: "Social-first video campaign capturing the public launch of Sydney’s new foreshore link, Wulugul Walk.",
   features: [
