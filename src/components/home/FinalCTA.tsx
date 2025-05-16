@@ -42,7 +42,7 @@ const FinalCTA = () => {
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 md:p-10 shadow-lg">
               <h3 className="text-2xl font-semibold mb-4">Our "No Waste" Promise</h3>
               <p className="mb-4">
-                We don't believe in throwaway work. We create sustainable solutions that grow with your business—reducing waste, lowering costs, and minimizing environmental impact.
+                We don't believe in throwaway work. We create sustainable solutions that grow with your business—reducing waste, lowering costs, and minimising environmental impact.
               </p>
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-2 h-2 bg-green-400 rounded-full"></div>
