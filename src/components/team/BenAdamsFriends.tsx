@@ -1,6 +1,6 @@
 
 import React from 'react';
-import ClientLogos from '../ClientLogos';
+import BenAdamsPartnerLogos from './BenAdamsPartnerLogos';
 
 const BenAdamsFriends = () => {
   return (
@@ -8,8 +8,8 @@ const BenAdamsFriends = () => {
       <div className="container-custom">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-display font-semibold mb-8 text-center">Life's Better with Friends</h2>
-       <p className="text-brandBlue text-center w-full mb-8">Suppliers and pals we couldn't live without</p>
-          <ClientLogos />
+          <p className="text-brandBlue text-center w-full mb-8">Suppliers and pals we couldn't live without</p>
+          <BenAdamsPartnerLogos />
         </div>
       </div>
     </section>
