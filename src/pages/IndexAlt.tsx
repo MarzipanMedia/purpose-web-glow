@@ -9,6 +9,7 @@ import BlogPreview from '../components/BlogPreview';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Users, Award, BarChart3, Laptop } from 'lucide-react';
+import CertificationLogos from '@/components/home/CertificationLogos';
 
 const IndexAlt = () => {
   const testimonials = [
@@ -221,6 +222,9 @@ const IndexAlt = () => {
             </div>
           </div>
         </section>
+        
+        {/* Add Certification Logos */}
+        <CertificationLogos />
         
         {/* CTA Section */}
         <section className="py-16 bg-gradient-to-br from-brandRed/90 via-brandRed/70 to-brandBlue/80 text-white">

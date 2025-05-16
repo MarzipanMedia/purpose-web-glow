@@ -16,6 +16,7 @@ import FinalCTA from '@/components/home/FinalCTA';
 import CarbonShowcase from '@/components/carbon/CarbonShowcase';
 import { LocalBusinessSchema } from '@/components/seo/SchemaComponents';
 import LogoDebug from '@/components/LogoDebug';
+import CertificationLogos from '@/components/home/CertificationLogos';
 
 const Index = () => {
   // Add scroll animation observer
@@ -69,6 +70,7 @@ const Index = () => {
         <RecentProjects />
         <BlogPreview />
         <TestimonialsSection />
+        <CertificationLogos />
         <FinalCTA />
         
         {/* Resources Banner Removed - Saving for later implementation */}
