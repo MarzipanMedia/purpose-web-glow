@@ -9,20 +9,20 @@ interface LogoProps {
 const CertificationLogos = () => {
   const logos: LogoProps[] = [
     {
-      src: "/path-to-google-logo.png", // Replace with actual path when available
+      src: "/google.webp", // 
       alt: "Google Ads Search Certified"
     },
     {
-      src: "/path-to-dan-logo.png", // Replace with actual path when available
+      src: "/path-to-dan-logo.png", // 
       alt: "Digital Agency Network Verified Agency"
     },
     {
-      src: "/path-to-top-logo.png", // Replace with actual path when available
+      src: "/Top-WEB-DESIGN-Agencies.png", // 
       alt: "Top Digital Perdie"
     },
     {
-      src: "/path-to-seo4-logo.png", // Replace with actual path when available
-      alt: "Top Web Design Agencies"
+      src: "/SEO04.webp", // 
+      alt: "Top Web Design Agencies Sydney"
     }
   ];
 
