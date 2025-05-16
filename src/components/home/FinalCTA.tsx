@@ -19,7 +19,7 @@ const FinalCTA = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <Button 
                 size="lg"
-                className="bg-white text-brandBlue hover:bg-white/90 px-8 text-base"
+                className="bg-white text-brandRed hover:bg-white/90 px-8 text-base"
                 asChild
               >
                 <Link to="/contact">
@@ -29,7 +29,7 @@ const FinalCTA = () => {
               <Button 
                 variant="outline" 
                 size="lg"
-                className="border-white text-white hover:bg-white/10 px-8 text-base"
+                className="bg-white text-brandBlue hover:bg-white/90 px-8 text-base"
                 asChild
               >
                 <Link to="/link">
