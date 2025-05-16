@@ -4,6 +4,8 @@ import React from 'react';
 interface LogoProps {
   src: string;
   alt: string;
+  link: string; 
+}
 }
 
 const CertificationLogos = () => {
@@ -11,18 +13,22 @@ const CertificationLogos = () => {
     {
       src: "/certification-logos/google.webp", 
       alt: "Google Ads Search Certified"
+      link: "https://skillshop.credential.net/707f58b4-de69-4ba0-bb2a-71bd6b0b8b71"
     },
     {
       src: "/certification-logos/DAN-member-badge-dark-h.webp", 
       alt: "Digital Agency Network Verified Agency"
+      link: "https://digitalagencynetwork.com/agency/marzipan-media/"
     },
     {
       src: "/certification-logos/Top-WEB-DESIGN-Agencies.png", 
       alt: "Top Web Design Agencies"
+      link: "https://digitalagencynetwork.com/agency/marzipan-media/"
     },
     {
       src: "/certification-logos/SEO04.webp", 
       alt: "Top Web Design Agencies Sydney"
+      link: "https://www.pandia.com/au/bondi-nsw/seo-company#list4"
     }
   ];
 
