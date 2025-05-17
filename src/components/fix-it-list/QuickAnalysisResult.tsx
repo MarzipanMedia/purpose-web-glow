@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { AlertTriangle, ArrowRight, Check } from 'lucide-react';
+import { AlertTriangle, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
@@ -17,15 +17,20 @@ interface QuickAnalysisResultProps {
   onRequestFullReport: () => void;
 }
 
-const QuickAnalysisResult: React.FC<QuickAnalysisResultProps> = ({ 
+// Use React.memo to prevent unnecessary re-renders
+const QuickAnalysisResult: React.FC<QuickAnalysisResultProps> = React.memo(({ 
   url, 
   shineScore, 
   metrics, 
   primaryIssue,
   onRequestFullReport
 }) => {
+  // Precompute values that won't change
+  const seoScore = metrics.seoScore ?? 50;
+  const speedScore = metrics.speedScore ?? 60;
+  
   return (
-    <Card className="border-marzipan/30 shadow-md dark:bg-gray-800 dark:border-gray-700 animate-fade-in">
+    <Card className="border-marzipan/30 shadow-md dark:bg-gray-800 dark:border-gray-700">
       <CardHeader className="bg-gradient-to-r from-brandBlue/10 to-marzipan/10 dark:from-brandBlue/20 dark:to-marzipan/20 rounded-t-lg pb-6">
         <CardTitle className="text-2xl font-display flex items-center justify-between">
           <span>Quick Website Analysis</span>
@@ -61,17 +66,17 @@ const QuickAnalysisResult: React.FC<QuickAnalysisResultProps> = ({
             <div>
               <div className="flex justify-between mb-1">
                 <span className="text-sm font-medium dark:text-gray-200">SEO</span>
-                <span className="text-sm font-medium dark:text-gray-200">{metrics.seoScore}/100</span>
+                <span className="text-sm font-medium dark:text-gray-200">{seoScore}/100</span>
               </div>
-              <Progress value={metrics.seoScore} className="h-2" />
+              <Progress value={seoScore} className="h-2" />
             </div>
             
             <div>
               <div className="flex justify-between mb-1">
                 <span className="text-sm font-medium dark:text-gray-200">Site Speed</span>
-                <span className="text-sm font-medium dark:text-gray-200">{metrics.speedScore}/100</span>
+                <span className="text-sm font-medium dark:text-gray-200">{speedScore}/100</span>
               </div>
-              <Progress value={metrics.speedScore} className="h-2" />
+              <Progress value={speedScore} className="h-2" />
             </div>
           </div>
         </div>
@@ -93,6 +98,8 @@ const QuickAnalysisResult: React.FC<QuickAnalysisResultProps> = ({
       </CardContent>
     </Card>
   );
-};
+});
+
+QuickAnalysisResult.displayName = "QuickAnalysisResult";
 
 export default QuickAnalysisResult;

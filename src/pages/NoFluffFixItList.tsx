@@ -1,36 +1,25 @@
 
-import React, { useState } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import { BarChart3, Check, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from "sonner";
 import CertificationLogos from '../components/home/CertificationLogos';
 import MetaHead from '../components/MetaHead';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import QuickAnalysisResult from '../components/fix-it-list/QuickAnalysisResult';
 import { calculateShineScore, performQuickAnalysis, getPrimaryIssue, SiteAnalysisMetrics } from '../utils/shineScoreCalculator';
+import FixItListForm, { FixItListFormData } from '../components/fix-it-list/FixItListForm';
 
-// Define form schema with zod
-const formSchema = z.object({
-  name: z.string().min(2, { message: "Name is required" }),
-  businessName: z.string().min(2, { message: "Business name is required" }),
-  websiteUrl: z.string().url({ message: "Please enter a valid URL" }),
-  email: z.string().email({ message: "Please enter a valid email" }),
-  websiteWorry: z.string().optional(),
-});
+// Lazy load components that aren't needed immediately
+const QuickAnalysisResult = lazy(() => import('../components/fix-it-list/QuickAnalysisResult'));
+const ReportCompletionMessage = lazy(() => import('../components/fix-it-list/ReportCompletionMessage'));
 
 const NoFluffFixItList = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [analysisComplete, setAnalysisComplete] = useState(false);
   const [requestingFullReport, setRequestingFullReport] = useState(false);
   const [reportRequested, setReportRequested] = useState(false);
+  const [userEmail, setUserEmail] = useState<string>("");
   const [quickAnalysisData, setQuickAnalysisData] = useState<{
     url: string;
     metrics: SiteAnalysisMetrics;
@@ -40,20 +29,12 @@ const NoFluffFixItList = () => {
       description: string;
     };
   } | null>(null);
-  
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: "",
-      businessName: "",
-      websiteUrl: "",
-      email: "",
-      websiteWorry: "",
-    },
-  });
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: FixItListFormData) => {
     setIsSubmitting(true);
+    
+    // Store email for later use
+    setUserEmail(values.email);
     
     // Perform quick analysis
     try {
@@ -147,7 +128,7 @@ const NoFluffFixItList = () => {
         <section className="py-16 md:py-24 bg-gradient-to-br from-brandBlue/10 via-white to-marzipan/20 dark:from-brandBlue/30 dark:via-gray-900 dark:to-marzipan/10">
           <div className="container-custom">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="space-y-6 animate-fade-in">
+              <div className="space-y-6">
                 <h1 className="text-4xl md:text-5xl font-display font-bold leading-tight text-gray-800 dark:text-white">
                   Is Your Website Holding You Back?
                 </h1>
@@ -199,15 +180,13 @@ const NoFluffFixItList = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {steps.map((step, index) => (
-                <Card key={index} className="border-none shadow-md hover:shadow-lg transition-shadow dark:bg-gray-800">
-                  <CardContent className="p-6 text-center">
-                    <div className="bg-brandBlue/10 dark:bg-brandBlue/20 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
-                      <span className="text-xl font-bold text-brandBlue dark:text-brandBlue/90">{index + 1}</span>
-                    </div>
-                    <h3 className="text-xl font-display font-semibold mb-2 dark:text-white">{step.title}</h3>
-                    <p className="text-gray-700 dark:text-gray-300">{step.description}</p>
-                  </CardContent>
-                </Card>
+                <div key={index} className="border-none shadow-md hover:shadow-lg transition-shadow dark:bg-gray-800 p-6 text-center rounded-lg">
+                  <div className="bg-brandBlue/10 dark:bg-brandBlue/20 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
+                    <span className="text-xl font-bold text-brandBlue dark:text-brandBlue/90">{index + 1}</span>
+                  </div>
+                  <h3 className="text-xl font-display font-semibold mb-2 dark:text-white">{step.title}</h3>
+                  <p className="text-gray-700 dark:text-gray-300">{step.description}</p>
+                </div>
               ))}
             </div>
           </div>
@@ -343,117 +322,24 @@ const NoFluffFixItList = () => {
               </div>
               
               {reportRequested ? (
-                <div className="bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-lg p-8 text-center">
-                  <h3 className="text-2xl font-display font-semibold mb-4 dark:text-white">Full Report Sent!</h3>
-                  <p className="mb-4 dark:text-gray-200">
-                    We've sent your complete No-Fluff Fix-It List to your inbox. Please check your email in the next few minutes.
-                  </p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    If you don't receive it, please check your spam folder or contact us for assistance.
-                  </p>
-                </div>
+                <Suspense fallback={<div className="p-8 text-center">Loading...</div>}>
+                  <ReportCompletionMessage email={userEmail} />
+                </Suspense>
               ) : analysisComplete && quickAnalysisData ? (
-                <QuickAnalysisResult
-                  url={quickAnalysisData.url}
-                  shineScore={quickAnalysisData.shineScore}
-                  metrics={quickAnalysisData.metrics}
-                  primaryIssue={quickAnalysisData.primaryIssue}
-                  onRequestFullReport={handleRequestFullReport}
-                />
+                <Suspense fallback={<div className="p-8 text-center">Loading analysis...</div>}>
+                  <QuickAnalysisResult
+                    url={quickAnalysisData.url}
+                    shineScore={quickAnalysisData.shineScore}
+                    metrics={quickAnalysisData.metrics}
+                    primaryIssue={quickAnalysisData.primaryIssue}
+                    onRequestFullReport={handleRequestFullReport}
+                  />
+                </Suspense>
               ) : (
-                <Card className="dark:bg-gray-800 dark:border-gray-700">
-                  <CardContent className="p-6">
-                    <Form {...form}>
-                      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                        <FormField
-                          control={form.control}
-                          name="name"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel className="dark:text-white">Name</FormLabel>
-                              <FormControl>
-                                <Input placeholder="Your name" {...field} className="dark:bg-gray-700 dark:text-white dark:border-gray-600" />
-                              </FormControl>
-                              <FormMessage className="dark:text-red-400" />
-                            </FormItem>
-                          )}
-                        />
-                        
-                        <FormField
-                          control={form.control}
-                          name="businessName"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel className="dark:text-white">Business Name</FormLabel>
-                              <FormControl>
-                                <Input placeholder="Your business name" {...field} className="dark:bg-gray-700 dark:text-white dark:border-gray-600" />
-                              </FormControl>
-                              <FormMessage className="dark:text-red-400" />
-                            </FormItem>
-                          )}
-                        />
-                        
-                        <FormField
-                          control={form.control}
-                          name="websiteUrl"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel className="dark:text-white">Website URL</FormLabel>
-                              <FormControl>
-                                <Input placeholder="https://your-website.com" {...field} className="dark:bg-gray-700 dark:text-white dark:border-gray-600" />
-                              </FormControl>
-                              <FormMessage className="dark:text-red-400" />
-                            </FormItem>
-                          )}
-                        />
-                        
-                        <FormField
-                          control={form.control}
-                          name="email"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel className="dark:text-white">Best Email</FormLabel>
-                              <FormControl>
-                                <Input placeholder="your-email@example.com" {...field} className="dark:bg-gray-700 dark:text-white dark:border-gray-600" />
-                              </FormControl>
-                              <FormMessage className="dark:text-red-400" />
-                            </FormItem>
-                          )}
-                        />
-                        
-                        <FormField
-                          control={form.control}
-                          name="websiteWorry"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel className="dark:text-white">What's your biggest website worry? (optional)</FormLabel>
-                              <FormControl>
-                                <Textarea 
-                                  placeholder="Tell us what concerns you most about your current website..."
-                                  className="min-h-[100px] dark:bg-gray-700 dark:text-white dark:border-gray-600"
-                                  {...field}
-                                />
-                              </FormControl>
-                              <FormMessage className="dark:text-red-400" />
-                            </FormItem>
-                          )}
-                        />
-                        
-                        <Button 
-                          type="submit" 
-                          className="w-full bg-brandBlue hover:bg-brandBlue/90"
-                          disabled={isSubmitting}
-                        >
-                          {isSubmitting ? "Analysing your site..." : "Check My Website"}
-                        </Button>
-                        
-                        <p className="text-center text-sm text-gray-600 dark:text-gray-400">
-                          We respect your privacy and will never share your information with third parties.
-                        </p>
-                      </form>
-                    </Form>
-                  </CardContent>
-                </Card>
+                <FixItListForm 
+                  onSubmit={onSubmit}
+                  isSubmitting={isSubmitting}
+                />
               )}
             </div>
           </div>
