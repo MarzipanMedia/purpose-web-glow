@@ -17,7 +17,6 @@ import DigitalMarketing from './pages/services/DigitalMarketing';
 import DigitalContentCreation from './pages/services/DigitalContentCreation';
 import ContentCreation from './pages/services/ContentCreation';
 import Projects from './pages/Projects';
-import ProjectDetail from './pages/ProjectDetail';
 import BlogWithWordPress from './pages/BlogWithWordPress';
 import Resources from './pages/Resources';
 import Contact from './pages/Contact';
@@ -83,7 +82,7 @@ function App() {
           <Route path="/services/digital-content-creation" element={<DigitalContentCreation />} />
           <Route path="/services/content-creation" element={<ContentCreation />} />
           <Route path="/projects" element={<Projects />} />
-          <Route path="/projects/:projectId" element={<ProjectDetail />} />
+          <Route path="/projects/:projectId" element={<Projects />} />
           <Route path="/blog" element={<BlogWithWordPress />} />
           <Route path="/resources" element={<Resources />} />
           <Route path="/contact" element={<Contact />} />
