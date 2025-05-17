@@ -1,125 +1,103 @@
+import React, { useState, useEffect } from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useLocation,
+} from 'react-router-dom';
+import { ThemeProvider } from './components/ThemeProvider';
+import Index from './pages/Index';
+import IndexAlt from './pages/IndexAlt';
+import About from './pages/About';
+import Services from './pages/Services';
+import SustainableWebDesign from './pages/SustainableWebDesign';
+import AiSeo from './pages/AiSeo';
+import DigitalMarketing from './pages/DigitalMarketing';
+import DigitalContentCreation from './pages/DigitalContentCreation';
+import ContentCreation from './pages/ContentCreation';
+import Projects from './pages/Projects';
+import ProjectDetail from './pages/ProjectDetail';
+import BlogWithWordPress from './pages/BlogWithWordPress';
+import Resources from './pages/Resources';
+import Contact from './pages/Contact';
+import BenAdams from './pages/BenAdams';
+import WebsiteCarbon from './pages/WebsiteCarbon';
+import Privacy from './pages/Privacy';
+import Terms from './pages/Terms';
+import AlwaysWas from './pages/AlwaysWas';
+import NotFound from './pages/NotFound';
+import LinkInBio from './pages/LinkInBio';
+import { HelmetProvider } from 'react-helmet-async';
+import LogoDebug from './components/LogoDebug';
+import NoFluffFixItList from './pages/NoFluffFixItList';
 
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
-import { HelmetProvider } from "react-helmet-async";
-import { useEffect } from "react";
-import { ThemeProvider } from "./components/ThemeProvider";
-import { useIsMobile } from "./hooks/use-mobile";
-import Index from "./pages/Index";
-import IndexAlt from "./pages/IndexAlt";
-import Services from "./pages/Services";
-import Projects from "./pages/Projects";
-import About from "./pages/About";
-// import Blog from "./pages/Blog"; // Commented out static blog
-import BlogWithWordPress from "./pages/BlogWithWordPress";
-import NotFound from "./pages/NotFound";
-import Contact from "./pages/Contact";
-import SustainableWebDesign from "./pages/services/SustainableWebDesign";
-import AiSeo from "./pages/services/AiSeo";
-import ContentCreation from "./pages/services/ContentCreation";
-import DigitalMarketing from "./pages/services/DigitalMarketing";
-import DigitalContentCreation from "./pages/services/DigitalContentCreation";
-import WebsiteCarbon from "./pages/WebsiteCarbon";
-import ProjectDetail from "./components/projects/ProjectDetail";
-import Resources from "./pages/Resources";
-import Privacy from "./pages/Privacy";
-import Terms from "./pages/Terms";
-import BenAdams from "./pages/BenAdams";
-import AlwaysWas from "./pages/AlwaysWas";
-import LinkInBio from "./pages/LinkInBio";
-
-// Create a cache-optimized query client with proper settings for WordPress API
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 5 * 60 * 1000, // 5 minutes
-      gcTime: 10 * 60 * 1000, // 10 minutes
-      refetchOnWindowFocus: false,
-      retry: 1,
-    },
-  },
-});
-
-// Mobile-optimized page transition wrapper component
-const PageTransition = ({ children }: { children: React.ReactNode }) => {
-  const location = useLocation();
-  const isMobile = useIsMobile();
+function App() {
+  const [tracked, setTracked] = useState(false);
 
   useEffect(() => {
-    // Scroll to top on page change - but defer on mobile
-    if (isMobile) {
-      // Use requestAnimationFrame for smoother scrolling on mobile
-      requestAnimationFrame(() => {
-        window.scrollTo({ top: 0, behavior: 'auto' });
-      });
-    } else {
-      window.scrollTo(0, 0);
-    }
-  }, [location.pathname, isMobile]);
+    // Function to track the event
+    const trackEvent = () => {
+      if (!tracked) {
+        console.log('Tracking script called');
+        // @ts-ignore
+        window.dataLayer = window.dataLayer || [];
+        // @ts-ignore
+        window.dataLayer.push({
+          event: 'pageLoad',
+          pageTitle: document.title,
+          pageURL: window.location.href,
+        });
+        setTracked(true);
+      }
+    };
 
-  // On mobile, use a simpler transition with no animation delay
-  const transitionClass = isMobile ? 
-    "page-transition mobile-transition" : 
-    "page-transition";
+    // Call the tracking function
+    trackEvent();
 
-  return <div className={transitionClass}>{children}</div>;
-};
+    // Set up the mutation observer
+    const observer = new MutationObserver(trackEvent);
 
-// Route not found handler component 
-const RouteNotFound = () => {
-  const location = useLocation();
-  
-  useEffect(() => {
-    console.log(`Route not found: ${location.pathname}`);
-  }, [location.pathname]);
-  
-  return <NotFound />;
-};
+    // Start observing the document for changes in title
+    observer.observe(document, { subtree: true, childList: true });
 
-// Wrapping App component in React.StrictMode to help catch potential issues
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <HelmetProvider>
-      <ThemeProvider defaultTheme="system">
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<PageTransition><Index /></PageTransition>} />
-              <Route path="/alt" element={<PageTransition><IndexAlt /></PageTransition>} />
-              <Route path="/services" element={<PageTransition><Services /></PageTransition>} />
-              <Route path="/services/sustainable-web-design" element={<PageTransition><SustainableWebDesign /></PageTransition>} />
-              <Route path="/services/ai-seo" element={<PageTransition><AiSeo /></PageTransition>} />
-              <Route path="/services/content-creation" element={<PageTransition><ContentCreation /></PageTransition>} />
-              <Route path="/services/digital-marketing" element={<PageTransition><DigitalMarketing /></PageTransition>} />
-              <Route path="/services/digital-content-creation" element={<PageTransition><DigitalContentCreation /></PageTransition>} />
-              <Route path="/projects" element={<PageTransition><Projects /></PageTransition>} />
-              <Route path="/projects/:slug" element={<PageTransition><ProjectDetail /></PageTransition>} />
-              <Route path="/about" element={<PageTransition><About /></PageTransition>} />
-              {/* Changed default blog route to use WordPress version */}
-              <Route path="/blog" element={<PageTransition><BlogWithWordPress /></PageTransition>} />
-              <Route path="/static-blog" element={<PageTransition><BlogWithWordPress /></PageTransition>} />
-              <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
-              <Route path="/website-carbon" element={<PageTransition><WebsiteCarbon /></PageTransition>} />
-              <Route path="/resources" element={<PageTransition><Resources /></PageTransition>} />
-              <Route path="/privacy" element={<PageTransition><Privacy /></PageTransition>} />
-              <Route path="/terms" element={<PageTransition><Terms /></PageTransition>} />
-              <Route path="/benadams" element={<PageTransition><BenAdams /></PageTransition>} />
-              <Route path="/alwayswas" element={<PageTransition><AlwaysWas /></PageTransition>} />
-              {/* Skip PageTransition wrapper for LinkInBio to avoid useEffect issues */}
-              <Route path="/link" element={<LinkInBio />} />
-              <Route path="/404" element={<PageTransition><NotFound /></PageTransition>} />
-              <Route path="*" element={<PageTransition><RouteNotFound /></PageTransition>} />
-            </Routes>
-          </BrowserRouter>
-        </TooltipProvider>
-      </ThemeProvider>
-    </HelmetProvider>
-  </QueryClientProvider>
-);
+    // Clean up the observer on unmount
+    return () => observer.disconnect();
+  }, [tracked]);
+
+  return (
+    <ThemeProvider
+      defaultTheme="system"
+      storageKey="vite-react-theme"
+    >
+      <HelmetProvider>
+        <LogoDebug />
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/alt" element={<IndexAlt />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/services/sustainable-web-design" element={<SustainableWebDesign />} />
+          <Route path="/services/ai-seo" element={<AiSeo />} />
+          <Route path="/services/digital-marketing" element={<DigitalMarketing />} />
+          <Route path="/services/digital-content-creation" element={<DigitalContentCreation />} />
+          <Route path="/services/content-creation" element={<ContentCreation />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/projects/:projectId" element={<ProjectDetail />} />
+          <Route path="/blog" element={<BlogWithWordPress />} />
+          <Route path="/resources" element={<Resources />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/ben-adams" element={<BenAdams />} />
+          <Route path="/website-carbon" element={<WebsiteCarbon />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/alwayswas" element={<AlwaysWas />} />
+          <Route path="/link" element={<LinkInBio />} />
+          <Route path="/no-fluff-fix-it-list" element={<NoFluffFixItList />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </HelmetProvider>
+    </ThemeProvider>
+  );
+}
 
 export default App;

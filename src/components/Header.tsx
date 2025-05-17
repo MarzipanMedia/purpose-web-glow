@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, ChevronDown, ChevronRight } from 'lucide-react';
@@ -137,6 +138,9 @@ const NavLinks = ({
       </Link>
       <Link to="/blog" className="text-foreground hover:text-brandBlue dark:hover:text-marzipan hover-link transition-all">
         Blog
+      </Link>
+      <Link to="/no-fluff-fix-it-list" className="text-brandRed hover:text-brandRed/90 font-medium hover-link transition-all">
+        Free Website Fix-It List
       </Link>
       <Link to="/contact" className="btn-primary">
         Get in Touch
