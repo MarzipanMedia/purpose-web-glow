@@ -4,7 +4,6 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
-  useLocation,
 } from 'react-router-dom';
 import { ThemeProvider } from './components/ThemeProvider';
 import Index from './pages/Index';
@@ -65,38 +64,40 @@ function App() {
   }, [tracked]);
 
   return (
-    <ThemeProvider
-      defaultTheme="system"
-      storageKey="vite-react-theme"
-    >
-      <HelmetProvider>
-        <LogoDebug />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/alt" element={<IndexAlt />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/services/sustainable-web-design" element={<SustainableWebDesign />} />
-          <Route path="/services/ai-seo" element={<AiSeo />} />
-          <Route path="/services/digital-marketing" element={<DigitalMarketing />} />
-          <Route path="/services/digital-content-creation" element={<DigitalContentCreation />} />
-          <Route path="/services/content-creation" element={<ContentCreation />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/projects/:projectId" element={<Projects />} />
-          <Route path="/blog" element={<BlogWithWordPress />} />
-          <Route path="/resources" element={<Resources />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/ben-adams" element={<BenAdams />} />
-          <Route path="/website-carbon" element={<WebsiteCarbon />} />
-          <Route path="/privacy" element={<Privacy />} />
-          <Route path="/terms" element={<Terms />} />
-          <Route path="/alwayswas" element={<AlwaysWas />} />
-          <Route path="/link" element={<LinkInBio />} />
-          <Route path="/no-fluff-fix-it-list" element={<NoFluffFixItList />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </HelmetProvider>
-    </ThemeProvider>
+    <Router>
+      <ThemeProvider
+        defaultTheme="system"
+        storageKey="vite-react-theme"
+      >
+        <HelmetProvider>
+          <LogoDebug />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/alt" element={<IndexAlt />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/services/sustainable-web-design" element={<SustainableWebDesign />} />
+            <Route path="/services/ai-seo" element={<AiSeo />} />
+            <Route path="/services/digital-marketing" element={<DigitalMarketing />} />
+            <Route path="/services/digital-content-creation" element={<DigitalContentCreation />} />
+            <Route path="/services/content-creation" element={<ContentCreation />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/:projectId" element={<Projects />} />
+            <Route path="/blog" element={<BlogWithWordPress />} />
+            <Route path="/resources" element={<Resources />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/ben-adams" element={<BenAdams />} />
+            <Route path="/website-carbon" element={<WebsiteCarbon />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/alwayswas" element={<AlwaysWas />} />
+            <Route path="/link" element={<LinkInBio />} />
+            <Route path="/no-fluff-fix-it-list" element={<NoFluffFixItList />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </HelmetProvider>
+      </ThemeProvider>
+    </Router>
   );
 }
 
