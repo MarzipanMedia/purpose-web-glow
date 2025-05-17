@@ -9,10 +9,13 @@ import { Textarea } from '@/components/ui/textarea';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from "sonner";
 import CertificationLogos from '../components/home/CertificationLogos';
 import MetaHead from '../components/MetaHead';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import QuickAnalysisResult from '../components/fix-it-list/QuickAnalysisResult';
+import { calculateShineScore, performQuickAnalysis, getPrimaryIssue, SiteAnalysisMetrics } from '../utils/shineScoreCalculator';
 
 // Define form schema with zod
 const formSchema = z.object({
@@ -25,7 +28,18 @@ const formSchema = z.object({
 
 const NoFluffFixItList = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [analysisComplete, setAnalysisComplete] = useState(false);
+  const [requestingFullReport, setRequestingFullReport] = useState(false);
+  const [reportRequested, setReportRequested] = useState(false);
+  const [quickAnalysisData, setQuickAnalysisData] = useState<{
+    url: string;
+    metrics: SiteAnalysisMetrics;
+    shineScore: number;
+    primaryIssue: {
+      area: string;
+      description: string;
+    };
+  } | null>(null);
   
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -41,19 +55,53 @@ const NoFluffFixItList = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsSubmitting(true);
     
-    // For demo purposes, we'll simulate a submission delay
-    setTimeout(() => {
-      console.log("Form submitted with values:", values);
+    // Perform quick analysis
+    try {
+      // In a real implementation, this would make API calls to analyze the site
+      const metrics = performQuickAnalysis(values.websiteUrl);
+      const shineScore = calculateShineScore(metrics);
+      const primaryIssue = getPrimaryIssue(metrics);
+      
+      // Store analysis data
+      setQuickAnalysisData({
+        url: values.websiteUrl,
+        metrics,
+        shineScore,
+        primaryIssue
+      });
+      
+      // Show quick analysis result
+      setAnalysisComplete(true);
+      
+      console.log("Quick analysis complete:", { metrics, shineScore, primaryIssue });
+    } catch (error) {
+      console.error("Error performing analysis:", error);
+      toast.error("We encountered an issue analyzing your website. Please try again.");
+    } finally {
       setIsSubmitting(false);
-      setIsSubmitted(true);
-    }, 1500);
+    }
+  };
+
+  const handleRequestFullReport = async () => {
+    if (!quickAnalysisData) return;
     
-    // In a real implementation, you would send the data to your backend
-    // const response = await fetch('/api/submit-application', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(values),
-    // });
+    setRequestingFullReport(true);
+    
+    try {
+      // In a real implementation, this would send an API request to generate
+      // and email the full report
+      
+      // Simulate API call delay
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      setReportRequested(true);
+      toast.success("Your full report is on its way to your inbox!");
+    } catch (error) {
+      console.error("Error sending full report:", error);
+      toast.error("We encountered an issue sending your report. Please try again.");
+    } finally {
+      setRequestingFullReport(false);
+    }
   };
 
   const steps = [
@@ -294,16 +342,24 @@ const NoFluffFixItList = () => {
                 </p>
               </div>
               
-              {isSubmitted ? (
+              {reportRequested ? (
                 <div className="bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-lg p-8 text-center">
-                  <h3 className="text-2xl font-display font-semibold mb-4 dark:text-white">Application Received!</h3>
+                  <h3 className="text-2xl font-display font-semibold mb-4 dark:text-white">Full Report Sent!</h3>
                   <p className="mb-4 dark:text-gray-200">
-                    Thank you for applying. We'll review your website and get back to you within 2 business days to let you know if you've secured one of our free spots.
+                    We've sent your complete No-Fluff Fix-It List to your inbox. Please check your email in the next few minutes.
                   </p>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Keep an eye on your inbox for our email.
+                    If you don't receive it, please check your spam folder or contact us for assistance.
                   </p>
                 </div>
+              ) : analysisComplete && quickAnalysisData ? (
+                <QuickAnalysisResult
+                  url={quickAnalysisData.url}
+                  shineScore={quickAnalysisData.shineScore}
+                  metrics={quickAnalysisData.metrics}
+                  primaryIssue={quickAnalysisData.primaryIssue}
+                  onRequestFullReport={handleRequestFullReport}
+                />
               ) : (
                 <Card className="dark:bg-gray-800 dark:border-gray-700">
                   <CardContent className="p-6">
@@ -388,7 +444,7 @@ const NoFluffFixItList = () => {
                           className="w-full bg-brandBlue hover:bg-brandBlue/90"
                           disabled={isSubmitting}
                         >
-                          {isSubmitting ? "Submitting..." : "Submit My Application"}
+                          {isSubmitting ? "Analysing your site..." : "Check My Website"}
                         </Button>
                         
                         <p className="text-center text-sm text-gray-600 dark:text-gray-400">
