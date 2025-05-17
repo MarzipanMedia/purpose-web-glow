@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import {
   BrowserRouter as Router,
@@ -10,11 +11,11 @@ import Index from './pages/Index';
 import IndexAlt from './pages/IndexAlt';
 import About from './pages/About';
 import Services from './pages/Services';
-import SustainableWebDesign from './pages/SustainableWebDesign';
-import AiSeo from './pages/AiSeo';
-import DigitalMarketing from './pages/DigitalMarketing';
-import DigitalContentCreation from './pages/DigitalContentCreation';
-import ContentCreation from './pages/ContentCreation';
+import SustainableWebDesign from './pages/services/SustainableWebDesign';
+import AiSeo from './pages/services/AiSeo';
+import DigitalMarketing from './pages/services/DigitalMarketing';
+import DigitalContentCreation from './pages/services/DigitalContentCreation';
+import ContentCreation from './pages/services/ContentCreation';
 import Projects from './pages/Projects';
 import ProjectDetail from './pages/ProjectDetail';
 import BlogWithWordPress from './pages/BlogWithWordPress';
